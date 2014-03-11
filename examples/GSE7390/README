@@ -1,0 +1,7 @@
+This directory contains an example experiment performed on public microarray
+expression dataset GSE7390 from Gene Expression Omnibus:
+
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7390
+
+The experiment is executed on local machine with 'test mode' (only two datasets
+are processed with statistical techniques).

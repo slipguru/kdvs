@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Background &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="next" title="Framework" href="framework.html" />
+    <link rel="prev" title="Knowledge Driven Variable Selection documentation" href="../index.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="framework.html" title="Framework"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Knowledge Driven Variable Selection documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="background">
+<span id="id1"></span><h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
+<p>This section discusses theoretical background behind KDVS system.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>KDVS provides experimental integration of numerical data and related prior
+knowledge, to confirm existing statistically significant relations between data
+bits (suggested by prior knowledge), and to discover new ones.</p>
+</div>
+<div class="section" id="data-driven-world">
+<h2>Data&#8211;driven world<a class="headerlink" href="#data-driven-world" title="Permalink to this headline">¶</a></h2>
+<p>Today many research fields as well as businesses constantly produce enormous
+quantities of data. In order to find some sense in the flood of data, one needs
+powerful algorithms that could identify meaningful relations between individual
+data bits.</p>
+<p>Traditional way of tackling this problem is to resort to well established data
+mining algorithms and machine/statistical learning methods, that operate on data
+alone. Those algorithms treat data as objects with mathematical properties and
+without further &#8220;meaning&#8221; as understood by humans. In other words, classical
+algorithms &#8220;do not know&#8221; about possible specific properties of individual data
+bits that may shed some light on their inherent relationships.</p>
+<p>In the context of KDVS, <cite>prior knowledge</cite> may be defined as the specific
+representation of known facts that connect individual data bits. In other words,
+if data bits refer to measures of some variables, prior knowledge refer to
+entities those variables represent. Most frequently, prior knowledge represents
+known facts about <cite>grouping</cite> variables into classes non&#8211;distinguishable from
+purely numerical viewpoint. Such knowledge is often hard to encode and to
+present in machine&#8211;readable form. However, its proper application to data
+mining may provide tremendous positive impact.</p>
+<p>For example, if variables are gene expression measurements, prior knowledge may
+refer to already known properties of the genes, such as their function, family
+of proteins they encode etc. If variables refer to quantities of products sold,
+prior knowledge may refer to, for example, the family a product belongs to, type
+of advertisement used for the product, associated products that may be presented
+to potential customer etc.</p>
+</div>
+<div class="section" id="high-throughput-biology">
+<h2>High&#8211;throughput biology<a class="headerlink" href="#high-throughput-biology" title="Permalink to this headline">¶</a></h2>
+<p>The main motivation of development of KDVS has come from life sciences. Wealth of
+data being produced constantly, as well as abundance of prior knowledge in textbooks
+and various databases, makes life science the primary target for the KDVS paradigm.</p>
+<p>Modern biology tries to understand dense web of molecular interactions to uncover
+underlying structure and mechanisms that describe biological organisms. This can
+be done just for the sake of pure knowledge, or for more practical purpose,
+such as searching for a cure that treats particular disease.</p>
+<p>To do so, life science researchers need two important sources of information:
+data and knowledge. <cite>Data</cite> typically comes from measurement of various kinds of
+biological activities, and is available in numerical form. <cite>Knowledge</cite> typically
+comes directly from researchers that try to understand biological mechanisms
+and to codify the resulting processes in various forms.</p>
+<p>The form of both sources of information is usually distinct. Numerical data is
+non-readable directly, but provides wealth of informative relations that may be
+hidden to human researchers. Knowledge base, while readable directly by any
+researcher, may be difficult to adapt for numerical computational processes,
+typically applied to data. That makes the open problem on its own: how to
+<cite>integrate</cite> data and knowledge effectively? See, for example,
+<a class="reference external" href="http://bib.oxfordjournals.org/content/9/6/451.full">this editorial</a>
+for an introduction to this topic.</p>
+<p>The following description focuses on KDVS being applied to life science data.</p>
+</div>
+<div class="section" id="high-throughput-platforms">
+<h2>High&#8211;throughput platforms<a class="headerlink" href="#high-throughput-platforms" title="Permalink to this headline">¶</a></h2>
+<p>In the context of life sciences, KDVS operates on data produced by high&#8211;throughput
+platforms (HTP). HTP is a workflow system utilized in modern life sciences,
+composed of hardware and software, that quantifies many instances of
+biological/physical phenomena simultaneously. For example, the amount of RNA
+associated with many genes can be measured simultaneously on array&#8211;like plates,
+or many ions may be identified simultaneously during mass spectrometry of the
+peptide, or many short reads may be generated and assembled into contigs during
+next&#8211;generation sequencing.</p>
+<p>Typical run of HTP produces very big data streams (terabyte&#8211;level is not a rare
+case) that need to be processed to reveal properties useful for understanding the
+underlying phenomena. This may be done immediately after data production phase,
+using tools provided by HTP manufacturer. However, it is possible to use other
+tools, if the data stream itself is available, and data stream format is known.</p>
+<p>Many manufacturers use proprietary data formats for data streams produced by
+HTPs. However, it is very often the case that:</p>
+<ul class="simple">
+<li>manufacturer publishes data format specification</li>
+<li>manufacturer offers public API to handle its data format</li>
+<li>manufacturer enables data to be exported into portable formats, like DSV
+(delimiter separated values), that can be viewed with tools like Excel</li>
+</ul>
+<p>The overall stream of data produced by HTP can be roughly divided in two parts:
+numerical data and annotation metadata. <cite>Numerical data</cite> are direct results of
+simultaneous measures of quantities. <cite>Annotation data</cite> provides additional
+information related to those results, such as: what quantities those particular
+numbers measure, what is the meaning of this measure, what are the environmental
+features associated with those measures, what are the external concepts
+associated with those measures etc.</p>
+<p>Both numerical and annotation data are available in many binary or textual
+formats, DSV being the most widespread textual format.</p>
+<p>To work, KDVS needs both numerical data and annotation metadata.</p>
+</div>
+<div class="section" id="prior-knowledge">
+<span id="background-priorknowledge"></span><h2>Prior knowledge<a class="headerlink" href="#prior-knowledge" title="Permalink to this headline">¶</a></h2>
+<p>As stated above, prior knowledge usually refers to some properties of
+measurements that are not easily deducible from numbers alone. Very often it
+refers to how variables measured <cite>group</cite> in some way. For example, when gene
+expression is measured, prior knowledge may refer to <cite>grouping</cite> of genes into
+functional families, into classes that share some physical property such as
+folding dynamics, etc.</p>
+<p>Prior knowledge is often <cite>hierarchical</cite>, where grouping categories can be seen
+as &#8220;tree&#8221; of categories, where more specific categories are derived from more
+general categories.</p>
+<p>Since category of prior knowledge can refer to virtually anything, KDVS uses
+very general term &#8220;<em>prior knowledge concept</em>&#8221; when referring to it (also in the
+form of &#8220;<em>PK concept</em>&#8221; or simply &#8220;<em>PKC</em>&#8221;).</p>
+<p>One of the popular sources of prior knowledge in life science is
+<a class="reference external" href="http://www.geneontology.org">Gene Ontology</a> (GO),
+that groups genes into categories associated with specified biochemical terms.
+Categories are referred to as &#8220;terms&#8221;, and gene is associated with a term based
+on <cite>evidences</cite> that come from experimental research and subject literature.
+Gene Ontology terms form <cite>directed acyclic graph</cite> (DAG), where given term can
+have many children terms as well as many ancestor terms.</p>
+<p>KDVS was designed primarily to utilize prior knowledge coming from Gene Ontology.
+In order to do so, it needs to process <cite>representation of GO DAG</cite> that is provided
+by Gene Ontology consortium. The representation understood by KDVS comes in
+<a class="reference external" href="http://www.geneontology.org/GO.format.shtml#OBO-XML">OBO-XML</a>
+file.</p>
+</div>
+<div class="section" id="data-and-knowledge-integration">
+<span id="background-dataandknowledgeintegration"></span><h2>Data and knowledge integration<a class="headerlink" href="#data-and-knowledge-integration" title="Permalink to this headline">¶</a></h2>
+<p>When data and prior knowledge are integrated in classic way, most frequently
+data are processed with data mining/machine learning algorithms in order to
+select significant variables. Then, such variables are <cite>verified</cite> against prior
+knowledge to shed some light on how selected variables are in fact related.
+This approach, while convenient, has considerable drawbacks. Among others, variable
+selection is performed purely by numerical algorithm that may need fine&#8211;tuning
+by itself, or prior knowledge is consulted too late without any possible impact
+on variable selection (the knowledge has its power &#8220;not fully utilized&#8221;).</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/meth1-classic.png"><img alt="Classic approach to data and knowledge integration" src="../_images/meth1-classic.png" style="width: 739.0px; height: 224.0px;" /></a>
+<p class="caption">Classic approach to data and knowledge integration.</p>
+<div class="legend">
+Any feature selection method may be used and any verification method may be applied.</div>
+</div>
+<p>KDVS represents one of possible approaches to <cite>integrate</cite> data and corresponding
+prior knowledge, where variables are not simply &#8220;pre&#8211;selected&#8221; before consulting
+prior knowledge. Here, prior knowledge is used to <cite>transform</cite> original problem
+into smaller ones, by constructing subsets of original dataset that are related
+to particular groups of variables. In this context, prior knowledge consists of
+<cite>concepts</cite>, i.e. &#8220;classes&#8221; of variables. Such classes can overlap, and therefore
+related subsets also can overlap. Next, variable selection is performed on those
+smaller subsets. Also, classification may be performed (binary or multi), if
+dataset consists of variables that were measured across two or more distinct
+entities, e.g. two or more distinct groups of patients, such as sick and controls,
+two or more distinct customer groups, etc. The output of KDVS consists of variables
+selected for each data subset, as well as the list of significant prior knowledge
+concepts that correspond to good prediction performance of related data subsets;
+most frequently, this means simply low classification error.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/meth2-new.png"><img alt="KDVS approach to data and knowledge integration" src="../_images/meth2-new.png" style="width: 859.0px; height: 494.0px;" /></a>
+<p class="caption">KDVS approach to data and knowledge integration.</p>
+<div class="legend">
+Any feature selection method may be used and any verification method may be applied.</div>
+</div>
+</div>
+<div class="section" id="input-data">
+<span id="background-inputdata"></span><h2>Input Data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="delimiter-separated-values">
+<h4>Delimiter Separated Values<a class="headerlink" href="#delimiter-separated-values" title="Permalink to this headline">¶</a></h4>
+<p>DSV stores two-dimensional arrays of data, or two-dimensional data slices in
+case of multi-dimensional data, in rows of plain text elements, separating
+them with special delimiter characters. For example:</p>
+<div class="highlight-python"><pre>0.00001,0.00002,"Example data string",'33333'
+333,"Another data string",+++,0.55,111,"Tricky, but possible"</pre>
+</div>
+<p>Here, the delimiter character is comma <cite>&#8221;,&#8221;</cite>, and the data are stored
+as CSV (comma-separated values). Among other standard delimiter characters are
+tabulator <cite>&#8220;\t&#8221;</cite> (TSV, tabulator-separated values, accordingly), colon
+<cite>&#8221;.&#8221;</cite> and pipe <cite>&#8220;|&#8221;</cite>.</p>
+<p>As seen in second line, delimiter character may often be &#8220;embedded&#8221; in the element
+itself, when the element is <cite>enclosed</cite> in specified characters such as single
+or double quotas. However, some DSV parsers may not honor this.</p>
+<p>Many spreadsheet and database applications allow reading and writing data in DSV
+portable formats. Since the most common &#8220;dialect&#8221; of DSV is CSV, it will be often
+referred as such.</p>
+<p>Very often, the CSV data file is coming up with a &#8220;header line&#8221;, containing
+names for the &#8220;columns&#8221; of values, and &#8220;row names&#8221;, containing the name for
+every row. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;Row ID&quot;</span><span class="p">,</span><span class="s">&quot;Column1&quot;</span><span class="p">,</span><span class="s">&quot;Column2&quot;</span><span class="p">,</span><span class="s">&quot;Column3&quot;</span>
+<span class="s">&quot;Row1&quot;</span><span class="p">,</span><span class="mf">1.00</span><span class="p">,</span><span class="mf">2.00</span><span class="p">,</span><span class="mf">3.00</span>
+<span class="s">&quot;Row2&quot;</span><span class="p">,</span><span class="mf">4.00</span><span class="p">,</span><span class="mf">5.00</span><span class="p">,</span><span class="mf">6.00</span>
+</pre></div>
+</div>
+<p>In this case, <cite>Column1</cite> represents the set of values <cite>1.00, 4.00</cite>, <cite>Column2</cite>
+represents the set of values <cite>2.00, 5.00</cite>, etc; <cite>Row1</cite> represents the set of
+values <cite>1.00, 2.00, 3.00</cite> etc. Therefore many DSV parsers are able to extract
+not only simply rows, but also columns of data.</p>
+</div>
+<div class="section" id="numerical-data">
+<h4>Numerical data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">¶</a></h4>
+<p>Numerical data, typically being huge, may be stored and transmitted in some
+compact binary format by correspondent HTP technology, but in most cases it will
+be available also in DSV format, as a simple series of numerical values:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;Row ID&quot;</span><span class="p">,</span><span class="s">&quot;Column1&quot;</span><span class="p">,</span><span class="s">&quot;Column2&quot;</span><span class="p">,</span><span class="s">&quot;Column3&quot;</span>
+<span class="s">&quot;Row1&quot;</span><span class="p">,</span><span class="mf">1.00</span><span class="p">,</span><span class="mf">2.00</span><span class="p">,</span><span class="mf">3.00</span>
+<span class="s">&quot;Row2&quot;</span><span class="p">,</span><span class="mf">4.00</span><span class="p">,</span><span class="mf">5.00</span><span class="p">,</span><span class="mf">6.00</span>
+</pre></div>
+</div>
+<p>Currently, KDVS processes numerical data in the form of properly formed DSV files.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>It is often the case that numerical CSV data file comes as output from R
+<cite>write.table</cite> family of functions. With the default set of options for those
+functions, the header line, if present, contains one column less. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;Column1&quot;</span><span class="p">,</span><span class="s">&quot;Column2&quot;</span><span class="p">,</span><span class="s">&quot;Column3&quot;</span>
+<span class="s">&quot;Row1&quot;</span><span class="p">,</span><span class="mf">1.00</span><span class="p">,</span><span class="mf">2.00</span><span class="p">,</span><span class="mf">3.00</span>
+<span class="s">&quot;Row2&quot;</span><span class="p">,</span><span class="mf">4.00</span><span class="p">,</span><span class="mf">5.00</span><span class="p">,</span><span class="mf">6.00</span>
+</pre></div>
+</div>
+<p>Such CSV file is not conforming to standard CSV formatting rules. Therefore,
+to be processed by KDVS, it must contain <cite>full</cite> header line, even if there is
+no name for the first column. Here, the first column name is empty string:</p>
+<div class="highlight-python"><pre>,"Column1","Column2","Column3"
+"Row1",1.00,2.00,3.00
+"Row2",4.00,5.00,6.00</pre>
+</div>
+<p>R documentation regarding writing CSV files:</p>
+<ul class="last simple">
+<li><a class="reference external" href="http://cran.r-project.org/doc/manuals/R-data.html#Export-to-text-files">R Data Import/Export</a></li>
+<li><a class="reference external" href="http://stat.ethz.ch/R-manual/R-patched/library/utils/html/write.table.html">write.table</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="annotation-metadata">
+<h4>Annotation metadata<a class="headerlink" href="#annotation-metadata" title="Permalink to this headline">¶</a></h4>
+<p>&#8220;Raw&#8221; stream of numerical data, however, is not very useful. Additional
+information about this data is usually provided, such as: what quantities those
+particular numbers measure, what is the meaning of this measure, what are the
+environmental features associated with those measures, what are the external
+concepts associated with those measures etc. This information is provided
+in the form of annotation metadata.</p>
+<p>Unlike simple numerical measures, annotation metadata may contain much richer
+information, such as: arbitrary text strings of any format, date and time strings,
+record&#8211;like substructures etc.</p>
+<p>Typically, annotation metadata comes in the form of DSV files, so all the remarks
+mentioned before apply here as well. However, since the information is much more
+complicated, it takes considerable amount of time to parse it properly and to
+extract all relevant information.</p>
+<p>Below is the complete example of annotation metadata in TSV format that
+accompanies gene expression measurements performed on Affymetrix microarray chip;
+presented are header line and two data lines:</p>
+<div class="highlight-python"><pre>ID  GB_ACC  SPOT_ID Species Scientific Name Annotation Date Sequence Type   Sequence Source Target Description  Representative Public ID    Gene Title  Gene Symbol ENTREZ_GENE_ID  RefSeq Transcript ID    Gene Ontology Biological Process    Gene Ontology Cellular Component    Gene Ontology Molecular Function
+1007_s_at   U48705      Homo sapiens    Mar 11, 2009    Exemplar sequence   Affymetrix Proprietary Database U48705 /FEATURE=mRNA /DEFINITION=HSU48705 Human receptor tyrosine kinase DDR gene, complete cds U48705  discoidin domain receptor tyrosine kinase 1 DDR1    780 NM_001954 /// NM_013993 /// NM_013994   0006468 // protein amino acid phosphorylation // inferred from electronic annotation /// 0007155 // cell adhesion // traceable author statement /// 0007155 // cell adhesion // inferred from electronic annotation /// 0007169 // transmembrane receptor protein tyrosine kinase signaling pathway // inferred from electronic annotation  0005887 // integral to plasma membrane // traceable author statement /// 0016020 // membrane // inferred from electronic annotation /// 0016021 // integral to membrane // inferred from electronic annotation  0000166 // nucleotide binding // inferred from electronic annotation /// 0004672 // protein kinase activity // inferred from electronic annotation /// 0004713 // protein tyrosine kinase activity // inferred from electronic annotation /// 0004714 // transmembrane receptor protein tyrosine kinase activity // traceable author statement /// 0004714 // transmembrane receptor protein tyrosine kinase activity // inferred from electronic annotation /// 0004872 // receptor activity // inferred from electronic annotation /// 0005515 // protein binding // inferred from physical interaction /// 0005524 // ATP binding // inferred from electronic annotation /// 0016301 // kinase activity // inferred from electronic annotation /// 0016740 // transferase activity // inferred from electronic annotation
+1053_at M87338      Homo sapiens    Mar 11, 2009    Exemplar sequence   GenBank M87338 /FEATURE= /DEFINITION=HUMA1SBU Human replication factor C, 40-kDa subunit (A1) mRNA, complete cds    M87338  replication factor C (activator 1) 2, 40kDa RFC2    5982    NM_002914 /// NM_181471 0006260 // DNA replication // not recorded /// 0006260 // DNA replication // inferred from electronic annotation /// 0006297 // nucleotide-excision repair, DNA gap filling // not recorded 0005634 // nucleus // inferred from electronic annotation /// 0005654 // nucleoplasm // not recorded /// 0005663 // DNA replication factor C complex // inferred from direct assay /// 0005663 // DNA replication factor C complex // inferred from electronic annotation   0000166 // nucleotide binding // inferred from electronic annotation /// 0003677 // DNA binding // inferred from electronic annotation /// 0003689 // DNA clamp loader activity // inferred from electronic annotation /// 0005515 // protein binding // inferred from physical interaction /// 0005524 // ATP binding // traceable author statement /// 0005524 // ATP binding // inferred from electronic annotation /// 0017111 // nucleoside-triphosphatase activity // inferred from electronic annotation</pre>
+</div>
+<p>Currently, KDVS processes annotation metadata in the form of properly formed DSV
+files, as well as in some few more exotic formats, when proper parsing strategy
+is available.</p>
+</div>
+<div class="section" id="prior-knowledge-representation">
+<h4>Prior knowledge representation<a class="headerlink" href="#prior-knowledge-representation" title="Permalink to this headline">¶</a></h4>
+<p>Since prior knowledge is by itself a very general term, handling of it is
+implemented in KDVS in modular way. Therefore, each specific module will use its
+own <cite>prior knowledge representation</cite>. For example, <cite>Gene Ontology</cite> hierarchy of
+terms can be represented as <cite>directed acyclic graph</cite>, that may be encoded in
+various ways and stored in various formats; see <a class="reference internal" href="#background-priorknowledge"><em>Prior knowledge</em></a>
+for more details.</p>
+</div>
+</div>
+<div class="section" id="data-as-seen-by-kdvs">
+<h3>Data as seen by KDVS<a class="headerlink" href="#data-as-seen-by-kdvs" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="measurement-data-matrix">
+<span id="background-measurementdatamatrix"></span><h4>Measurement Data Matrix<a class="headerlink" href="#measurement-data-matrix" title="Permalink to this headline">¶</a></h4>
+<p>As outlined in <a class="reference internal" href="#background-dataandknowledgeintegration"><em>Data and knowledge integration</em></a>, the paradigm of KDVS
+is based on many <cite>classification tasks</cite> that are performed with some machine
+learning technique on supplied numerical data. Classification by definition
+requires data that come from two or more <cite>distinct</cite> sources (e.g. biological
+samples), in order for the technique to differentiate between them.</p>
+<p>Regarding KDVS, this is reflected in the form of numerical data. Measurements from
+samples are all pooled into one single matrix, referred to as <cite>Measurement Data
+Matrix</cite> (<em>MDM</em>), as depicted on <a class="reference internal" href="#overview-fig1"><em>Figure 1</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/mdm.png" id="overview-fig1"><img alt="Depiction of the concept of Measurement Data Matrix (MDM)" id="overview-fig1" src="../_images/mdm.png" style="width: 775.8px; height: 480.6px;" /></a>
+<p class="caption">Depiction of the concept of Measurement Data Matrix (MDM).</p>
+<div class="legend">
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">KDVS pays particular attention to the orientation of MDM matrix (<em>P x N</em>).
+It <em>must</em> have measurements of specified variable for each sample <em>in rows</em>.
+This is due to speedup the <cite>local data integration</cite> step (see <a class="reference internal" href="framework.html#framework"><em>Framework</em></a>).</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In machine learning literature, very often the <cite>transposed</cite> orientation
+is used (<em>N x P</em>), where measurements of specified variable for each sample
+come <em>in columns</em>. Data in transposed orientation may also come from many
+preparatory software packages without warning. KDVS does its best to <cite>correct</cite>
+orientation if it seems improper, but user is advised to control the matrix
+orientation directly through preparatory stage and use the correct one when
+preparing MDM for KDVS.</p>
+</div>
+<p>Typically, MDM coming from DSV file is loaded into KDVS database system, governed
+by <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance. The MDM, together with
+<a class="reference internal" href="#background-annotationmatrix"><em>Annotation matrix</em></a>, is used to create data subsets that are
+wrapped into <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> instances. See <a class="reference internal" href="framework.html#framework"><em>Framework</em></a>
+for more details.</p>
+</div>
+<div class="section" id="label-information">
+<span id="background-labelinformation"></span><h4>Label information<a class="headerlink" href="#label-information" title="Permalink to this headline">¶</a></h4>
+<p>For classification tasks performed in the setting of supervised learning, it is
+necessary to provide the label information. The series of measurements are usually
+made for several sources (also called &#8220;samples&#8221;), that can be grouped according
+to their specificity. For instance, one may measure gene expression in blood
+samples coming from two separated group of people, such as the diseased ones and
+&#8220;control&#8221; (healthy) ones, and each group has assigned a numerical <cite>label</cite>, such
+as 1 and -1. Typically, two classes of samples are used, and two labels are
+assigned (&#8220;two&#8211;class learning&#8221;); it is also possible to define more classes of
+samples and more labels, however the numerical procedures become more complicated
+(&#8220;multi&#8211;class learning&#8221;).</p>
+<p>The label information may come in the form of DSV file, for example:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">samples</th>
+<th class="head">labels</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;S1&gt;</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>&lt;S2&gt;</td>
+<td>-1</td>
+</tr>
+<tr class="row-even"><td>...</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>&lt;Sp&gt;</td>
+<td>-1</td>
+</tr>
+<tr class="row-even"><td>&lt;Sr&gt;</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>...</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>&lt;Sn&gt;</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The handling of input and loading of label information is left to the user.
+Typically, the DSV file is loaded into KDVS database system, governed by
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance. Ultimately, KDVS stores the label
+information in the <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Labels" title="kdvs.fw.Stat.Labels"><tt class="xref py py-class docutils literal"><span class="pre">Labels</span></tt></a> instance. See <a class="reference internal" href="framework.html#framework"><em>Framework</em></a>
+for more details.</p>
+</div>
+<div class="section" id="annotation-matrix">
+<span id="background-annotationmatrix"></span><h4>Annotation matrix<a class="headerlink" href="#annotation-matrix" title="Permalink to this headline">¶</a></h4>
+<p>Annotation matrix contains mapping between prior knowledge concepts and variables
+from MDM matrix, as well as many other information bits associated with variables;
+it may be presented in various forms. For example, when gene
+expression data is obtained from microarray, annotation matrix may be supplied
+directly by microarray manufacturer or may be assembled independently by
+scientific community. Here, expression is measured for specific short sequences
+(probes), that may be grouped into probesets; such sequences could be mapped to
+genes. The annotation matrix may contain, among others, the mapping between
+probe(set)s, genes and Gene Ontology terms, as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="17%" />
+<col width="3%" />
+<col width="13%" />
+<col width="3%" />
+<col width="24%" />
+<col width="3%" />
+<col width="29%" />
+<col width="3%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">...</th>
+<th class="head">&lt;Probe(set) ID&gt;</th>
+<th class="head">...</th>
+<th class="head">&lt;Gene ID&gt;</th>
+<th class="head">...</th>
+<th class="head">&lt;Annotation Type K&gt;</th>
+<th class="head">...</th>
+<th class="head">GO term(s)</th>
+<th class="head">...</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>...</td>
+<td>&lt;ID1&gt;</td>
+<td>...</td>
+<td>&lt;GeneID1&gt;</td>
+<td>...</td>
+<td>&lt;annotationK1&gt;</td>
+<td>...</td>
+<td>term1,term2,...,termT1</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>...</td>
+<td>&lt;ID2&gt;</td>
+<td>...</td>
+<td>&lt;GeneID2&gt;</td>
+<td>...</td>
+<td>&lt;annotationK2&gt;</td>
+<td>...</td>
+<td>term1,term2,...,termT2</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>...</td>
+<td>&lt;ID3&gt;</td>
+<td>...</td>
+<td>&lt;GeneID3&gt;</td>
+<td>...</td>
+<td>&lt;annotationK3&gt;</td>
+<td>...</td>
+<td>term1,term2,...,termT3</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>...</td>
+<td>&lt;IDP&gt;</td>
+<td>...</td>
+<td>&lt;GeneIDP&gt;</td>
+<td>...</td>
+<td>&lt;annotationKP&gt;</td>
+<td>...</td>
+<td>term1,term2,...,termTP</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>As depicted, the example annotation matrix contains mapping <em>measurement -&gt; gene -&gt; term</em>.
+That is very often the typical case. In KDVS, however, we are interested more
+in the <cite>reverse</cite> mapping <em>term -&gt; gene -&gt; measurement</em>, that allows directly the
+construction of data subsets associated with individual GO terms. This is also
+true for any general mapping <em>measurement -&gt; PKC</em>, where we look for associated
+reverse <em>PKC -&gt; measurement</em> mapping. KDVS performs the mapping reversal
+automatically.</p>
+<p>Typically, annotation matrix that comes from DSV file is loaded into KDVS database
+system, governed by <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance. Based on that
+information, the construction of <em>PKC -&gt; measurement</em> mapping should be implemented
+in <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a> instance. See <a class="reference internal" href="framework.html#framework"><em>Framework</em></a> for more details.</p>
+</div>
+<div class="section" id="background-priorknowledgerepresentation">
+<span id="id2"></span><h4>Prior knowledge representation<a class="headerlink" href="#background-priorknowledgerepresentation" title="Permalink to this headline">¶</a></h4>
+<p>Since handling of prior knowledge is implemented in modular way, implementation
+details and data formats are specific for individual modules. For example, in
+case of Gene Ontology, KDVS accepts <cite>directed acyclic graph</cite> of GO terms in
+<cite>OBO-XML</cite> file, and builds portable representation of the term graph that is
+used throughout system lifetime. In general case, a new <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a>
+component may be implemented that handles prior knowledge of requested type.
+See <a class="reference internal" href="framework.html#framework"><em>Framework</em></a> for more details.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Background</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#data-driven-world">Data&#8211;driven world</a></li>
+<li><a class="reference internal" href="#high-throughput-biology">High&#8211;throughput biology</a></li>
+<li><a class="reference internal" href="#high-throughput-platforms">High&#8211;throughput platforms</a></li>
+<li><a class="reference internal" href="#prior-knowledge">Prior knowledge</a></li>
+<li><a class="reference internal" href="#data-and-knowledge-integration">Data and knowledge integration</a></li>
+<li><a class="reference internal" href="#input-data">Input Data</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#delimiter-separated-values">Delimiter Separated Values</a></li>
+<li><a class="reference internal" href="#numerical-data">Numerical data</a></li>
+<li><a class="reference internal" href="#annotation-metadata">Annotation metadata</a></li>
+<li><a class="reference internal" href="#prior-knowledge-representation">Prior knowledge representation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-as-seen-by-kdvs">Data as seen by KDVS</a><ul>
+<li><a class="reference internal" href="#measurement-data-matrix">Measurement Data Matrix</a></li>
+<li><a class="reference internal" href="#label-information">Label information</a></li>
+<li><a class="reference internal" href="#annotation-matrix">Annotation matrix</a></li>
+<li><a class="reference internal" href="#background-priorknowledgerepresentation">Prior knowledge representation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="framework.html" title="Framework"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Knowledge Driven Variable Selection documentation"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

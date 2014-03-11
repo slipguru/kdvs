@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>kdvs &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="KDVS API" href="api.html" />
+    <link rel="next" title="kdvs Package" href="kdvs.html" />
+    <link rel="prev" title="KDVS API" href="api.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.html" title="kdvs Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="KDVS API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">KDVS API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="kdvs">
+<h1>kdvs<a class="headerlink" href="#kdvs" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kdvs.html">kdvs Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.html#id1"><tt class="docutils literal"><span class="pre">kdvs</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.bin.html">bin Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.bin.html#id1"><tt class="docutils literal"><span class="pre">bin</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.bin.html#module-kdvs.bin.experiment"><tt class="docutils literal"><span class="pre">experiment</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.contrib.html">contrib Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.contrib.html#id1"><tt class="docutils literal"><span class="pre">contrib</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.contrib.html#module-kdvs.contrib.counter"><tt class="docutils literal"><span class="pre">counter</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.contrib.html#module-kdvs.contrib.dataset_generation"><tt class="docutils literal"><span class="pre">dataset_generation</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.contrib.html#module-kdvs.contrib.ordereddict"><tt class="docutils literal"><span class="pre">ordereddict</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.core.html">core Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#id1"><tt class="docutils literal"><span class="pre">core</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core._version"><tt class="docutils literal"><span class="pre">_version</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.action"><tt class="docutils literal"><span class="pre">action</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.config"><tt class="docutils literal"><span class="pre">config</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.db"><tt class="docutils literal"><span class="pre">db</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.dep"><tt class="docutils literal"><span class="pre">dep</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.env"><tt class="docutils literal"><span class="pre">env</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.error"><tt class="docutils literal"><span class="pre">error</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.log"><tt class="docutils literal"><span class="pre">log</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.provider"><tt class="docutils literal"><span class="pre">provider</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.core.html#module-kdvs.core.util"><tt class="docutils literal"><span class="pre">util</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.fw.html">fw Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#id1"><tt class="docutils literal"><span class="pre">fw</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.Annotation"><tt class="docutils literal"><span class="pre">Annotation</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.App"><tt class="docutils literal"><span class="pre">App</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.Categorizer"><tt class="docutils literal"><span class="pre">Categorizer</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.DBResult"><tt class="docutils literal"><span class="pre">DBResult</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.DBShelve"><tt class="docutils literal"><span class="pre">DBShelve</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.DBTable"><tt class="docutils literal"><span class="pre">DBTable</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.DSV"><tt class="docutils literal"><span class="pre">DSV</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.DataSet"><tt class="docutils literal"><span class="pre">DataSet</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.EnvOp"><tt class="docutils literal"><span class="pre">EnvOp</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.Job"><tt class="docutils literal"><span class="pre">Job</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.Map"><tt class="docutils literal"><span class="pre">Map</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.PK"><tt class="docutils literal"><span class="pre">PK</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.Report"><tt class="docutils literal"><span class="pre">Report</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.Stat"><tt class="docutils literal"><span class="pre">Stat</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.StorageManager"><tt class="docutils literal"><span class="pre">StorageManager</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#module-kdvs.fw.SubsetHierarchy"><tt class="docutils literal"><span class="pre">SubsetHierarchy</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.fw.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.tests.html">tests Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.html#id1"><tt class="docutils literal"><span class="pre">tests</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.html#module-kdvs.tests.runTests"><tt class="docutils literal"><span class="pre">runTests</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.html#module-kdvs.tests.utils"><tt class="docutils literal"><span class="pre">utils</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.tools.html">tools Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tools.html#id1"><tt class="docutils literal"><span class="pre">tools</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tools.html#module-kdvs.tools.pplus_job_verifier"><tt class="docutils literal"><span class="pre">pplus_job_verifier</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tools.html#module-kdvs.tools.predictions_extractor"><tt class="docutils literal"><span class="pre">predictions_extractor</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tools.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.html" title="kdvs Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="KDVS API"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

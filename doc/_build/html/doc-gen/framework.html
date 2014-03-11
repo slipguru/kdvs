@@ -1,0 +1,1289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Framework &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="next" title="KDVS applications" href="applications.html" />
+    <link rel="prev" title="Background" href="background.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="applications.html" title="KDVS applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="background.html" title="Background"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="framework">
+<span id="id1"></span><h1>Framework<a class="headerlink" href="#framework" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the conceptual framework of KDVS.</p>
+<div class="section" id="information-flow">
+<span id="framework-informationflow"></span><h2>Information flow<a class="headerlink" href="#information-flow" title="Permalink to this headline">¶</a></h2>
+<p>A schematic flow of information within KDVS system is presented on <a class="reference internal" href="#framework-fig1"><em>Figure 1</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/flow.png" id="framework-fig1"><img alt="Depiction of schematic information flow within KDVS system" id="framework-fig1" src="../_images/flow.png" style="width: 779.4px; height: 1152.9px;" /></a>
+<p class="caption">Depiction of schematic information flow within KDVS system.</p>
+<div class="legend">
+</div>
+</div>
+<p>The system gathers together numerical data (in the form of <a class="reference internal" href="background.html#background-measurementdatamatrix"><em>Measurement Data Matrix</em></a>),
+annotation metadata (in the form of <a class="reference internal" href="background.html#background-annotationmatrix"><em>Annotation matrix</em></a>),
+<a class="reference internal" href="background.html#background-priorknowledgerepresentation"><em>Prior knowledge representation</em></a>, as well as optional
+<a class="reference internal" href="background.html#background-labelinformation"><em>Label information</em></a> for classification tasks, and performs
+<cite>local data integration</cite> that produces individual data subsets related to prior
+knowledge concepts. Note that since single concept may refer to many variables
+and variables may overlap between concepts, also data in subsets may overlap.</p>
+<p>Next, statistical technique is performed on each data subset, along with optional
+label information. Statistical technique must perform classification or regression
+task on data subset; it may also perform variable selection (in statistical learning
+sense), but it is not required. The output from statistical technique usually
+consists of: a result of classification/regression task, and a list of selected
+variables that highlight the difference between two or more distinct states.
+Result of classification/regression task comes in numerical form; in case of
+classification it is usually the <cite>classification error</cite>, and in case of regression
+it is simply a numerical result of regression procedure.</p>
+<p>Next, KDVS gathers all &#8220;selected&#8221; prior knowledge concepts that performed
+<cite>acceptably</cite> during classification/regression tasks, as well as all selected
+variables across all data subsets (selected or not).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">&#8220;Statistical technique&#8221; by itself is an abstraction that includes many possible
+computational techniques from machine learning, statistical learning, and
+data mining. The only common denominator for statistical technique is that
+it must perform a classification or regression task for given data subset,
+while the details may differ for each implementation. Refer to each
+technique for individual details.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All technical details like construction of training/test sub&#8211;subsets from data
+subset, optional cross&#8211;validation, etc. are by definition hidden inside
+implementations of statistical techniques. Refer to each technique for
+individual details.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">KDVS concept of &#8220;variable selection&#8221; is more general than the one referred
+in machine learning literature. In short, if statistical technique performs,
+along with classification/regression, also proper variable selection, KDVS
+reports those variables as &#8220;selected&#8221; (as expected). However, when the
+technique does not select variables in machine learning sense, KDVS may still
+classify some of them as &#8220;selected&#8221; and report them as such. This generalization
+was introduced to provide consistent output for various statistical techniques.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The actual output of KDVS contains much more information than simply two
+lists. Much of the output actually depends on individual implementations
+of statistical techniques, and reporting itself is configurable to accomodate
+the user needs.</p>
+</div>
+</div>
+<div class="section" id="local-data-integration">
+<span id="framework-localdataintegration"></span><h2>Local data integration<a class="headerlink" href="#local-data-integration" title="Permalink to this headline">¶</a></h2>
+<p>A schematic view of local data integration, performed in general way, is presented
+on <a class="reference internal" href="#framework-fig2"><em>Figure 2</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/locdatint.png" id="framework-fig2"><img alt="Depiction of schematic view of local data integration (general way)" id="framework-fig2" src="../_images/locdatint.png" style="width: 681.3px; height: 595.8px;" /></a>
+<p class="caption">Depiction of schematic view of local data integration (general way).</p>
+<div class="legend">
+General objects that can be used for any kind of data are depicted with
+<strong>bold names</strong>. Objects specific for biological applications are depicted
+with <em>italic names</em>. Derived objects are depicted with dotted outline.</div>
+</div>
+<p>Local data integration is based on the concepts of uni&#8211; and bidirectional mappings.
+If mapping between A and B is unidirectional (A-&gt;B), it is possible to obtain
+only B having A (A-&gt;B), and if mapping is bidirectional (A&lt;-&gt;B), it is possible
+to obtain both B having A (A-&gt;B) and A having B (B-&gt;A) without additional cost.
+KDVS provides abstract class <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.BDMap" title="kdvs.fw.Map.BDMap"><tt class="xref py py-class docutils literal"><span class="pre">BDMap</span></tt></a>, as well as two concrete
+classes, <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.ListBDMap" title="kdvs.fw.Map.ListBDMap"><tt class="xref py py-class docutils literal"><span class="pre">ListBDMap</span></tt></a> and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.SetBDMap" title="kdvs.fw.Map.SetBDMap"><tt class="xref py py-class docutils literal"><span class="pre">SetBDMap</span></tt></a>,
+for this purpose.</p>
+<p>For KDVS to perform local data integration correctly, <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a>
+object must be constructed. It contains bidirectional mapping between prior
+knowledge concepts (PKCs) and variables being measured (PKC &lt;-&gt; Var). This
+information should come from annotation matrix. Depending on individual
+implementation, annotation matrix may contain only unidirectional part of this
+mapping, e.g. (Var -&gt; PKC). In this case, implementation of PKCIDMap shall
+construct complementary part (PKC -&gt; Var) and use proper implementation of
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.BDMap" title="kdvs.fw.Map.BDMap"><tt class="xref py py-class docutils literal"><span class="pre">BDMap</span></tt></a> to hold final bidirectional map (PKC &lt;-&gt; Var).</p>
+<p>Next, after <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a> is created, a concrete instance of
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager"><tt class="xref py py-class docutils literal"><span class="pre">PKDrivenDataManager</span></tt></a> must be constructed.
+This object manages creation of individual data subsets associated with prior
+knowledge concepts. Currently, single concrete implementation is provided that
+uses database backend (<a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager"><tt class="xref py py-class docutils literal"><span class="pre">PKDrivenDBDataManager</span></tt></a>).</p>
+<p>Construction of <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager"><tt class="xref py py-class docutils literal"><span class="pre">PKDrivenDataManager</span></tt></a>
+completes the phase of local data integration. From this manager, the instances of
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> objects can be obtained.
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> objects hide implementation details of actual
+data subsets that depend on the used backend. As a convenience, it is possible to
+obtain directly an instance of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a> of the data subset, to be
+passed to statistical techniques later on.</p>
+<p>If necessary, more complicated schema of local data integration may be devised.
+For instance, when processing gene expression data obtained with microarrays,
+it is necessary to map Gene Ontology terms not only to individual measurements
+(i.e. probe(set)s), but also to <cite>gene names</cite>, and this process must be well defined.
+An example implementation is presented on <a class="reference internal" href="#framework-fig3"><em>Figure 3</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/locdatint-ma.png" id="framework-fig3"><img alt="Depiction of schematic view of local data integration (specialized)" id="framework-fig3" src="../_images/locdatint-ma.png" style="width: 739.8px; height: 597.6px;" /></a>
+<p class="caption">Depiction of schematic view of local data integration (specialized).</p>
+<div class="legend">
+General objects that can be used for any kind of data are depicted with
+<strong>bold names</strong>. Objects specific for biological applications are depicted
+with <em>italic names</em>. Derived objects are depicted with dotted outline.</div>
+</div>
+<p>Here, two additional mappings, <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCGeneMap" title="kdvs.fw.Map.PKCGeneMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCGeneMap</span></tt></a> and
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMap</span></tt></a>, are constructed. The mappings participate in
+generation of bioinformatic annotations for KDVS results.</p>
+</div>
+<div class="section" id="data-subsets">
+<span id="framework-datasubsets"></span><h2>Data Subsets<a class="headerlink" href="#data-subsets" title="Permalink to this headline">¶</a></h2>
+<p>Having <a class="reference internal" href="background.html#background-measurementdatamatrix"><em>Measurement Data Matrix</em></a> and at least <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a>
+bi&#8211;directional mapping constructed, KDVS transforms monolithic MDM matrix into
+smaller subsets. Each single data subset corresponds to single prior knowledge concept.
+Subsets may <cite>overlap</cite>, as presented on <a class="reference internal" href="#framework-fig4"><em>Figure 4</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/mdm-subm.png" id="framework-fig4"><img alt="Depiction of generation of data subsets based on mapping between measurements and prior knowledge concepts" id="framework-fig4" src="../_images/mdm-subm.png" style="width: 1098.9px; height: 462.6px;" /></a>
+<p class="caption">Depiction of generation of data subsets based on mapping between measurements and prior knowledge concepts.</p>
+</div>
+<p>All possible data subsets are generated at once. Empty data subsets are discarded.
+Note that <cite>masking</cite> of primary data set occurs only with regard to rows, i.e. subsets
+are determined entirely based on variables. All columns (i.e. samples) are
+retained. That allows to perform classification or regression on the subset
+exactly as on primary data set.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently there are no <cite>filters</cite> that allow skipping certain variables
+(seen as rows in MDM matrix) before subsets generation, and the MDM matrix
+is treated &#8220;as-is&#8221;. There is, however, a possibility to skip certain <cite>subsets</cite>
+from processing with <cite>blacklisting categories</cite>. See <a class="reference internal" href="#framework-subsethierarchy"><em>Subset Hierarchy</em></a>
+for more details.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently, the only possibility of eliminating some samples from processing
+(seen as columns in MDM matrix) is to assign <cite>unused label</cite> to some sample(s)
+(such as 0), and to specify that label during creation of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Labels" title="kdvs.fw.Stat.Labels"><tt class="xref py py-class docutils literal"><span class="pre">Labels</span></tt></a>
+instance. See also <a class="reference internal" href="background.html#background-labelinformation"><em>Label information</em></a> for more details.</p>
+</div>
+</div>
+<div class="section" id="subset-hierarchy">
+<span id="framework-subsethierarchy"></span><h2>Subset Hierarchy<a class="headerlink" href="#subset-hierarchy" title="Permalink to this headline">¶</a></h2>
+<p>A schematic view of subset hierarchy concept is presented on <a class="reference internal" href="#framework-fig5"><em>Figure 5</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/subshier.png" id="framework-fig5"><img alt="Depiction of schematic view of subset hierarchy concept" id="framework-fig5" src="../_images/subshier.png" style="width: 1315.8px; height: 631.8px;" /></a>
+<p class="caption">Depiction of schematic view of subset hierarchy concept.</p>
+<div class="legend">
+General objects that can be used for any kind of data are depicted with
+<strong>bold names</strong>. Attributes are depicted with rhomboids. Association of
+categories with categorizers are depicted with dotted lines.</div>
+</div>
+<p>Data subsets based on MDM data may be considered equal or may be grouped into
+subgroups based on some properties. For example, subsets obviously can come with
+different <cite>sizes</cite>, which could affect computational time of statistical technique
+that will work with them. Also, we may decide to assign different statistical
+techniques to different subsets based on heuristical properties of prior knowledge
+itself. Last but not least, we may want to <cite>exclude</cite> certain subsets from processing
+at all.</p>
+<p>The idea of &#8216;subset hierarchy&#8217; was devised to allow such subset grouping.
+In general, subsets can be <cite>categorized</cite> by specialized objects called
+<cite>categorizers</cite>, that decide how to classify the subset when they see it.
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a> objects are coming with &#8216;categories&#8217;
+that can be assigned to individual subsets.</p>
+<p>For example, categorizer tasked with dividing subsets in two groups according to
+specified size threshold, may come with two specified categories, named &#8216;&gt;&#8217; and
+&#8216;&lt;=&#8217;, where category &#8216;&gt;&#8217; is assigned to a subset if its size is greater than
+the specified threshold, and category &#8216;&lt;=&#8217; is assigned to a subset if its size
+is less or equal than the threshold (see <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer" title="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">SubsetSizeCategorizer</span></tt></a>
+for an example implementation).</p>
+<p>For another example, if one wants to exclude specified subsets, given in the form of
+<cite>subset blacklist,</cite> from further processing, one may come up with a categorizer
+that presents two categories, named &#8216;accepted&#8217; and &#8216;notaccepted&#8217;, where subset
+is &#8216;accepted&#8217; if it is not present on a provided <cite>blacklist</cite>, or excluded otherwise.</p>
+<p>Categorizers may be further grouped in hierarchy. This may be useful, for example,
+when user wants to apply <cite>blacklisting</cite> first, and then divide <cite>accepted</cite> subsets
+according to their size. To resolve situations like this, <cite>subset hierarchy</cite>
+manager (<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.SubsetHierarchy.SubsetHierarchy" title="kdvs.fw.SubsetHierarchy.SubsetHierarchy"><tt class="xref py py-class docutils literal"><span class="pre">SubsetHierarchy</span></tt></a>) keeps track of
+<cite>category tree</cite>, where categories from individual
+categorizers are grouped in tree, and the tree reflects their dependence upon
+each other. More specifically, for categories A and B, when A is the ancestor
+of B in the tree, category B is allowed to classify <cite>only</cite> the subsets that
+are already classified with category A. To avoid category clashes (e.g. when two
+different categorizers have a category with the same name), categories are stored
+in category tree in <cite>uniquified</cite> way, that is, category is prefixed with
+categorizer specific ID. See <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy"><tt class="xref py py-class docutils literal"><span class="pre">PKDrivenDBSubsetHierarchy</span></tt></a>
+for an example implementation that uses
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager"><tt class="xref py py-class docutils literal"><span class="pre">PKDrivenDBDataManager</span></tt></a>.</p>
+<p>An additional helper structure is <cite>categorizer chain</cite>, when categorizers are
+ordered according to the presence of their categories in the tree. In other
+words, categorizer chain refers to the <cite>levels</cite> of the category tree.</p>
+<p>Since it is computationally not feasible to keep all instances of individual
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> objects in a tree structure, only the ID of PKC
+(prior knowledge concept) associated with the subset (also referred to as &#8220;symbol&#8221;)
+is kept in the tree (more specifically, in a data structure that resembles B&#8211;tree).
+Therefore, the last helper additional structure, <cite>PKC tree</cite>, holds a tree of lists
+of PKCs affected by individual categories. The length of PKC lists typically decreases
+when moving down the tree, since categories downstream accept progressively
+smaller lists of subsets as their input. In other words, subsets in leaf
+categories are &#8220;the most precisely specified&#8221;, all decision making has been
+completed, and usually final processing takes place on those subset groups.
+The <cite>PKC tree</cite> is stored in <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.SubsetHierarchy.SubsetHierarchy" title="kdvs.fw.SubsetHierarchy.SubsetHierarchy"><tt class="xref py py-class docutils literal"><span class="pre">SubsetHierarchy</span></tt></a>
+instance.</p>
+</div>
+<div class="section" id="subset-ordering">
+<span id="framework-subsetordering"></span><h2>Subset Ordering<a class="headerlink" href="#subset-ordering" title="Permalink to this headline">¶</a></h2>
+<p>Having <cite>category tree</cite>, and considering all subsets in single category, it is
+sometimes desirable to process them in certain order. For instance, subsets from
+category &#8216;&gt;&#8217; of <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer" title="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">SubsetSizeCategorizer</span></tt></a>,
+are good candidates for applying variable selection on them. Typically,
+this takes considerable computational time, and one would like to finish as soon
+as possible. If parallel computation could be used, and only few CPUs are available
+for parallelization, a good strategy would be to apply variable selection on
+<cite>largest subsets first</cite>, and continuing on progressively smaller ones. That way,
+total computational time will be smallest.</p>
+<p>KDVS uses the concrete instances of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Categorizer.Orderer" title="kdvs.fw.Categorizer.Orderer"><tt class="xref py py-class docutils literal"><span class="pre">Orderer</span></tt></a> class
+to control the ordering of subsets in each category. Currently, few implementations
+are available, such as <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullOrderer" title="kdvs.fw.impl.data.Null.NullOrderer"><tt class="xref py py-class docutils literal"><span class="pre">NullOrderer</span></tt></a>, that just
+returns given subsets without any reordering, and <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer" title="kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer"><tt class="xref py py-class docutils literal"><span class="pre">SubsetSizeOrderer</span></tt></a>,
+that re-orders subsets according to their <cite>size</cite>.</p>
+</div>
+<div class="section" id="statistical-techniques">
+<span id="framework-statisticaltechniques"></span><h2>Statistical Techniques<a class="headerlink" href="#statistical-techniques" title="Permalink to this headline">¶</a></h2>
+<p>Having ordered subsets in single category, a <cite>statistical technique</cite> is applied
+to each of them. The <cite>statistical technique</cite> is an umbrella term that encompasses
+any properly implemented algorithm that performs classification or regression
+on given data subset, together with variable selection if applicable.
+Statistical technique accepts exactly one data subset to process, and optionally,
+label information.</p>
+<p>Some statistical techniques, especially those that perform
+<a class="reference external" href="http://en.wikipedia.org/wiki/Model_selection">model selection</a>,
+may employ
+<a class="reference external" href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)">cross validation</a>,
+i.e. may split data subset into smaller training and test <cite>sub-subsets</cite>, sometimes
+in many iterations. Each such <cite>split</cite> may have high computational cost. In order
+to ease implementation of those techniques, statistical techniques in KDVS produce
+individual <cite>jobs</cite> that are scheduled to be executed. The execution of one job
+is completely separated from the execution of another. See also <a class="reference internal" href="#framework-jobcreationandexecution"><em>Job Creation and Execution</em></a>
+for more details. Of course, when technique does not need to perform any splits,
+a single job can be produced that will simply contain proper single call.</p>
+<p>Originally, KDVS was designed to work with L1L2, statistical learning technique
+that performs both classification and variable selection on data subset,
+and uses cross-validation for successful parameter estimation. In this case,
+data subset is split into series of training and test sub-subsets, and classification
+performance is established over them, as well as the most meaningful variables are
+collected. This technique has been implemented in KDVS as <cite>reference one</cite>, that
+produces the most statistically relevant results.</p>
+<p>In general, simpler techniques are also possible to be implemented, as long as
+they follow some design principles laid originally for L1L2. For instance,
+L1L2 provides both classification performance on test splits and selected variables
+of data subset. While convenient, it is time consuming. With this in mind, one
+can implement a technique that performs model selection and variable selection
+separately, or skip variable selection entirely and focus only on classification
+performance. With that many possibilities, the one important aspect of KDVS work
+is to <cite>select</cite> some entities (prior knowledge concepts, individual measurements)
+as relevant or meaningful, based on whatever criteria the technique author sees
+fit. See <a class="reference internal" href="#framework-selecting"><em>Selecting</em></a> for more details.</p>
+<p>Statistical techniques are concrete implementations of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">Technique</span></tt></a>
+class. Each technique must produce at least one <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance
+that does its computational work. Also, each technique must produce exactly one
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance, that will hold results of the technique.
+See also <a class="reference internal" href="#framework-results"><em>Results</em></a> for more details. Some concrete implementations
+include <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a>, <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="kdvs.fw.impl.stat.L1L2.L1L2_RLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_RLS</span></tt></a>,
+and <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_OLS" title="kdvs.fw.impl.stat.L1L2.L1L2_OLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_OLS</span></tt></a>, that use <a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py</a>
+library.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Any concrete implementation of statistical technique is responsible for
+managing its jobs. Since many techniques can be used during single KDVS run,
+the implementation must also <cite>identify</cite> jobs properly in order to <cite>reconstruct</cite>
+final results, e.g. from cross-validation. <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.JobGroupManager" title="kdvs.fw.Job.JobGroupManager"><tt class="xref py py-class docutils literal"><span class="pre">JobGroupManager</span></tt></a>
+may help in those cases.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Typically, the concrete implementation of statistical technique requires also
+some concrete implementation(s) of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a> class,
+as well as <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Selector" title="kdvs.fw.Stat.Selector"><tt class="xref py py-class docutils literal"><span class="pre">Selector</span></tt></a> class. See <a class="reference internal" href="#framework-reporting"><em>Reporting</em></a>
+and <a class="reference internal" href="#framework-selecting"><em>Selecting</em></a> for more details.</p>
+</div>
+<div class="section" id="degree-s-of-freedom">
+<h3>Degree(s) of freedom<a class="headerlink" href="#degree-s-of-freedom" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes it is necessary to execute <cite>parametrized</cite> statistical technique for
+each value of a parameter from a certain range. KDVS provides the concept of
+&#8220;<cite>degrees of freedom</cite>&#8221; to facilitate the separation of the results for each
+individual parameter value.</p>
+<p>It is up to the technique to manage all individual parameter values and create
+jobs with proper calls. KDVS associates each parameter value with <cite>symbols</cite> defined
+with the technique. See <a class="reference internal" href="annex.html#annex-globaltechniqueparameters"><em>Global technique parameters</em></a> for more details.</p>
+</div>
+</div>
+<div class="section" id="results">
+<span id="framework-results"></span><h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances serve as general containers for final
+results obtained from execution of statistical technique on single data subset.
+Each Results instance functions similar to Python <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></a> instance, where
+keys are <cite>descriptive strings</cite>, and values are of any valid Python type. Each
+key&#8211;value pair is referred to as &#8220;<cite>named element</cite>&#8221;. The value itself could be a
+dictionary, therefore the following syntax works:</p>
+<div class="highlight-python"><pre>Results['element_name']['subelement_name1']...['subelement_nameN']</pre>
+</div>
+<p>In the documentation, such nested hierarchy of named elements is represented as:</p>
+<div class="highlight-python"><pre>'element_name'-&gt;'subelement_name1'-&gt;...-&gt;'subelement_nameN'</pre>
+</div>
+<p>When Results instance is created by concrete implementation of statistical technique
+(see <a class="reference internal" href="#framework-statisticaltechniques"><em>Statistical Techniques</em></a> for more details), essentially, the
+technique fills Results dictionary with output information that can be simply
+<cite>stored</cite> for reference (thus providing preservation), and/or <cite>reported</cite> immediately
+when KDVS finishes.</p>
+<p>The typical usage pattern is as follows. Technique implementation specifies in
+its API the <cite>named elements</cite> of Results that will be produced:</p>
+<div class="highlight-python"><pre>'Parameter Values' (tuple of integer)
+'Individual Errors Across Parameter Values' (tuple of float)
+'Avg Classification Error' (float)
+'Med Classification Error' (float)</pre>
+</div>
+<p>and fills them in:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># inside technique</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s">&#39;Parameter Values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s">&#39;Individual Errors Across Parameter Values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s">&#39;Avg Classification Error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s">&#39;Individual Errors Across Parameter Values&#39;</span><span class="p">])</span>
+<span class="n">res</span><span class="p">[</span><span class="s">&#39;Med Classification Error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s">&#39;Individual Errors Across Parameter Values&#39;</span><span class="p">])</span>
+<span class="c"># ...</span>
+</pre></div>
+</div>
+<p>All the named elements are specified during <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> creation.
+KDVS ensures that <cite>all named elements</cite> are present when <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+is created. The elements that are <cite>not</cite> filled, have <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.NOTPRESENT" title="kdvs.fw.Stat.NOTPRESENT"><tt class="xref py py-data docutils literal"><span class="pre">NOTPRESENT</span></tt></a>
+value; this way, one can check immediately if named element was produced correctly.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If technique implementation tries to fill named element that is NOT specified
+during Results instance creation, an Error is reported.</p>
+</div>
+<p>Having filled <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance, one can access individual elements:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># outside technique</span>
+<span class="c"># obtain Results instance and assign to &#39;res&#39;</span>
+<span class="n">parvalues</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">&#39;Parameter Values&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">parvalues</span>
+</pre></div>
+</div>
+<p>Some <cite>named elements</cite> are always filled; see <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+API documentation for more details.</p>
+</div>
+<div class="section" id="job-creation-and-execution">
+<span id="framework-jobcreationandexecution"></span><h2>Job Creation and Execution<a class="headerlink" href="#job-creation-and-execution" title="Permalink to this headline">¶</a></h2>
+<p>Each concrete implementation of statistical technique (see
+<a class="reference internal" href="#framework-statisticaltechniques"><em>Statistical Techniques</em></a> for more details) must create at least
+one <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance that contains proper computational work
+to be executed. Those instances are then <cite>added</cite> to the concrete instance of
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.JobContainer" title="kdvs.fw.Job.JobContainer"><tt class="xref py py-class docutils literal"><span class="pre">JobContainer</span></tt></a> class that schedules their execution.</p>
+<p>Job container is the main workhorse of KDVS. It accepts jobs to be executed,
+schedules them for execution, executes them or passes to some more sophisticated
+software, gets all job execution results, stores them for reference, and provides
+statistical techniques back with individual job results in order for them to
+produce Results instances.</p>
+<p>The principles of job container are presented on <a class="reference internal" href="#framework-fig6"><em>Figure 6</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/jobexecution.png" id="framework-fig6"><img alt="Depiction of the principles of KDVS job container" id="framework-fig6" src="../_images/jobexecution.png" style="width: 1359.9px; height: 498.6px;" /></a>
+<p class="caption">Depiction of the principles of KDVS job container.</p>
+<div class="legend">
+</div>
+</div>
+<p>When the <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance is initially created by the statistical
+technique, it has CREATED status assigned. The <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> is added
+to <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.JobContainer" title="kdvs.fw.Job.JobContainer"><tt class="xref py py-class docutils literal"><span class="pre">JobContainer</span></tt></a> with <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.JobContainer.addJob" title="kdvs.fw.Job.JobContainer.addJob"><tt class="xref py py-meth docutils literal"><span class="pre">addJob()</span></tt></a>
+method. Here, job has the ADDED status
+assigned, as well as its <cite>jobID</cite> (that is unique <cite>at least across single KDVS run</cite>).
+What happens next depends on the exact implementation of concrete job container.
+For instance, when <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer" title="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">SimpleJobContainer</span></tt></a> is used,
+all jobs are executed on current machine (more precisely, within the same Python
+interpreter instance that runs KDVS system), in the order of submission, without
+any advanced scheduling mechanisms. <a class="reference internal" href="#framework-fig6"><em>Figure 6</em></a> depicts exactly
+this behavior. When <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a> is used,
+job is instead sent to Parallel Python scheduler for execution, possibly on some
+remote machine, on different Python interpreter instance. This fact has some serious
+implications as to how the job shall be properly written to be served by job
+containers of different nature. See &#8216;Job Writing&#8217; for more details. Either way,
+the job changes its status to EXECUTING. After successful job execution, individual
+results are returned, and stored <cite>inside</cite> Job instance (in attribute <tt class="xref py py-attr docutils literal"><span class="pre">result</span></tt>),
+and the Job has its status changed to FINISHED. This allows reusing of Job instance(s),
+with individual job results attached, to produce <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instance. Full KDVS job lifecycle is presented on <a class="reference internal" href="#framework-fig7"><em>Figure 7</em></a>.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/joblifecycle.png" id="framework-fig7"><img alt="Depiction of full KDVS job lifecycle" id="framework-fig7" src="../_images/joblifecycle.png" style="width: 433.8px; height: 270.9px;" /></a>
+<p class="caption">Depiction of full KDVS job lifecycle.</p>
+<div class="legend">
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Concrete technique implementation receives <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance(s)
+that contain individual job results. If technique created multiple jobs, it is
+up to the technique implementation to <cite>merge</cite> partial results from multiple jobs.
+For instance, for implementation of cross-validation in multiple jobs, at least
+individual classification error rates/regression models need to be retrieved
+from individual job results.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Each Job bears and associated ID that may be assigned by job container (the
+default strategy), or can be overridden by concrete implementation of
+technique while the job is submitted for execution. The second solution allows
+more precise control of multiple jobs issued by multitude of techniques, and
+is used by all reference implementations of statistical techniques.</p>
+</div>
+</div>
+<div class="section" id="selecting">
+<span id="framework-selecting"></span><h2>Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline">¶</a></h2>
+<p>Based on classification/regression performed by statistical technique, as well as
+possible variable selection, some entities can be <cite>selected</cite> and reported as such.
+The idea of <cite>selection</cite> in KDVS is abstract enough to encompass many individual
+cases commonly encountered in machine learning.</p>
+<p>Variable selection performed on data subset directly points to the fact that
+underlying data contain certain amount of statistically meaningful variables.
+Those variables may be highlighted during reporting.</p>
+<p>On the other hand, classification performed on data subset does not &#8220;select&#8221; anything by itself.
+It is the classification performance on test splits (if cross-validation was
+used) to determine the &#8220;importance&#8221; of data contained in data subset. The
+&#8220;importance&#8221; may be defined by the technique author itself. For instance,
+if classification performance on data subset is below certain constant threshold,
+it presents the possibility that underlying data are &#8220;meaningful&#8221;, and the
+corresponding data subset may be highlighted during reporting. In general, from
+classification outcome, one obtains <cite>significant data subsets</cite>, and from variable
+selection, <cite>significant individual variables</cite>. Since each data subset is associated
+with prior knowledge concept (see <a class="reference internal" href="#framework-datasubsets"><em>Data Subsets</em></a>), <cite>significant
+prior knowledge concepts</cite> are in fact obtained.</p>
+<p>If variable selection in machine learning sense is not performed, user can still
+<cite>declare</cite> some variables as <cite>significant</cite>, for example, depending on some external
+conditions connected with prior knowledge.</p>
+<p>These cases can be served uniformly by introducing the concept of <cite>selecting</cite>
+that is independent from selection in machine learning sense, and is configurable
+both by technique authors and users.</p>
+<p>The selection activity is implemented as concrete implementations of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Selector" title="kdvs.fw.Stat.Selector"><tt class="xref py py-class docutils literal"><span class="pre">Selector</span></tt></a>
+class. Typically, concrete Selector accepts iterable of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instances, and produces <cite>selection markings</cite>, i.e. it marks prior knowledge
+concepts or individual variables as <cite>selected</cite> or <cite>not selected</cite>. <cite>Selection
+markings</cite> can be reported afterwards.</p>
+<p>To separate selection of prior knowledge concepts and variables, KDVS uses the
+terminology &#8220;outer selection&#8221; for selecting prior knowledge concepts, and &#8220;inner
+selection&#8221; for selecting individual variables. Outer selectors are concrete
+implementations of <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.OuterSelector" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector</span></tt></a> class, and inner
+selectors are concrete implementations of <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.InnerSelector" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector"><tt class="xref py py-class docutils literal"><span class="pre">InnerSelector</span></tt></a>
+class.</p>
+<p>Typically, selectors store selection markings in Results instances, using empty
+&#8216;Selection-&gt;outer&#8217; and &#8216;Selection-&gt;inner&#8217; named elements (see <a class="reference internal" href="#framework-results"><em>Results</em></a> for the notation).
+The implementation of statistical technique that wants to use selectors, must
+create empty &#8216;Selection&#8217; named element and assign empty Python <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></a>
+instance to it.</p>
+</div>
+<div class="section" id="reporting">
+<span id="framework-reporting"></span><h2>Reporting<a class="headerlink" href="#reporting" title="Permalink to this headline">¶</a></h2>
+<p>Reporting in KDVS means creating the <cite>content</cite> that will be stored in physical
+files automatically (see <a class="reference internal" href="#framework-storage"><em>Storage</em></a> for more details). &#8220;<cite>Reporters</cite>&#8221;
+are specialized subclasses of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a> class. Typically,
+each Reporter accepts iterable of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances and
+process them as it sees fit (see <a class="reference internal" href="#framework-results"><em>Results</em></a> for more details). In
+particular, it can access specific <cite>named elements</cite> from them, and e.g. transform
+them into textual representation, <cite>open</cite> a new report, and create some descriptive
+&#8220;content&#8221; regarding them. Each &#8220;report&#8221; is then written into a physical file that
+will be created automatically when the report is <cite>closed</cite>, also automatically.
+There is no limit regarding the number of &#8220;opened&#8221; reports, other than memory
+constraints.</p>
+<p>As a rule of thumb, reporter(s) are created together with some concrete
+implementation of statistical technique, and possibly, some selectors as well
+(see <a class="reference internal" href="#framework-statisticaltechniques"><em>Statistical Techniques</em></a> and <a class="reference internal" href="#framework-selecting"><em>Selecting</em></a> for
+more details). For instance, &#8220;reference&#8221; statistical techniques
+(<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a>, <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="kdvs.fw.impl.stat.L1L2.L1L2_RLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_RLS</span></tt></a>,
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_OLS" title="kdvs.fw.impl.stat.L1L2.L1L2_OLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_OLS</span></tt></a>) have their own specific reporters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.report.html#kdvs.fw.impl.report.L1L2.L1L2_VarFreq_Reporter" title="kdvs.fw.impl.report.L1L2.L1L2_VarFreq_Reporter"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_VarFreq_Reporter</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.report.html#kdvs.fw.impl.report.L1L2.L1L2_VarCount_Reporter" title="kdvs.fw.impl.report.L1L2.L1L2_VarCount_Reporter"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_VarCount_Reporter</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.report.html#kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter" title="kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_PKC_Reporter</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.report.html#kdvs.fw.impl.report.L1L2.L1L2_PKC_UTL_Reporter" title="kdvs.fw.impl.report.L1L2.L1L2_PKC_UTL_Reporter"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_PKC_UTL_Reporter</span></tt></a></li>
+</ul>
+</div></blockquote>
+<p>that also depend on associated selectors:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector_ClassificationErrorThreshold</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars"><tt class="xref py py-class docutils literal"><span class="pre">InnerSelector_ClassificationErrorThreshold_AllVars</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq"><tt class="xref py py-class docutils literal"><span class="pre">InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq</span></tt></a></li>
+</ul>
+</div></blockquote>
+<p>Reporters must re&#8211;implement at least <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.produce" title="kdvs.fw.Report.Reporter.produce"><tt class="xref py py-meth docutils literal"><span class="pre">produce()</span></tt></a> method
+(that does nothing by default).
+This method accepts iterable of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances as an
+input. Reporter can open the new report with <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.openReport" title="kdvs.fw.Report.Reporter.openReport"><tt class="xref py py-meth docutils literal"><span class="pre">openReport()</span></tt></a>
+method. Note that the <cite>content</cite> must have already been created. The report does
+not need to <cite>close</cite> the report explicitly; the method <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.finalize" title="kdvs.fw.Report.Reporter.finalize"><tt class="xref py py-meth docutils literal"><span class="pre">finalize()</span></tt></a>
+is called automatically at the end of reporter lifecycle, that creates all physical
+files, writes all content to them, and closes them. In general, the following
+usage pattern applies:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">R1</span><span class="p">(</span><span class="n">Reporter</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="n">resultsIter</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="n">report_content</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">report_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;VA  VB  VC&quot;</span><span class="p">)</span>
+        <span class="n">report_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;1  2  3&quot;</span><span class="p">)</span>
+        <span class="n">report_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;4  5  6&quot;</span><span class="p">)</span>
+        <span class="n">report_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;7  8  9&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">openReport</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">report_content</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>If needed, <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.produceForHierarchy" title="kdvs.fw.Report.Reporter.produceForHierarchy"><tt class="xref py py-meth docutils literal"><span class="pre">produceForHierarchy()</span></tt></a> method may be
+re&#8211;implemented as well. The difference is that the <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.produce" title="kdvs.fw.Report.Reporter.produce"><tt class="xref py py-meth docutils literal"><span class="pre">produce()</span></tt></a>
+method takes Results instances coming <cite>from single category</cite> only. In contrast,
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.produceForHierarchy" title="kdvs.fw.Report.Reporter.produceForHierarchy"><tt class="xref py py-meth docutils literal"><span class="pre">produceForHierarchy()</span></tt></a> takes as input the whole
+<cite>category tree</cite> and can walk it to reach Results instances produced for many
+categories. This way, <cite>global</cite> reports may be produced that spans many categories,
+or even the whole category tree. See <a class="reference internal" href="#framework-subsethierarchy"><em>Subset Hierarchy</em></a>
+for more details.</p>
+<p>Reporters may re&#8211;implement <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter.initialize" title="kdvs.fw.Report.Reporter.initialize"><tt class="xref py py-meth docutils literal"><span class="pre">initialize()</span></tt></a> method to obtain
+all additional data they may need.</p>
+</div>
+<div class="section" id="storage">
+<span id="framework-storage"></span><h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
+<p>Any component of KDVS framework can produce output data, e.g. for diagnostic
+purposes. This requires tedious management of physical files, most likely located
+in various nested subfolders for organizational puproses. To ease this, KDVS offers
+the abstracted way to manage storage process by introducing &#8220;<cite>locations</cite>&#8221; that
+can be created and deleted by dedicated <cite>storage manager</cite>. Currently, one storage
+manager has been implemented tha governs creation and deletion of nested subfolders
+in file system accessible through Python module <a class="reference external" href="http://docs.python.org/library/os.html#os" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">os</span></tt></a>:
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.StorageManager.StorageManager" title="kdvs.fw.StorageManager.StorageManager"><tt class="xref py py-class docutils literal"><span class="pre">StorageManager</span></tt></a>.</p>
+<p>If requested, when storage manager is instantiated, it can create related
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance with <cite>root location</cite> (see <a class="reference internal" href="#root-location">Root location</a>)
+used as <tt class="xref py py-attr docutils literal"><span class="pre">arbitrary_data_root</span></tt>.</p>
+<div class="section" id="locations">
+<h3>Locations<a class="headerlink" href="#locations" title="Permalink to this headline">¶</a></h3>
+<p>Locations are nested subfolders that are represented by descriptive <cite>ID</cite>; if
+necessary, also pseudo&#8211;random UUID (see <a class="reference external" href="http://docs.python.org/library/uuid.html#uuid" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">uuid</span></tt></a>) identifiers can be used.
+Locations are identified by the following statements:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/.../</span><span class="n">sublocN</span>
+</pre></div>
+</div>
+<p>The default separator used is <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.StorageManager.SUBLOCATION_SEPARATOR" title="kdvs.fw.StorageManager.SUBLOCATION_SEPARATOR"><tt class="xref py py-attr docutils literal"><span class="pre">SUBLOCATION_SEPARATOR</span></tt></a>.
+The separator may differ across platforms. It may be changed after instantiation
+of storage manager.</p>
+<p>The storage manager is <cite>named</cite>, which allows to distinguish between locations
+created by many storage managers. In particular, it may be useful when referring
+to <cite>remote</cite> physical paths.</p>
+</div>
+<div class="section" id="root-location">
+<h3>Root location<a class="headerlink" href="#root-location" title="Permalink to this headline">¶</a></h3>
+<p>The instance of storage manager accepts <cite>root location</cite> as input. All physical
+paths managed by this location will be created with relation to the root location.
+For instance, if:</p>
+<div class="highlight-python"><pre>/home/grzegorz</pre>
+</div>
+<p>is given as root location, then the creation of location &#8216;loc&#8217; will trigger the
+creation of new physical path:</p>
+<div class="highlight-python"><pre>/home/grzegorz/loc</pre>
+</div>
+<p>When location is specified as &#8216;loc/subloc1&#8217;, the new physical path will be created
+as follows:</p>
+<div class="highlight-python"><pre>/home/grzegorz/loc/subloc1</pre>
+</div>
+</div>
+<div class="section" id="location-management">
+<h3>Location management<a class="headerlink" href="#location-management" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s start with empty storage manager that has root location set as ROOT_LOCATION.</p>
+<p>When location &#8216;loc&#8217; is requested to create, the storage manager uses &#8220;loc&#8221; as
+the alias for the following physical path that is created subsequently:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span>
+</pre></div>
+</div>
+<p>If the <cite>nested</cite> location is requested, such as &#8216;loc/subloc1&#8217;, where &#8216;loc&#8217; already
+exists, the following physical path will be created:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+</pre></div>
+</div>
+<p>and the creation process is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">subloc1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At this point, storage manager manages two locations:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+</pre></div>
+</div>
+<p>and two corresponding physical paths:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span>
+<span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+</pre></div>
+</div>
+<p>If more sophisticated location is requested, such as &#8216;loc/subloc1/subloc2/subloc3&#8217;,
+the storage manager breaks the requested location into <cite>subblocks</cite> equivalent to
+each level of nesting. This allows finer manipulation of nested subdirectories.
+For our example, all the following locations are created simultaneously, if not
+exist already:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span><span class="o">/</span><span class="n">subloc3</span>
+</pre></div>
+</div>
+<p>along with their corresponding physical paths (again if not exist):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span>
+<span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+<span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span>
+<span class="n">ROOT_LOCATION</span><span class="o">/</span><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span><span class="o">/</span><span class="n">subloc3</span>
+</pre></div>
+</div>
+<p>In our case the first two already exist, so only the following two will be created.</p>
+</div>
+<div class="section" id="deletion">
+<h3>Deletion<a class="headerlink" href="#deletion" title="Permalink to this headline">¶</a></h3>
+<p>When location is <cite>deleted</cite>, both <cite>ID</cite> and physical path are removed (along with
+all files already present there). Locations can be deleted in two ways.</p>
+<div class="section" id="non-leaf-mode">
+<h4>Non&#8211;leaf mode<a class="headerlink" href="#non-leaf-mode" title="Permalink to this headline">¶</a></h4>
+<p>In non&#8211;leaf mode, all nested subdirectories are deleted at once, along with
+all the files present in the whole subdirectory tree. That means, also all &#8216;subblocks&#8217;
+(see <a class="reference internal" href="#location-management">Location management</a>) are deleted silently. For instance, when
+deletion of the existing location &#8216;loc/subloc1/subloc2/subloc3&#8217; is requested,
+not only the location:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span><span class="o">/</span><span class="n">subloc3</span>
+</pre></div>
+</div>
+<p>is removed, but all the following managed locations are removed as well:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s">&#39;ROOT_LOCATION/loc/subloc1/subloc2/subloc3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Non&#8211;leaf mode must be used with caution, as it <cite>does not</cite> signal the deletion
+of the whole physical subdirectory tree.</p>
+</div>
+</div>
+<div class="section" id="leaf-mode">
+<h4>Leaf mode<a class="headerlink" href="#leaf-mode" title="Permalink to this headline">¶</a></h4>
+<p>In leaf mode, only the most nested subdirectory is deleted, along with the content,
+and all related higher&#8211;level &#8216;subblocks&#8217; are left intact. For instance, when
+deletion of the existing location &#8216;loc/subloc1/subloc2/subloc3&#8217; is requested,
+only the following location is removed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span><span class="o">/</span><span class="n">subloc3</span>
+</pre></div>
+</div>
+<p>and the following locations are left intact:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">loc</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span>
+<span class="n">loc</span><span class="o">/</span><span class="n">subloc1</span><span class="o">/</span><span class="n">subloc2</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;ROOT_LOCATION/loc/subloc1/subloc2/subloc3&#39;</span><span class="p">):</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abstpath</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s">&#39;ROOT_LOCATION/loc/subloc1/subloc2/subloc3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting">
+<span id="framework-plotting"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
+<p>Some components of KDVS framework can produce <cite>plots</cite>, especially statistical
+techniques and reporters (see <a class="reference internal" href="#framework-statisticaltechniques"><em>Statistical Techniques</em></a> and
+<a class="reference internal" href="#framework-reporting"><em>Reporting</em></a>). To ease the use of multiple plotting tools (e.g.
+from <a class="reference external" href="http://www.r-project.org">R packages</a>), KDVS offers an abstract way to
+construct plots and perform actual plotting.</p>
+<p>The plot is constructed and performed by the concrete subclasses of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot" title="kdvs.fw.Stat.Plot"><tt class="xref py py-class docutils literal"><span class="pre">Plot</span></tt></a>
+class (&#8220;<cite>plotters</cite>&#8221;). Each implementation must implement <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.configure" title="kdvs.fw.Stat.Plot.configure"><tt class="xref py py-meth docutils literal"><span class="pre">configure()</span></tt></a>,
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.create" title="kdvs.fw.Stat.Plot.create"><tt class="xref py py-meth docutils literal"><span class="pre">create()</span></tt></a> and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.plot" title="kdvs.fw.Stat.Plot.plot"><tt class="xref py py-meth docutils literal"><span class="pre">plot()</span></tt></a> methods.</p>
+<p>In general, the <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.configure" title="kdvs.fw.Stat.Plot.configure"><tt class="xref py py-meth docutils literal"><span class="pre">configure()</span></tt></a> method should be used to
+initialize plotting library, along with all necessary components. If R package
+is used, this may require using some Python/R adapter, such as
+<a class="reference external" href="http://rpy.sourceforge.net/rpy2.html">rpy2</a>.</p>
+<p>The <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.create" title="kdvs.fw.Stat.Plot.create"><tt class="xref py py-meth docutils literal"><span class="pre">create()</span></tt></a> method should be used to create instance of any <cite>plot class</cite>
+specific for the plotting library, and to supply the <cite>plot class</cite> instance with
+data, such as data series for all axes.</p>
+<p>The <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.plot" title="kdvs.fw.Stat.Plot.plot"><tt class="xref py py-meth docutils literal"><span class="pre">plot()</span></tt></a> method should be used to execute final call specific
+for plotting library that produces physical plot. Typically, <cite>plot class</cite>
+provides wrapping for <cite>physical content</cite> of the plot (i.e. png image or pdf
+document), that needs to be saved separately. In current implementation, KDVS
+saves physical content of the plots automatically.</p>
+<div class="section" id="plotting-with-matplotlib">
+<h3>Plotting with matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>KDVS offers concrete subclass <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.Plot.MatplotlibPlot" title="kdvs.fw.impl.stat.Plot.MatplotlibPlot"><tt class="xref py py-class docutils literal"><span class="pre">MatplotlibPlot</span></tt></a>
+to produce plots with <a class="reference external" href="http://matplotlib.org/">matplotlib</a>. To use this class,
+matplotlib must be installed.</p>
+<p>The <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.Plot.MatplotlibPlot" title="kdvs.fw.impl.stat.Plot.MatplotlibPlot"><tt class="xref py py-class docutils literal"><span class="pre">MatplotlibPlot</span></tt></a> class offers two
+<a class="reference external" href="http://matplotlib.org/faq/usage_faq.html#what-is-a-backend">backends</a>:
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PNG" title="kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PNG"><tt class="xref py py-attr docutils literal"><span class="pre">MATPLOTLIB_GRAPH_BACKEND_PNG</span></tt></a> and
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PDF" title="kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PDF"><tt class="xref py py-attr docutils literal"><span class="pre">MATPLOTLIB_GRAPH_BACKEND_PDF</span></tt></a>.
+See <a class="reference external" href="http://matplotlib.org/contents.html">matplotlib documentation</a> for more details.</p>
+<p>The <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.configure" title="kdvs.fw.Stat.Plot.configure"><tt class="xref py py-meth docutils literal"><span class="pre">configure()</span></tt></a> method initializes matplotlib and physical
+plotting driver. The <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.create" title="kdvs.fw.Stat.Plot.create"><tt class="xref py py-meth docutils literal"><span class="pre">create()</span></tt></a> method needs to be
+re&#8211;implemented in subclass (by default it does nothing). The <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Plot.plot" title="kdvs.fw.Stat.Plot.plot"><tt class="xref py py-meth docutils literal"><span class="pre">plot()</span></tt></a>
+method performs plotting of fully created plot with driver <tt class="xref py py-meth docutils literal"><span class="pre">savefig()</span></tt> method;
+also, it returns the <cite>physical content</cite> of the plot as string. That string can
+be saved to corresponding png or pdf file. In current implementation, KDVS does
+it automatically.</p>
+<p>For the reference statistical techniques (<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a>,
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="kdvs.fw.impl.stat.L1L2.L1L2_RLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_RLS</span></tt></a>, <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_OLS" title="kdvs.fw.impl.stat.L1L2.L1L2_OLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_OLS</span></tt></a>)
+the following matplotlib plotters are implemented:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph" title="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2KfoldErrorsGraph</span></tt></a>; the example is presented
+on <a class="reference internal" href="#framework-fig8"><em>Figure 8</em></a></li>
+</ul>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/example_avg_kcv_err.png" id="framework-fig8"><img alt="Example output of L1L2KfoldErrorsGraph plotter" id="framework-fig8" src="../_images/example_avg_kcv_err.png" style="width: 720.0px; height: 540.0px;" /></a>
+<p class="caption">Example output of L1L2KfoldErrorsGraph plotter.</p>
+<div class="legend">
+</div>
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph" title="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2ErrorBoxplotMuGraph</span></tt></a>; the example is presented
+on <a class="reference internal" href="#framework-fig9"><em>Figure 9</em></a></li>
+</ul>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/example_prediction_error_ts.png" id="framework-fig9"><img alt="Example output of L1L2ErrorBoxplotMuGraph plotter" id="framework-fig9" src="../_images/example_prediction_error_ts.png" style="width: 720.0px; height: 540.0px;" /></a>
+<p class="caption">Example output of L1L2ErrorBoxplotMuGraph plotter.</p>
+<div class="legend">
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="applications">
+<span id="framework-applications"></span><h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<p>KDVS is built around the concept of <cite>components</cite> that implement specific functionality
+exposed through API (Application Programming Interface), as well as <cite>applications</cite>,
+that are autonomous programs using the components and their API.</p>
+<p>Application can be simply a Python script that imports KDVS components and manages
+them autonomically, or can be based on the <cite>execution environment</cite>, a specialized
+entity that provides useful functionalities, such as logging, command line interface
+etc.</p>
+<p>The <cite>execution environment</cite> is composed of <cite>actions</cite> and <cite>environment variables</cite>.</p>
+<div class="section" id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<p>Essentially, <cite>action</cite> is a stateless Python procedure that accepts the instance of
+execution environment and returns nothing (&#8216;pass&#8217; statements are added for clarity):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">some_action_1</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># do something with env (or not)</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">some_action_2</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># do something with env (or not)</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Actions can have additional arguments if needed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action_func</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># do something with env (or not) and arg1 and arg2</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Actions are <cite>added</cite> to execution environment in order to be executed. Then, the
+environment executes them in the order of addition. See <a class="reference internal" href="#execution-environment">Execution environment</a>
+for details.</p>
+</div>
+<div class="section" id="environment-variables">
+<h3>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>Actions by themselves are quite limited, therefore execution environment manages
+&#8220;environment variables&#8221; that can be stored and retrieved as needed. Any action
+can access any environment variable created by previous action(s). That way,
+independent actions can communicate with each other.</p>
+<p>The new variable is added with <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.addVar" title="kdvs.core.env.ExecutionEnvironment.addVar"><tt class="xref py py-meth docutils literal"><span class="pre">addVar()</span></tt></a> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action1</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="n">var1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="s">&#39;var1&#39;</span><span class="p">,</span> <span class="n">var1</span><span class="p">)</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Existing variable can be accessed with <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.var" title="kdvs.core.env.ExecutionEnvironment.var"><tt class="xref py py-meth docutils literal"><span class="pre">var()</span></tt></a> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action2</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="n">var1</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s">&#39;var1&#39;</span><span class="p">)</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Generally, variables are identified by unique <cite>names</cite> within single environment
+(but see <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.addVar" title="kdvs.core.env.ExecutionEnvironment.addVar"><tt class="xref py py-meth docutils literal"><span class="pre">addVar()</span></tt></a> for overwriting details).</p>
+<p>If requested environment variable is not available, the action must handle this case
+by itself, for instance by throwing an exception. However, execution environment
+provides also an optional rudimentary check if specific environment variables are
+present before and/or after execution of the action. That is, any action can
+specify names of &#8220;<cite>input variables</cite>&#8221; and &#8220;<cite>output variables</cite>&#8221; when added to the
+environment. If any &#8220;input variable&#8221; is missing before execution of this action,
+the environment will report an error and stop (see <a class="reference internal" href="#exception-handling">Exception handling</a> for details).
+Analogically, if any &#8220;output variable&#8221; is missing after execution of this action,
+an error will be reported and the execution will stop. The names of input and
+output variables are specified when the action is added to the environment; see
+<a class="reference internal" href="#execution-environment">Execution environment</a> for complete example.</p>
+</div>
+<div class="section" id="execution-environment">
+<h3>Execution environment<a class="headerlink" href="#execution-environment" title="Permalink to this headline">¶</a></h3>
+<p>KDVS applications, by convention, have used dedicated function <cite>&#8220;prepare_env&#8221;</cite>
+to instantiate and initialize concrete execution environment:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">prepare_env</span><span class="p">():</span>
+    <span class="c"># ...</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">env</span>
+</pre></div>
+</div>
+<p>It must return fully initialized instance of <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">ExecutionEnvironment</span></tt></a>
+or one of its subclasses.</p>
+<p>The initialized execution environment executes series of actions <cite>added</cite> in
+specified order. Actions can be added in two ways, through the instance of
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.action.ActionSpec" title="kdvs.core.action.ActionSpec"><tt class="xref py py-class docutils literal"><span class="pre">ActionSpec</span></tt></a> instance, or by direct adding the <cite>action callable</cite>.
+The environment executes all added actions with <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.execute" title="kdvs.core.env.ExecutionEnvironment.execute"><tt class="xref py py-meth docutils literal"><span class="pre">execute()</span></tt></a>
+method. After successful execution of each action, the
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.postActionCallback" title="kdvs.core.env.ExecutionEnvironment.postActionCallback"><tt class="xref py py-meth docutils literal"><span class="pre">postActionCallback()</span></tt></a> method is executed;
+by default it does nothing, and it may be used in subclasses (see <a class="reference internal" href="#predefined-environments">Predefined environments</a>).</p>
+<p>The <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.addAction" title="kdvs.core.env.ExecutionEnvironment.addAction"><tt class="xref py py-meth docutils literal"><span class="pre">addAction()</span></tt></a> method accepts the instance
+of <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.action.ActionSpec" title="kdvs.core.action.ActionSpec"><tt class="xref py py-class docutils literal"><span class="pre">ActionSpec</span></tt></a>, that wraps the callable to be executed
+as action. Also, input and output variables can be optionally specified for
+verification; see <a class="reference internal" href="#environment-variables">Environment variables</a> for details:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action1</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">action2</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># ensure that we produce &#39;var1&#39;</span>
+    <span class="c"># if &#39;var1&#39; is missing after the execution an error will be reported</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">action3</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">arg1</span><span class="o">=</span><span class="n">val1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="n">val2</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># ensure that we use &#39;var1&#39; and produce &#39;var2&#39;</span>
+    <span class="c"># if &#39;var1&#39; is missing before the execution an error will be reported</span>
+    <span class="c"># if &#39;var2&#39; is missing after the execution an error will be reported</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">prepare_env</span><span class="p">()</span>
+<span class="n">as1</span> <span class="o">=</span> <span class="n">ActionSpec</span><span class="p">(</span><span class="n">action1</span><span class="p">)</span>
+<span class="n">as2</span> <span class="o">=</span> <span class="n">ActionSpec</span><span class="p">(</span><span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;var1&#39;</span><span class="p">],</span> <span class="n">action2</span><span class="p">)</span>
+<span class="n">as3</span> <span class="o">=</span> <span class="n">ActionSpec</span><span class="p">(</span><span class="n">input_vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;var1&#39;</span><span class="p">],</span> <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;var2&#39;</span><span class="p">],</span> <span class="n">action3</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;arg1&#39;</span> <span class="p">:</span> <span class="n">val1</span><span class="p">,</span> <span class="s">&#39;arg2&#39;</span> <span class="p">:</span> <span class="n">val2</span><span class="p">})</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">as1</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">as2</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">as3</span><span class="p">)</span>
+<span class="c"># execute action1, action2, action3 in order of adding</span>
+<span class="n">env</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.addCallable" title="kdvs.core.env.ExecutionEnvironment.addCallable"><tt class="xref py py-meth docutils literal"><span class="pre">addCallable()</span></tt></a> method simplifies the
+adding process by creating <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.action.ActionSpec" title="kdvs.core.action.ActionSpec"><tt class="xref py py-class docutils literal"><span class="pre">ActionSpec</span></tt></a> instance and calling
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.addAction" title="kdvs.core.env.ExecutionEnvironment.addAction"><tt class="xref py py-meth docutils literal"><span class="pre">addAction()</span></tt></a> method. It accepts the
+callable, its arguments, and optionally, input and output variables:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action1</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">action2</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># ensure that we produce &#39;var1&#39;</span>
+    <span class="c"># if &#39;var1&#39; is missing after the execution an error will be reported</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">action3</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">arg1</span><span class="o">=</span><span class="n">val1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="n">val2</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="c"># ensure that we use &#39;var1&#39; and produce &#39;var2&#39;</span>
+    <span class="c"># if &#39;var1&#39; is missing before the execution an error will be reported</span>
+    <span class="c"># if &#39;var2&#39; is missing after the execution an error will be reported</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">prepare_env</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action1</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action2</span><span class="p">,</span> <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;var1&#39;</span><span class="p">])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action3</span><span class="p">,</span> <span class="n">action_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;arg1&#39;</span> <span class="p">:</span> <span class="n">val1</span><span class="p">,</span> <span class="s">&#39;arg2&#39;</span> <span class="p">:</span> <span class="n">val2</span><span class="p">},</span> <span class="n">input_vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;var1&#39;</span><span class="p">],</span> <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;var2&#39;</span><span class="p">])</span>
+<span class="c"># execute action1, action2, action3 in order of adding</span>
+<span class="n">env</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Action execution is <strong>not</strong> incremental; that is, all interconnected actions must be
+added together in proper order before execution starts. Only after execution is
+successfully finished, executed actions are removed (<cite>cleared</cite>) and one can add
+some more to be executed (the environment variables are <strong>not</strong> destroyed):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">env</span> <span class="o">=</span> <span class="n">prepare_env</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action1</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action2</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action3</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="c"># ...</span>
+<span class="c"># after successful execution, all actions are `cleared`</span>
+<span class="c"># we can add new ones to execute them as well</span>
+<span class="c"># ...</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action4</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action5</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">addCallable</span><span class="p">(</span><span class="n">action6</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Actions can be also <cite>cleared</cite> manually with <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.clearActions" title="kdvs.core.env.ExecutionEnvironment.clearActions"><tt class="xref py py-meth docutils literal"><span class="pre">clearActions()</span></tt></a>
+method.</p>
+</div>
+<div class="section" id="exception-handling">
+<h3>Exception handling<a class="headerlink" href="#exception-handling" title="Permalink to this headline">¶</a></h3>
+<p>If at least one exception is thrown from within any action, the whole execution
+flow of the environment stops, and the diagnostic information is shown or logged:</p>
+<ul class="simple">
+<li>number of action that has thrown an exception</li>
+<li>total number of actions to be executed</li>
+<li>failed action details, namely action name and any additional action arguments (excluding &#8216;env&#8217;)</li>
+<li>thrown exception details, as exception name and arguments, and available stack trace</li>
+<li>details of actions already executed before failed action, in the same format as
+failed action details</li>
+<li>details of actions to be executed after failed action, in the same format as
+failed action details</li>
+<li>if environment dump was requested, all environment variables present in the moment of exception throw</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Important: actions are supposed <em>not to</em> throw any exceptions outside its
+body. All execution must be self-contained, and actions are allowed to transfer
+its state only through environment variables; deliberate exception propagation
+will lead to error.</p>
+</div>
+<p>If <cite>variable verification</cite> step throws any exception (that is, some input/output
+variable is missing; see <a class="reference internal" href="#environment-variables">Environment variables</a>), it is treated as any other
+exception thrown from within the action, and execution flow is stopped as described
+above.</p>
+<p>The execution environment provides rudimentary dump of existing environment
+variables created before exception was thrown. The variables are available as
+part of diagnostic information, as described above. Note that this behaviour is
+<cite>turned off</cite> by default, since the amount of variables can be huge after work of
+many actions; see <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.execute" title="kdvs.core.env.ExecutionEnvironment.execute"><tt class="xref py py-meth docutils literal"><span class="pre">execute()</span></tt></a> method
+documentation for more details.</p>
+</div>
+<div class="section" id="predefined-environments">
+<h3>Predefined environments<a class="headerlink" href="#predefined-environments" title="Permalink to this headline">¶</a></h3>
+<p>Currently, one predefined execution environment is available:
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.LoggedExecutionEnvironment" title="kdvs.core.env.LoggedExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">LoggedExecutionEnvironment</span></tt></a>. This environment provides
+logging capability by maintaining a <a class="reference external" href="http://docs.python.org/library/logging.html#logging.Logger" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">logging.Logger</span></tt></a> instance, according to
+specified configuration, that is available to any action at any moment:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action1</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Action started&#39;</span><span class="p">)</span>
+    <span class="c"># ...</span>
+    <span class="n">var1</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s">&#39;var1&#39;</span><span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;Retrieved variable var1: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">var1</span><span class="p">)</span>
+    <span class="c"># ...</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Action finished&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The logger instance shall be created inside proper &#8220;<cite>prepare_env</cite>&#8221; method that
+returns fully instantiated <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.LoggedExecutionEnvironment" title="kdvs.core.env.LoggedExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">LoggedExecutionEnvironment</span></tt></a>
+(see <a class="reference internal" href="#execution-environment">Execution environment</a>). For an example implementation, see
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.CmdLineApp.CmdLineApp.prepareEnv" title="kdvs.fw.impl.app.CmdLineApp.CmdLineApp.prepareEnv"><tt class="xref py py-meth docutils literal"><span class="pre">prepareEnv()</span></tt></a>
+method from <a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.CmdLineApp.CmdLineApp" title="kdvs.fw.impl.app.CmdLineApp.CmdLineApp"><tt class="xref py py-class docutils literal"><span class="pre">CmdLineApp</span></tt></a> class.</p>
+</div>
+</div>
+<div class="section" id="application-profiles">
+<span id="framework-applicationprofiles"></span><h2>Application Profiles<a class="headerlink" href="#application-profiles" title="Permalink to this headline">¶</a></h2>
+<p>Implementation and maintenance of large KDVS applications can be challenging,
+especially in the fast changing ecosystem of statistical learning method
+development. KDVS offers <cite>application profiles</cite> in order to provide at least
+rudimentary check of the <cite>application completeness</cite> during its runtime.</p>
+<p>Essentially, the <cite>application profile</cite> contains &#8220;profile variables&#8221; that are
+important for specific application. In particular, the profile variables can
+contain <cite>input arguments</cite>, in any form, for the application. Specific profile
+is read by the application from the configuration file. The idea is that
+application code is left intact while different profile variables can be specified
+in different configuration files.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The API for application profiles is not yet completely specified. With this
+idea, it could be possible, for instance, to write <cite>single</cite> universal application
+that performs as much validation as possible and <cite>adapts</cite> its execution to
+specific profile. This way, no coding could be performed <cite>at all</cite> and the
+method developers could focus only on creating <cite>components</cite> and wrapping them
+in proper profiles. However, current implementations, e.g. in &#8216;experiment&#8217;
+application, is not that flexible yet.</p>
+</div>
+<p>The profile is a dictionary wrapped in the concrete instance of
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.App.AppProfile" title="kdvs.fw.App.AppProfile"><tt class="xref py py-class docutils literal"><span class="pre">AppProfile</span></tt></a> class. The application should read the profile
+dictionary, either in serialized form or from configuration file, create
+&#8216;AppProfile&#8217; instance, verify if the profile is complete, retrieve any input
+arguments from profile variables, and continue execution.</p>
+<p>Currently, two specific profile dictionaries exist. The <a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.Profile.NULL_PROFILE" title="kdvs.fw.impl.app.Profile.NULL_PROFILE"><tt class="xref py py-attr docutils literal"><span class="pre">NULL_PROFILE</span></tt></a>
+contains no profile variables at all. The <a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.Profile.MA_GO_PROFILE" title="kdvs.fw.impl.app.Profile.MA_GO_PROFILE"><tt class="xref py py-attr docutils literal"><span class="pre">MA_GO_PROFILE</span></tt></a>
+dictionary contains various profile variables that contain input arguments for
+&#8216;experiment&#8217; application. When &#8216;experiment&#8217; application starts, it reads profile
+dictionary from configuration file, checks profile dictionary against
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.Profile.MA_GO_PROFILE" title="kdvs.fw.impl.app.Profile.MA_GO_PROFILE"><tt class="xref py py-attr docutils literal"><span class="pre">MA_GO_PROFILE</span></tt></a> (see API documentation therein),
+and throws exception if profile contains any error, before proceeding any further.
+This can save considerable amount of time when application is time-consuming.</p>
+</div>
+<div class="section" id="configuration-files">
+<span id="framework-configurationfiles"></span><h2>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h2>
+<p>Once execution environment is initialized, it can be manually configured by
+assigning specific environment variables before actions are executed.
+To ease the task of environment configuration, KDVS application can utilize
+<cite>configuration files</cite> for importing batch of environment variables at once.
+This is done by using functions from <a class="reference internal" href="../doc-api/kdvs.core.html#module-kdvs.core.config" title="kdvs.core.config"><tt class="xref py py-mod docutils literal"><span class="pre">config</span></tt></a> KDVS core module.</p>
+<p>The configuration file is a Python script that contains Python statements
+to be executed. It is opened and parsed using <a class="reference external" href="http://docs.python.org/library/functions.html#execfile" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">execfile()</span></tt></a> mechanism. The
+file may contain any valid Python code, including <tt class="xref py py-obj docutils literal"><span class="pre">import</span></tt> statements if
+needed. It must contain syntactically correct sequence of statements; see
+<a class="reference external" href="http://docs.python.org/library/functions.html#execfile" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">execfile()</span></tt></a> for more details.</p>
+<p>Every assignment of the form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">var_name</span> <span class="o">=</span> <span class="n">var_value</span>
+</pre></div>
+</div>
+<p>is captured as new environment variable &#8216;var_name&#8217; with value &#8216;var_value&#8217;.
+In other words, every local variable evaluated inside configuration file is
+captured.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">The configuration file may contain <strong>any</strong> valid Python code to be executed,
+therefore KDVS is not secured against malicious code</p>
+</li>
+<li><p class="first">Since the configuration file is normal Python script, it may be checked for
+errors before use by executing it with Python interpreter</p>
+</li>
+<li><p class="first">When specifying variables with string value, the value must be enclosed
+either within single or double quotes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">var1</span> <span class="o">=</span> <span class="s">&#39;simplevalue&#39;</span>
+<span class="n">var2</span> <span class="o">=</span> <span class="s">&quot;value with some spaces&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When specifying variables with list/tuple/dict value, the value must conform
+to the standard Python syntax:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># variable with list value, 3 elements</span>
+<span class="n">var_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;val1&#39;</span><span class="p">,</span> <span class="s">&#39;val2&#39;</span><span class="p">,</span> <span class="s">&#39;val3&#39;</span><span class="p">]</span>
+
+<span class="c"># variable with tuple value, 3 elements</span>
+<span class="n">var_tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;val1&#39;</span><span class="p">,</span> <span class="s">&#39;val2&#39;</span><span class="p">,</span> <span class="s">&#39;val3&#39;</span><span class="p">)</span>
+<span class="c"># equivalent</span>
+<span class="n">var_tuple2</span> <span class="o">=</span> <span class="s">&#39;val1&#39;</span><span class="p">,</span> <span class="s">&#39;val2&#39;</span><span class="p">,</span> <span class="s">&#39;val3&#39;</span>
+
+<span class="c"># variable with tuple value, 1 element</span>
+<span class="n">var_tuple3</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;val1&#39;</span><span class="p">,)</span>
+<span class="c"># equivalent</span>
+<span class="n">var_tuple4</span> <span class="o">=</span> <span class="s">&#39;val1&#39;</span><span class="p">,</span>
+
+<span class="c"># variable with dictionary value, 3 key-value pairs</span>
+<span class="n">var_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;key1&#39;</span> <span class="p">:</span> <span class="s">&#39;val1&#39;</span><span class="p">,</span> <span class="s">&#39;key2&#39;</span> <span class="p">:</span> <span class="s">&#39;val2&#39;</span><span class="p">,</span> <span class="s">&#39;key3&#39;</span> <span class="p">:</span> <span class="s">&#39;val3&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<p>KDVS uses two functions to process two different kinds of configuration files.</p>
+<div class="section" id="default-configuration-file">
+<h3>Default configuration file<a class="headerlink" href="#default-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>The default configuration file is located in the following location:</p>
+<blockquote>
+<div>kdvs/config/default_cfg.py</div></blockquote>
+<p>It can be evaluated from within the KDVS application by
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.config.evaluateDefaultCfg" title="kdvs.core.config.evaluateDefaultCfg"><tt class="xref py py-func docutils literal"><span class="pre">evaluateDefaultCfg()</span></tt></a> function. The function automatically
+finds the configuration file, reads it, and returns dictionary of all captured
+variables.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Captured variables may be quickly passed to the instance of
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">ExecutionEnvironment</span></tt></a> with
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.updateVars" title="kdvs.core.env.ExecutionEnvironment.updateVars"><tt class="xref py py-meth docutils literal"><span class="pre">updateVars()</span></tt></a> method.</p>
+</div>
+<p>For complete list of variables, see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>.</p>
+</div>
+<div class="section" id="user-configuration-file">
+<h3>User configuration file<a class="headerlink" href="#user-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>User configuration file is evaluated from within the KDVS application by
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.config.evaluateUserCfg" title="kdvs.core.config.evaluateUserCfg"><tt class="xref py py-func docutils literal"><span class="pre">evaluateUserCfg()</span></tt></a> function. The function accepts filesystem
+path to configuration file, reads it, and returns dictionary of all captured
+variables.</p>
+<p>In addition, <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.config.evaluateUserCfg" title="kdvs.core.config.evaluateUserCfg"><tt class="xref py py-func docutils literal"><span class="pre">evaluateUserCfg()</span></tt></a> can read default
+configuration file in background, and <cite>merge</cite> two sets of variables, so that
+<cite>user variables</cite> overwrite <cite>default variables</cite>. The merge is performed by
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.config.mergeCfg" title="kdvs.core.config.mergeCfg"><tt class="xref py py-func docutils literal"><span class="pre">mergeCfg()</span></tt></a> function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Captured/merged variables may be quickly passed to the instance of
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">ExecutionEnvironment</span></tt></a> with
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.ExecutionEnvironment.updateVars" title="kdvs.core.env.ExecutionEnvironment.updateVars"><tt class="xref py py-meth docutils literal"><span class="pre">updateVars()</span></tt></a> method.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Framework</a><ul>
+<li><a class="reference internal" href="#information-flow">Information flow</a></li>
+<li><a class="reference internal" href="#local-data-integration">Local data integration</a></li>
+<li><a class="reference internal" href="#data-subsets">Data Subsets</a></li>
+<li><a class="reference internal" href="#subset-hierarchy">Subset Hierarchy</a></li>
+<li><a class="reference internal" href="#subset-ordering">Subset Ordering</a></li>
+<li><a class="reference internal" href="#statistical-techniques">Statistical Techniques</a><ul>
+<li><a class="reference internal" href="#degree-s-of-freedom">Degree(s) of freedom</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#job-creation-and-execution">Job Creation and Execution</a></li>
+<li><a class="reference internal" href="#selecting">Selecting</a></li>
+<li><a class="reference internal" href="#reporting">Reporting</a></li>
+<li><a class="reference internal" href="#storage">Storage</a><ul>
+<li><a class="reference internal" href="#locations">Locations</a></li>
+<li><a class="reference internal" href="#root-location">Root location</a></li>
+<li><a class="reference internal" href="#location-management">Location management</a></li>
+<li><a class="reference internal" href="#deletion">Deletion</a><ul>
+<li><a class="reference internal" href="#non-leaf-mode">Non&#8211;leaf mode</a></li>
+<li><a class="reference internal" href="#leaf-mode">Leaf mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plotting">Plotting</a><ul>
+<li><a class="reference internal" href="#plotting-with-matplotlib">Plotting with matplotlib</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#applications">Applications</a><ul>
+<li><a class="reference internal" href="#actions">Actions</a></li>
+<li><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li><a class="reference internal" href="#execution-environment">Execution environment</a></li>
+<li><a class="reference internal" href="#exception-handling">Exception handling</a></li>
+<li><a class="reference internal" href="#predefined-environments">Predefined environments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#application-profiles">Application Profiles</a></li>
+<li><a class="reference internal" href="#configuration-files">Configuration files</a><ul>
+<li><a class="reference internal" href="#default-configuration-file">Default configuration file</a></li>
+<li><a class="reference internal" href="#user-configuration-file">User configuration file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="applications.html" title="KDVS applications"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="background.html" title="Background"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

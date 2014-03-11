@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>job Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.fw.impl.html" />
+    <link rel="next" title="map Package" href="kdvs.fw.impl.map.html" />
+    <link rel="prev" title="envop Package" href="kdvs.fw.impl.envop.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.map.html" title="map Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.envop.html" title="envop Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="job-package">
+<h1>job Package<a class="headerlink" href="#job-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">job</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.job"></span><p>Provides concrete implementation of job containers.</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.job.PPlusJob">
+<span id="pplusjob-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">PPlusJob</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.job.PPlusJob" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete implementation of the job container that uses PPlus library
+(<a class="reference external" href="https://bitbucket.org/slipguru/pplus">https://bitbucket.org/slipguru/pplus</a>). IMPORTANT NOTE: this job container works
+only with PPlus v0.5.2.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.job.PPlusJob.</tt><tt class="descname">PPlusJobContainer</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.JobContainer" title="kdvs.fw.Job.JobContainer"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Job.JobContainer</span></tt></a></p>
+<p>Job container that uses PPlus v0.5.2. During instantiation, all parameters except
+&#8216;incrementID&#8217;, are passed directly to &#8216;pplus.PPlusConnection&#8217;. Refer to the PPlus
+documentation for more details.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">pplus.PPlusConnection</span></tt></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>keyworded parameters passed directly to PPlusConnection, except &#8216;incrementID&#8217;
+(if present)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default, provide some time for auto&#8211;discovery of Parallel Python to warm up
+(by sleeping for 5 secs).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/time.html#time.sleep" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">time.sleep</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob">
+<tt class="descname">addJob</tt><big>(</big><em>job</em>, <em>importable=False</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>The job is added to Parallel Python queue and then executed based on internal
+Parallel Python scheduler. Once added, its status is changed to EXECUTING. The
+job is actually passed as &#8216;depfunc&#8217;, together with its name, found in proper scope
+on worker machine, and executed there. NOTE: earlier versions of PPlus will raise
+an exception here since they require submission of job as callable, not as name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>job</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote>
+<div><p>job to be executed by this container</p>
+</div></blockquote>
+<p><strong>importable</strong> : boolean</p>
+<blockquote class="last">
+<div><p>the job may be self&#8211;contained (i.e. does not use any external libraries) or
+it can use the external code that is already installed (in the sense of
+importable Python module) on worker machine; in the first case, the job is
+said to be &#8216;not importable&#8217;, in the second case the job is &#8216;importable&#8217;;
+True if the job is importable, False if not; False by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.getJobInputKey">
+<tt class="descname">getJobInputKey</tt><big>(</big><em>jobID</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.getJobInputKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get PPlus key for the file that contains job raw input for the specific job.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>jobID</strong> : string</p>
+<blockquote>
+<div><p>identifier of already added job</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>key</strong> : string</p>
+<blockquote class="last">
+<div><p>PPlus key for the requested file</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>See &#8216;File key&#8217; in PPlus documentation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.getJobOutputKey">
+<tt class="descname">getJobOutputKey</tt><big>(</big><em>jobID</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.getJobOutputKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get PPlus key for the file that contains job raw output for the specific job.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>jobID</strong> : string</p>
+<blockquote>
+<div><p>identifier of already added job</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>key</strong> : string</p>
+<blockquote class="last">
+<div><p>PPlus key for the requested file</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>See &#8216;File key&#8217; in PPlus documentation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.getJobIDForKey">
+<tt class="descname">getJobIDForKey</tt><big>(</big><em>filekey</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.getJobIDForKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get identifier of the job for specific PPlus file key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>key</strong> : string</p>
+<blockquote>
+<div><p>PPlus key for the requested file (input/output)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>jobID</strong> : string</p>
+<blockquote class="last">
+<div><p>identifier of already added job that is associated with requested file key</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>See &#8216;File key&#8217; in PPlus documentation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect all raw results from jobs already added. Blocking call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>exceptions</strong> : tuple of tuples</p>
+<blockquote class="last">
+<div><p>tuple of the following tuples (&#8216;PPlusJobs&#8217;, e), where &#8216;e&#8217; is the instance
+of <cite>PPlusError</cite> generated during execution of jobs; the exception instance
+contains the details of the error, including identifier of the job that failed;
+note that some jobs may still finish normally, so the length of this tuple may vary</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">PPlusConnection.collect</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">PPlusError</span></tt></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.postClose">
+<tt class="descname">postClose</tt><big>(</big><em>destPath</em>, <em>*args</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.postClose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the following operations AFTER the container has been close()d: copy
+&#8216;experiment.log&#8217; to results sublocation specified with file system directory path
+&#8216;destPath&#8217;, and copy &#8216;master session&#8217; log to the same sublocation.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="kdvs.fw.html#kdvs.fw.StorageManager.StorageManager" title="kdvs.fw.StorageManager.StorageManager"><tt class="xref py py-obj docutils literal"><span class="pre">kdvs.fw.StorageManager.StorageManager</span></tt></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>See &#8216;PPlus logging&#8217; in PPlus documentation</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.job.SimpleJob">
+<span id="simplejob-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">SimpleJob</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.job.SimpleJob" title="Permalink to this headline">¶</a></h2>
+<p>Provides simple &#8216;null&#8217; job container that executes jobs as ordinary callables
+in the order of submission; no parallel execution mechanisms are used. It requires
+no external libraries.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.job.SimpleJob.</tt><tt class="descname">SimpleJobContainer</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.JobContainer" title="kdvs.fw.Job.JobContainer"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Job.JobContainer</span></tt></a></p>
+<p>Simple &#8216;null&#8217; job container. It recognizes single parameter &#8216;incrementID&#8217;; if not
+present, it is assumed to be True.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>actual parameters supplied during instantiation; they will be checked against
+reference ones</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.addJob">
+<tt class="descname">addJob</tt><big>(</big><em>job</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.addJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>The job is added to internal list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>job</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote>
+<div><p>job to be executed by this container</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>any other arguments; not used</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finish job submission stage and execute already added jobs, in the order of adding.
+Blocking call.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finish execution stage and return any exceptions raised during execution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>exception</strong> : tuple of tuples</p>
+<blockquote class="last">
+<div><p>tuple of the following tuples: (jobID, e), where &#8216;jobID&#8217; is the identifier
+of the failed job, and &#8216;e&#8217; is an instance of Exception that was raised during
+execution; note that some jobs may still finish correctly so the length of
+this tuple may vary</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.postClose">
+<tt class="descname">postClose</tt><big>(</big><em>destPath</em>, <em>*args</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.postClose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing in post&#8211;closing stage.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.job.SimpleJob.</tt><tt class="descname">SimpleJobExecutor</tt><big>(</big><em>jobs_to_execute</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Convenient wrapper for an iterable of jobs that creates simple job container which
+executes them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>jobs_to_execute</strong> : iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote>
+<div><p>jobs to be executed</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if iterable is incorrectly specified</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor.run">
+<tt class="descname">run</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of SimpleJobContainer, add requested jobs, and execute them.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close simple job container and return any exceptions raised during execution.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.close" title="kdvs.fw.impl.job.SimpleJob.SimpleJobContainer.close"><tt class="xref py py-obj docutils literal"><span class="pre">SimpleJobContainer.close</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor.getJobResults">
+<tt class="descname">getJobResults</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.job.SimpleJob.SimpleJobExecutor.getJobResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get iterable of all job results for executed jobs.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">JobContainer.getJobResults</span></tt></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">job Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">job</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.job.PPlusJob"><tt class="docutils literal"><span class="pre">PPlusJob</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.job.SimpleJob"><tt class="docutils literal"><span class="pre">SimpleJob</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.map.html" title="map Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.envop.html" title="envop Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

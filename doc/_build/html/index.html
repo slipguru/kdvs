@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Knowledge Driven Variable Selection documentation &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="#" />
+    <link rel="next" title="Background" href="doc-gen/background.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="doc-gen/background.html" title="Background"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="knowledge-driven-variable-selection-documentation">
+<h1>Knowledge Driven Variable Selection documentation<a class="headerlink" href="#knowledge-driven-variable-selection-documentation" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">2.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">March 06, 2014</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Homepage:</th><td class="field-body"><a class="reference external" href="http://slipguru.disi.unige.it/Research/KDVS/">http://slipguru.disi.unige.it/Research/KDVS/</a></td>
+</tr>
+</tbody>
+</table>
+<p>Knowledge Driven Variable Selection (KDVS) provides experimental integration of
+numerical data and related prior knowledge, to confirm existing statistically
+significant relations between data bits (suggested by prior knowledge), and to
+discover new ones. It uses statistical learning algorithms developed by
+<a class="reference external" href="http://slipguru.disi.unige.it/">SlipGURU</a> research group at Dipartimento di
+Informatica, Bioingegneria, Robotica ed Ingegneria dei Sistemi (DIBRIS),
+Università degli Studi di Genova, Italy.</p>
+<p><cite>KDVS</cite> is licensed under <a class="reference external" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL) version 3</a>.</p>
+<dl class="docutils">
+<dt>KDVS requires the following environment(s):</dt>
+<dd><ul class="first last simple">
+<li>Python v2.6+</li>
+</ul>
+</dd>
+</dl>
+<p>KDVS has not been tested with Python 3.</p>
+<dl class="docutils">
+<dt>It also requires the following Python packages:</dt>
+<dd><ul class="first last simple">
+<li>numpy &#8211; v1.4.0+</li>
+<li>matplotlib &#8211; v1.2.1+ (TODO: check on P2.6!!!)</li>
+<li>l1l2py &#8211; v1.0.5</li>
+</ul>
+</dd>
+</dl>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc-gen/background.html">Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#data-driven-world">Data&#8211;driven world</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#high-throughput-biology">High&#8211;throughput biology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#high-throughput-platforms">High&#8211;throughput platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#prior-knowledge">Prior knowledge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#data-and-knowledge-integration">Data and knowledge integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/background.html#input-data">Input Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-gen/framework.html">Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#information-flow">Information flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#local-data-integration">Local data integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#data-subsets">Data Subsets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#subset-hierarchy">Subset Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#subset-ordering">Subset Ordering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#statistical-techniques">Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#job-creation-and-execution">Job Creation and Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#selecting">Selecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#reporting">Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#storage">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#applications">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#application-profiles">Application Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/framework.html#configuration-files">Configuration files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-gen/applications.html">KDVS applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/applications.html#experiment-py">experiment.py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-gen/writingapplication.html">Writing KDVS application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc-gen/annex.html">Annex</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#default-configuration-file">Default configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#global-technique-parameters">Global technique parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#serialization">Serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#using-wrapper-py">Using wrapper.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#contributions">Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#tools">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#documenting">Documenting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#installing">Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/annex.html#uninstalling">Uninstalling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-gen/roadmap.html">Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/roadmap.html#codebase">Codebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-gen/roadmap.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-api/api.html">KDVS API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-api/modules.html">kdvs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      <h3>Download</h3>
+<!--
+      <p>Current version: <b>2.0.0</b></p>
+      <p>Get SVS from the
+         <a href="http://pypi.python.org/pypi/svs">Python Package Index</a>,
+         or install it with:
+      </p>
+      <pre>easy_install -U svs</pre>
+-->
+      <p><a href="http://slipguru.disi.unige.it/Research/svs/svs-1.0.0-alpha.tar.gz">svs-1.0.0-alpha</a></p>
+      <p>Latest
+         <a href="http://slipguru.disi.unige.it/Research/svs/svs-1.0.0-alpha.pdf">
+            documentation in pdf
+         </a>
+         is also available.
+      </p>
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="doc-gen/background.html" title="Background"
+             >next</a> |</li>
+        <li><a href="#">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

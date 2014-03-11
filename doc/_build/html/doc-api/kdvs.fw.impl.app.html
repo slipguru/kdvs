@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>app Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.fw.impl.html" />
+    <link rel="next" title="data Package" href="kdvs.fw.impl.data.html" />
+    <link rel="prev" title="annotation Package" href="kdvs.fw.impl.annotation.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.data.html" title="data Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.annotation.html" title="annotation Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="app-package">
+<h1>app Package<a class="headerlink" href="#app-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-kdvs.fw.impl.app.CmdLineApp">
+<span id="cmdlineapp-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">CmdLineApp</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.app.CmdLineApp" title="Permalink to this headline">¶</a></h2>
+<p>Provides skeleton implementation for basic command line application that uses
+KDVS API; the &#8216;experiment&#8217; application is based on it.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.app.CmdLineApp.CmdLineApp">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.app.CmdLineApp.</tt><tt class="descname">CmdLineApp</tt><a class="headerlink" href="#kdvs.fw.impl.app.CmdLineApp.CmdLineApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.App.App" title="kdvs.fw.App.App"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.App.App</span></tt></a></p>
+<p>Simple implementation of KDVS application that is configured from command line
+arguments. The functionality is tailored for &#8216;experiment&#8217; application, which means
+the arguments are currently hard&#8211;coded:</p>
+<div class="highlight-text"><div class="highlight"><pre>Usage: experiment.py [options]
+
+Knowledge Driven Variable Selection Experiment Application
+
+Options:
+  -h, --help            show this help message and exit
+  -c CFGFILE, --config-file=CFGFILE
+                        read configuration from CFGFILE
+  -s SDDIR, --src-data-dir=SDDIR
+                        read data files from SDDIR
+  -o OUTDIR, --output-dir=OUTDIR
+                        store all results in OUTDIR
+  -l LOGFILE, --log-file=LOGFILE
+                        direct log output to LOGFILE
+  --ignore-default-config
+                        ignore default configuration (advanced)
+  --log-to-stdout       log output to stdout
+  --use-debug-output    write (lots of) detailed debug output
+  --log-level=LOG_LEVEL
+                        set log level to specified
+</pre></div>
+</div>
+<dl class="method">
+<dt id="kdvs.fw.impl.app.CmdLineApp.CmdLineApp.prepareEnv">
+<tt class="descname">prepareEnv</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.app.CmdLineApp.CmdLineApp.prepareEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interprets command line arguments, reads specified configuration file, initializes
+specific logging mechanism, initializes default paths, and creates concrete
+<a class="reference internal" href="kdvs.core.html#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">ExecutionEnvironment</span></tt></a> instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.app.CmdLineApp.CmdLineApp.appProlog">
+<tt class="descname">appProlog</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.app.CmdLineApp.CmdLineApp.appProlog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates physical root output location and debug output location, creates starting timestamp
+inside the output location, serializes initial configuration for debug purposes,
+creates an instance of <a class="reference internal" href="kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a>, and verifies that the experiment profile
+specified in configuration file is correct.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.app.CmdLineApp.CmdLineApp.appEpilog">
+<tt class="descname">appEpilog</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.app.CmdLineApp.CmdLineApp.appEpilog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates ending timestamp in root output location and finishes logging.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.app.Profile">
+<span id="profile-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">Profile</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.app.Profile" title="Permalink to this headline">¶</a></h2>
+<p>Provides functionality regarding handling application profiles. Also, provides
+pre&#8211;defined concrete profiles. Specific profile is read by application from
+configuration file. Application checks if the profile is complete, that is, if
+it contains all listed sections, and if section content is wrapped in correct
+data structure.</p>
+<dl class="data">
+<dt id="kdvs.fw.impl.app.Profile.NULL_PROFILE">
+<tt class="descclassname">kdvs.fw.impl.app.Profile.</tt><tt class="descname">NULL_PROFILE</tt><em class="property"> = {}</em><a class="headerlink" href="#kdvs.fw.impl.app.Profile.NULL_PROFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simplest &#8216;null&#8217; application profile that contains no elements to be checked against.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.app.Profile.MA_GO_PROFILE">
+<tt class="descclassname">kdvs.fw.impl.app.Profile.</tt><tt class="descname">MA_GO_PROFILE</tt><em class="property"> = {'labels_file': {}, 'go_domain': '', 'subset_inner_selectors': {}, 'envops': {}, 'reporters': {}, 'subset_outer_selectors': {}, 'subset_hierarchy_components_map': {}, 'subset_orderers': {}, 'gedm_file': {}, 'subset_categorizers': {}, 'annotation_file': {}, 'statistical_techniques': {}, 'subset_hierarchy_categorizers_chain': ()}</em><a class="headerlink" href="#kdvs.fw.impl.app.Profile.MA_GO_PROFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Application profile used by &#8216;experiment&#8217; application. It is organized as a
+dictionary</p>
+<blockquote>
+<div><ul class="simple">
+<li>{section_name : section_prototype}</li>
+</ul>
+</div></blockquote>
+<p>where &#8216;section_prototype&#8217; refers to the example instance of the type that
+contains section content. For instance, when &#8216;section_prototype&#8217; is an empty
+dictionary, it will be checked during profile validation that the content of
+the section is wrapped in a dictionary. Some sections may use different
+containers, like iterables, if necessary. See content of
+&#8216;example_experiment_cfg.py&#8217; in <cite>example_experiment</cite> directory for an example of
+how this particular profile may be specified.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">app Package</a><ul>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.app.CmdLineApp"><tt class="docutils literal"><span class="pre">CmdLineApp</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.app.Profile"><tt class="docutils literal"><span class="pre">Profile</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.data.html" title="data Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.annotation.html" title="annotation Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

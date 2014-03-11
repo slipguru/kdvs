@@ -1,0 +1,2254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>KDVS applications &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="next" title="Writing KDVS application" href="writingapplication.html" />
+    <link rel="prev" title="Framework" href="framework.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="writingapplication.html" title="Writing KDVS application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="framework.html" title="Framework"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="kdvs-applications">
+<h1>KDVS applications<a class="headerlink" href="#kdvs-applications" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the concrete KDVS applications.</p>
+<div class="section" id="experiment-py">
+<span id="applications-experiment"></span><h2>experiment.py<a class="headerlink" href="#experiment-py" title="Permalink to this headline">¶</a></h2>
+<p>The application &#8216;experiment.py&#8217; performs performs prior–knowledge–guided feature
+selection and re–annotation, according to specified configuration. The feature
+selection utilizes statistical techniques based on
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py</a> library. It uses <a class="reference external" href="http://www.geneontology.org">Gene
+Ontology</a> as prior knowledge source and
+microarray gene expression as measured data. It is located in subdirectory
+&#8216;<strong>kdvs/bin</strong>&#8216;.</p>
+<p>The &#8216;experiment.py&#8217; application has been built as a concrete subclass
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.MA_GO_Experiment_App" title="kdvs.bin.experiment.MA_GO_Experiment_App"><tt class="xref py py-class docutils literal"><span class="pre">MA_GO_Experiment_App</span></tt></a> of <a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.CmdLineApp.CmdLineApp" title="kdvs.fw.impl.app.CmdLineApp.CmdLineApp"><tt class="xref py py-class docutils literal"><span class="pre">CmdLineApp</span></tt></a>
+class, that adds series of actions to <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.env.LoggedExecutionEnvironment" title="kdvs.core.env.LoggedExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">LoggedExecutionEnvironment</span></tt></a>
+instance. For complete list of actions and description of each action refer to
+API documentation.</p>
+<div class="section" id="component-initializers">
+<span id="applications-componentinitializers"></span><h3>Component initializers<a class="headerlink" href="#component-initializers" title="Permalink to this headline">¶</a></h3>
+<p>The &#8216;experiment.py&#8217; application uses the concept of <cite>dynamic instantiation</cite> of
+certain components.</p>
+<p>Many KDVS components are <cite>parametrizable</cite> (when subclasses of
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.Parametrizable" title="kdvs.core.util.Parametrizable"><tt class="xref py py-class docutils literal"><span class="pre">Parametrizable</span></tt></a>) or <cite>configurable</cite> (when subclasses of
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.Configurable" title="kdvs.core.util.Configurable"><tt class="xref py py-class docutils literal"><span class="pre">Configurable</span></tt></a>). This is needed when a class expects
+many input parameters that may be given only at runtime and not in the class
+definition itself.</p>
+<p>When instance of <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.Parametrizable" title="kdvs.core.util.Parametrizable"><tt class="xref py py-class docutils literal"><span class="pre">Parametrizable</span></tt></a> is created, the given
+list of parameters is checked against the reference list. If they do not match
+(i.e. some parameter is missing or is not present at the reference list), the
+object will not be created. Here, <cite>only parameters names</cite> are checked.
+When instance of <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.Configurable" title="kdvs.core.util.Configurable"><tt class="xref py py-class docutils literal"><span class="pre">Configurable</span></tt></a> is created, the given
+list of parameters is again checked against the reference list. However, not only
+the parameters names are checked, but <cite>types of values</cite> as well. Refer to API
+documentation for individual abstract classes.</p>
+<p>The &#8220;<cite>component initializer</cite>&#8221; is a Python dictionary that has the following general
+format:</p>
+<div class="highlight-python"><pre>'class_import_path' : {
+    'param1' : param1_val,
+    'param2' : param2_val,
+    # ...
+    'paramN' : paramN_val,
+}</pre>
+</div>
+<p>where &#8216;<cite>class_import_path</cite>&#8216; is the full import package path. For instance, to
+instantiate one of reference statistical techniques inside the application,
+such as <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a>, the &#8216;<cite>class_import_path</cite>&#8216;
+must be specified as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#39;</span>
+</pre></div>
+</div>
+<p>and the example <cite>component initializer</cite> will be specified as follows (refer to
+the API documentation for complete list of parameters):</p>
+<div class="highlight-python"><pre>'kdvs.fw.impl.stat.L1L2.L1L2_L1L2' : {
+    'external_k' : 4,
+    'internal_k' : 3,
+    # ...
+    # other parameters
+    # ...
+ }</pre>
+</div>
+<p>This is interpreted as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>get string &#8216;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#8217;</li>
+<li>dynamically import class &#8216;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#8217;</li>
+<li>get all parameters from related dictionary</li>
+<li>pass them according to the initialization rules for <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.Parametrizable" title="kdvs.core.util.Parametrizable"><tt class="xref py py-class docutils literal"><span class="pre">Parametrizable</span></tt></a>/<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.Configurable" title="kdvs.core.util.Configurable"><tt class="xref py py-class docutils literal"><span class="pre">Configurable</span></tt></a> instance</li>
+</ul>
+</div></blockquote>
+<p>Many KDVS components used in &#8216;experiment.py&#8217; application were built as
+<cite>parametrizable</cite>/<cite>configurable</cite>, and <cite>application profile</cite> used by this application
+utilizes <cite>component initializers</cite> frequently. Refer to API documentation for each
+individual subclass for more details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unless otherwise stated, once the component instances are created, they <cite>cannot</cite>
+be altered. It is necessary to re&#8211;create the instance from scratch with new
+parameters. Currently, KDVS <strong>does not</strong> provide support for dynamic modification
+of parametrizable/configurable instances.</p>
+</div>
+</div>
+<div class="section" id="application-profile">
+<h3>Application profile<a class="headerlink" href="#application-profile" title="Permalink to this headline">¶</a></h3>
+<p>&#8216;experiment.py&#8217; interprets the profile dictionary specified in
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.Profile.MA_GO_PROFILE" title="kdvs.fw.impl.app.Profile.MA_GO_PROFILE"><tt class="xref py py-data docutils literal"><span class="pre">MA_GO_PROFILE</span></tt></a> instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MA_GO_PROFILE</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="c"># ---- data section</span>
+    <span class="s">&#39;annotation_file&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;gedm_file&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;labels_file&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+
+    <span class="c"># ---- GO section</span>
+    <span class="s">&#39;go_domain&#39;</span> <span class="p">:</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+
+    <span class="c"># ---- subsets section</span>
+
+    <span class="c"># ---- initializers for all individual components</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;subset_orderers&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;statistical_techniques&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;subset_outer_selectors&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;subset_inner_selectors&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;reporters&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;envops&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+
+    <span class="c"># ---- subset hierarchy categorizer tree (as a linear iterable of categorizers)</span>
+    <span class="s">&#39;subset_hierarchy_categorizers_chain&#39;</span> <span class="p">:</span> <span class="p">(),</span>
+
+    <span class="c"># ---- fully expanded assignments of individual operations</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{},</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As specified in API documentation, the <a class="reference internal" href="../doc-api/kdvs.fw.impl.app.html#kdvs.fw.impl.app.Profile.MA_GO_PROFILE" title="kdvs.fw.impl.app.Profile.MA_GO_PROFILE"><tt class="xref py py-data docutils literal"><span class="pre">MA_GO_PROFILE</span></tt></a>
+contains <cite>prototypes</cite> of profile variables. That is, if section &#8216;annotation_file&#8217;
+refers to empty dictionary, then &#8216;annotation_file&#8217; section of <cite>full</cite> profile
+specified in configuration file must contain properly filled dictionary that
+contains information about annotation file.</p>
+<p>The fully specified profile of this type is available in the following location:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">examples</span><span class="o">/</span><span class="n">GSE7390</span><span class="o">/</span><span class="n">GSE7390_cfg</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="section" id="annotation-file">
+<h4>annotation_file<a class="headerlink" href="#annotation-file" title="Permalink to this headline">¶</a></h4>
+<p>This section specifies file that contains annotations (see <a class="reference internal" href="background.html#background-annotationmatrix"><em>Annotation matrix</em></a>).
+The file must come in DSV format. The section must contain the following elements:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;path&#8217; (string) &#8211; file path of annotation file <cite>relative</cite> to the configuration file</p>
+</li>
+<li><p class="first">&#8216;metadata&#8217; (dict) &#8211; dictionary of metadata that describe selected structural
+details of annotation file; currently, two metadata elements are recognized:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;delimiter&#8217; (string) &#8211; delimiter that separates values in each line</li>
+<li>&#8216;comment&#8217; (string/None) &#8211; comment prefix; each commented line is discarded; None if not used</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">&#8216;indexes&#8217; (tuple/None) &#8211; tuple of the column names that shall be <cite>indexed</cite> when
+loaded into KDVS database backend; indexing speeds up information querying
+from these columns, but increases the overall size of database, therefore
+only crucial columns should be indexed; None if the only index shall be created
+for ID column (see also <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a>
+API documentation); empty tuple for creating no indexes at all</p>
+</li>
+</ul>
+</div></blockquote>
+<p>An example of &#8216;annotation_file&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;annotation_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="s">&#39;GPL96.txt.bz2&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;ID&#39;</span><span class="p">,</span> <span class="s">&#39;Representative Public ID&#39;</span><span class="p">,</span> <span class="s">&#39;Gene Symbol&#39;</span><span class="p">),</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gedm-file">
+<h4>gedm_file<a class="headerlink" href="#gedm-file" title="Permalink to this headline">¶</a></h4>
+<p>This section specifies file that contains measurements (see <a class="reference internal" href="background.html#background-measurementdatamatrix"><em>Measurement Data Matrix</em></a>).
+The name refers historically to Gene Expression Data Matrix (GEDM). The file must
+come in DSV format. The section must contain the following elements:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;path&#8217; (string) &#8211; file path of measurements file <cite>relative</cite> to the configuration file</p>
+</li>
+<li><p class="first">&#8216;metadata&#8217; (dict) &#8211; dictionary of metadata that describe selected structural
+details of measurements file; currently, two metadata elements are recognized:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;delimiter&#8217; (string) &#8211; delimiter that separates values in each line</li>
+<li>&#8216;comment&#8217; (string/None) &#8211; comment prefix; each commented line is discarded; None if not used</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">&#8216;indexes&#8217; (tuple/None) &#8211; tuple of the column names that shall be <cite>indexed</cite> when
+loaded into KDVS database backend; indexing speeds up information querying
+from that columns, but increases the overall size of database, therefore
+only crucial columns should be indexed; None if the only index shall be created
+for ID column (see also <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a>
+API documentation); empty tuple for creating no indexes at all</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Typically, for measurements files, &#8216;indexes&#8217; element has value None,
+since querying is performed according to measurement ID only, and the index
+for ID column &#8211; typically the first one in DSV file &#8211; will be created
+automatically by KDVS database backend in that case</p>
+</div>
+<p>An example of &#8216;gedm_file&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;gedm_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="s">&#39;GSE7390.txt.bz2&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c"># special value -- index only by ID column</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="labels-file">
+<h4>labels_file<a class="headerlink" href="#labels-file" title="Permalink to this headline">¶</a></h4>
+<p>This section specifies file that contains label information (see <a class="reference internal" href="background.html#background-labelinformation"><em>Label information</em></a>).
+Note that for some statistical techniques (see <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a>) the label information
+is <cite>not needed</cite>, therefore this file may not be always present. If present, the
+file must come in DSV format. The section must contain the following elements:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;path&#8217; (string/None) &#8211; file path of labels file <cite>relative</cite> to the configuration file;
+None if not present</p>
+</li>
+<li><p class="first">&#8216;metadata&#8217; (dict) &#8211; dictionary of metadata that describe selected structural
+details of labels file; currently, two metadata elements are recognized:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;delimiter&#8217; (string) &#8211; delimiter that separates values in each line</li>
+<li>&#8216;comment&#8217; (string/None) &#8211; comment prefix; each commented line is discarded; None if not used</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">&#8216;indexes&#8217; (tuple/None) &#8211; tuple of the column names that shall be <cite>indexed</cite> when
+loaded into KDVS database backend; indexing speeds up information querying
+from that columns, but increases the overall size of database, therefore
+only crucial columns should be indexed; None if the only index shall be created
+for ID column (see also <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a>
+API documentation); empty tuple for creating no indexes at all</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Labels file may not be present; this is reflected by &#8216;path&#8217; element having value None</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Due to non-intensive querying, indexes are typically not needed for label information;
+this is reflected by &#8216;indexes&#8217; element having value of empty tuple</p>
+</div>
+<p>An example of &#8216;labels_file&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;labels_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># NOTE: labels file can be omitted entirely (e.g. for regression experiments)</span>
+        <span class="c"># by providing None as a path</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="s">&#39;GSE7390_labels.csv.txt&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="p">(),</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="go-domain">
+<h4>go_domain<a class="headerlink" href="#go-domain" title="Permalink to this headline">¶</a></h4>
+<p>This element specifies Gene Ontology domain the KDVS shall focus on when processing
+prior knowledge concepts (see also <a class="reference internal" href="background.html#background-priorknowledge"><em>Prior knowledge</em></a>). This element
+has only one string value. The possible values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;BP&#8217; &#8211; for <a class="reference external" href="http://www.geneontology.org/GO.process.guidelines.shtml">Biological Process</a></li>
+<li>&#8216;MF&#8217; &#8211; for <a class="reference external" href="http://www.geneontology.org/GO.function.guidelines.shtml">Molecular Function</a></li>
+<li>&#8216;CC&#8217; &#8211; for <a class="reference external" href="http://www.geneontology.org/GO.component.guidelines.shtml">Cellular Component</a></li>
+</ul>
+</div></blockquote>
+<p>An example of &#8216;go_domain&#8217; element from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># ---- GO section</span>
+    <span class="s">&#39;go_domain&#39;</span> <span class="p">:</span> <span class="s">&#39;MF&#39;</span><span class="p">,</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initializers">
+<h4>Initializers<a class="headerlink" href="#initializers" title="Permalink to this headline">¶</a></h4>
+<p>The &#8216;experiment.py&#8217; application specifies initializers for many components
+(see <a class="reference internal" href="#component-initializers">Component initializers</a>) in many sections of application profile. General
+format of each of such section is as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;section_name&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;instance_name1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;instance_import_path&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;param1&#39;</span> <span class="p">:</span> <span class="n">param1_val</span><span class="p">,</span>
+                <span class="s">&#39;param2&#39;</span> <span class="p">:</span> <span class="n">param2_val</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;instance_name2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;instance_import_path&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;param1&#39;</span> <span class="p">:</span> <span class="n">param1_val</span><span class="p">,</span>
+                <span class="s">&#39;param2&#39;</span> <span class="p">:</span> <span class="n">param2_val</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+        <span class="s">&#39;instance_nameK&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;instance_import_path&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;param1&#39;</span> <span class="p">:</span> <span class="n">param1_val</span><span class="p">,</span>
+                <span class="s">&#39;param2&#39;</span> <span class="p">:</span> <span class="n">param2_val</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All details for all section names are specified below.</p>
+<div class="section" id="subset-categorizers">
+<h5>subset_categorizers<a class="headerlink" href="#subset-categorizers" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any categorizers the application is using (see <a class="reference internal" href="framework.html#framework-subsethierarchy"><em>Subset Hierarchy</em></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a>
+API documentation for more details). The specification for each individual object
+is read and <cite>single instance</cite> of each object is created. The instances are
+referred to by their <cite>names</cite>.</p>
+<p>An example of &#8216;subset_categorizers&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, two instances are created: the instance of <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullCategorizer" title="kdvs.fw.impl.data.Null.NullCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">NullCategorizer</span></tt></a>
+with the name &#8216;SCNull&#8217;, and the instance of <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer" title="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">SubsetSizeCategorizer</span></tt></a>,
+known as &#8216;SCSizeThreshold&#8217;. Each instance has some parameters specified. During
+instantiation, the parameters will be verified, so for instance, skipping one
+parameter will generate an error. The instances can be referred to by their names
+<cite>later</cite> in the configuration file (i.e. they must be instantiated first to be
+referred to later).</p>
+</div>
+<div class="section" id="subset-orderers">
+<h5>subset_orderers<a class="headerlink" href="#subset-orderers" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any orderers the application is using (see <a class="reference internal" href="framework.html#framework-subsetordering"><em>Subset Ordering</em></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Categorizer.Orderer" title="kdvs.fw.Categorizer.Orderer"><tt class="xref py py-class docutils literal"><span class="pre">Orderer</span></tt></a>
+API documentation for more details). The specification for each individual object
+is read and <cite>single instance</cite> of each object is created. The instances are
+referred to by their <cite>names</cite>.</p>
+<p>An example of &#8216;subset_orderers&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_orderers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SONull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullOrderer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SOSizeDecreasing&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;descending&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, two instances are created: the instance of <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullOrderer" title="kdvs.fw.impl.data.Null.NullOrderer"><tt class="xref py py-class docutils literal"><span class="pre">NullOrderer</span></tt></a>
+with the name &#8216;SONull&#8217;, and the instance of <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer" title="kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer"><tt class="xref py py-class docutils literal"><span class="pre">SubsetSizeOrderer</span></tt></a>,
+with the name &#8216;SOSizeDecreasing&#8217;. The first one has no parameters, the second one
+has one parameter specified. During instantiation, the parameters will be
+verified, so for instance, skipping the parameter (or specifying anything for
+null orderer) will generate an error. The instances can be referred to by their
+names <cite>later</cite> in the configuration file (i.e. they must be instantiated first to be
+referred to later).</p>
+</div>
+<div class="section" id="statistical-techniques">
+<h5>statistical_techniques<a class="headerlink" href="#statistical-techniques" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any statistical techniques the application is using (see <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">Technique</span></tt></a>
+API documentation for more details). The specification for each individual object
+is read and <cite>single instance</cite> of each object is created. The instances are
+referred to by their <cite>names</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Each technique must define some <cite>global</cite> parameters to be properly executed;
+see <a class="reference internal" href="annex.html#annex-globaltechniqueparameters"><em>Global technique parameters</em></a> for more details.</p>
+</div>
+<p>An example of &#8216;statistical_techniques&#8217; section from example configuration file
+(some parameters were omitted for clarity; refer to individual techniques for
+complete parameter list):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;statistical_techniques&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;error_func&#39;</span> <span class="p">:</span> <span class="n">l1l2py</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">balanced_classification_error</span><span class="p">,</span>
+                <span class="s">&#39;return_predictions&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                <span class="s">&#39;global_degrees_of_freedom&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s">&#39;job_importable&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_L1L2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;external_k&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s">&#39;internal_k&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s">&#39;tau_min_scale&#39;</span> <span class="p">:</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s">&#39;tau_max_scale&#39;</span> <span class="p">:</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span>
+                <span class="c"># more parameters to follow...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_RLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_RLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;external_k&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s">&#39;lambda_min&#39;</span> <span class="p">:</span> <span class="mf">1e-1</span><span class="p">,</span>
+                <span class="s">&#39;lambda_max&#39;</span> <span class="p">:</span> <span class="mf">1e4</span><span class="p">,</span>
+                <span class="s">&#39;lambda_range_type&#39;</span> <span class="p">:</span> <span class="s">&#39;geometric&#39;</span><span class="p">,</span>
+                <span class="c"># more parameters to follow...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that parameter value can be of <cite>any Python type</cite>. For instance, the parameter
+&#8216;error_func&#8217; of &#8216;L1L2_OLS&#8217; instance has the value of Python callable (i.e.
+Python function; see also <a class="reference external" href="http://docs.python.org/reference/expressions.html#calls" title="(in Python v2.7)"><em>Calls</em></a>); in this case, during the interpretation of the configuration
+file, at least the Python module containing the function must be imported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">l1l2py</span>
+</pre></div>
+</div>
+<p>see <a class="reference internal" href="#configuration-file">Configuration file</a> for more details about configuration file structure
+and interpretation.</p>
+</div>
+<div class="section" id="subset-outer-selectors">
+<h5>subset_outer_selectors<a class="headerlink" href="#subset-outer-selectors" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any &#8220;<cite>outer selectors</cite>&#8221; the application is using (see <a class="reference internal" href="framework.html#framework-selecting"><em>Selecting</em></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.OuterSelector" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector</span></tt></a>
+API documentation for more details). The specification for each individual object
+is read and <cite>single instance</cite> of each object is created. The instances are
+referred to by their <cite>names</cite>.</p>
+<p>An example of &#8216;subset_outer_selectors&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_outer_selectors&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;PKCSelector_ClsErrThr&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;error_threshold&#39;</span> <span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="subset-inner-selectors">
+<h5>subset_inner_selectors<a class="headerlink" href="#subset-inner-selectors" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any &#8220;<cite>inner selectors</cite>&#8221; the application is using (see <a class="reference internal" href="framework.html#framework-selecting"><em>Selecting</em></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.InnerSelector" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector"><tt class="xref py py-class docutils literal"><span class="pre">InnerSelector</span></tt></a>
+API documentation for more details). The specification for each individual object
+is read and <cite>single instance</cite> of each object is created. The instances are
+referred to by their <cite>names</cite>.</p>
+<p>An example of &#8216;subset_inner_selectors&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_inner_selectors&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;VarSelector_ClsErrThr_AllVars&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;VarSelector_ClsErrThr_L1L2_VarsFreqThr&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;frequency_threshold&#39;</span> <span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="c"># set to False for compatibility with KDVS v1.0 reports</span>
+                <span class="s">&#39;pass_variables_for_nonselected_pkcs&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reporters">
+<h5>reporters<a class="headerlink" href="#reporters" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any <cite>reporters</cite> the application is using (see <a class="reference internal" href="framework.html#framework-reporting"><em>Reporting</em></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a>
+API documentation for more details). The specification for each individual object
+is read and <cite>single instance</cite> of each object is created. The instances are
+referred to by their <cite>names</cite>.</p>
+<p>An example of &#8216;reporters&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;reporters&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_VarFreq_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_PKC_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_PKC_UTL_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_PKC_UTL_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_VarCount_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="envops">
+<h5>envops<a class="headerlink" href="#envops" title="Permalink to this headline">¶</a></h5>
+<p>This section specifies component initializers (see <a class="reference internal" href="#component-initializers">Component initializers</a>)
+for any &#8220;<cite>envops</cite>&#8221; the application is using (see <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.EnvOp.EnvOp" title="kdvs.fw.EnvOp.EnvOp"><tt class="xref py py-class docutils literal"><span class="pre">EnvOp</span></tt></a>
+API documentation and comments in the <a class="reference internal" href="../doc-api/kdvs.fw.html#module-kdvs.fw.EnvOp" title="kdvs.fw.EnvOp"><tt class="xref py py-mod docutils literal"><span class="pre">EnvOp</span></tt></a> module for more details).
+The specification for each individual object is read and <cite>single instance</cite> of
+each object is created. The instances are referred to by their <cite>names</cite>.</p>
+<p>An example of &#8216;envops&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;envops&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_UniformExtSplitProvider_SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;enclosingCategorizerID&#39;</span> <span class="p">:</span> <span class="s">&#39;SCNull&#39;</span><span class="p">,</span>
+                <span class="s">&#39;extSplitParamName&#39;</span> <span class="p">:</span> <span class="s">&#39;external_k&#39;</span><span class="p">,</span>
+                <span class="s">&#39;extSplitPlaceholderParam&#39;</span> <span class="p">:</span> <span class="s">&#39;ext_split_sets&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="subset-hierarchy-categorizers-chain">
+<h4>subset_hierarchy_categorizers_chain<a class="headerlink" href="#subset-hierarchy-categorizers-chain" title="Permalink to this headline">¶</a></h4>
+<p>This element specifies <cite>categorizer chain</cite>, i.e. a nesting of categories for
+data subsets. See <a class="reference internal" href="framework.html#framework-subsethierarchy"><em>Subset Hierarchy</em></a>, especially <a class="reference internal" href="framework.html#framework-fig5"><em>Figure 5</em></a>
+(bottom leftmost part), for more details. This element has value of a tuple of
+strings, i.e. <cite>names</cite> of the <cite>categorizers</cite> defined before (see <a class="reference internal" href="#component-initializers">Component initializers</a>).</p>
+<p>An example of &#8216;subset_hierarchy_categorizers_chain&#8217; section from example configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_categorizers_chain&#39;</span> <span class="p">:</span> <span class="p">(</span>
+        <span class="s">&#39;SCNull&#39;</span><span class="p">,</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span>
+    <span class="p">),</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Both &#8216;SCNull&#8217; and &#8216;SCSizeThreshold&#8217; names refer to instances of <cite>categorizers</cite>
+specified earlier; see <a class="reference internal" href="#subset-categorizers">subset_categorizers</a>.</p>
+</div>
+<div class="section" id="subset-hierarchy-components-map">
+<h4>subset_hierarchy_components_map<a class="headerlink" href="#subset-hierarchy-components-map" title="Permalink to this headline">¶</a></h4>
+<p>This element specifies whole <cite>category tree</cite> and all the operations that will be
+executed on subsets. See <a class="reference internal" href="framework.html#framework-subsethierarchy"><em>Subset Hierarchy</em></a>, especially
+<a class="reference internal" href="framework.html#framework-fig5"><em>Figure 5</em></a> (bottom middle part) for more details.</p>
+<p>Here, all the components declared previously (see <a class="reference internal" href="#component-initializers">Component initializers</a>) are
+used. It is done by assigning series of components to each category, thus
+specifying &#8220;<cite>operations map</cite>&#8221;. Since the <cite>categorizer chain</cite> has been specified
+before, (see <a class="reference internal" href="#subset-hierarchy-categorizers-chain">subset_hierarchy_categorizers_chain</a>), the application knows
+the order in which the operations will be executed.</p>
+<p>The general format of this element is as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;categorizer_name1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;category_name1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; 1</span>
+            <span class="p">},</span>
+            <span class="s">&#39;category_name2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; 2</span>
+            <span class="p">},</span>
+            <span class="c"># ...</span>
+            <span class="s">&#39;category_nameK1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; K1</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;categorizer_name2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;category_name1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; 1</span>
+            <span class="p">},</span>
+            <span class="s">&#39;category_name2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; 2</span>
+            <span class="p">},</span>
+            <span class="c"># ...</span>
+            <span class="s">&#39;category_nameK2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; K2</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+        <span class="s">&#39;categorizer_nameP&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;category_name1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; 1</span>
+            <span class="p">},</span>
+            <span class="s">&#39;category_name2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; 2</span>
+            <span class="p">},</span>
+            <span class="c"># ...</span>
+            <span class="s">&#39;category_nameKP&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &quot;operations map&quot; KP</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>where &#8216;categorizer_nameX&#8217; are <cite>names</cite> of instances of categorizers specified in
+<a class="reference internal" href="#subset-categorizers">subset_categorizers</a>, and &#8216;category_nameX&#8217; is the non-uniquified name of the
+category offered by the categorizer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some categories may be <cite>not specified</cite> here at all; in that case all the
+subsets categorized with each such category will be <cite>skipped</cite> from further
+processing. The same applies for whole categorizers; if one is not specified
+here, <cite>all his associated categories</cite> will be treated as <cite>skipped</cite>.</p>
+</div>
+<div class="section" id="operations-map">
+<h5>Operations map<a class="headerlink" href="#operations-map" title="Permalink to this headline">¶</a></h5>
+<p>Individual operations map specifies all operations to be executed on the level of
+the category. Some of those operations will be executed for each subset tagged
+with this category; some operations will be executed once before processing
+of all subsets takes place; finally some operations will be executed once after
+processing of all subsets has been finished. The details depend on individual
+operations.</p>
+<p>Operations are defined simply as an <cite>operation ID</cite> mapped to single <cite>component ID</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;technique&#39;</span> <span class="p">:</span> <span class="s">&#39;L1L2_RLS&#39;</span><span class="p">,</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>or to an iterable of <cite>component IDs</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_PKC_Reporter&#39;</span><span class="p">],</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All operation IDs interpreted by &#8216;experiment.py&#8217; application are explained below.</p>
+<div class="section" id="orderer">
+<h6>orderer<a class="headerlink" href="#orderer" title="Permalink to this headline">¶</a></h6>
+<p>This operation defines an <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Categorizer.Orderer" title="kdvs.fw.Categorizer.Orderer"><tt class="xref py py-class docutils literal"><span class="pre">Orderer</span></tt></a> instance to be used
+for this category. The ordering is executed once, before processing of all subsets.
+For instance, the orderer &#8216;SONull&#8217; that does &#8216;null&#8217; ordering for &#8216;__all__&#8217; category of
+&#8216;SCNull&#8217; categorizer may be specified like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># define categorizer(s)</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># define orderer(s)</span>
+    <span class="s">&#39;subset_orderers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SONull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullOrderer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+     <span class="p">},</span>
+     <span class="c"># ...</span>
+     <span class="c"># use orderer in component map</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;orderer&#39;</span> <span class="p">:</span> <span class="s">&#39;SONull&#39;</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">An orderer must be specified for each category of each categorizer in
+component map. If no real ordering is required, use an instance of
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullOrderer" title="kdvs.fw.impl.data.Null.NullOrderer"><tt class="xref py py-class docutils literal"><span class="pre">NullOrderer</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="technique">
+<h6>technique<a class="headerlink" href="#technique" title="Permalink to this headline">¶</a></h6>
+<p>This operation defines a <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">Technique</span></tt></a> instance to be used
+across this category. The technique is executed once for each subset tagged with
+this category. For instance, the technique &#8216;L1L2_OLS&#8217; will be executed for each
+subset tagged with &#8216;&lt;=&#8217; category of &#8216;SCSizeThreshold&#8217; categorizer:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># define categorizer(s)</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># define technique(s)</span>
+    <span class="s">&#39;statistical_techniques&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;error_func&#39;</span> <span class="p">:</span> <span class="n">l1l2py</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">balanced_classification_error</span><span class="p">,</span>
+                <span class="s">&#39;return_predictions&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                <span class="s">&#39;global_degrees_of_freedom&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s">&#39;job_importable&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># use technique in component map</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;technique&#39;</span> <span class="p">:</span> <span class="s">&#39;L1L2_OLS&#39;</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+            <span class="c"># ...</span>
+        <span class="p">},</span>
+        <span class="c">#...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The technique may be specified as None. In that case, the subset processing
+will be skipped. It is useful for general top&#8211;level categories in deep category
+trees, when there is no need to process subset there (it is too early), a
+good example being &#8216;null&#8217; category from <a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullCategorizer" title="kdvs.fw.impl.data.Null.NullCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">NullCategorizer</span></tt></a>.
+This trick saves computational time as well:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;technique&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="outer-selector">
+<h6>outer_selector<a class="headerlink" href="#outer-selector" title="Permalink to this headline">¶</a></h6>
+<p>This operation defines an <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.OuterSelector" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector</span></tt></a>
+instance to be used for this category. The outer selection is performed once
+after the processing of all subsets has been completed, and before <cite>inner selection</cite>.
+For instance, we would like to perform outer selection based on classification
+error threshold on each subset from &#8216;&lt;=&#8217; category:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># define categorizer(s)</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># define outer selector(s)</span>
+    <span class="s">&#39;subset_outer_selectors&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;PKCSelector_ClsErrThr&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;error_threshold&#39;</span> <span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># use outer selector in component map</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;outer_selector&#39;</span> <span class="p">:</span> <span class="s">&#39;PKCSelector_ClsErrThr&#39;</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+            <span class="c"># ...</span>
+        <span class="p">},</span>
+        <span class="c">#...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>As for the technique, the outer selector may be specified as None. In that
+case, the outer selection is simply not performed, in line with &#8216;None&#8217;
+technique, because simply there are no <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances
+produced yet. Again, good example is a &#8216;null&#8217; category from
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullCategorizer" title="kdvs.fw.impl.data.Null.NullCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">NullCategorizer</span></tt></a>:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;outer_selector&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="inner-selector">
+<h6>inner_selector<a class="headerlink" href="#inner-selector" title="Permalink to this headline">¶</a></h6>
+<p>This operation defines an <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.PKCSelector.InnerSelector" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector"><tt class="xref py py-class docutils literal"><span class="pre">InnerSelector</span></tt></a>
+instance to be used for this category. The inner selection is performed once
+after the processing of all subsets has been completed, and after <cite>outer selection</cite>.
+For instance, we would like to perform inner selection, that selects <cite>all</cite> variables
+based on classification error threshold, on each subset from &#8216;&lt;=&#8217; category:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># define categorizer(s)</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># define inner selector(s)</span>
+    <span class="s">&#39;subset_inner_selectors&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;VarSelector_ClsErrThr_AllVars&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># use inner selector in component map</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;inner_selector&#39;</span> <span class="p">:</span> <span class="s">&#39;VarSelector_ClsErrThr_AllVars&#39;</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+            <span class="c"># ...</span>
+        <span class="p">},</span>
+        <span class="c">#...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>As for the technique, the inner selector may be specified as None. In that
+case, the inner selection is simply not performed, in line with &#8216;None&#8217;
+technique, because simply there are no <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances
+produced yet. Again, good example is a &#8216;null&#8217; category from
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.data.html#kdvs.fw.impl.data.Null.NullCategorizer" title="kdvs.fw.impl.data.Null.NullCategorizer"><tt class="xref py py-class docutils literal"><span class="pre">NullCategorizer</span></tt></a>:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;inner_selector&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reporter">
+<h6>reporter<a class="headerlink" href="#reporter" title="Permalink to this headline">¶</a></h6>
+<p>This operation defines an iterable of all <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a>
+instance(s) to be used for this category.</p>
+<p>The crucial thing here is to remember that there are <cite>two</cite> modes of reporting.
+In &#8216;local&#8217; mode, the reporter typically goes through all
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances <cite>from single category</cite> and produces its
+reports. In &#8216;global&#8217; mode, the reporter can accept <cite>whole category tree</cite> and go
+through <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances <cite>from more that one category</cite>.
+See <a class="reference internal" href="framework.html#framework-reporting"><em>Reporting</em></a> and <a class="reference internal" href="framework.html#framework-subsethierarchy"><em>Subset Hierarchy</em></a> for more details.</p>
+<p>This behavior is reflected when reporters are specified in component map. Typically,
+&#8216;local&#8217; reporters are specified simply for the category they need to scan.
+&#8216;Global&#8217; reporters, though, may be specified for example, <cite>some level(s) higher/lower</cite>
+than the categories they are scanning; this way, they can collect all the information
+they need.</p>
+<p>For instance, having the following categorizers:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>that form the following categorizers chain (&#8216;SCNull&#8217; is above &#8216;SCSizeThreshold&#8217;
+in hierarchy):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_categorizers_chain&#39;</span> <span class="p">:</span> <span class="p">(</span>
+        <span class="s">&#39;SCNull&#39;</span><span class="p">,</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span>
+    <span class="p">),</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and having the following reporters declared:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;reporters&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_VarFreq_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_PKC_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_PKC_UTL_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_PKC_UTL_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_VarCount_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>we can use three &#8216;local&#8217; reporters, that simply scan the single category, and
+one &#8216;global&#8217; reporter that collects summary information from all categories
+<cite>one level below</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &#39;global&#39; reporter</span>
+                <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_PKC_UTL_Reporter&#39;</span><span class="p">],</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &#39;local&#39; reporter(s)</span>
+                <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_PKC_Reporter&#39;</span><span class="p">],</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+            <span class="s">&#39;&gt;&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># &#39;local&#39; reporter(s)</span>
+                <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_PKC_Reporter&#39;</span><span class="p">],</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It may seem counter-intuitive, but &#8216;global&#8217; reporters do not depend on the
+reports produced by &#8216;local&#8217; reporters, and &#8216;local&#8217; reporters do not depend on
+each other as well. Since reporters are scanning <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instances exclusively, when all Results instances are produced, reporters may
+be executed <cite>in any order</cite>.</p>
+</div>
+</div>
+<div class="section" id="preenvop-postenvop">
+<h6>preenvop/postenvop<a class="headerlink" href="#preenvop-postenvop" title="Permalink to this headline">¶</a></h6>
+<p>These operations specify the iterables of instance(s) of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.EnvOp.EnvOp" title="kdvs.fw.EnvOp.EnvOp"><tt class="xref py py-class docutils literal"><span class="pre">EnvOp</span></tt></a>
+that will be use for this category.</p>
+<p>Each &#8216;preenvop&#8217; is executed once, before all subset processing starts.</p>
+<p>Each &#8216;postenvop&#8217; is executed once, after all subset processing has been finished,
+and after all the following: outer selection, inner selection, and before reporters.</p>
+<p>The &#8220;envops&#8221; may be not specified at all, in which case the empty iterable is used.</p>
+<p>For instance, to use single &#8220;envop&#8221; at the top of hierarchy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># define categorizer(s)</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># define envop(s)</span>
+    <span class="s">&#39;envops&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_UniformExtSplitProvider_SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;enclosingCategorizerID&#39;</span> <span class="p">:</span> <span class="s">&#39;SCNull&#39;</span><span class="p">,</span>
+                <span class="s">&#39;extSplitParamName&#39;</span> <span class="p">:</span> <span class="s">&#39;external_k&#39;</span><span class="p">,</span>
+                <span class="s">&#39;extSplitPlaceholderParam&#39;</span> <span class="p">:</span> <span class="s">&#39;ext_split_sets&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="c"># use envop(s) in component map</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># one envop executed at the top of hierarchy before subset processing</span>
+                <span class="s">&#39;preenvop&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_UniformExtSplitProvider_SCNull&#39;</span><span class="p">],</span>
+                <span class="s">&#39;postenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;preenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;postenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+            <span class="s">&#39;&gt;&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;preenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;postenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="misc">
+<h6>misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h6>
+<p>This &#8220;operation&#8221; specifies all additional parameter(s) needed for the processing
+of the category. For instance, if we need to skip some parts of subset processing
+for each category during development to save time, it can be done with recognition
+of certain &#8216;misc&#8217; parameters by the application.</p>
+<p>The &#8216;experiment.py&#8217; application uses &#8216;misc&#8217; operation to specify the parameters
+that describe &#8220;test mode&#8221;, where certain amount of subsets are entirely <cite>skipped</cite>
+from processing, independently from techniques used, results produced, and selections
+performed. For instance, instead of processing ~2000 subsets each time during
+development of a new technique, one can process only 5 subsets and discard the
+rest. Of course, when the implementation of the technique is finished and validated,
+&#8220;test mode&#8221; needs to be switched off.</p>
+<p>Currently, &#8216;experiment.py&#8217; application recognizes the following parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;test_mode_elems&#8217; (integer) &#8211; number of subsets to retain during test mode</li>
+<li>&#8216;test_mode_elems_order&#8217; (string) &#8211; if &#8216;first&#8217; is specified, then certain
+amount of first subsets from the submission order is retained during test
+mode; if &#8216;last&#8217; is specified, then certain amount of last subsets from the
+submission order is retained during test mode</li>
+</ul>
+</div></blockquote>
+<p>The &#8220;submission order&#8221; is the order of subsets within single category that is
+used by subset processing. For instance, if the submission order contains the following
+subsets:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">S5</span>
+</pre></div>
+</div>
+<p>the subset processing mechanism will start from S1, and continue through the order
+down to S5. <cite>Subset processing</cite> is the act of executing statistical technique
+for this subset (that in turn triggers job creation and execution, as well as
+production of results afterwards).</p>
+<p>To fully enable &#8220;test mode&#8221;, both &#8216;test_mode_elems&#8217; and &#8216;test_mode_elems_order&#8217;
+parameters must be specified.</p>
+<p>For instance, to enable test mode and retain only 5 first subsets during the
+processing of the &#8216;&lt;=&#8217; category, to enable test mode and skip entire &#8216;&gt;&#8217; category,
+and to not enable the test mode for the top category:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="c"># define categorizer(s)</span>
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="c"># test mode is not enabled here, subset processing is not artificially altrered</span>
+                <span class="s">&#39;misc&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="p">},</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;misc&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&#39;test_mode_elems&#39;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                    <span class="s">&#39;test_mode_elems_order&#39;</span> <span class="p">:</span> <span class="s">&#39;first&#39;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+            <span class="s">&#39;&gt;&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;misc&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="c"># NOTE: the following is equal to specifying &#39;None&#39; as statistical technique for this category</span>
+                    <span class="s">&#39;test_mode_elems&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="s">&#39;test_mode_elems_order&#39;</span> <span class="p">:</span> <span class="s">&#39;first&#39;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="c"># ...</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is advised to keep &#8216;misc&#8217; section for each category, even if &#8220;test mode&#8221;
+will not be used.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h4>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h4>
+<p>Here we show the example of all sections of application profile for &#8216;experiment.py&#8217;
+application (some parameters were omitted for clarity). The complete profile
+with comments is available in file &#8216;examples/GSE7390/GSE7390_cfg.py&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&#39;annotation_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="s">&#39;GPL96.txt.bz2&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;ID&#39;</span><span class="p">,</span> <span class="s">&#39;Representative Public ID&#39;</span><span class="p">,</span> <span class="s">&#39;Gene Symbol&#39;</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="s">&#39;gedm_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="s">&#39;GSE7390.txt.bz2&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s">&#39;labels_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="s">&#39;GSE7390_labels.csv.txt&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="p">(),</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;go_domain&#39;</span> <span class="p">:</span> <span class="s">&#39;MF&#39;</span><span class="p">,</span>
+
+    <span class="s">&#39;subset_categorizers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;NC&#39;</span><span class="p">,</span>
+                <span class="s">&#39;null_category&#39;</span> <span class="p">:</span> <span class="s">&#39;__all__&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;ID&#39;</span> <span class="p">:</span> <span class="s">&#39;SSC32&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_lesser_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_greater_category&#39;</span> <span class="p">:</span> <span class="s">&#39;&gt;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;size_threshold&#39;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;subset_orderers&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SONull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.Null.NullOrderer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SOSizeDecreasing&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;descending&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;statistical_techniques&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;error_func&#39;</span> <span class="p">:</span> <span class="n">l1l2py</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">balanced_classification_error</span><span class="p">,</span>
+                <span class="s">&#39;return_predictions&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                <span class="s">&#39;global_degrees_of_freedom&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s">&#39;job_importable&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_L1L2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;external_k&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s">&#39;internal_k&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s">&#39;tau_min_scale&#39;</span> <span class="p">:</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s">&#39;tau_max_scale&#39;</span> <span class="p">:</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_RLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_RLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;external_k&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s">&#39;lambda_min&#39;</span> <span class="p">:</span> <span class="mf">1e-1</span><span class="p">,</span>
+                <span class="s">&#39;lambda_max&#39;</span> <span class="p">:</span> <span class="mf">1e4</span><span class="p">,</span>
+                <span class="s">&#39;lambda_range_type&#39;</span> <span class="p">:</span> <span class="s">&#39;geometric&#39;</span><span class="p">,</span>
+                <span class="c"># ...</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;subset_outer_selectors&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;PKCSelector_ClsErrThr&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;error_threshold&#39;</span> <span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;subset_inner_selectors&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;VarSelector_ClsErrThr_AllVars&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;VarSelector_ClsErrThr_L1L2_VarsFreqThr&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;frequency_threshold&#39;</span> <span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="s">&#39;pass_variables_for_nonselected_pkcs&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;reporters&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_VarFreq_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_PKC_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_PKC_UTL_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_PKC_UTL_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.report.L1L2.L1L2_VarCount_Reporter&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;envops&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;L1L2_UniformExtSplitProvider_SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;enclosingCategorizerID&#39;</span> <span class="p">:</span> <span class="s">&#39;SCNull&#39;</span><span class="p">,</span>
+                <span class="s">&#39;extSplitParamName&#39;</span> <span class="p">:</span> <span class="s">&#39;external_k&#39;</span><span class="p">,</span>
+                <span class="s">&#39;extSplitPlaceholderParam&#39;</span> <span class="p">:</span> <span class="s">&#39;ext_split_sets&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;subset_hierarchy_categorizers_chain&#39;</span> <span class="p">:</span> <span class="p">(</span>
+        <span class="s">&#39;SCNull&#39;</span><span class="p">,</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span>
+    <span class="p">),</span>
+
+    <span class="s">&#39;subset_hierarchy_components_map&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;SCNull&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;__all__&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;orderer&#39;</span> <span class="p">:</span> <span class="s">&#39;SOSizeDecreasing&#39;</span><span class="p">,</span>
+                <span class="s">&#39;technique&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s">&#39;outer_selector&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s">&#39;inner_selector&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_PKC_UTL_Reporter&#39;</span><span class="p">],</span>
+                <span class="s">&#39;preenvop&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_UniformExtSplitProvider_SCNull&#39;</span><span class="p">],</span>
+                <span class="s">&#39;postenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;misc&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s">&#39;SCSizeThreshold&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;&lt;=&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;orderer&#39;</span> <span class="p">:</span> <span class="s">&#39;SONull&#39;</span><span class="p">,</span>
+                <span class="s">&#39;technique&#39;</span> <span class="p">:</span> <span class="s">&#39;L1L2_RLS&#39;</span><span class="p">,</span>
+                <span class="s">&#39;outer_selector&#39;</span> <span class="p">:</span> <span class="s">&#39;PKCSelector_ClsErrThr&#39;</span><span class="p">,</span>
+                <span class="s">&#39;inner_selector&#39;</span> <span class="p">:</span> <span class="s">&#39;VarSelector_ClsErrThr_AllVars&#39;</span><span class="p">,</span>
+                <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_PKC_Reporter&#39;</span><span class="p">],</span>
+                <span class="s">&#39;preenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;postenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;misc&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&#39;test_mode_elems&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s">&#39;test_mode_elems_order&#39;</span> <span class="p">:</span> <span class="s">&#39;first&#39;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+            <span class="s">&#39;&gt;&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;orderer&#39;</span> <span class="p">:</span> <span class="s">&#39;SONull&#39;</span><span class="p">,</span>
+                <span class="s">&#39;technique&#39;</span> <span class="p">:</span> <span class="s">&#39;L1L2_L1L2&#39;</span><span class="p">,</span>
+                <span class="s">&#39;outer_selector&#39;</span> <span class="p">:</span> <span class="s">&#39;PKCSelector_ClsErrThr&#39;</span><span class="p">,</span>
+                <span class="s">&#39;inner_selector&#39;</span> <span class="p">:</span> <span class="s">&#39;VarSelector_ClsErrThr_L1L2_VarsFreqThr&#39;</span><span class="p">,</span>
+                <span class="s">&#39;reporter&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;L1L2_VarFreq_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_VarCount_Reporter&#39;</span><span class="p">,</span> <span class="s">&#39;L1L2_PKC_Reporter&#39;</span><span class="p">],</span>
+                <span class="s">&#39;preenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;postenvop&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+                <span class="s">&#39;misc&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&#39;test_mode_elems&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s">&#39;test_mode_elems_order&#39;</span> <span class="p">:</span> <span class="s">&#39;last&#39;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="configuration-file">
+<span id="applications-configurationfile"></span><h3>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="default-configuration">
+<h4>Default configuration<a class="headerlink" href="#default-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The &#8216;experiment.py&#8217; applications loads and interprets default configuration file:</p>
+<blockquote>
+<div>kdvs/config/default_cfg.py</div></blockquote>
+<p>See <a class="reference internal" href="framework.html#framework-configurationfiles"><em>Configuration files</em></a> and <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>
+for more details.</p>
+</div>
+<div class="section" id="user-configuration">
+<h4>User configuration<a class="headerlink" href="#user-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The &#8216;experiment.py&#8217; application accepts user configuration file specified with
+<tt class="docutils literal"><span class="pre">-c</span></tt> command line option (see <a class="reference internal" href="#applications-commandlineparameters"><em>Command line parameters</em></a>). If output
+directory was not specified, the location of user configuration file serves as
+the <cite>root output directory</cite>; see also <a class="reference internal" href="#applications-outputdirectory"><em>Output directory</em></a>.</p>
+</div>
+</div>
+<div class="section" id="output-directory">
+<span id="applications-outputdirectory"></span><h3>Output directory<a class="headerlink" href="#output-directory" title="Permalink to this headline">¶</a></h3>
+<p>The output directory for &#8216;experiment.py&#8217; application is specified in two ways.
+Command line option <tt class="docutils literal"><span class="pre">-o</span></tt> may be used (see <a class="reference internal" href="#applications-commandlineparameters"><em>Command line parameters</em></a>),
+or if not used, the directory in which <cite>user configuration file</cite> is located
+becomes root output directory (<tt class="docutils literal"><span class="pre">$ROOT_OUTPUT_DIRECTORY</span></tt>).</p>
+<p>In root output directory, KDVS stores all the artefacts produced. The following
+subdirectory tree is created:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        $dbm_location/
+        $subsets_location/
+        $subsets_results_location/
+        $jobs_location/
+        $debug_output_location/</pre>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">$dbm_location</span></tt> is a value of &#8216;dbm_location&#8217; variable in <cite>default configuration file</cite>;
+all standard subdirectories are specified as configurable locations (see
+<a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>, option group &#8216;Standard locations&#8217;).
+Assuming the default locations are not overridden, the following subdirectory
+tree is created:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        db/
+        ss/
+        ss_results/
+        jobs/
+        debug/</pre>
+</div>
+<div class="section" id="databases">
+<h4>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h4>
+<p>The &#8216;experiment.py&#8217; application creates three standard databases, controlled by
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance. The names of databases are also
+configurable, specified in variables <tt class="docutils literal"><span class="pre">$data_db_id</span></tt> and <tt class="docutils literal"><span class="pre">$map_db_id</span></tt> (DATA
+and MAPS by default). One additional database is always called &#8216;kdvs.root&#8217;.</p>
+<div class="section" id="kdvs-root">
+<h5>kdvs.root<a class="headerlink" href="#kdvs-root" title="Permalink to this headline">¶</a></h5>
+<p>The &#8216;kdvs.root&#8217; database contains the diagnostic information regarding all other
+databases. It is created automatically by <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance.
+Currently, the implementation is provided for SQLite database backend (see
+<a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.provider.SQLite3DBProvider" title="kdvs.core.provider.SQLite3DBProvider"><tt class="xref py py-class docutils literal"><span class="pre">SQLite3DBProvider</span></tt></a>). It contains single table &#8216;DB&#8217;
+that lists all other databases used by KDVS. The &#8216;DB&#8217; table has the following columns:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;db&#8217; (string) &#8211; the name of database</p>
+</li>
+<li><p class="first">&#8216;created&#8217; (integer) &#8211; 1 if database was created from scratch, 0 if
+existing database was accessed</p>
+</li>
+<li><p class="first">&#8216;db_loc&#8217; (string) &#8211; location of the database; the following format is used:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;&lt;host_name&gt;://&lt;physical_location&gt;&quot;</span>
+</pre></div>
+</div>
+<p>where &#8216;host_name&#8217; is the name of the machine (via <a class="reference external" href="http://docs.python.org/library/socket.html#socket.gethostname" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">socket.gethostname()</span></tt></a>),
+and &#8216;physical_location&#8217; is filesystem path to the SQLite database file, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;localhost:///home/grzegorz/KDVS_output/db/DATA.db&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>For default configuration, the typical content of &#8216;DB&#8217; table in &#8216;kdvs.root&#8217;
+database, after successfull completion of the experiment, is similar to:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">db</th>
+<th class="head">created</th>
+<th class="head">db_loc</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>DATA</td>
+<td>1</td>
+<td>&#8220;localhost:///home/grzegorz/KDVS_output/db/DATA.db&#8221;</td>
+</tr>
+<tr class="row-odd"><td>MAPS</td>
+<td>1</td>
+<td>&#8220;localhost:///home/grzegorz/KDVS_output/db/MAPS.db&#8221;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="data">
+<h5>DATA<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h5>
+<p>The DATA database contains the content of all data files <cite>before any mapping has been
+produced</cite>. The names of tables vary regarding the names of the files specified
+in default/user configuration file (see <a class="reference internal" href="#annotation-file">annotation_file</a>, <a class="reference internal" href="#gedm-file">gedm_file</a>, <a class="reference internal" href="#labels-file">labels_file</a>,
+<a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>, <a class="reference internal" href="annex.html#annex-staticdatafiles"><em>Static data files</em></a>). Many names
+come from name components of file paths, extracted with <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.getFileNameComponent" title="kdvs.core.util.getFileNameComponent"><tt class="xref py py-func docutils literal"><span class="pre">getFileNameComponent()</span></tt></a>
+function. Typically, the following tables are created:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Table that holds numerical content of MDM (see <a class="reference internal" href="background.html#background-measurementdatamatrix"><em>Measurement Data Matrix</em></a>);
+the table name comes from name component of file path specified in
+application profile (see <a class="reference internal" href="#gedm-file">gedm_file</a>).</p>
+<p>For instance, when &#8216;/home/grzegorz/GSE7390.txt.bz2&#8217; is specified as file
+path, then &#8216;GSE7390&#8217; is extracted as table name.</p>
+</li>
+<li><p class="first">Table that holds the content of annotation file (see <a class="reference internal" href="background.html#background-annotationmatrix"><em>Annotation matrix</em></a>);
+the table name comes from name component of file path specified in application
+profile (see <a class="reference internal" href="#annotation-file">annotation_file</a>).</p>
+<p>For instance, when &#8216;/home/grzegorz/GPL96.txt.bz2&#8217; is specified as file
+path, then &#8216;GPL96&#8217; is extracted as table name.</p>
+</li>
+<li><p class="first">Table that holds label information (see <a class="reference internal" href="background.html#background-labelinformation"><em>Label information</em></a>);
+the table name comes from name component of file path specified in application
+profile (see <a class="reference internal" href="#labels-file">labels_file</a>).</p>
+<p>For instance, when &#8216;/home/grzegorz/GSE7390_labels.csv.txt&#8217; is specified as file
+path, then &#8216;GSE7390_labels&#8217; is extracted as table name.</p>
+</li>
+<li><p class="first">Table(s) that hold information defined in <cite>static data files</cite> that have
+been configured as loadable (with &#8216;loadToDB&#8217; parameter set to True; see
+<a class="reference internal" href="annex.html#annex-staticdatafiles"><em>Static data files</em></a>); so far, &#8216;experiment.py&#8217; application uses
+one such file that contains information about gene naming from HGNC consortium
+(see <a class="reference internal" href="../doc-api/kdvs.fw.impl.annotation.html#module-kdvs.fw.impl.annotation.HGNC" title="kdvs.fw.impl.annotation.HGNC"><tt class="xref py py-mod docutils literal"><span class="pre">HGNC</span></tt></a> module for more information and
+README file in &#8216;data&#8217; directory). As before, each table name comes from name
+component of file path specified in path specification of <a class="reference internal" href="annex.html#annex-staticdatafiles"><em>Static data files</em></a>.</p>
+<p>For HGNC, if the default location of static file is used:</p>
+<div class="highlight-python"><pre>$KDVS_ROOT/data/HGNC/HGNC.tsv.gz</pre>
+</div>
+<p>then the extracted table name will be &#8216;HGNC&#8217;.</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some tables in DATA database may contain <cite>post&#8211;processed</cite> content. For instance,
+in &#8216;experiment.py&#8217; application, HGNC data is post&#8211;processed after loading
+into database to remove some artifacts and speedup further querying. The post&#8211;processing
+uses helper tables stored in MAPS database (see <a class="reference internal" href="#maps">MAPS</a> below). See also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessStaticData" title="kdvs.bin.experiment.postprocessStaticData"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessStaticData()</span></tt></a> action and
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.annotation.html#module-kdvs.fw.impl.annotation.HGNC" title="kdvs.fw.impl.annotation.HGNC"><tt class="xref py py-mod docutils literal"><span class="pre">HGNC</span></tt></a> module for more details.</p>
+</div>
+</div>
+<div class="section" id="maps">
+<h5>MAPS<a class="headerlink" href="#maps" title="Permalink to this headline">¶</a></h5>
+<p>The MAPS database contains helper tables for <cite>query&#8211;intensive mappings</cite> produced
+by KDVS. Typically, those tables are used by <cite>mapping builders</cite>,
+i.e. concrete implementations of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a>,
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCGeneMap" title="kdvs.fw.Map.PKCGeneMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCGeneMap</span></tt></a> and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMap</span></tt></a> classes
+(see also <a class="reference internal" href="framework.html#framework-localdataintegration"><em>Local data integration</em></a>). Currently, the following tables
+are created by &#8216;experiment.py&#8217; application:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;hgnc_previous&#8217;, that contains <cite>inverted</cite> mapping between currently approved
+HGNC gene symbol(s) and previously approved HGNC gene symbols(s); this
+helper table is generated with <a class="reference internal" href="../doc-api/kdvs.fw.impl.annotation.html#kdvs.fw.impl.annotation.HGNC.generateHGNCPreviousSymbols" title="kdvs.fw.impl.annotation.HGNC.generateHGNCPreviousSymbols"><tt class="xref py py-func docutils literal"><span class="pre">generateHGNCPreviousSymbols()</span></tt></a>
+function inside <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessStaticData" title="kdvs.bin.experiment.postprocessStaticData"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessStaticData()</span></tt></a> action;
+the table structure follows <a class="reference internal" href="../doc-api/kdvs.fw.impl.annotation.html#kdvs.fw.impl.annotation.HGNC.HGNCPREVIOUS_TMPL" title="kdvs.fw.impl.annotation.HGNC.HGNCPREVIOUS_TMPL"><tt class="xref py py-data docutils literal"><span class="pre">HGNCPREVIOUS_TMPL</span></tt></a>
+template.</li>
+<li>&#8216;hgnc_synonyms&#8217;, that contains <cite>inverted</cite> mapping between currently approved
+HGNC gene symbol(s) and actual synonymous HGNC gene symbols(s); this
+helper table is generated with <a class="reference internal" href="../doc-api/kdvs.fw.impl.annotation.html#kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms" title="kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms"><tt class="xref py py-func docutils literal"><span class="pre">generateHGNCSynonyms()</span></tt></a>
+function inside <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessStaticData" title="kdvs.bin.experiment.postprocessStaticData"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessStaticData()</span></tt></a> action;
+the table structure follows <a class="reference internal" href="../doc-api/kdvs.fw.impl.annotation.html#kdvs.fw.impl.annotation.HGNC.HGNCSYNONYMS_TMPL" title="kdvs.fw.impl.annotation.HGNC.HGNCSYNONYMS_TMPL"><tt class="xref py py-data docutils literal"><span class="pre">HGNCSYNONYMS_TMPL</span></tt></a>
+template.</li>
+<li>&#8216;em2annotation&#8217;, that contains bioinformatic annotations associated with
+each individual measurement (see <a class="reference internal" href="background.html#background-measurementdatamatrix"><em>Measurement Data Matrix</em></a>).
+The annotations are taken from <a class="reference internal" href="background.html#background-annotationmatrix"><em>Annotation matrix</em></a>. This
+table is generated by concrete implementation of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMap</span></tt></a>
+builder (see <a class="reference internal" href="../doc-api/kdvs.fw.impl.map.GeneID.html#kdvs.fw.impl.map.GeneID.GPL.GeneIDMapGPL" title="kdvs.fw.impl.map.GeneID.GPL.GeneIDMapGPL"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMapGPL</span></tt></a> and
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.map.GeneID.html#kdvs.fw.impl.map.GeneID.HGNC_GPL.GeneIDMapHGNCGPL" title="kdvs.fw.impl.map.GeneID.HGNC_GPL.GeneIDMapHGNCGPL"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMapHGNCGPL</span></tt></a>). It is used
+by <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Annotation.get_em2annotation" title="kdvs.fw.Annotation.get_em2annotation"><tt class="xref py py-func docutils literal"><span class="pre">get_em2annotation()</span></tt></a> function to provide
+necessary annotations for reporters (see <a class="reference internal" href="framework.html#framework-reporting"><em>Reporting</em></a>).
+The table structure follows <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Annotation.EM2ANNOTATION_TMPL" title="kdvs.fw.Annotation.EM2ANNOTATION_TMPL"><tt class="xref py py-data docutils literal"><span class="pre">EM2ANNOTATION_TMPL</span></tt></a>
+template.</li>
+<li>&#8216;goterm2em&#8217;, that contains <cite>inverted</cite> mapping between measurements and prior
+knowledge concepts (i.e. PKC -&gt; Var, see <a class="reference internal" href="framework.html#framework-localdataintegration"><em>Local data integration</em></a>).
+This table is generated by concrete implementation of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a>
+builder (see <a class="reference internal" href="../doc-api/kdvs.fw.impl.map.PKCID.html#kdvs.fw.impl.map.PKCID.GPL.PKCIDMapGOGPL" title="kdvs.fw.impl.map.PKCID.GPL.PKCIDMapGOGPL"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMapGOGPL</span></tt></a>). It is
+used to generate all data subsets (see <a class="reference internal" href="framework.html#framework-datasubsets"><em>Data Subsets</em></a>).
+The table structure follows <a class="reference internal" href="../doc-api/kdvs.fw.impl.map.PKCID.html#kdvs.fw.impl.map.PKCID.GPL.GOTERM2EM_TMPL" title="kdvs.fw.impl.map.PKCID.GPL.GOTERM2EM_TMPL"><tt class="xref py py-data docutils literal"><span class="pre">GOTERM2EM_TMPL</span></tt></a>
+template.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="subsets">
+<h4>Subsets<a class="headerlink" href="#subsets" title="Permalink to this headline">¶</a></h4>
+<p>Data subsets (see <a class="reference internal" href="framework.html#framework-datasubsets"><em>Data Subsets</em></a> and <a class="reference internal" href="framework.html#framework-subsethierarchy"><em>Subset Hierarchy</em></a>)
+are built and serialized in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildPKDrivenDataSubsets" title="kdvs.bin.experiment.buildPKDrivenDataSubsets"><tt class="xref py py-meth docutils literal"><span class="pre">buildPKDrivenDataSubsets()</span></tt></a>
+action. The <cite>numerical content</cite> of each data subset (coming from <tt class="xref py py-attr docutils literal"><span class="pre">array</span></tt>
+attribute of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> instance) is serialized separately
+under the filekey equal to related PKC ID. No textual representation is saved.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All possible data subsets are generated and serialized at once. There is
+currently no possibility to exclude some data subsets from generation other
+than manually altering the finished <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a> mapping
+before execution of <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildPKDrivenDataSubsets" title="kdvs.bin.experiment.buildPKDrivenDataSubsets"><tt class="xref py py-meth docutils literal"><span class="pre">buildPKDrivenDataSubsets()</span></tt></a>, or
+manipulating prior knowledge representation before this mapping is constructed
+in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildPKCIDMap" title="kdvs.bin.experiment.buildPKCIDMap"><tt class="xref py py-meth docutils literal"><span class="pre">buildPKCIDMap()</span></tt></a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently, for GO terms, the <cite>numerical name part</cite> is extracted with
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.pk.go.html#kdvs.fw.impl.pk.go.GeneOntology.GO_id2num" title="kdvs.fw.impl.pk.go.GeneOntology.GO_id2num"><tt class="xref py py-func docutils literal"><span class="pre">GO_id2num()</span></tt></a> and used as filekey for
+data subset; this is <cite>hardcoded</cite>.</p>
+</div>
+<p>For instance, assuming the following prior knowledge concepts (see <a class="reference internal" href="background.html#background-priorknowledge"><em>Prior knowledge</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;concept1&#39;</span><span class="p">,</span> <span class="s">&#39;concept2&#39;</span><span class="p">,</span> <span class="s">&#39;concept3&#39;</span>
+</pre></div>
+</div>
+<p>when data subsets are successfully generated, they will be serialized as follows:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        $subsets_location/
+            concept1
+            concept2
+            concept3</pre>
+</div>
+<p>Serialization follows current KDVS serialization protocol (see <a class="reference internal" href="annex.html#annex-serialization"><em>Serialization</em></a>).</p>
+</div>
+<div class="section" id="subsets-results">
+<h4>Subsets results<a class="headerlink" href="#subsets-results" title="Permalink to this headline">¶</a></h4>
+<p>All descriptive results, including: completely filled <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instances, reports, associated plots, and some useful descriptive mappings, are saved into
+this location:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        $subsets_results_location/</pre>
+</div>
+<p>that becomes the following, if default configuration is used:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        ss_results/</pre>
+</div>
+<div class="section" id="results-instances">
+<h5><a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances<a class="headerlink" href="#results-instances" title="Permalink to this headline">¶</a></h5>
+<p>Even if <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Technique.produceResults" title="kdvs.fw.Stat.Technique.produceResults"><tt class="xref py py-meth docutils literal"><span class="pre">produceResults()</span></tt></a> method returns <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instance, it is <cite>incomplete</cite>, among others, due to selection not being performed
+yet, possible delay in producing certain plots, etc. That is why concrete
+implementations of statistical techniques assign None to certain Results elements,
+and serialization of complete <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances is delayed
+until <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.storeCompleteResults" title="kdvs.bin.experiment.storeCompleteResults"><tt class="xref py py-meth docutils literal"><span class="pre">storeCompleteResults()</span></tt></a> action.</p>
+<p>For each valid Results instance, a new sublocation is created inside
+<tt class="docutils literal"><span class="pre">$subsets_results_location</span></tt>, and Results instance itself, along with textual
+representation, accompanied by additional artefacts, such as plots, are serialized
+there into the following configurable filekey:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;PKCID_resultsSuffix&#39;</span>
+</pre></div>
+</div>
+<p>where &#8216;PKCID&#8217; is the ID of associated prior knowledge concept (see <a class="reference internal" href="#subsets">Subsets</a> above),
+and &#8216;resultsSuffix&#8217; is defined in <tt class="docutils literal"><span class="pre">$subset_results_suffix</span></tt> variable
+(see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>). Serialization follows current KDVS
+serialization protocol (see <a class="reference internal" href="annex.html#annex-serialization"><em>Serialization</em></a>).</p>
+<p>For instance, assuming the following prior knowledge concepts (see <a class="reference internal" href="background.html#background-priorknowledge"><em>Prior knowledge</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;concept1&#39;</span><span class="p">,</span> <span class="s">&#39;concept2&#39;</span><span class="p">,</span> <span class="s">&#39;concept3&#39;</span>
+</pre></div>
+</div>
+<p>and assuming that <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="kdvs.fw.impl.stat.L1L2.L1L2_RLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_RLS</span></tt></a> technique is used
+against them (and has been declared as &#8216;L1L2_RLS&#8217; in application profile),
+the following artefacts are saved (assuming default configuration):</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        ss_results/
+            concept1/
+                concept1_RES
+                concept1_RES.txt
+                concept1_prediction_error_ts.pdf
+                concept1_prediction_error_tr.pdf
+                concept1_NullDOF__vars_freqs.txt
+            concept2/
+                concept1_RES
+                concept1_RES.txt
+                concept1_prediction_error_ts.pdf
+                concept1_prediction_error_tr.pdf
+                concept1_NullDOF__vars_freqs.txt
+            concept3/
+                concept1_RES
+                concept1_RES.txt
+                concept1_prediction_error_ts.pdf
+                concept1_prediction_error_tr.pdf
+                concept1_NullDOF__vars_freqs.txt</pre>
+</div>
+<p>Refer to individual concrete technique implementations for more details.</p>
+</div>
+<div class="section" id="reports">
+<h5>Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h5>
+<p>All individual reports (see <a class="reference internal" href="framework.html#framework-reporting"><em>Reporting</em></a>) are saved here during
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.prepareReports" title="kdvs.bin.experiment.prepareReports"><tt class="xref py py-meth docutils literal"><span class="pre">prepareReports()</span></tt></a> action. Refer to concrete
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a> implementations for specific details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reports are produced successfully only if related <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instances have been successfully created and serialized.</p>
+</div>
+<p>For instance, the <a class="reference internal" href="../doc-api/kdvs.fw.impl.report.html#kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter" title="kdvs.fw.impl.report.L1L2.L1L2_PKC_Reporter"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_PKC_Reporter</span></tt></a> may produce
+the following reports (names may vary depending on how statistical techniques
+were declared in application profile, and the degrees of freedom the technique
+uses; see <a class="reference internal" href="#statistical-techniques">statistical_techniques</a> above and <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a>);
+default configuration is assumed:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        ss_results/
+            L1L2_RLS_NullDOF_err_stats.txt
+            L1L2_L1L2_mu0_err_stats.txt
+            L1L2_L1L2_mu1_err_stats.txt
+            L1L2_L1L2_mu2_err_stats.txt</pre>
+</div>
+</div>
+<div class="section" id="plots">
+<h5>Plots<a class="headerlink" href="#plots" title="Permalink to this headline">¶</a></h5>
+<p>Plots (see <a class="reference internal" href="framework.html#framework-plotting"><em>Plotting</em></a>) may be produced by concrete implementations
+of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">Technique</span></tt></a> class or inside reports (see <a class="reference internal" href="framework.html#framework-reporting"><em>Reporting</em></a>).
+Currently, all plots are produced by techniques, and are saved in
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.storeCompleteResults" title="kdvs.bin.experiment.storeCompleteResults"><tt class="xref py py-meth docutils literal"><span class="pre">storeCompleteResults()</span></tt></a> action.</p>
+</div>
+<div class="section" id="miscellaneous">
+<h5>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h5>
+<p>Currently, the following artefacts are saved in <tt class="docutils literal"><span class="pre">$subsets_results_location</span></tt>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8220;technique2ssname&#8221; mapping between statistical techniques and all assigned
+data subsets (i.e. subsets that this technique is executed against, see
+<a class="reference internal" href="#statistical-techniques">statistical_techniques</a> above and <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a>):</p>
+<div class="highlight-python"><pre>{
+    techniqueID1 : [ subsetID1, ..., subsetIDk1 ],
+    ...
+    techniqueIDn : [ subsetID1, ..., subsetIDkn ]
+}</pre>
+</div>
+<p>along with textual representation, is serialized under configurable filekey
+<tt class="docutils literal"><span class="pre">$technique2ssname_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>); assuming
+default configuration:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        ss_results/
+            TECH2SS
+            TECH2SS.txt</pre>
+</div>
+</li>
+<li><p class="first">if any exception(s) were thrown during any job execution, a serialized list
+of those exceptions is saved under configurable
+filekey <tt class="docutils literal"><span class="pre">$jobs_exceptions_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="jobs-results">
+<h4>Jobs results<a class="headerlink" href="#jobs-results" title="Permalink to this headline">¶</a></h4>
+<p>Each <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance, together with related raw job output,
+is serialized by KDVS for diagnostic purposes if the job bears <cite>custom ID</cite>
+(see <a class="reference internal" href="framework.html#framework-jobcreationandexecution"><em>Job Creation and Execution</em></a>).</p>
+<p>The following artefacts are serialized chronologically in &#8216;experiment.py&#8217; application:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.submitSubsetOperations" title="kdvs.bin.experiment.submitSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">submitSubsetOperations()</span></tt></a>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">if <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance bears custom ID &#8216;customID&#8217;, the
+instance itself is serialized into the following filekey:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;customID&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">&#8220;jobIDmap&#8221; mapping between default job IDs and custom job IDs, along
+with textual representation, is serialized under configurable filekey
+<tt class="docutils literal"><span class="pre">$jobID_map_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.executeSubsetOperations" title="kdvs.bin.experiment.executeSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">executeSubsetOperations()</span></tt></a>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">if <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance bears custom ID &#8216;customID&#8217;, the
+raw output of this job (i.e. obtained with <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.JobContainer.getJobResult" title="kdvs.fw.Job.JobContainer.getJobResult"><tt class="xref py py-meth docutils literal"><span class="pre">getJobResult()</span></tt></a>
+method of job container) is serialized into the following filekey:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;customID_rawOutputSuffix&#39;</span>
+</pre></div>
+</div>
+<p>where &#8216;rawOutputSuffix&#8217; is defined in <tt class="docutils literal"><span class="pre">$subset_results_suffix</span></tt> variable
+(see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+<li><p class="first">any miscellaneous data produced by job container (obtained with
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.JobContainer.getMiscData" title="kdvs.fw.Job.JobContainer.getMiscData"><tt class="xref py py-meth docutils literal"><span class="pre">getMiscData()</span></tt></a> method), along with
+textual representation, is serialized under configurable filekey
+<tt class="docutils literal"><span class="pre">$jobs_misc_data_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>Assuming default configuration, and that the following example jobs bear custom IDs:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">job1</span><span class="p">,</span> <span class="n">job2</span><span class="p">,</span> <span class="n">job3</span>
+</pre></div>
+</div>
+<p>the following artefacts are saved:</p>
+<div class="highlight-python"><pre>$ROOT_OUTPUT_DIRECTORY/
+    KDVS_output/
+        jobs/
+            JOBID_MAP.txt
+            JOBID_MAP
+            JC_MISC_DATA.txt
+            JC_MISC_DATA
+            job1
+            job1__RAW_OUT
+            job2
+            job2__RAW_OUT
+            job3
+            job3__RAW_OUT</pre>
+</div>
+</div>
+<div class="section" id="debug-output">
+<span id="applications-debugoutput"></span><h4>Debug output<a class="headerlink" href="#debug-output" title="Permalink to this headline">¶</a></h4>
+<p>The &#8216;experiment.py&#8217; application produces additional debug output if <tt class="docutils literal"><span class="pre">--use-debug-output</span></tt>
+command line option is specified (see <a class="reference internal" href="#applications-commandlineparameters"><em>Command line parameters</em></a>).</p>
+<p>Debug output are various serialized objects, typically accompanied with respective
+textual representation. Serialization follows current KDVS serialization protocol
+(see <a class="reference internal" href="annex.html#annex-serialization"><em>Serialization</em></a>) unless stated otherwise.</p>
+<p>Currently, the following debug artefacts are produced:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.loadStaticData" title="kdvs.bin.experiment.loadStaticData"><tt class="xref py py-meth docutils literal"><span class="pre">loadStaticData()</span></tt></a>, for each <cite>managed static file</cite>,
+a textual dump of its content is saved under the filekey:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;pkc_manager_&lt;managerID&gt;_&lt;dumpSuffix&gt;&#39;</span>
+</pre></div>
+</div>
+<p>where &#8216;managerID&#8217; is defined in &#8216;DBID&#8217; entry parameter (see also <a class="reference internal" href="annex.html#annex-staticdatafiles"><em>Static data files</em></a>)
+and &#8216;dumpSuffix&#8217; is taken from <tt class="docutils literal"><span class="pre">$pk_manager_dump_suffix</span></tt> variable
+(see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildGeneIDMap" title="kdvs.bin.experiment.buildGeneIDMap"><tt class="xref py py-meth docutils literal"><span class="pre">buildGeneIDMap()</span></tt></a>, a serialized mapping under
+the configurable filekey <tt class="docutils literal"><span class="pre">$geneidmap_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildPKCIDMap" title="kdvs.bin.experiment.buildPKCIDMap"><tt class="xref py py-meth docutils literal"><span class="pre">buildPKCIDMap()</span></tt></a>, a serialized mapping under
+the configurable filekey <tt class="docutils literal"><span class="pre">$pkcidmap_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>),
+and serialized part of this mapping for selected GO domain under the filekey:</p>
+<div class="highlight-python"><pre>``$pkcidmap_key``_GO_``$go_domain``</pre>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">$go_domain</span></tt> comes from application profile in user configuration file
+(see <a class="reference internal" href="#go-domain">go_domain</a>)</p>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildPKDrivenDataSubsets" title="kdvs.bin.experiment.buildPKDrivenDataSubsets"><tt class="xref py py-meth docutils literal"><span class="pre">buildPKDrivenDataSubsets()</span></tt></a>, the following
+serialized mapping, along with textual representation, is preserved:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="n">PKC_ID</span> <span class="p">:</span> <span class="p">[</span><span class="n">subsetID</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ds</span><span class="p">),</span> <span class="p">[</span><span class="nb">vars</span><span class="p">],</span> <span class="p">[</span><span class="n">samples</span><span class="p">]]}</span>
+</pre></div>
+</div>
+<p>under the configurable filekey <tt class="docutils literal"><span class="pre">$subsets_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildSubsetHierarchy" title="kdvs.bin.experiment.buildSubsetHierarchy"><tt class="xref py py-meth docutils literal"><span class="pre">buildSubsetHierarchy()</span></tt></a>, the following artefacts
+are preserved:</p>
+<blockquote>
+<div><ul class="simple">
+<li>serialized subset hierarchy (see <a class="reference internal" href="framework.html#framework-subsethierarchy"><em>Subset Hierarchy</em></a>),
+along with textual representation, is stored under configurable filekey
+<tt class="docutils literal"><span class="pre">$subset_hierarchy_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>);
+more precisely, it contains two attributes &#8216;hierarchy&#8217; and &#8216;symboltree&#8217;
+wrapped in dictionary</li>
+<li>serialized <cite>operations map</cite>, along with textual representation, is stored
+under configurable filekey <tt class="docutils literal"><span class="pre">$operations_map_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>);
+more precisely, it contains textual <cite>operation IDs</cite> instead of actual Python
+calls</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.submitSubsetOperations" title="kdvs.bin.experiment.submitSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">submitSubsetOperations()</span></tt></a>, the complete
+submission order for all unique categories
+(see <a class="reference internal" href="#misc">misc</a> above for an explanation), along with textual representation,
+is serialized under the configurable filekey <tt class="docutils literal"><span class="pre">$submission_order_key</span></tt>
+(see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessSubsetOperations" title="kdvs.bin.experiment.postprocessSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessSubsetOperations()</span></tt></a>, the following artefacts
+are preserved:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">job group completion mapping:</p>
+<div class="highlight-python"><pre>{
+    PKCID1: {
+        'completed': True/False,
+        'jobs': {
+            JobID1: True/False,
+            ...
+            JobIDn : True/False
+        }
+    },
+    ...
+    PKCIDk: {
+        'completed': True/False,
+        'jobs': {
+            JobID1: True/False,
+            ...
+            JobIDn : True/False
+        }
+    },
+}</pre>
+</div>
+<p>along with textual representation, is serialized under configurable filekey
+<tt class="docutils literal"><span class="pre">$group_completion_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+<li><p class="first">&#8220;technique2DOF&#8221; mapping between statistical technique IDs and associated
+degrees of freedom, that depends on the declarations of statistical
+techniques in application profile (see <a class="reference internal" href="#statistical-techniques">statistical_techniques</a> above
+and <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a>):</p>
+<div class="highlight-python"><pre>{
+    techID1: {
+        'DOFS_IDXS': (1, ..., K1),
+        'DOFs': (dof1, ..., dofK1)
+    },
+    ...
+    techIDn: {
+        'DOFS_IDXS': (1, ..., Kn),
+        'DOFs': (dof1, ..., dofKn)
+    }
+}</pre>
+</div>
+<p>along with textual representation, is serialized under configurable
+filekey <tt class="docutils literal"><span class="pre">$technique2dof_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.performSelections" title="kdvs.bin.experiment.performSelections"><tt class="xref py py-meth docutils literal"><span class="pre">performSelections()</span></tt></a>, the following artefacts
+are preserved:</p>
+<blockquote>
+<div><ul class="simple">
+<li>outer selection markings (see <a class="reference internal" href="framework.html#framework-selecting"><em>Selecting</em></a>) for all unique
+categories, along with textual representation, are serialized under
+the configurable filekey <tt class="docutils literal"><span class="pre">$outer_selection_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</li>
+<li>inner selection markings (see <a class="reference internal" href="framework.html#framework-selecting"><em>Selecting</em></a>) for all unique
+categories, along with textual representation, are serialized under
+the configurable filekey <tt class="docutils literal"><span class="pre">$inner_selection_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.prepareReports" title="kdvs.bin.experiment.prepareReports"><tt class="xref py py-meth docutils literal"><span class="pre">prepareReports()</span></tt></a>, the following artefacts
+are preserved:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8220;em2annotation&#8221; mapping, obtained with <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Annotation.get_em2annotation" title="kdvs.fw.Annotation.get_em2annotation"><tt class="xref py py-func docutils literal"><span class="pre">get_em2annotation()</span></tt></a>
+function, along with textual representation, is serialized under
+the configurable filekey <tt class="docutils literal"><span class="pre">$em2annotation_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</li>
+<li>&#8220;pkcid2ssname&#8221;, bi&#8211;directional mapping between PKC IDs (i.e. GO terms)
+and subset names, along with textual representation, is serialized under
+the configurable filekey <tt class="docutils literal"><span class="pre">$pkcid2ssname_key</span></tt> (see <a class="reference internal" href="annex.html#annex-defaultconfigurationfile"><em>Default configuration file</em></a>)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="using-wrapper-py">
+<span id="applications-usingwrapper"></span><h3>Using wrapper.py<a class="headerlink" href="#using-wrapper-py" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="overview">
+<h4>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h4>
+<p>The &#8216;experiment.py&#8217; application can be also executed with &#8216;wrapper.py&#8217; (see <a class="reference internal" href="annex.html#annex-wrapper"><em>Using wrapper.py</em></a>);
+assuming that KDVS source archive has been unpacked to <tt class="docutils literal"><span class="pre">$KDVS_ROOT</span></tt>:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python wrapper.py kdvs/bin/experiment.py [options]</pre>
+</div>
+<p>See <a class="reference internal" href="#applications-commandlineparameters"><em>Command line parameters</em></a> for full option list.</p>
+</div>
+</div>
+<div class="section" id="command-line-parameters">
+<span id="applications-commandlineparameters"></span><h3>Command line parameters<a class="headerlink" href="#command-line-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre>Usage: experiment.py [options]
+
+Knowledge Driven Variable Selection Experiment Application
+
+Options:
+  -h, --help            show this help message and exit
+  -c CFGFILE, --config-file=CFGFILE
+                        read configuration from CFGFILE
+  -s SDDIR, --src-data-dir=SDDIR
+                        read data files from SDDIR
+  -o OUTDIR, --output-dir=OUTDIR
+                        store all results in OUTDIR
+  -l LOGFILE, --log-file=LOGFILE
+                        direct log output to LOGFILE
+  --ignore-default-config
+                        ignore default configuration (advanced)
+  --log-to-stdout       log output to stdout
+  --use-debug-output    write (lots of) detailed debug output
+  --log-level=LOG_LEVEL
+                        set log level to specified
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">KDVS applications</a><ul>
+<li><a class="reference internal" href="#experiment-py">experiment.py</a><ul>
+<li><a class="reference internal" href="#component-initializers">Component initializers</a></li>
+<li><a class="reference internal" href="#application-profile">Application profile</a><ul>
+<li><a class="reference internal" href="#annotation-file">annotation_file</a></li>
+<li><a class="reference internal" href="#gedm-file">gedm_file</a></li>
+<li><a class="reference internal" href="#labels-file">labels_file</a></li>
+<li><a class="reference internal" href="#go-domain">go_domain</a></li>
+<li><a class="reference internal" href="#initializers">Initializers</a><ul>
+<li><a class="reference internal" href="#subset-categorizers">subset_categorizers</a></li>
+<li><a class="reference internal" href="#subset-orderers">subset_orderers</a></li>
+<li><a class="reference internal" href="#statistical-techniques">statistical_techniques</a></li>
+<li><a class="reference internal" href="#subset-outer-selectors">subset_outer_selectors</a></li>
+<li><a class="reference internal" href="#subset-inner-selectors">subset_inner_selectors</a></li>
+<li><a class="reference internal" href="#reporters">reporters</a></li>
+<li><a class="reference internal" href="#envops">envops</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subset-hierarchy-categorizers-chain">subset_hierarchy_categorizers_chain</a></li>
+<li><a class="reference internal" href="#subset-hierarchy-components-map">subset_hierarchy_components_map</a><ul>
+<li><a class="reference internal" href="#operations-map">Operations map</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#putting-it-all-together">Putting it all together</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-file">Configuration file</a><ul>
+<li><a class="reference internal" href="#default-configuration">Default configuration</a></li>
+<li><a class="reference internal" href="#user-configuration">User configuration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#output-directory">Output directory</a><ul>
+<li><a class="reference internal" href="#databases">Databases</a><ul>
+<li><a class="reference internal" href="#kdvs-root">kdvs.root</a></li>
+<li><a class="reference internal" href="#data">DATA</a></li>
+<li><a class="reference internal" href="#maps">MAPS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#subsets">Subsets</a></li>
+<li><a class="reference internal" href="#subsets-results">Subsets results</a><ul>
+<li><a class="reference internal" href="#results-instances"><tt class="docutils literal"><span class="pre">Results</span></tt> instances</a></li>
+<li><a class="reference internal" href="#reports">Reports</a></li>
+<li><a class="reference internal" href="#plots">Plots</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jobs-results">Jobs results</a></li>
+<li><a class="reference internal" href="#debug-output">Debug output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-wrapper-py">Using wrapper.py</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#command-line-parameters">Command line parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="writingapplication.html" title="Writing KDVS application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="framework.html" title="Framework"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

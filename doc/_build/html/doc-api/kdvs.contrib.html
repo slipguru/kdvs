@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>contrib Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="kdvs Package" href="kdvs.html" />
+    <link rel="next" title="core Package" href="kdvs.core.html" />
+    <link rel="prev" title="bin Package" href="kdvs.bin.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.core.html" title="core Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.bin.html" title="bin Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" accesskey="U">kdvs Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contrib-package">
+<h1>contrib Package<a class="headerlink" href="#contrib-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">contrib</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.contrib"></span><p>Provides various contributed functionality for KDVS.</p>
+</div>
+<div class="section" id="module-kdvs.contrib.counter">
+<span id="counter-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">counter</span></tt> Module<a class="headerlink" href="#module-kdvs.contrib.counter" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="kdvs.contrib.counter.Counter">
+<em class="property">class </em><tt class="descclassname">kdvs.contrib.counter.</tt><tt class="descname">Counter</tt><big>(</big><em>iterable=None</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#kdvs.contrib.counter.Counter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></a></p>
+<p>Dict subclass for counting hashable objects.  Sometimes called a bag
+or multiset.  Elements are stored as dictionary keys and their counts
+are stored as dictionary values.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Counter</span><span class="p">(</span><span class="s">&#39;zyzygy&#39;</span><span class="p">)</span>
+<span class="go">Counter({&#39;y&#39;: 3, &#39;z&#39;: 2, &#39;g&#39;: 1})</span>
+</pre></div>
+</div>
+<p>Create a new, empty Counter object.  And if given, count elements
+from an input iterable.  Or, initialize the count from another mapping
+of elements to their counts.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>                           <span class="c"># a new, empty counter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">&#39;gallahad&#39;</span><span class="p">)</span>                 <span class="c"># a new counter from an iterable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">({</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>           <span class="c"># a new counter from a mapping</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>                   <span class="c"># a new counter from keyword args</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="kdvs.contrib.counter.Counter.most_common">
+<tt class="descname">most_common</tt><big>(</big><em>n=None</em><big>)</big><a class="headerlink" href="#kdvs.contrib.counter.Counter.most_common" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the n most common elements and their counts from the most
+common to the least.  If n is None, then list all element counts.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Counter</span><span class="p">(</span><span class="s">&#39;abracadabra&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">[(&#39;a&#39;, 5), (&#39;r&#39;, 2), (&#39;b&#39;, 2)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.counter.Counter.elements">
+<tt class="descname">elements</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.counter.Counter.elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterator over elements repeating each as many times as its count.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">&#39;ABCABC&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">elements</span><span class="p">())</span>
+<span class="go">[&#39;A&#39;, &#39;A&#39;, &#39;B&#39;, &#39;B&#39;, &#39;C&#39;, &#39;C&#39;]</span>
+</pre></div>
+</div>
+<p>If an element&#8217;s count has been set to zero or is a negative number,
+elements() will ignore it.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="kdvs.contrib.counter.Counter.fromkeys">
+<em class="property">classmethod </em><tt class="descname">fromkeys</tt><big>(</big><em>iterable</em>, <em>v=None</em><big>)</big><a class="headerlink" href="#kdvs.contrib.counter.Counter.fromkeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.counter.Counter.update">
+<tt class="descname">update</tt><big>(</big><em>iterable=None</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#kdvs.contrib.counter.Counter.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like dict.update() but add counts instead of replacing them.</p>
+<p>Source can be an iterable, a dictionary, or another Counter instance.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">&#39;which&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s">&#39;witch&#39;</span><span class="p">)</span>           <span class="c"># add elements from another iterable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">&#39;watch&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>                 <span class="c"># add elements from another counter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="s">&#39;h&#39;</span><span class="p">]</span>                      <span class="c"># four &#39;h&#39; in which, witch, and watch</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.counter.Counter.copy">
+<tt class="descname">copy</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.counter.Counter.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like dict.copy() but returns a Counter instance instead of a dict.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.contrib.dataset_generation">
+<span id="dataset-generation-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">dataset_generation</span></tt> Module<a class="headerlink" href="#module-kdvs.contrib.dataset_generation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="kdvs.contrib.dataset_generation.correlated_dataset">
+<tt class="descclassname">kdvs.contrib.dataset_generation.</tt><tt class="descname">correlated_dataset</tt><big>(</big><em>num_samples</em>, <em>num_variables</em>, <em>groups</em>, <em>weights</em>, <em>variables_stdev=1.0</em>, <em>correlations_stdev=0.01</em>, <em>labels_stdev=0.01</em><big>)</big><a class="headerlink" href="#kdvs.contrib.dataset_generation.correlated_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Random supervised dataset generation with correlated variables.</p>
+<p>The function returns a supervised training set with <tt class="docutils literal"><span class="pre">num_samples</span></tt>
+examples with <tt class="docutils literal"><span class="pre">num_variables</span></tt> variables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>num_samples</strong> : int</p>
+<blockquote>
+<div><p>Number of samples.</p>
+</div></blockquote>
+<p><strong>num_variables</strong> : int</p>
+<blockquote>
+<div><p>Number of variables.</p>
+</div></blockquote>
+<p><strong>groups</strong> : tuple of int</p>
+<blockquote>
+<div><p>For each group of relevant variables indicates the group cardinality.</p>
+</div></blockquote>
+<p><strong>weights</strong> : array_like of sum(groups) float</p>
+<blockquote>
+<div><p>True regression model.</p>
+</div></blockquote>
+<p><strong>variables_stdev</strong> : float, optional (default is <cite>1.0</cite>)</p>
+<blockquote>
+<div><p>Standard deviation of the zero-mean Gaussian distribution generating
+variables column vectors.</p>
+</div></blockquote>
+<p><strong>correlations_stdev</strong> : float, optional (default is <cite>1e-2</cite>)</p>
+<blockquote>
+<div><p>Standard deviation of the zero-mean Gaussian distribution generating
+errors between variables which belong to the same group</p>
+</div></blockquote>
+<p><strong>labels_stdev</strong> : float, optional (default is <cite>1e-2</cite>)</p>
+<blockquote>
+<div><p>Standard deviation of the zero-mean Gaussian distribution generating
+regression errors.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>X</strong> : (<tt class="docutils literal"><span class="pre">num_samples</span></tt>, <tt class="docutils literal"><span class="pre">num_variables</span></tt>) ndarray</p>
+<blockquote>
+<div><p>Data matrix.</p>
+</div></blockquote>
+<p><strong>Y</strong> : (<tt class="docutils literal"><span class="pre">num_samples</span></tt>, 1) ndarray</p>
+<blockquote class="last">
+<div><p>Regression output.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The data will have <tt class="docutils literal"><span class="pre">len(groups)</span></tt> correlated groups of variables, where
+for each one the function generates a column vector <img class="math" src="../_images/math/5f61118f2ae912f86e683687c005145b5eb54aec.png" alt="\mathbf{x}" style="vertical-align: -1px"/> of
+<tt class="docutils literal"><span class="pre">num_samples</span></tt> values drawn from a zero-mean Gaussian distribution
+with standard deviation equal to <tt class="docutils literal"><span class="pre">variables_stdev</span></tt>.</p>
+<p>For each variable of the group associated with the <img class="math" src="../_images/math/5f61118f2ae912f86e683687c005145b5eb54aec.png" alt="\mathbf{x}" style="vertical-align: -1px"/>
+vector, the function generates the  values as</p>
+<div class="math">
+<p><img src="../_images/math/9ce0d473e29e705b08d6123e0c71a0aef0f5da33.png" alt="\mathbf{x}^j = \mathbf{x} + \epsilon_x,"/></p>
+</div><p>where <img class="math" src="../_images/math/5d47ac811f62a033fcc86c4ae9bb892b79a7c290.png" alt="\epsilon_x" style="vertical-align: -3px"/> is additive noise drawn from a zero-mean Gaussian
+distribution with standard deviation equal to <tt class="docutils literal"><span class="pre">correlations_stdev</span></tt>.</p>
+<p>The regression values will be generated as</p>
+<div class="math">
+<p><img src="../_images/math/d21a3d1810a38d2209b0f148946f511c26f0996a.png" alt="\mathbf{Y} = \mathbf{\tilde{X}}\boldsymbol{\tilde{\beta}} + \epsilon_y,"/></p>
+</div><p>where <img class="math" src="../_images/math/81f12cc4902896a91c85640650f12235231c0383.png" alt="\boldsymbol{\tilde{\beta}}" style="vertical-align: -4px"/> is the <tt class="docutils literal"><span class="pre">weights</span></tt> parameter, a
+list of <tt class="docutils literal"><span class="pre">sum(groups)</span></tt> coefficients of the relevant variables,
+<img class="math" src="../_images/math/809c68b43da8ee20d4d16c4df0319f8a7ec2eb8b.png" alt="\mathbf{\tilde{X}}" style="vertical-align: -1px"/> is the submatrix containing only the column
+related to the relevant variables and <img class="math" src="../_images/math/e916e8c5ac0bf0e9e030ab10e1fb6985840205d5.png" alt="\epsilon_y" style="vertical-align: -6px"/> is additive noise drawn
+from a zero-mean Gaussian distribution with standard deviation equal to
+<tt class="docutils literal"><span class="pre">labels_stdev</span></tt>.</p>
+<p>At the end the function returns the matrices
+<img class="math" src="../_images/math/5ecbbc0083da71f2cbc69e1377535094685b108a.png" alt="\mathbf{X}" style="vertical-align: -1px"/> and <img class="math" src="../_images/math/669fb203c2329b8b404de01e7a228bd7c8ca1461.png" alt="\mathbf{Y}" style="vertical-align: 0px"/> where</p>
+<div class="math">
+<p><img src="../_images/math/a4fe858b1a195ff65cc521ad1766a143847a78db.png" alt="\mathbf{X} = [\mathbf{\tilde{X}}; \mathbf{X_N}]"/></p>
+</div><p>is the concatenation of the matrix <img class="math" src="../_images/math/809c68b43da8ee20d4d16c4df0319f8a7ec2eb8b.png" alt="\mathbf{\tilde{X}}" style="vertical-align: -1px"/> with the
+relevant variables with <tt class="docutils literal"><span class="pre">num_variables</span> <span class="pre">-</span> <span class="pre">sum(groups)</span></tt> noisy variables
+generated indipendently using values drawn from a zero-mean Gaussian
+distribution with standard deviation equal to <tt class="docutils literal"><span class="pre">variables_stdev</span></tt>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">correlated_dataset</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">]</span><span class="o">*</span><span class="mi">15</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(30, 40)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(30, 1)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.contrib.dataset_generation.main">
+<tt class="descclassname">kdvs.contrib.dataset_generation.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.dataset_generation.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates one or more randomized datasets with correlated variables. Use -h
+command line options for more details.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.contrib.ordereddict">
+<span id="ordereddict-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">ordereddict</span></tt> Module<a class="headerlink" href="#module-kdvs.contrib.ordereddict" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>Copyright (c) 2009 Raymond Hettinger
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation files
+(the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+    OTHER DEALINGS IN THE SOFTWARE.</pre>
+</div>
+<p>Dictionary that remembers order of insertions. Introduced for compatibility with Python 2.6.</p>
+<dl class="class">
+<dt id="kdvs.contrib.ordereddict.OrderedDict">
+<em class="property">class </em><tt class="descclassname">kdvs.contrib.ordereddict.</tt><tt class="descname">OrderedDict</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></a>, <a class="reference external" href="http://docs.python.org/library/userdict.html#UserDict.DictMixin" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">UserDict.DictMixin</span></tt></a></p>
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.clear">
+<tt class="descname">clear</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.popitem">
+<tt class="descname">popitem</tt><big>(</big><em>last=True</em><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.popitem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.setdefault">
+<tt class="descname">setdefault</tt><big>(</big><em>key</em>, <em>default=None</em><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.setdefault" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.update">
+<tt class="descname">update</tt><big>(</big><em>other=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.pop">
+<tt class="descname">pop</tt><big>(</big><em>key</em>, <em>*args</em><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.pop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.values">
+<tt class="descname">values</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.items">
+<tt class="descname">items</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.iterkeys">
+<tt class="descname">iterkeys</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.iterkeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.itervalues">
+<tt class="descname">itervalues</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.itervalues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.iteritems">
+<tt class="descname">iteritems</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.copy">
+<tt class="descname">copy</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="kdvs.contrib.ordereddict.OrderedDict.fromkeys">
+<em class="property">classmethod </em><tt class="descname">fromkeys</tt><big>(</big><em>iterable</em>, <em>value=None</em><big>)</big><a class="headerlink" href="#kdvs.contrib.ordereddict.OrderedDict.fromkeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">contrib Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">contrib</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.contrib.counter"><tt class="docutils literal"><span class="pre">counter</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.contrib.dataset_generation"><tt class="docutils literal"><span class="pre">dataset_generation</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.contrib.ordereddict"><tt class="docutils literal"><span class="pre">ordereddict</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.core.html" title="core Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.bin.html" title="bin Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

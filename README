@@ -1,0 +1,82 @@
+Overview
+--------
+
+Knowledge Driven Variable Selection (KDVS) is an experimental knowledge extraction
+system that utilizes statistical learning and novel data and knowledge integration
+methodologies.
+
+Licensing
+---------
+
+Knowledge Driven Variable Selection (KDVS)
+Copyright (C) 2014 KDVS Developers. All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Authors
+-------
+
+See CONTRIBUTORS for full authors list.
+
+The current maintainer is Grzegorz Zycinski <g.zycinski@gmail.com>.
+
+Installation
+------------
+
+KDVS can be tried immediately without prior installation. Refer to 'Quick Start' below.
+
+KDVS can be installed as Python module with the following command:
+
+    python setup.py install
+
+Note that the documentation and examples are not copied.
+
+Documentation
+-------------
+
+See doc/_build/html/index.html
+
+Quick Start
+-----------
+
+(*) Linux/OSX
+
+Lets assume the KDVS source archive has been unpacked to:
+
+    ~/KDVS2.0
+
+where '~' indicates the home directory of current user.
+
+Lets execute the example experiment GSE7390. See also 'examples/GSE7390/README'
+for more information.
+
+For running KDVS experiment, the results must be stored in writable output directory.
+Lets create one:
+> mkdir ~/KDVS2.0-results
+
+The experiment can be executed with the following command:
+
+> cd ~/KDVS2.0
+> python wrapper.py kdvs/bin/experiment.py -c examples/GSE7390/GSE7390_cfg.py -o ~/KDVS2.0-results
+
+After some minutes, if the run was successful and no error has been reported,
+the root output directory ('KDVS_output') and log file ('kdvs.log') shall be
+present in the output directory:
+
+> ls ~/KDVS2.0-results
+kdvs.log  KDVS_output
+
+IMPORTANT NOTE: KDVS does not overwrite output files and directories. Therefore
+the log file ('kdvs.log') and root output directory ('KDVS_output') must be
+deleted manually each time the experiment is run with the same output directory.

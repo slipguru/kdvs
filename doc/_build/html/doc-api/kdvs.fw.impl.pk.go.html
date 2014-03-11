@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>go Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="pk Package" href="kdvs.fw.impl.pk.html" />
+    <link rel="next" title="report Package" href="kdvs.fw.impl.report.html" />
+    <link rel="prev" title="pk Package" href="kdvs.fw.impl.pk.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.report.html" title="report Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.pk.html" title="pk Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.pk.html" accesskey="U">pk Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="go-package">
+<h1>go Package<a class="headerlink" href="#go-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">go</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.pk.go"></span><p>Provides concrete functionalities related to processing of Gene Ontology (GO)
+information as prior knowledge source.</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.pk.go.GeneOntology">
+<span id="geneontology-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">GeneOntology</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.pk.go.GeneOntology" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete implementation of <a class="reference external" href="http://www.geneontology.org/">Gene Ontology</a>
+(GO) manager that manages individual GO terms as prior knowledge concepts. Also
+provides various constants specific for GO.</p>
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_BP_DS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_BP_DS</tt><em class="property"> = 'BP'</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_BP_DS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal KDVS symbol that refers to Biological Process (BP) domain of GO.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_MF_DS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_MF_DS</tt><em class="property"> = 'MF'</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_MF_DS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal KDVS symbol that refers to Molecular Function (MF) domain of GO.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_CC_DS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_CC_DS</tt><em class="property"> = 'CC'</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_CC_DS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal KDVS symbol that refers to Cellular Component (CC) domain of GO.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_DOMAINS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_DOMAINS</tt><em class="property"> = {'CC': 'cellular_component', 'MF': 'molecular_function', 'BP': 'biological_process'}</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_DOMAINS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Descriptive identifiers for GO domains.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_DS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_DS</tt><em class="property"> = ['CC', 'MF', 'BP']</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_DS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Symbols of GO domains recognized by KDVS.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_ROOT_TERMS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_ROOT_TERMS</tt><em class="property"> = {'CC': 'GO:0005575', 'MF': 'GO:0003674', 'BP': 'GO:0008150'}</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_ROOT_TERMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Root terms of GO domains.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_EVIDENCE_CODES">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_EVIDENCE_CODES</tt><em class="property"> = {'IC': 'inferred by curator', 'NAS': 'non-traceable author statement', 'ISM': 'inferred from sequence model', 'TAS': 'traceable author statement', 'ISS': 'inferred from sequence or structural similarity', 'IEP': 'inferred from expression pattern', 'IPI': 'inferred from physical interaction', 'ND': 'no biological data available', 'IMP': 'inferred from mutant phenotype', 'ISO': 'inferred from sequence orthology', 'EXP': 'inferred from experiment', 'IEA': 'inferred from electronic annotation', 'IGC': 'inferred from genomic context', 'ISA': 'inferred from sequence', 'NR': 'not recorded', 'RCA': 'inferred from reviewed computational analysis', 'IGI': 'inferred from genetic interaction', 'IDA': 'inferred from direct assay'}</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_EVIDENCE_CODES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of recognized GO evidence codes: {code : description}.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_INV_EVIDENCE_CODES">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_INV_EVIDENCE_CODES</tt><em class="property"> = {'inferred from expression pattern': 'IEP', 'non-traceable author statement': 'NAS', 'inferred by curator': 'IC', 'inferred from genetic interaction': 'IGI', 'inferred from physical interaction': 'IPI', 'inferred from direct assay': 'IDA', 'inferred from sequence': 'ISA', 'no biological data available': 'ND', 'inferred from sequence or structural similarity': 'ISS', 'inferred from genomic context': 'IGC', 'inferred from reviewed computational analysis': 'RCA', 'inferred from experiment': 'EXP', 'traceable author statement': 'TAS', 'inferred from mutant phenotype': 'IMP', 'inferred from sequence model': 'ISM', 'not recorded': 'NR', 'inferred from electronic annotation': 'IEA', 'inferred from sequence orthology': 'ISO'}</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_INV_EVIDENCE_CODES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverted mapping of recognized GO evidence codes: {description : code}.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_UNKNOWN_EV_CODE">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_UNKNOWN_EV_CODE</tt><em class="property"> = 'UNK'</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_UNKNOWN_EV_CODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>KDVS&#8211;specific artificial &#8216;unknown evidence code&#8217; used when non recognized
+evidence code is encountered.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_DEF_RECOGNIZED_RELATIONS">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_DEF_RECOGNIZED_RELATIONS</tt><em class="property"> = ['is_a', 'part_of', 'regulates', 'positively_regulates', 'negatively_regulates']</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_DEF_RECOGNIZED_RELATIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default inter&#8211;term relation recognized by KDVS.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_OBOXML_ROOT_TAG">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_OBOXML_ROOT_TAG</tt><em class="property"> = 'obo'</em><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_OBOXML_ROOT_TAG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard root tag of GO release encoded as OBO-XML file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.isGOID">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">isGOID</tt><big>(</big><em>goid</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.isGOID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if goid is valid GO term ID, False othwerwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_num2id">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_num2id</tt><big>(</big><em>num</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_num2id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve numerical part of GO term ID into full GO term ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>num</strong> : integer/string</p>
+<blockquote>
+<div><p>supposed numerical part of GO term ID</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>termID</strong> : string</p>
+<blockquote>
+<div><p>full GO term ID</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if numerical part does not resolve to valid GO term ID</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GO_id2num">
+<tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GO_id2num</tt><big>(</big><em>goid</em>, <em>numint=True</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_id2num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract numerical part of full GO term ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>goid</strong> : string</p>
+<blockquote>
+<div><p>full GO term ID</p>
+</div></blockquote>
+<p><strong>numint</strong> : boolean</p>
+<blockquote>
+<div><p>if True, return numerical part converted to integer; if False, return numerical
+part as string; True by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>num</strong> : integer/string</p>
+<blockquote class="last">
+<div><p>numerical part of full GO term ID</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.pk.go.GeneOntology.</tt><tt class="descname">GOManager</tt><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.PK.PKCManager</span></tt></a></p>
+<p>Concrete prior knowledge manager that parses GO release encoded in
+<a class="reference external" href="http://www.geneontology.org/GO.format.shtml#OBO-XML">OBO-XML</a> file
+and keeps track of all individual GO terms (i.e. prior knowledge concepts).
+The following content is exposed through public attributes after <a class="reference internal" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.load" title="kdvs.fw.impl.pk.go.GeneOntology.GOManager.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a>
+method finishes successfully:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="xref py py-attr docutils literal"><span class="pre">terms</span></tt> &#8211; dictionary of individual term data</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">synonyms</span></tt> &#8211; <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.SetBDMap" title="kdvs.fw.Map.SetBDMap"><tt class="xref py py-class docutils literal"><span class="pre">SetBDMap</span></tt></a> of synonymous terms</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">termsPlainHierarchy</span></tt> &#8211; <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.SetBDMap" title="kdvs.fw.Map.SetBDMap"><tt class="xref py py-class docutils literal"><span class="pre">SetBDMap</span></tt></a> of term hierarchy {parent : children} independent of relations</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">termsRelationsHierarchy</span></tt> &#8211; {relation_name : <tt class="xref py py-class docutils literal"><span class="pre">setBDMap</span></tt>} mapping of term hierarchies grouped by recognized relations</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">obsolete_terms</span></tt> &#8211; iterable of obsolete terms IDs</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">valid_terms</span></tt> &#8211; iterable of valid terms names IDs</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">domain2validTerms</span></tt> &#8211; valid terms grouped by domains</li>
+</ul>
+</div></blockquote>
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.configure">
+<tt class="descname">configure</tt><big>(</big><em>domains=None</em>, <em>recognized_relations=None</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure this manager.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>domains</strong> : iterable of string/None</p>
+<blockquote>
+<div><p>iterable of GO domains that this manager will recognize; if None, all domains
+are recognized; None by default</p>
+</div></blockquote>
+<p><strong>recognized_relations</strong> : iterable of string/None</p>
+<blockquote class="last">
+<div><p>iterable of inter&#8211;term relations that this manager will recognize; if None,
+default relations will be recognized (<a class="reference internal" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_DEF_RECOGNIZED_RELATIONS" title="kdvs.fw.impl.pk.go.GeneOntology.GO_DEF_RECOGNIZED_RELATIONS"><tt class="xref py py-data docutils literal"><span class="pre">GO_DEF_RECOGNIZED_RELATIONS</span></tt></a>); None by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.load">
+<tt class="descname">load</tt><big>(</big><em>fh</em>, <em>root_tag=None</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read GO release from OBO-XML file and build all data structures. XML parsing is
+done with <a class="reference external" href="http://docs.python.org/library/xml.etree.elementtree.html#xml.etree.ElementTree" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">xml.etree.ElementTree</span></tt></a> (<tt class="xref py py-mod docutils literal"><span class="pre">xml.etree.cElementTree</span></tt> if possible).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>fh</strong> : file&#8211;like</p>
+<blockquote>
+<div><p>opened file handle of the OBO-XML file that contains encoded GO release;
+file handle must come from any recognized KDVS file provider</p>
+</div></blockquote>
+<p><strong>root_tag</strong> : string/None</p>
+<blockquote>
+<div><p>root XML tag of OBO-XML file that will be accepted; if None, default root
+tag (<a class="reference internal" href="#kdvs.fw.impl.pk.go.GeneOntology.GO_OBOXML_ROOT_TAG" title="kdvs.fw.impl.pk.go.GeneOntology.GO_OBOXML_ROOT_TAG"><tt class="xref py py-data docutils literal"><span class="pre">GO_OBOXML_ROOT_TAG</span></tt></a>) will be used; None by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if requested root tag has not been found</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if file handle comes from unrecognized file provider</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if parsing of OBO-XML is interrupted with an error (re&#8211;raised ElementTree exception)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="kdvs.core.html#kdvs.core.provider.fileProvider" title="kdvs.core.provider.fileProvider"><tt class="xref py py-obj docutils literal"><span class="pre">kdvs.core.provider.fileProvider</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.getPKC">
+<tt class="descname">getPKC</tt><big>(</big><em>conceptID</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.getPKC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get PKC instance for specified concept ID (i.e. GO term ID). This method resolves
+synonymous GO terms.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>conceptID</strong> : string</p>
+<blockquote>
+<div><p>full GO term ID for valid (i.e. not obsolete) term</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>pkc</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.PK.PriorKnowledgeConcept" title="kdvs.fw.PK.PriorKnowledgeConcept"><tt class="xref py py-class docutils literal"><span class="pre">PriorKnowledgeConcept</span></tt></a> / None</p>
+<blockquote>
+<div><p>PKC instance that corresponds to specified GO term, or None if the conceptID
+has not been found</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Warn</strong> :</p>
+<blockquote class="last">
+<div><p>if synonymic term resolves into more than one direct terms</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.dump">
+<tt class="descname">dump</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build dictionary dump of all the information produced by this manager, if possible in
+textual format, and return it. The dump dictionary contains representations of
+data structures keyed by the names of relevant public attributes. For bi&#8211;directional
+mappings, forward and backward parts are separated into &#8216;fwd&#8217; and &#8216;bwd&#8217; subkeyed
+parts.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.getSynonyms">
+<tt class="descname">getSynonyms</tt><big>(</big><em>termID</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.getSynonyms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get recognized synonymous term IDs for specified GO term ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>termID</strong> : string</p>
+<blockquote>
+<div><p>full GO term ID</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>synonyms</strong> : iterable of string / None</p>
+<blockquote class="last">
+<div><p>iterable of synonymous full GO term IDs, or None if not found</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.getDescendants">
+<tt class="descname">getDescendants</tt><big>(</big><em>parentTermID</em>, <em>depth=False</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.getDescendants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follow term hierarchy and return descendant terms for specified GO term ID.
+Optionally, return numerical depth information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>parentTermID</strong> : string</p>
+<blockquote>
+<div><p>full GO term ID</p>
+</div></blockquote>
+<p><strong>depth</strong> : boolean</p>
+<blockquote>
+<div><p>if True, return descendant terms with additional depth information; if False,
+return only descendant terms without depth information; False by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>descendants</strong> : iterable of string</p>
+<blockquote>
+<div><p>if &#8216;depth&#8217; is False; iterable of full GO term IDs of descendant terms; parent
+term is included at the beginning</p>
+</div></blockquote>
+<p><strong>descendants_with_depth</strong> : iterable of (string, int) tuples</p>
+<blockquote class="last">
+<div><p>if &#8216;depth&#8217; is True; iterable of the following tuples: (full GO term ID of descendant
+term, level of depth as integer relative to the parent); parent term is
+included at the beginning with depth 0; subsequent depths are positive integers</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.pk.go.GeneOntology.GOManager.getAncestors">
+<tt class="descname">getAncestors</tt><big>(</big><em>childTermID</em>, <em>depth=False</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.pk.go.GeneOntology.GOManager.getAncestors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follow term hierarchy and return ancestor terms for specified GO term ID.
+Optionally, return numerical depth information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>childTermID</strong> : string</p>
+<blockquote>
+<div><p>full GO term ID</p>
+</div></blockquote>
+<p><strong>depth</strong> : boolean</p>
+<blockquote>
+<div><p>if True, return ancestor terms with additional depth information; if False,
+return only ancestor terms without depth information; False by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>ancestors</strong> : iterable of string</p>
+<blockquote>
+<div><p>if &#8216;depth&#8217; is False; iterable of full GO term IDs of ancestor terms; child
+term is included at the beginning</p>
+</div></blockquote>
+<p><strong>ancestors_with_depth</strong> : iterable of (string, int) tuples</p>
+<blockquote class="last">
+<div><p>if &#8216;depth&#8217; is True; iterable of the following tuples: (full GO term ID of
+ancestor term, level of depth as integer relative to the child); child term is
+included at the beginning with depth 0; subsequent depths are negative integers</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">go Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">go</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.pk.go.GeneOntology"><tt class="docutils literal"><span class="pre">GeneOntology</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.report.html" title="report Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.pk.html" title="pk Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.pk.html" >pk Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

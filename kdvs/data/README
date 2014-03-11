@@ -1,0 +1,14 @@
+
+This directory contains data files with prior knowledge used in KDVS by default.
+
+* GO/go_termdb_30_05_2013.obo-xml.gz
+
+Daily release of Gene Ontology "termdb" in OBO XML format, downloaded and
+packaged 30/05/2013. For more details, refer to:
+http://www.geneontology.org/GO.downloads.ontology.shtml
+
+* HGNC/HGNC.tsv
+
+Release of HGNC dataset, with specific subset of columns, downloaded 25/05/2013.
+For more details, refer to:
+http://www.genenames.org/cgi-bin/hgnc_downloads

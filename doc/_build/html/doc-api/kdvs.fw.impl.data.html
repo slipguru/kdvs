@@ -1,0 +1,568 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>data Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.fw.impl.html" />
+    <link rel="next" title="envop Package" href="kdvs.fw.impl.envop.html" />
+    <link rel="prev" title="app Package" href="kdvs.fw.impl.app.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.envop.html" title="envop Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.app.html" title="app Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="data-package">
+<h1>data Package<a class="headerlink" href="#data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">data</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.data"></span><p>Provides specific functionality for data&#8211;driven activities, such as data subset
+generation, specific categorizers based on data properties, specific selectors etc.</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.data.Null">
+<span id="null-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">Null</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.data.Null" title="Permalink to this headline">¶</a></h2>
+<p>Provides functionality for &#8216;null&#8217; data&#8211;driven activities. Null activities are
+neutral against their arguments, simply passing them.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.data.Null.NullCategorizer">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.Null.</tt><tt class="descname">NullCategorizer</tt><big>(</big><em>ID='NullCategorizer'</em>, <em>null_category='__all__'</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.Null.NullCategorizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Categorizer.Categorizer</span></tt></a></p>
+<p>Null categorizer that uses single virtual &#8216;category&#8217; that passes the data
+subset without checking it and marks it with that category. Useful as
+placeholder and on the top of categorizers hierarchy, where more specialized work
+is done with more specialized categorizers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ID</strong> : string</p>
+<blockquote>
+<div><p>identifier of this categorizer; can be skipped to use default name</p>
+</div></blockquote>
+<p><strong>null_category</strong> : string</p>
+<blockquote class="last">
+<div><p>name of single virtual category that null categorizer marks all subsets with; can be
+skipped to use default name</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.data.Null.NullOrderer">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.Null.</tt><tt class="descname">NullOrderer</tt><a class="headerlink" href="#kdvs.fw.impl.data.Null.NullOrderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Orderer" title="kdvs.fw.Categorizer.Orderer"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Categorizer.Orderer</span></tt></a></p>
+<p>Null orderer that simply returns given iterable without actually ordering it.
+Useful as placeholder and on lower levels of categorizers hierarchy, when the
+ordering has already been performed upstream.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.data.Null.NullOrderer.build">
+<tt class="descname">build</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.Null.NullOrderer.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8216;Build&#8217; the order by simply keeping the input iterable as is.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.data.Null.NullOrderer.order">
+<tt class="descname">order</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.Null.NullOrderer.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the order by simply returning an input iterable.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.data.PKDrivenData">
+<span id="pkdrivendata-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">PKDrivenData</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.data.PKDrivenData" title="Permalink to this headline">¶</a></h2>
+<p>Provides specialized functionality for data&#8211;driven activities. This includes the
+concrete producer of data subsets, according to the philosophy of creating smaller
+subsets according to prior knowledge. The subset producer also categorizes them
+actively with given categorizer(s).</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.PKDrivenData.</tt><tt class="descname">PKDrivenDataManager</tt><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Base class for data&#8211;driven subset producer. The concrete subclass needs to
+implement <a class="reference internal" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.getSubset" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.getSubset"><tt class="xref py py-meth docutils literal"><span class="pre">getSubset()</span></tt></a> method that returns single <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a>
+instance for single prior knowledge concept specified. The implementation shall
+create subset according to prior knowledge information. It may also re&#8211;implement
+<a class="reference internal" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.categorizeSubset" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.categorizeSubset"><tt class="xref py py-meth docutils literal"><span class="pre">categorizeSubset()</span></tt></a> method if necessary.</p>
+<p>By default, the constructor does nothing.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.getSubset">
+<tt class="descname">getSubset</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.getSubset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.categorizeSubset">
+<em class="property">static </em><tt class="descname">categorizeSubset</tt><big>(</big><em>subset_inst</em>, <em>subsetCategorizer</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager.categorizeSubset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Categorize input DataSet using categories from specified categorizer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>subset_inst</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a></p>
+<blockquote>
+<div><p>instance of a subset to be categorized</p>
+</div></blockquote>
+<p><strong>subsetCategorizer</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a></p>
+<blockquote>
+<div><p>instance of Categorizer to be used</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>category</strong> : string</p>
+<blockquote class="last">
+<div><p>category that has been associated by categorizer to input data subset</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.PKDrivenData.</tt><tt class="descname">PKDrivenDBDataManager</tt><big>(</big><em>main_dtable</em>, <em>pkcidmap_inst</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.data.PKDrivenData.PKDrivenDataManager</span></tt></a></p>
+<p>Concrete implementation of data&#8211;driven subset producer that creates overlapping
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> instances based on prior knowledge information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>main_dbtable</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a></p>
+<blockquote>
+<div><p>database table that holds primary non&#8211;partitioned input data set with all
+measurements; overlapping subsets will be created based on it</p>
+</div></blockquote>
+<p><strong>pkcidmap_inst</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a></p>
+<blockquote class="last">
+<div><p>concrete instance of fully constructed PKCIDMap that contains mapping between
+individual measurements and prior knowledge concepts; overlapping subsets
+will be created based on that mapping</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager.getSubset">
+<tt class="descname">getSubset</tt><big>(</big><em>pkcID</em>, <em>forSamples='*'</em>, <em>get_ssinfo=True</em>, <em>get_dataset=True</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager.getSubset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate data subset for specific prior knowledge concept, and wrap it into
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> instance if requested. Optionally, it can also
+generate only the information needed to create subset manually and not the subset
+itself; this may be useful e.g. if data come from remote source that offers no
+complete control over querying.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>pkcID</strong> : string</p>
+<blockquote>
+<div><p>identifier of prior knowledge concept for which the data subset will be generated</p>
+</div></blockquote>
+<p><strong>forSamples</strong> : iterable/string</p>
+<blockquote>
+<div><p>samples that will be used to generate data subset; by default, prior knowledge
+is associated with individual measurements and treats samples as equal; this
+may be changed by specifying the individual samples to focus on (as tuple of
+strings) or specifying string &#8216;*&#8217; for considering all samples; &#8216;*&#8217; by default</p>
+</div></blockquote>
+<p><strong>get_ssinfo</strong> : boolean</p>
+<blockquote>
+<div><p>if True, generate runtime information about the data subset and return it;
+True by default</p>
+</div></blockquote>
+<p><strong>get_dataset</strong> : boolean</p>
+<blockquote>
+<div><p>if True, generate an instance of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a> that wraps
+the data subset and return it; True by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>ssinfo</strong> : dict/None</p>
+<blockquote>
+<div><p>runtime information as a dictionary of the following elements</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;dtable&#8217; &#8211; <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> instance of the primary input data set</li>
+<li>&#8216;rows&#8217; &#8211; row IDs for the subset (typically, measurement IDs)</li>
+<li>&#8216;cols&#8217; &#8211; column IDs for the subset (typically, sample names)</li>
+<li>&#8216;pkcID&#8217; &#8211; prior knowledge concept ID used to generate the subset; can be None if &#8216;get_ssinfo&#8217; parameter was False</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p><strong>subset_ds</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a>/None</p>
+<blockquote>
+<div><p>DataSet instance that holds the numerical information of the subset; can be
+None if &#8216;get_dataset&#8217; parameter was False</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if <cite>forSamples</cite> parameter value was incorrectly specified</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.PKDrivenData.</tt><tt class="descname">PKDrivenDBSubsetHierarchy</tt><big>(</big><em>pkdm_inst</em>, <em>samples_iter</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.SubsetHierarchy.SubsetHierarchy" title="kdvs.fw.SubsetHierarchy.SubsetHierarchy"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.SubsetHierarchy.SubsetHierarchy</span></tt></a></p>
+<p>Concrete instance of SubsetHierarchy class that generates proper data subsets
+for given symbol (i.e. prior knowledge concept). This implementation uses
+data&#8211;driven subset producer as a subset generator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>pkdm_inst</strong> : <a class="reference internal" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager" title="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBDataManager"><tt class="xref py py-class docutils literal"><span class="pre">PKDrivenDBDataManager</span></tt></a></p>
+<blockquote>
+<div><p>concrete instance of data&#8211;driven subset producer</p>
+</div></blockquote>
+<p><strong>samples_iter</strong> : iterable of string</p>
+<blockquote class="last">
+<div><p>iterable of sample names that will be used during subset generation; typically,
+it contains all sample names as read from primary input data set</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy.build">
+<tt class="descname">build</tt><big>(</big><em>categorizers_list</em>, <em>categorizers_inst_dict</em>, <em>initial_symbols</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build categories hierarchy and symboltree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>categorizers_list</strong> : iterable of string</p>
+<blockquote>
+<div><p>iterable of identifiers of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a> instances,
+starting from root of the tree</p>
+</div></blockquote>
+<p><strong>categorizers_inst_dict</strong> : dict</p>
+<blockquote>
+<div><p>dictionary of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a> instances, identified
+by specified identifiers</p>
+</div></blockquote>
+<p><strong>initial_symbols</strong> : iterable of string</p>
+<blockquote>
+<div><p>initial pool of symbols to be &#8216;partitioned&#8217; with nested categorizers into
+symboltree; typically, contains all prior knowledge concepts (from single
+domain or all domains if necessary)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if requested <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a> instance is not found
+in the instances dictionary</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy.obtainDatasetFromSymbol">
+<tt class="descname">obtainDatasetFromSymbol</tt><big>(</big><em>symbol</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy.obtainDatasetFromSymbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain data subset for specific symbol (i.e. prior knowledge concept) and return it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>symbol</strong> : string</p>
+<blockquote>
+<div><p>symbol to return data subset for</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>pkcDS</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DataSet.DataSet" title="kdvs.fw.DataSet.DataSet"><tt class="xref py py-class docutils literal"><span class="pre">DataSet</span></tt></a></p>
+<blockquote class="last">
+<div><p>data subset for specific symbol</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.data.SubsetSize">
+<span id="subsetsize-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">SubsetSize</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.data.SubsetSize" title="Permalink to this headline">¶</a></h2>
+<p>Provides specific functionality for activities connected to size of the data
+subsets. For instance, data subsets can be categorized based on their size.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.SubsetSize.</tt><tt class="descname">SubsetSizeCategorizer</tt><big>(</big><em>size_threshold</em>, <em>ID='SubsetSizeCategorizer'</em>, <em>size_lesser_category='&lt;='</em>, <em>size_greater_category='&gt;'</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Categorizer.Categorizer</span></tt></a></p>
+<p>Categorizer that checks the size of the data subset (in terms of number of variables
+associated; also &#8216;rows&#8217; in KDVS internal implementation terminology), and classifies
+it into one of two categories: &#8216;lesser than&#8217; (if size &lt;= threshold) or &#8216;greater
+than&#8217; (if size &gt; threshold).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>size_threshold</strong> : integer</p>
+<blockquote>
+<div><p>size threshold that categorized data subset will be checked against</p>
+</div></blockquote>
+<p><strong>ID</strong> : string</p>
+<blockquote>
+<div><p>identifier of this categorizer; can be skipped to use default value;
+&#8216;SubsetSizeCategorizer&#8217; by default</p>
+</div></blockquote>
+<p><strong>size_lesser_category</strong> : string</p>
+<blockquote>
+<div><p>identifier of &#8216;lesser than&#8217; category; can be skipped to use default value;
+&#8216;&lt;=&#8217; by default</p>
+</div></blockquote>
+<p><strong>size_greater_category</strong> : string</p>
+<blockquote class="last">
+<div><p>identifier of &#8216;greater than&#8217; category; can be skipped to use default value;
+&#8216;&gt;&#8217; by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer.ROW_SIZE_LESSER">
+<tt class="descname">ROW_SIZE_LESSER</tt><em class="property"> = '&lt;='</em><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer.ROW_SIZE_LESSER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer.ROW_SIZE_GREATER">
+<tt class="descname">ROW_SIZE_GREATER</tt><em class="property"> = '&gt;'</em><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer.ROW_SIZE_GREATER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer.getThreshold">
+<tt class="descname">getThreshold</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeCategorizer.getThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return size threshold for that categorizer as an integer.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.data.SubsetSize.</tt><tt class="descname">SubsetSizeOrderer</tt><big>(</big><em>descending=True</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Orderer" title="kdvs.fw.Categorizer.Orderer"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Categorizer.Orderer</span></tt></a></p>
+<p>Concrete Orderer that is closely associated with data&#8211;driven activities. It is
+used to change ordering of the elements associated with subset sizes. For instance,
+one may expect data subsets to be processed starting from the largest ones and
+going progressively towards smaller ones. The <a class="reference internal" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer.build" title="kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer.build"><tt class="xref py py-meth docutils literal"><span class="pre">build()</span></tt></a> method of this class
+accepts iterable of tuples (pkcID, size), where &#8216;pkcID&#8217; is PKC (prior knowledge
+concept) ID, and &#8216;size&#8217; is the size of associated data subset (in terms of number
+of variables associated; also &#8216;rows&#8217; in KDVS internal implementation terminology).
+NOTE: this class must be given as input the already sorted iterable, when sort
+is done according to descending size of associated data subsets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>descending</strong> : boolean</p>
+<blockquote class="last">
+<div><p>if True, the order is descending wrt subset size; if False, the order is
+ascending wrt subset size; True by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer.build">
+<tt class="descname">build</tt><big>(</big><em>pkc2ss</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build appropriate order from given iterable of tuples (pkcID, size). This
+method expects iterable that is already sorted in descending way (i.e. starting
+from largest data subsets).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>pkc2ss</strong> : iterable of (string, integer)</p>
+<blockquote class="last">
+<div><p>iterable of tuples (pkcID, size), sorted in descending order wrt subset size (i.e. starting from largest)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer.order">
+<tt class="descname">order</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.fw.impl.data.SubsetSize.SubsetSizeOrderer.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return specific order for this orderer. NOTE: the order is the iterable of
+pkcIDs alone; the size information is omitted, but the original iterable can
+still be accessed as <cite>self.pkc2ss</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>order</strong> : iterable of string</p>
+<blockquote class="last">
+<div><p>ordered iterable of PKC IDs</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">data Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">data</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.data.Null"><tt class="docutils literal"><span class="pre">Null</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.data.PKDrivenData"><tt class="docutils literal"><span class="pre">PKDrivenData</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.data.SubsetSize"><tt class="docutils literal"><span class="pre">SubsetSize</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.envop.html" title="envop Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.app.html" title="app Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

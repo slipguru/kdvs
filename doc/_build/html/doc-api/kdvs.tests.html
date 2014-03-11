@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="kdvs Package" href="kdvs.html" />
+    <link rel="next" title="f Package" href="kdvs.tests.f.html" />
+    <link rel="prev" title="stat Package" href="kdvs.fw.impl.stat.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tests.f.html" title="f Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.stat.html" title="stat Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" accesskey="U">kdvs Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tests-package">
+<h1>tests Package<a class="headerlink" href="#tests-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">tests</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.tests"></span><p>Provides tests for KDVS. Three levels of testing are devised: unit tests (<cite>t</cite>),
+function tests (<cite>f</cite>), system tests (<cite>s</cite>). Currently, only <cite>t</cite> tests are implemented;
+some dummy <cite>f</cite> and <cite>s</cite> tests are also included for completion.</p>
+<dl class="data">
+<dt id="kdvs.tests.TEST_DATA_ROOT">
+<tt class="descclassname">kdvs.tests.</tt><tt class="descname">TEST_DATA_ROOT</tt><em class="property"> = '/home/grzegorz/Dropbox/KDVS2.0/kdvs/tests/test-data'</em><a class="headerlink" href="#kdvs.tests.TEST_DATA_ROOT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default directory that contains read&#8211;only test data.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.tests.TEST_WRITE_ROOT">
+<tt class="descclassname">kdvs.tests.</tt><tt class="descname">TEST_WRITE_ROOT</tt><em class="property"> = '/home/grzegorz/Dropbox/KDVS2.0/kdvs/tests/test-write'</em><a class="headerlink" href="#kdvs.tests.TEST_WRITE_ROOT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default writable directory to be used by tests that require writing.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="kdvs.tests.TestError">
+<em class="property">exception </em><tt class="descclassname">kdvs.tests.</tt><tt class="descname">TestError</tt><a class="headerlink" href="#kdvs.tests.TestError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.tests.resolve_unittest">
+<tt class="descclassname">kdvs.tests.</tt><tt class="descname">resolve_unittest</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.resolve_unittest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve unit testing module depending on the Python version and return it:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://pypi.python.org/pypi/unittest2">unittest2</a> for Python 2.6</li>
+<li><a class="reference external" href="http://docs.python.org/library/unittest.html#unittest" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">unittest</span></tt></a> for Python 2.7+</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>TestError</strong> :</p>
+<blockquote class="last">
+<div><p>if respective unit testing module is not available</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.tests.TEST_INVARIANTS">
+<tt class="descclassname">kdvs.tests.</tt><tt class="descname">TEST_INVARIANTS</tt><em class="property"> = {'test_write_root': '/home/grzegorz/Dropbox/KDVS2.0/kdvs/tests/test-write', 'test_data_root': '/home/grzegorz/Dropbox/KDVS2.0/kdvs/tests/test-data'}</em><a class="headerlink" href="#kdvs.tests.TEST_INVARIANTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constant values for all tests.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.tests.runTests">
+<span id="runtests-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">runTests</span></tt> Module<a class="headerlink" href="#module-kdvs.tests.runTests" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="kdvs.tests.runTests.main">
+<tt class="descclassname">kdvs.tests.runTests.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.runTests.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.tests.utils">
+<span id="utils-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">utils</span></tt> Module<a class="headerlink" href="#module-kdvs.tests.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="kdvs.tests.utils.test_dir_writable">
+<tt class="descclassname">kdvs.tests.utils.</tt><tt class="descname">test_dir_writable</tt><big>(</big><em>directory</em><big>)</big><a class="headerlink" href="#kdvs.tests.utils.test_dir_writable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if directory is writable (checked by creating dummy temporary file in it), False otherwise</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.tests.utils.count_lines">
+<tt class="descclassname">kdvs.tests.utils.</tt><tt class="descname">count_lines</tt><big>(</big><em>test_stream</em><big>)</big><a class="headerlink" href="#kdvs.tests.utils.count_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of newlines (&#8220;\n&#8221;) in the stream.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.tests.utils.nostderr">
+<tt class="descclassname">kdvs.tests.utils.</tt><tt class="descname">nostderr</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#kdvs.tests.utils.nostderr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager that consumes all output directed to <tt class="xref py py-class docutils literal"><span class="pre">sys.stderr</span></tt> without emitting it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.tests.utils.nostdout">
+<tt class="descclassname">kdvs.tests.utils.</tt><tt class="descname">nostdout</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#kdvs.tests.utils.nostdout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager that consumes all output directed to <tt class="xref py py-class docutils literal"><span class="pre">sys.stdout</span></tt> without emitting it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.tests.utils.check_min_numpy_version">
+<tt class="descclassname">kdvs.tests.utils.</tt><tt class="descname">check_min_numpy_version</tt><big>(</big><em>nmaj</em>, <em>nmin</em>, <em>nrel</em><big>)</big><a class="headerlink" href="#kdvs.tests.utils.check_min_numpy_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if version of installed numpy is greater or equal than provided,
+False otherwise.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kdvs.tests.f.html">f Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.f.html#id1"><tt class="docutils literal"><span class="pre">f</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.f.html#module-kdvs.tests.f.t1"><tt class="docutils literal"><span class="pre">t1</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kdvs.tests.s.html">s Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.s.html#id1"><tt class="docutils literal"><span class="pre">s</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.s.html#module-kdvs.tests.s.t1"><tt class="docutils literal"><span class="pre">t1</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kdvs.tests.t.html">t Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.t.html#id1"><tt class="docutils literal"><span class="pre">t</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.t.html#module-kdvs.tests.t.core"><tt class="docutils literal"><span class="pre">core</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kdvs.tests.t.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kdvs.tests.t.fw.html">fw Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.Annotation"><tt class="docutils literal"><span class="pre">Annotation</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.App"><tt class="docutils literal"><span class="pre">App</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.Categorizer"><tt class="docutils literal"><span class="pre">Categorizer</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.DBResult"><tt class="docutils literal"><span class="pre">DBResult</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.DBShelve"><tt class="docutils literal"><span class="pre">DBShelve</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.DBTable"><tt class="docutils literal"><span class="pre">DBTable</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.DSV"><tt class="docutils literal"><span class="pre">DSV</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.DataSet"><tt class="docutils literal"><span class="pre">DataSet</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.EnvOp"><tt class="docutils literal"><span class="pre">EnvOp</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.Job"><tt class="docutils literal"><span class="pre">Job</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.Map"><tt class="docutils literal"><span class="pre">Map</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.PK"><tt class="docutils literal"><span class="pre">PK</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.Report"><tt class="docutils literal"><span class="pre">Report</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.Stat"><tt class="docutils literal"><span class="pre">Stat</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.StorageManager"><tt class="docutils literal"><span class="pre">StorageManager</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#module-kdvs.tests.t.fw.SubsetHierarchy"><tt class="docutils literal"><span class="pre">SubsetHierarchy</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kdvs.tests.t.fw.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="kdvs.tests.t.fw.impl.html">impl Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="kdvs.tests.t.fw.impl.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.annotation.html">annotation Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.annotation.html#module-kdvs.tests.t.fw.impl.annotation.HGNC"><tt class="docutils literal"><span class="pre">HGNC</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.app.html">app Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.app.html#module-kdvs.tests.t.fw.impl.app.CmdLineApp"><tt class="docutils literal"><span class="pre">CmdLineApp</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.data.html">data Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.data.html#module-kdvs.tests.t.fw.impl.data.Null"><tt class="docutils literal"><span class="pre">Null</span></tt> Module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.data.html#module-kdvs.tests.t.fw.impl.data.PKDrivenData"><tt class="docutils literal"><span class="pre">PKDrivenData</span></tt> Module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.data.html#module-kdvs.tests.t.fw.impl.data.SubsetSize"><tt class="docutils literal"><span class="pre">SubsetSize</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.envop.html">envop Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.envop.html#module-kdvs.tests.t.fw.impl.envop.L1L2"><tt class="docutils literal"><span class="pre">L1L2</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.job.html">job Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.job.html#module-kdvs.tests.t.fw.impl.job.PPlusJob"><tt class="docutils literal"><span class="pre">PPlusJob</span></tt> Module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.job.html#module-kdvs.tests.t.fw.impl.job.SimpleJob"><tt class="docutils literal"><span class="pre">SimpleJob</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.html">map Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.GeneID.html">GeneID Package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.GeneID.html#module-kdvs.tests.t.fw.impl.map.GeneID.GPL"><tt class="docutils literal"><span class="pre">GPL</span></tt> Module</a></li>
+<li class="toctree-l10"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.GeneID.html#module-kdvs.tests.t.fw.impl.map.GeneID.HGNC_GPL"><tt class="docutils literal"><span class="pre">HGNC_GPL</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.PKCID.html">PKCID Package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="kdvs.tests.t.fw.impl.map.PKCID.html#module-kdvs.tests.t.fw.impl.map.PKCID.GPL"><tt class="docutils literal"><span class="pre">GPL</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.pk.html">pk Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.pk.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="kdvs.tests.t.fw.impl.pk.go.html">go Package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="kdvs.tests.t.fw.impl.pk.go.html#module-kdvs.tests.t.fw.impl.pk.go.GeneOntology"><tt class="docutils literal"><span class="pre">GeneOntology</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.report.html">report Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.report.html#module-kdvs.tests.t.fw.impl.report.L1L2"><tt class="docutils literal"><span class="pre">L1L2</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="kdvs.tests.t.fw.impl.stat.html">stat Package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.stat.html#module-kdvs.tests.t.fw.impl.stat.L1L2"><tt class="docutils literal"><span class="pre">L1L2</span></tt> Module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.stat.html#module-kdvs.tests.t.fw.impl.stat.PKCSelector"><tt class="docutils literal"><span class="pre">PKCSelector</span></tt> Module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="kdvs.tests.t.fw.impl.stat.html#module-kdvs.tests.t.fw.impl.stat.Plot"><tt class="docutils literal"><span class="pre">Plot</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">tests Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">tests</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.tests.runTests"><tt class="docutils literal"><span class="pre">runTests</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.tests.utils"><tt class="docutils literal"><span class="pre">utils</span></tt> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tests.f.html" title="f Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.stat.html" title="stat Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

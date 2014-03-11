@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>annotation Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.fw.impl.html" />
+    <link rel="next" title="app Package" href="kdvs.fw.impl.app.html" />
+    <link rel="prev" title="impl Package" href="kdvs.fw.impl.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.app.html" title="app Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.html" title="impl Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="annotation-package">
+<h1>annotation Package<a class="headerlink" href="#annotation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">annotation</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.annotation"></span><p>Provides concrete implementation for all abstract entities regarding handling
+annotations. Also, provides annotation source&#8211;specific functionalities.</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.annotation.HGNC">
+<span id="hgnc-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">HGNC</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.annotation.HGNC" title="Permalink to this headline">¶</a></h2>
+<p>Provides specific functionality for handling HUGO Gene Nomenclature Committee
+(HGNC) annotation data (<a class="reference external" href="http://www.genenames.org/">http://www.genenames.org/</a>). KDVS uses HGNC annotation
+data to resolve gene naming problems that may arise from using old microarray
+annotations. HGNC data refer to gene names as &#8216;symbols&#8217;. The data contain all
+history of approval of individual symbols; some symbols are withdrawn according
+to the current knowledge of the genes. HGNC data are downloaded in the form of
+DSV file; see README in &#8216;data&#8217; directory for more details. Typically, HGNC data
+are loaded into KDVS DB and wrapped in <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a> instance;
+&#8216;experimert&#8217; application does it automatically.</p>
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_APPROVED_SYMBOL_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_APPROVED_SYMBOL_COL</tt><em class="property"> = 'Approved Symbol'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_APPROVED_SYMBOL_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains approved symbol(s).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_STATUS_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_STATUS_COL</tt><em class="property"> = 'Status'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_STATUS_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains status of specific gene symbol.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_LOCUS_TYPE_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_LOCUS_TYPE_COL</tt><em class="property"> = 'Locus Type'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_LOCUS_TYPE_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains type of genetic locus that the symbol describes;
+it could be valid protein products, tRNA gene, etc.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_PREVIOUS_SYMBOLS_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_PREVIOUS_SYMBOLS_COL</tt><em class="property"> = 'Previous Symbols'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_PREVIOUS_SYMBOLS_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains previously approved symbols.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_SYNONYMS_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_SYNONYMS_COL</tt><em class="property"> = 'Synonyms'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_SYNONYMS_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains valid synonyms for specific symbol; some
+synonyms, although not official, are still widely used in different research
+environments and must be accounted for when resolving any gene name.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_EGENE_ID_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_EGENE_ID_COL</tt><em class="property"> = 'Entrez Gene ID'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_EGENE_ID_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains Entrez Gene ID for specific symbol; although
+it is regularly updated, the user should pay attention for its accuracy.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_ENSEMBL_ID_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_ENSEMBL_ID_COL</tt><em class="property"> = 'Ensembl Gene ID'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_ENSEMBL_ID_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains Ensembl Gene ID for specific symbol; although
+it is regularly updated, the user should pay attention for its accuracy.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_REFSEQ_ID_COL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_REFSEQ_ID_COL</tt><em class="property"> = 'RefSeq IDs'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_REFSEQ_ID_COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column in HGNC data that contains (possibly many) RefSeq IDs for specific symbol;
+although it is regularly updated, the user should pay attention for its accuracy.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_FIELDS_SEP">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_FIELDS_SEP</tt><em class="property"> = ','</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_FIELDS_SEP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default DSV separator for the HGNC data file.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_STATUS_APPROVED">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_STATUS_APPROVED</tt><em class="property"> = 'Approved'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_STATUS_APPROVED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value in &#8216;Status&#8217; column referring to the fact that the specific symbol has
+approved status (i.e. is considered official at this moment).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_STATUS_WITHDRAWN">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_STATUS_WITHDRAWN</tt><em class="property"> = ['Entry Withdrawn', 'Symbol Withdrawn']</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_STATUS_WITHDRAWN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Values in &#8216;Status&#8217; column referring to the fact that the specific symbol has been
+withdrawn (i.e. is no longer considered valid); however, it may still be
+encountered among very old data.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_WITHDRAWN_GS_PART">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_WITHDRAWN_GS_PART</tt><em class="property"> = '~withdrawn'</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_WITHDRAWN_GS_PART" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suffix that is appended to each withdrawn symbol; KDVS removes it to fasten the
+querying.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNC_FIELD_EMPTY">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNC_FIELD_EMPTY</tt><em class="property"> = ''</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNC_FIELD_EMPTY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refers to empty value in any column of HGNC data.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNCSYNONYMS_TMPL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNCSYNONYMS_TMPL</tt><em class="property"> = &lt;kdvs.fw.DBTable.DBTemplate object at 0x4a4ec50&gt;</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNCSYNONYMS_TMPL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database template used by KDVS to create fast query table for resolving synonyms.
+It defines the name &#8216;hgnc_synonyms&#8217; and columns &#8216;synonym&#8217;, &#8216;approved&#8217;. The ID
+column is &#8216;synonym&#8217;. All columns are indexed. With it, user obtains approved
+symbol given the synonym.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.annotation.HGNC.HGNCPREVIOUS_TMPL">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">HGNCPREVIOUS_TMPL</tt><em class="property"> = &lt;kdvs.fw.DBTable.DBTemplate object at 0x4a4ecd0&gt;</em><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.HGNCPREVIOUS_TMPL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database template used by KDVS to create fast query table for resolving previous
+symbols. It defines the name &#8216;hgnc_previous&#8217; and columns &#8216;previous&#8217;, &#8216;approved&#8217;.
+The ID column is &#8216;previous&#8217;. All columns are indexed. With it, user obtains
+approved symbol given the previous symbol.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.annotation.HGNC.correctHGNCApprovedSymbols">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">correctHGNCApprovedSymbols</tt><big>(</big><em>hgnc_dsv</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.correctHGNCApprovedSymbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manually correct HGNC data after loading into DB and wrapping into <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a>
+instance. It removes suffix (defined in <a class="reference internal" href="#kdvs.fw.impl.annotation.HGNC.HGNC_WITHDRAWN_GS_PART" title="kdvs.fw.impl.annotation.HGNC.HGNC_WITHDRAWN_GS_PART"><tt class="xref py py-data docutils literal"><span class="pre">HGNC_WITHDRAWN_GS_PART</span></tt></a>)
+from withdrawn symbols in order to fasten further querying. This call must be
+used in the application that uses HGNC data, and must be made after HGNC data
+has been loaded and wrapped into DSV instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>hgnc_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote class="last">
+<div><p>valid instance of DSV that contains HGNC data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.annotation.HGNC.generateHGNCPreviousSymbols">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">generateHGNCPreviousSymbols</tt><big>(</big><em>hgnc_dsv</em>, <em>map_db_key</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.generateHGNCPreviousSymbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create helper table that eases resolving of previous gene symbols with HGNC data.
+The helper table may be created in different subordinated database than original
+HGNC data. The table is specified via template.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>hgnc_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote>
+<div><p>valid instance of DSV that contains HGNC data</p>
+</div></blockquote>
+<p><strong>map_db_key</strong> : string</p>
+<blockquote>
+<div><p>ID of the database that will hold helper table</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>previousDT</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a></p>
+<blockquote class="last">
+<div><p>wrapper for newly created helper table</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTemplate" title="kdvs.fw.DBTable.DBTemplate"><tt class="xref py py-obj docutils literal"><span class="pre">kdvs.fw.DBTable.DBTemplate</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms">
+<tt class="descclassname">kdvs.fw.impl.annotation.HGNC.</tt><tt class="descname">generateHGNCSynonyms</tt><big>(</big><em>hgnc_dsv</em>, <em>map_db_key</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create helper table that eases resolving of synonymic gene symbols with HGNC data.
+The helper table may be created in different subordinated database than original
+HGNC data. The table is specified via template.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>hgnc_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote>
+<div><p>valid instance of DSV that contains HGNC data</p>
+</div></blockquote>
+<p><strong>map_db_key</strong> : string</p>
+<blockquote>
+<div><p>ID of the database that will hold helper table</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>synonymsDT</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a></p>
+<blockquote class="last">
+<div><p>DBTable wrapper for newly created helper table</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTemplate" title="kdvs.fw.DBTable.DBTemplate"><tt class="xref py py-obj docutils literal"><span class="pre">kdvs.fw.DBTable.DBTemplate</span></tt></a></p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">annotation Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">annotation</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.annotation.HGNC"><tt class="docutils literal"><span class="pre">HGNC</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.app.html" title="app Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.html" title="impl Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

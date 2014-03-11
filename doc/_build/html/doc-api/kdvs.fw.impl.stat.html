@@ -1,0 +1,1584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>stat Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.fw.impl.html" />
+    <link rel="next" title="tests Package" href="kdvs.tests.html" />
+    <link rel="prev" title="report Package" href="kdvs.fw.impl.report.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tests.html" title="tests Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.report.html" title="report Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="stat-package">
+<h1>stat Package<a class="headerlink" href="#stat-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><a class="reference external" href="http://docs.python.org/library/stat.html#stat" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">stat</span></tt></a> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.stat"></span><p>Provides concrete implementation of statistical techniques, as well as all associated
+objects (selectors, plots, etc.).</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.stat.L1L2">
+<span id="l1l2-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">L1L2</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.stat.L1L2" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete implementation of statistical techniques that use
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py</a> library.</p>
+<dl class="function">
+<dt id="kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper">
+<tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">l1l2_ols_job_wrapper</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper job function for <tt class="xref py py-func docutils literal"><span class="pre">l1l2py.algorithms.ridge_regression()</span></tt>. This function
+transposes data subset if the dimensions do not match with labels vector, performs
+the call, and calculates classification error with supplied error function. See
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/algorithms.html#regularization-algorithms">l1l2py documentation</a>
+for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>data</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>data subset to be processed</p>
+</div></blockquote>
+<p><strong>labels</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>associated label information to be processed</p>
+</div></blockquote>
+<p><strong>error_func</strong> : callable</p>
+<blockquote>
+<div><p>callable used as error function</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>beta</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>solution of ridge regression</p>
+</div></blockquote>
+<p><strong>error</strong> : float</p>
+<blockquote>
+<div><p>classification error</p>
+</div></blockquote>
+<p><strong>labels</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>original labels</p>
+</div></blockquote>
+<p><strong>labels_predicted</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote class="last">
+<div><p>labels predicted with the obtained solution</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_OLS">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">L1L2_OLS</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_OLS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Stat.Technique</span></tt></a></p>
+<p>Classifier based on <tt class="xref py py-func docutils literal"><span class="pre">l1l2py.algorithms.ridge_regression()</span></tt> (called with mu=0.0).
+It uses l1l2py v1.0.5. It can be configured with the following parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;error_func&#8217; (callable) &#8211; callable used as error function</li>
+<li>&#8216;return_predictions&#8217; (boolean) &#8211; if predictions shall be returned</li>
+</ul>
+</div></blockquote>
+<p>The configuration parameters are interpreted once, during initialization. This
+technique uses single virtual degree of freedom (DOF). The following
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> elements are produced:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;Classification Error&#8217; (float) &#8211; classification error</p>
+</li>
+<li><p class="first">&#8216;Beta&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; solution obtained from ridge regression</p>
+</li>
+<li><p class="first">&#8216;CM MCC&#8217; (tuple: (int, int, int, int, float)) &#8211; the number of: true positives, true negatives, false positives, false negatives, and Matthews Correlation Coefficient,</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Predictions&#8217; (dict) &#8211; if &#8216;return_predictions&#8217; was True, it contains the dictionary:</dt>
+<dd><p class="first last">{
+&#8216;orig_labels&#8217; : iterable of original labels in numerical format (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sign.html#numpy.sign" title="(in NumPy v1.8)"><tt class="xref py py-data docutils literal"><span class="pre">numpy.sign</span></tt></a>),
+&#8216;pred_labels&#8217; : iterable of predicted labels in numerical format (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sign.html#numpy.sign" title="(in NumPy v1.8)"><tt class="xref py py-data docutils literal"><span class="pre">numpy.sign</span></tt></a>),
+&#8216;orig_samples&#8217; : iterable of original samples
+}</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>This technique creates empty &#8216;Selection&#8217; Results element. This technique produces
+single Job instance. This technique does not generate any plots.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper"><tt class="xref py py-obj docutils literal"><span class="pre">l1l2_ols_job_wrapper</span></tt></a></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>keyworded parameters to configure this technique; the following parameters
+are currently used: &#8216;error_func&#8217;, &#8216;return_predictions&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if l1l2py library is not present, or a wrong version of l1l2py is present</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_OLS.createJob">
+<tt class="descname">createJob</tt><big>(</big><em>ssname</em>, <em>data</em>, <em>labels</em>, <em>additionalJobData={}</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_OLS.createJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create single <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> that wraps <a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper"><tt class="xref py py-func docutils literal"><span class="pre">l1l2_ols_job_wrapper()</span></tt></a>
+call together with proper arguments and associated additional data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssname</strong> : string</p>
+<blockquote>
+<div><p>identifier of data subset being processed; typically, equivalent to associated
+prior knowledge concept</p>
+</div></blockquote>
+<p><strong>data</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>data subset to be processed</p>
+</div></blockquote>
+<p><strong>labels</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>associated label information to be processed</p>
+</div></blockquote>
+<p><strong>additionalJobData</strong> : dict</p>
+<blockquote>
+<div><p>any additional information that will be associated with each job produced;
+empty dictionary by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>(jID, job)</strong> : string, <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote class="last">
+<div><p>tuple of the following: custom job ID (ssname in this case), and Job instance to be executed</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Proper order of data and labels must be ensured in order for the technique to work.
+Typically, subsets are generated according to samples order specified within the
+primary data set; labels must be in the same order. By definition, KDVS does not
+check this.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_OLS.produceResults">
+<tt class="descname">produceResults</tt><big>(</big><em>ssname</em>, <em>jobs</em>, <em>runtime_data</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_OLS.produceResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance for exactly one job result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssname</strong> : string</p>
+<blockquote>
+<div><p>identifier of data subset being processed; typically, equivalent to associated
+prior knowledge concept</p>
+</div></blockquote>
+<p><strong>jobs</strong> : iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote>
+<div><p>executed job(s) that contain(s) raw results</p>
+</div></blockquote>
+<p><strong>runtime_data</strong> : dict</p>
+<blockquote>
+<div><p>data collected in runtime that shall be included in the final Results instance</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>final_results</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>Results instance that contains final results of the technique</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if more than one jobs were specified</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.stat.L1L2.l1l2_rls_job_wrapper">
+<tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">l1l2_rls_job_wrapper</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.l1l2_rls_job_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper job function for <tt class="xref py py-func docutils literal"><span class="pre">l1l2py.algorithms.ridge_regression()</span></tt>. This function
+transposes data subset if the dimensions do not match with labels vector, creates
+training and test splits based on supplied index sets, performs the call for each
+value of lambda parameter, calculates errors on training and test splits with
+supplied error function. See
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/algorithms.html#regularization-algorithms">l1l2py documentation</a>
+for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>data</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>data subset to be processed</p>
+</div></blockquote>
+<p><strong>labels</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>associated label information to be processed</p>
+</div></blockquote>
+<p><strong>calls</strong> : dict</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>dictionary that contains the information necessary for each call:</dt>
+<dd><dl class="first last docutils">
+<dt>&#8216;splits&#8217;-&gt;i-&gt;&#8217;train_idxs&#8217; (tuple)</dt>
+<dd><p class="first last">index set for training part of split &#8216;i&#8217;, obtained either from &#8216;ext_split_sets&#8217; technique parameter or generated</p>
+</dd>
+<dt>&#8216;splits&#8217;-&gt;i-&gt;&#8217;test_idxs&#8217;</dt>
+<dd><p class="first last">index set for test part of split &#8216;i&#8217;, obtained either from &#8216;ext_split_sets&#8217; technique parameter or generated</p>
+</dd>
+<dt>&#8216;error_func&#8217; (callable)</dt>
+<dd><p class="first last">callable used as error function</p>
+</dd>
+<dt>&#8216;data_normalizer&#8217; (callable)</dt>
+<dd><p class="first last">callable used to normalize data subset</p>
+</dd>
+<dt>&#8216;labels_normalizer&#8217; (callable)</dt>
+<dd><p class="first last">callable used to normalize label values</p>
+</dd>
+<dt>&#8216;return_predictions&#8217; (boolean)</dt>
+<dd><p class="first last">if predictions shall be returned</p>
+</dd>
+<dt>&#8216;lambda_range&#8217; (tuple of float)</dt>
+<dd><p class="first last">range of values of lambda parameter calculated from input technique parameters</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>results</strong> : dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>dictionary of unformatted results:</dt>
+<dd><dl class="first last docutils">
+<dt>i-&gt;&#8217;beta&#8217; (tuple of float)</dt>
+<dd><p class="first last">solution of ridge regression for split &#8216;i&#8217;, for each lambda value</p>
+</dd>
+<dt>i-&gt;&#8217;error_ts&#8217; (tuple of float)</dt>
+<dd><p class="first last">error calculated on test part of split &#8216;i&#8217;, for each lambda value</p>
+</dd>
+<dt>i-&gt;&#8217;error_tr&#8217; (tuple of float)</dt>
+<dd><p class="first last">error calculated on training part of split &#8216;i&#8217;, for each lambda value</p>
+</dd>
+<dt>i-&gt;&#8217;pred&#8217; (tuple of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>)</dt>
+<dd><p class="first last">labels predicted with the obtained solution for split &#8216;i&#8217;, for each lambda value</p>
+</dd>
+<dt>i-&gt;&#8217;min_err_ts&#8217;</dt>
+<dd><p class="first last">minimum value of error in &#8216;error_ts&#8217;</p>
+</dd>
+<dt>i-&gt;&#8217;min_err_ts_pred&#8217;</dt>
+<dd><p class="first last">predicted labels associated with &#8216;min_err_ts&#8217;</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_RLS">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">L1L2_RLS</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Stat.Technique</span></tt></a></p>
+<p>Classifier based on <tt class="xref py py-func docutils literal"><span class="pre">l1l2py.algorithms.ridge_regression()</span></tt>, called with range
+of <cite>mu</cite> values (also dubbed &#8216;lambda&#8217; here). It uses l1l2py v1.0.5. This technique
+produces training and test splits. It can be configured with the following parameters:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;error_func&#8217; (callable) &#8211; callable used as error function</p>
+</li>
+<li><p class="first">&#8216;return_predictions&#8217; (boolean) &#8211; if predictions shall be returned</p>
+</li>
+<li><p class="first">&#8216;external_k&#8217; (int) &#8211; number of splits to make</p>
+</li>
+<li><p class="first">&#8216;lambda_min&#8217; (float) &#8211; minimum value of lambda parameter range</p>
+</li>
+<li><p class="first">&#8216;lambda_max&#8217; (float) &#8211; maximum value of lambda parameter range</p>
+</li>
+<li><p class="first">&#8216;lambda_number&#8217; (int) &#8211; number of values of lambda parameter range</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;lambda_range_type&#8217; (string) &#8211; type of lambda parameter range to generate</dt>
+<dd><p class="first last">(&#8216;geometric&#8217;/&#8217;linear&#8217;)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;lambda_range&#8217; (iterable of float) &#8211; custom lambda parameter values to use</dt>
+<dd><p class="first last">(None if not used)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;data_normalizer&#8217; (callable) &#8211; callable used to normalize data subset</p>
+</li>
+<li><p class="first">&#8216;labels_normalizer&#8217; (callable) &#8211; callable used to normalize label values</p>
+</li>
+<li><p class="first">&#8216;ext_split_sets&#8217; (None) &#8211; placeholder parameter for pre&#8211;computed splits (if any)</p>
+</li>
+</ul>
+</div></blockquote>
+<p>The configuration parameters are interpreted once, during initialization. This
+technique uses single virtual degree of freedom (DOF). The following
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> elements are produced:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;Classification Error&#8217; (float) &#8211; classification error for all DOFs (based on &#8216;Avg Err TS&#8217;)</p>
+</li>
+<li><p class="first">&#8216;Avg Err TS&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; mean of error obtained on test splits</p>
+</li>
+<li><p class="first">&#8216;Std Err TS&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; standard deviation of error obtained on test splits</p>
+</li>
+<li><p class="first">&#8216;Med Err TS&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; median of error obtained on test splits</p>
+</li>
+<li><p class="first">&#8216;Var Err TS&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; variance of error obtained on test splits</p>
+</li>
+<li><p class="first">&#8216;Avg Err TR&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; mean of error obtained on training splits</p>
+</li>
+<li><p class="first">&#8216;Std Err TR&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; standard deviation of error obtained on training splits</p>
+</li>
+<li><p class="first">&#8216;Med Err TR&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; median of error obtained on training splits</p>
+</li>
+<li><p class="first">&#8216;Var Err TR&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; variance of error obtained on training splits</p>
+</li>
+<li><p class="first">&#8216;Err TS&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; individual errors obtained for all test splits</p>
+</li>
+<li><p class="first">&#8216;Err TR&#8217; (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; individual errors obtained for all training splits</p>
+</li>
+<li><p class="first">&#8216;CM MCC&#8217; (tuple: (int, int, int, int, float)) &#8211; the number of: true positives, true negatives, false positives, false negatives, and Matthews Correlation Coefficient,</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;DofExt&#8217; (dict) &#8211; many result bits depending of individual DOF, including:</dt>
+<dd><p class="first last">predictions, model, numbers of: true positives, true negatives, false positives, false negatives,
+Matthews Correlation Coefficient (some of them are exposed separately)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;Predictions&#8217; (dict) &#8211; if &#8216;return_predictions&#8217; was True, the dictionary:</p>
+<blockquote>
+<div><p>{ DOF_name: {
+&#8216;orig_labels&#8217; : iterable of original labels in numerical format (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sign.html#numpy.sign" title="(in NumPy v1.8)"><tt class="xref py py-data docutils literal"><span class="pre">numpy.sign</span></tt></a>),
+&#8216;pred_labels&#8217; : iterable of predicted labels in numerical format (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sign.html#numpy.sign" title="(in NumPy v1.8)"><tt class="xref py py-data docutils literal"><span class="pre">numpy.sign</span></tt></a>),
+&#8216;orig_samples&#8217; : iterable of original samples
+} }</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>This technique creates empty &#8216;Selection&#8217; Results element. This technique produces
+single <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance. This technique generates two boxplot
+error plots (via <a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph" title="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2ErrorBoxplotMuGraph</span></tt></a>) for training and test splits.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.l1l2_rls_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_rls_job_wrapper"><tt class="xref py py-obj docutils literal"><span class="pre">l1l2_rls_job_wrapper</span></tt></a></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>keyworder parameters to configure this technique; refer to the documentation for
+extensive list</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if l1l2py library is not present, or a wrong version of l1l2py is present</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_RLS.createJob">
+<tt class="descname">createJob</tt><big>(</big><em>ssname</em>, <em>data</em>, <em>labels</em>, <em>additionalJobData={}</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_RLS.createJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create single <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance. Splits are created during job
+execution. The number of splits is taken from the value of the parameter &#8216;external_k&#8217;.
+If value of the parameter &#8216;ext_split_sets&#8217; is not None, index sets specified
+there will be used across all splits. Otherwise, new index sets will be generated
+for each split with <tt class="xref py py-func docutils literal"><span class="pre">l1l2py.tools.stratified_kfold_splits()</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssname</strong> : string</p>
+<blockquote>
+<div><p>identifier of data subset being processed; typically, equivalent to associated
+prior knowledge concept</p>
+</div></blockquote>
+<p><strong>data</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>data subset to be processed</p>
+</div></blockquote>
+<p><strong>labels</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>associated label information to be processed</p>
+</div></blockquote>
+<p><strong>additionalJobData</strong> : dict</p>
+<blockquote>
+<div><p>any additional information that will be associated with each job produced;
+empty dictionary by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>(jID, job)</strong> : string, <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote class="last">
+<div><p>tuple of the following: custom job ID (ssname in this case), and Job instance to be executed</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Proper order of data and labels must be ensured in order for the technique to work.
+Typically, subsets are generated according to samples order specified within the
+primary data set; labels must be in the same order. By definition, KDVS does not
+check this.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_RLS.produceResults">
+<tt class="descname">produceResults</tt><big>(</big><em>ssname</em>, <em>jobs</em>, <em>runtime_data</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_RLS.produceResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance for exactly one job result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssname</strong> : string</p>
+<blockquote>
+<div><p>identifier of data subset being processed; typically, equivalent to associated
+prior knowledge concept</p>
+</div></blockquote>
+<p><strong>jobs</strong> : iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote>
+<div><p>executed job(s) that contain(s) raw results</p>
+</div></blockquote>
+<p><strong>runtime_data</strong> : dict</p>
+<blockquote>
+<div><p>data collected in runtime that shall be included in the final Results instance</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>final_results</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>Results instance that contains final results of the technique</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if more than one jobs were specified</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper">
+<tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">l1l2_l1l2_job_wrapper</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper job function for <tt class="xref py py-func docutils literal"><span class="pre">l1l2py.model_selection()</span></tt>. This function passes
+all properly prepared arguments directly to the call. See
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/core.html#complete-model-selection">l1l2py documentation</a>
+for more details.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_L1L2">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">L1L2_L1L2</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Technique" title="kdvs.fw.Stat.Technique"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Stat.Technique</span></tt></a></p>
+<p>Classifier and variable selector that enforces model sparsity, based on
+<tt class="xref py py-func docutils literal"><span class="pre">l1l2py.model_selection()</span></tt>, that utilizes three ranges of parameters: &#8216;tau&#8217;, &#8216;lambda&#8217;,
+and &#8216;mu&#8217;. &#8216;Tau&#8217; and &#8216;lambda&#8217; parameters are used internally to control selection
+of best statistical model. &#8216;Tau&#8217; and &#8216;mu&#8217; values are not specified directly (they must be
+found computationally), but user has the control of how they scale across the requested
+range. &#8216;Lambda&#8217; values may be specified directly. Values of &#8216;mu&#8217; parameter are
+degrees of freedom (DOF) for this technique (the actual DOF identifiers used are
+configurable). It uses l1l2py v1.0.5. This technique produces two layers of
+training and test splits: internal ones (hidden), and external ones
+(managed by this technique directly).</p>
+<dl class="docutils">
+<dt>It can be configured with the following parameters:</dt>
+<dd><ul class="first last">
+<li><p class="first">&#8216;external_k&#8217; (int) &#8211; number of external splits to make (within the control of the technique)</p>
+</li>
+<li><p class="first">&#8216;internal_k&#8217; (int) &#8211; number of internal splits to make (beyond the control of the technique, implemented in l1l2py)</p>
+</li>
+<li><p class="first">&#8216;tau_min_scale&#8217; (float) &#8211; minimum scaling factor for the tau parameter range</p>
+</li>
+<li><p class="first">&#8216;tau_max_scale&#8217; (float) &#8211; maximum scaling factor for the tau parameter range</p>
+</li>
+<li><p class="first">&#8216;tau_number&#8217; (int) &#8211; number of values of tau parameter range</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;tau_range_type&#8217; (string) &#8211; type of tau parameter range to generate</dt>
+<dd><p class="first last">(&#8216;geometric&#8217;/&#8217;linear&#8217;)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;mu_scaling_factor_min&#8217; (float) &#8211; minimum scaling factor for the mu parameter range</p>
+</li>
+<li><p class="first">&#8216;mu_scaling_factor_max&#8217; (float) &#8211; maximum scaling factor for the mu parameter range</p>
+</li>
+<li><p class="first">&#8216;mu_number&#8217; (int) &#8211; number of values of mu parameter range</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;mu_range_type&#8217; (string) &#8211; type of mu parameter range to generate</dt>
+<dd><p class="first last">(&#8216;geometric&#8217;/&#8217;linear&#8217;)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;lambda_min&#8217; (float) &#8211; minimum value of lambda parameter range</p>
+</li>
+<li><p class="first">&#8216;lambda_max&#8217; (float) &#8211; maximum value of lambda parameter range</p>
+</li>
+<li><p class="first">&#8216;lambda_number&#8217; (int) &#8211; number of values of lambda parameter range</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;lambda_range_type&#8217; (string) &#8211; type of lambda parameter range to generate</dt>
+<dd><p class="first last">(&#8216;geometric&#8217;/&#8217;linear&#8217;)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;lambda_range&#8217; (iterable of float) &#8211; custom lambda parameter values to use</dt>
+<dd><p class="first last">(None if not used)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;error_func&#8217; (callable) &#8211; callable used as error function for external splits</p>
+</li>
+<li><p class="first">&#8216;cv_error_func&#8217; (callable) &#8211; callable used as error function for internal splits</p>
+</li>
+<li><p class="first">&#8216;sparse&#8217; (boolean) &#8211; if most sparsed solution shall be enforced (exclusive with &#8216;regularized&#8217;)</p>
+</li>
+<li><p class="first">&#8216;regularized&#8217; (boolean) &#8211; if most regularized solution shall be enforced (exclusive with &#8216;sparse&#8217;)</p>
+</li>
+<li><p class="first">&#8216;return_predictions&#8217; (boolean) &#8211; if predictions shall be returned</p>
+</li>
+<li><p class="first">&#8216;data_normalizer&#8217; (callable) &#8211; callable used to normalize data subset</p>
+</li>
+<li><p class="first">&#8216;labels_normalizer&#8217; (callable) &#8211; callable used to normalize label values</p>
+</li>
+<li><p class="first">&#8216;ext_split_sets&#8217; (None) &#8211; placeholder parameter for pre&#8211;computed splits (if any)</p>
+</li>
+</ul>
+</dd>
+</dl>
+<p>The configuration parameters are interpreted once, during initialization.</p>
+<p>The following <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> elements are produced:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;Classification Error&#8217; (float) &#8211; classification error for all DOFs (i.e. &#8216;mu&#8217; values) (based on &#8216;Avg Err TS&#8217;)</p>
+</li>
+<li><p class="first">&#8216;Avg Err TS&#8217; (numpy.ndarray) &#8211; mean of error obtained on external test splits</p>
+</li>
+<li><p class="first">&#8216;Std Err TS&#8217; (numpy.ndarray) &#8211; standard deviation of error obtained on external test splits</p>
+</li>
+<li><p class="first">&#8216;Med Err TS&#8217; (numpy.ndarray) &#8211; median of error obtained on external test splits</p>
+</li>
+<li><p class="first">&#8216;Var Err TS&#8217; (numpy.ndarray) &#8211; variance of error obtained on external test splits</p>
+</li>
+<li><p class="first">&#8216;Avg Err TR&#8217; (numpy.ndarray) &#8211; mean of error obtained on external training splits</p>
+</li>
+<li><p class="first">&#8216;Std Err TR&#8217; (numpy.ndarray) &#8211; standard deviation of error obtained on external training splits</p>
+</li>
+<li><p class="first">&#8216;Err TS&#8217; (numpy.ndarray) &#8211; all individual errors obtained for all external and internal test splits</p>
+</li>
+<li><p class="first">&#8216;Err TR&#8217; (numpy.ndarray) &#8211; all individual errors obtained for all external and internal training splits</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;MuExt&#8217; (dict) &#8211; many result bits depending of individual DOF (i.e. &#8216;mu&#8217; value)</dt>
+<dd><p class="first last">and external split, including: predictions, model, numbers of: true positives, true negatives,
+false positives, false negatives, Matthews Correlation Coefficient (some of them
+are exposed separately)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Calls&#8217; (dict) &#8211; all information used to prepare individual l1l2py calls</dt>
+<dd><p class="first last">(exposed for debug purpose)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&#8216;Avg Kfold Err TS&#8217; (numpy.ndarray) &#8211; mean of errors obtained for internal test splits</p>
+</li>
+<li><p class="first">&#8216;Avg Kfold Err TR&#8217; (numpy.ndarray) &#8211; mean of errors obtained for internal training splits</p>
+</li>
+<li><p class="first">&#8216;Max Tau&#8217; (int) &#8211; index of &#8216;tau&#8217; value in tau parameter range that was used to produce the best solution</p>
+</li>
+<li><p class="first">&#8216;CM MCC&#8217; (tuple: (int, int, int, int, float)) &#8211; the number of: true positives, true negatives, false positives, false negatives, and Matthews Correlation Coefficient</p>
+</li>
+<li><p class="first">&#8216;Predictions&#8217; (dict) &#8211; if &#8216;return_predictions&#8217; was True, the dictionary:</p>
+<blockquote>
+<div><p>{ DOF_name: {
+&#8216;orig_labels&#8217; : iterable of original labels in numerical format (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sign.html#numpy.sign" title="(in NumPy v1.8)"><tt class="xref py py-data docutils literal"><span class="pre">numpy.sign</span></tt></a>),
+&#8216;pred_labels&#8217; : iterable of predicted labels in numerical format (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sign.html#numpy.sign" title="(in NumPy v1.8)"><tt class="xref py py-data docutils literal"><span class="pre">numpy.sign</span></tt></a>),
+&#8216;orig_samples&#8217; : iterable of original samples
+} }</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>This technique creates empty &#8216;Selection&#8217; Results element. This technique produces
+as many Job instances as the number of external splits (each external split is
+processed in separate Job).</p>
+<p>This technique generates the following plots:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>for each DOF (i.e. &#8216;mu&#8217; value), surface of error for external test splits in (tau,lambda) parameter space</dt>
+<dd><p class="first last">(via <a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph" title="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2KfoldErrorsGraph</span></tt></a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>single surface of average error across all external and internal test splits in (tau,lambda) parameter space</dt>
+<dd><p class="first last">(via <a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph" title="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2KfoldErrorsGraph</span></tt></a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>single boxplot of error obtained on external test splits for all &#8216;mu&#8217; values</dt>
+<dd><p class="first last">(via <a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph" title="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2ErrorBoxplotMuGraph</span></tt></a>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>single boxplot of error obtained on external training splits for all &#8216;mu&#8217; values</dt>
+<dd><p class="first last">(via <a class="reference internal" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph" title="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph"><tt class="xref py py-class docutils literal"><span class="pre">L1L2ErrorBoxplotMuGraph</span></tt></a>)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">l1l2py.algorithms.l1_bound</span></tt></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>keyworded parameters to configure this technique; refer to the documentation for
+extensive list</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if l1l2py library is not present, or a wrong version of l1l2py is present</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_L1L2.createJob">
+<tt class="descname">createJob</tt><big>(</big><em>ssname</em>, <em>data</em>, <em>labels</em>, <em>additionalJobData={}</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_L1L2.createJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create as many <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instances as the number of external
+splits (each external split is processed in separated Job). Internal splits are
+created from external splits during job execution. The number of external splits
+is taken from the value of the parameter &#8216;external_k&#8217;. If value of the parameter
+&#8216;ext_split_sets&#8217; is not None, index sets specified there will be used across all
+splits. Otherwise, new index sets will be generated for each split with
+<tt class="xref py py-func docutils literal"><span class="pre">l1l2py.tools.stratified_kfold_splits()</span></tt>. All Job instances produced here may be
+associated together as &#8216;job group&#8217; managed by <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.JobGroupManager" title="kdvs.fw.Job.JobGroupManager"><tt class="xref py py-class docutils literal"><span class="pre">JobGroupManager</span></tt></a>;
+this approach is used in &#8216;experiment&#8217; application to keep splits together.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssname</strong> : string</p>
+<blockquote>
+<div><p>identifier of data subset being processed; typically, equivalent to associated
+prior knowledge concept</p>
+</div></blockquote>
+<p><strong>data</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>data subset to be processed</p>
+</div></blockquote>
+<p><strong>labels</strong> : <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a></p>
+<blockquote>
+<div><p>associated label information to be processed</p>
+</div></blockquote>
+<p><strong>additionalJobData</strong> : dict</p>
+<blockquote>
+<div><p>any additional information that will be associated with each job produced;
+empty dictionary by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>(jID, job)</strong> : string, <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote class="last">
+<div><p>tuple of the following: custom job ID (in this case, the ID reflect ssname
+and the numerical identifier of external split), and Job instance to be executed</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Proper order of data and labels must be ensured in order for the technique to work.
+Typically, subsets are generated according to samples order specified within the
+primary data set; labels must be in the same order. By definition, KDVS does not
+check this.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2_L1L2.produceResults">
+<tt class="descname">produceResults</tt><big>(</big><em>ssname</em>, <em>jobs</em>, <em>runtime_data</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2_L1L2.produceResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce single <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance for job results coming from
+all external splits performed on the same data subset. To produce the final Results
+instance, all job results must be completed correctly; sometimes this may not be
+the case (see l1l2py documentation for more details).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ssname</strong> : string</p>
+<blockquote>
+<div><p>identifier of data subset being processed; typically, equivalent to associated
+prior knowledge concept</p>
+</div></blockquote>
+<p><strong>jobs</strong> : iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></p>
+<blockquote>
+<div><p>executed job(s) that contain(s) raw results</p>
+</div></blockquote>
+<p><strong>runtime_data</strong> : dict</p>
+<blockquote>
+<div><p>data collected in runtime that shall be included in the final Results instance</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>final_results</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>Results instance that contains final results of the technique</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if job results were generated for more than one data subset</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if multiple preparatory data instances (&#8216;calls&#8217;) were detected across jobs</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if mutiple shapes of split matrices were detected across jobs</p>
+</div></blockquote>
+<p><strong>Warn</strong> :</p>
+<blockquote>
+<div><p>if some jobs finished with an error (on l1l2py side)</p>
+</div></blockquote>
+<p><strong>Warn</strong> :</p>
+<blockquote class="last">
+<div><p>if the result has not been produced for some jobs (other reasons)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">L1L2KfoldErrorsGraph</tt><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.fw.impl.stat.Plot.MatplotlibPlot" title="kdvs.fw.impl.stat.Plot.MatplotlibPlot"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.stat.Plot.MatplotlibPlot</span></tt></a></p>
+<p>Specialized subclass that plots surface of selected errors in (tau,lambda)
+parameter space. The exact values to plot are configurable. This plotter is
+tailored for l1l2py&#8211;related techniques that use splits. This plotter
+accepts no additional configuration parameters.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://matplotlib.org/mpl_toolkits/mplot3d/api.html#mpl_toolkits.mplot3d.axes3d.Axes3D" title="(in Matplotlib v1.3.1)"><tt class="xref py py-obj docutils literal"><span class="pre">mpl_toolkits.mplot3d.axes3d.Axes3D</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph.configure">
+<tt class="descname">configure</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure this plotter. The following configuration options can be used:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;backend&#8217; (string) &#8211; physical matplotlib backend</li>
+<li>&#8216;driver&#8217; (string) &#8211; physical matplotlib driver</li>
+</ul>
+</div></blockquote>
+<p>Refer to <a class="reference external" href="http://matplotlib.org/contents.html">matplotlib documentation</a>
+for more details. In addition, initialize proper plotting toolkits
+(<a class="reference external" href="http://matplotlib.org/api/cm_api.html#module-matplotlib.cm" title="(in Matplotlib v1.3.1)"><tt class="xref py py-mod docutils literal"><span class="pre">matplotlib.cm</span></tt></a> for color management,
+<a class="reference external" href="http://matplotlib.org/mpl_toolkits/mplot3d/api.html#mpl_toolkits.mplot3d.axes3d.Axes3D" title="(in Matplotlib v1.3.1)"><tt class="xref py py-class docutils literal"><span class="pre">mpl_toolkits.mplot3d.axes3d.Axes3D</span></tt></a> for 3D plotting).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>configuration parameters of this plotter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph.create">
+<tt class="descname">create</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create plot environment and set all necessary parameters according to content
+parameters provided. The following content parameters are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;ranges&#8217; (tuple of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; data ranges to be used</li>
+<li>&#8216;labels&#8217; (tuple of string) &#8211; label ranges to be plotted</li>
+<li>&#8216;ts_errors&#8217; (tuple of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; test errors to be plotted</li>
+<li>&#8216;tr_errors&#8217; (tuple of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; training errors to be plotted</li>
+<li>&#8216;plot_title&#8217; (string) &#8211; tile of this plot</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>content parameters of this plotter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph.plot">
+<tt class="descname">plot</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2KfoldErrorsGraph.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce actual plot and return its content.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.L1L2.</tt><tt class="descname">L1L2ErrorBoxplotMuGraph</tt><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.fw.impl.stat.Plot.MatplotlibPlot" title="kdvs.fw.impl.stat.Plot.MatplotlibPlot"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.stat.Plot.MatplotlibPlot</span></tt></a></p>
+<p>Specialized subclass that produces boxplots of requested data for all given
+parameter values (i.e. DOF values). The exact values to plot are configurable.
+This plotter is tailored for l1l2py&#8211;related techniques that use splits and DOFs.
+This plotter accepts no additional configuration parameters.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.boxplot" title="(in Matplotlib v1.3.1)"><tt class="xref py py-obj docutils literal"><span class="pre">matplotlib.pyplot.boxplot</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph.configure">
+<tt class="descname">configure</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure this plotter. The following configuration options can be used:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;backend&#8217; (string) &#8211; physical matplotlib backend</li>
+<li>&#8216;driver&#8217; (string) &#8211; physical matplotlib driver</li>
+</ul>
+</div></blockquote>
+<p>Refer to <a class="reference external" href="http://matplotlib.org/contents.html">matplotlib documentation</a>
+for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>configuration parameters of this plotter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph.create">
+<tt class="descname">create</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create plot environment and set all necessary parameters according to content
+parameters provided. The following content parameters are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;errors&#8217; (tuple of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.8)"><tt class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></tt></a>) &#8211; data to be plotted</li>
+<li>&#8216;mu_range&#8217; (tuple of float) &#8211; range of values of &#8216;mu&#8217; parameter,</li>
+<li>&#8216;plot_title&#8217; (string) &#8211; tile of this plot</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>content parameters of this plotter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph.plot">
+<tt class="descname">plot</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.L1L2.L1L2ErrorBoxplotMuGraph.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce actual plot and return its content.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.stat.PKCSelector">
+<span id="pkcselector-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">PKCSelector</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.stat.PKCSelector" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete implementations for various standard selectors. Selectors
+are closely tied to statistical techniques and reporters. Selectors implemented
+here were designed to work with techniques that use
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py</a> library, but can be
+adapted for other purposes with some care. NOTE: this part of API has only been
+sketched, the selectors implemented here are not freely portable and many details
+are still hard&#8211;coded.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.PKCSelector.OuterSelector">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.PKCSelector.</tt><tt class="descname">OuterSelector</tt><big>(</big><em>parameters</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Selector" title="kdvs.fw.Stat.Selector"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Stat.Selector</span></tt></a></p>
+<p>Base class for &#8216;outer selectors&#8217;. The &#8216;outer selection&#8217; refers to the prior
+knowledge concepts that can be &#8216;selected&#8217; if they pass certain criteria. For
+instance, if concrete statistical technique performs classification on data subset,
+the associated prior knowledge concept can be &#8216;selected&#8217; by passing certain
+criteria related to classification error. Or, if individual classification
+error for that data subset is below median classification error computed across
+all considered data subsets, it may be marked as &#8216;selected&#8217;, etc. The concrete
+implementation accepts iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances,
+and can compute whatever passing criteria it sees fit. It must fill Results
+element &#8216;Selection&#8217;, subdictionary &#8216;outer&#8217;, for reporting; later, the associated
+Reporter must interpret it correctly. Very often, outer selector is closely tied
+to inner selector.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.PKCSelector.OuterSelector.perform">
+<tt class="descname">perform</tt><big>(</big><em>indResultIter</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform &#8216;outer selection&#8217;, based on the input <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instances. The individual prior knowledge concepts (for which Results were produced),
+can be marked as <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTED" title="kdvs.fw.Stat.SELECTED"><tt class="xref py py-data docutils literal"><span class="pre">SELECTED</span></tt></a> or <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.NOTSELECTED" title="kdvs.fw.Stat.NOTSELECTED"><tt class="xref py py-data docutils literal"><span class="pre">NOTSELECTED</span></tt></a>
+(<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTIONERROR" title="kdvs.fw.Stat.SELECTIONERROR"><tt class="xref py py-data docutils literal"><span class="pre">SELECTIONERROR</span></tt></a> may be used in dubious cases). The typical
+way to mark &#8216;selection&#8217; is to fill standard Results element &#8216;Selection&#8217;,
+subdictionary &#8216;outer&#8217;, with details understood for associated
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a>. Also, the implementation shall return the
+iterable of objects that contain individual selection markings stored in
+&#8216;Selection&#8217;-&gt;&#8217;outer&#8217; Results element. By default, this method does nothing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>indResultIter</strong> : iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote class="last">
+<div><p>iterable of Results instances; depending on the needs, they may come from
+single category or multiple categories (e.g. from all categories of certain
+categorizer)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.PKCSelector.InnerSelector">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.PKCSelector.</tt><tt class="descname">InnerSelector</tt><big>(</big><em>parameters</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Selector" title="kdvs.fw.Stat.Selector"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Stat.Selector</span></tt></a></p>
+<p>Base class for &#8216;inner selectors&#8217;. The &#8216;inner selection&#8217; refers to the individual
+variables of data subset that can be &#8216;selected&#8217; if they pass certain criteria.
+For instance, if concrete statistical technique performs variable selection
+(in machine learning sense) on data subset, selected variables can be simply
+marked by the selector as &#8216;selected&#8217; (in KDVS sense). Or, if the technique uses
+more complicated scheme, such as counting frequencies of selected variables across
+all splits (as some l1l2py&#8211;related techniques do), the selector can mark certain
+variables as &#8216;selected&#8217; depending on some frequency threshold, etc. The concrete
+implementation accepts the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li>results of outer selection</li>
+<li>iterable of individual <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances</li>
+<li>information about data subsets (to retrieve specific variables)</li>
+</ul>
+</div></blockquote>
+<p>and can compute whatever passing criteria it sees fit. It mus fill Results element
+&#8216;Selection&#8217;, subdictionary &#8216;inner&#8217;, for reporting; later, the associated Reporter
+must interpret it correctly. Very often, inner selector is closely tied to outer
+selector.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.PKCSelector.InnerSelector.perform">
+<tt class="descname">perform</tt><big>(</big><em>outerSelectionResults</em>, <em>ssIndResults</em>, <em>subsetsDict</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform &#8216;inner selection&#8217; based on the input <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+instances and information already produced by some outer selection. Very often,
+only variables that come from &#8216;properly selected&#8217; data subsets can be considered
+&#8216;properly selected&#8217; in KDVS sense. The additional information about subsets is
+used to retrieve specific variables for reporting. The individual variables can
+be marked as <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTED" title="kdvs.fw.Stat.SELECTED"><tt class="xref py py-data docutils literal"><span class="pre">SELECTED</span></tt></a> or <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.NOTSELECTED" title="kdvs.fw.Stat.NOTSELECTED"><tt class="xref py py-data docutils literal"><span class="pre">NOTSELECTED</span></tt></a>
+(<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTIONERROR" title="kdvs.fw.Stat.SELECTIONERROR"><tt class="xref py py-data docutils literal"><span class="pre">SELECTIONERROR</span></tt></a> may be used in dubious cases). The typical way
+to mark &#8216;selection&#8217; is to fill standard Results element &#8216;Selection&#8217;, subdictionary
+&#8216;inner&#8217;, with details understood for associated <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Report.Reporter" title="kdvs.fw.Report.Reporter"><tt class="xref py py-class docutils literal"><span class="pre">Reporter</span></tt></a>.
+Also, the implementation shall return the dictionary of objects that contain
+individual selection markings stored in &#8216;Selection&#8217;-&gt;&#8217;inner&#8217; Results element
+(keyed by subset ID). By default, this method does nothing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>outerSelectionResults</strong> : object</p>
+<blockquote>
+<div><p>results of outer selection produced by one of <a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector</span></tt></a></p>
+</div></blockquote>
+<p><strong>ssIndResults</strong> : dict of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>dictionary that contains Results instances, keyed by subset ID</p>
+</div></blockquote>
+<p><strong>subsetsDict</strong> : dict</p>
+<blockquote class="last">
+<div><p>technical mapping produced so far only in &#8216;experiment&#8217; application</p>
+<blockquote>
+<div><ul class="simple">
+<li>{PKC_ID : [subsetID, numpy.shape(ds), [vars], [samples]]}</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.PKCSelector.</tt><tt class="descname">OuterSelector_ClassificationErrorThreshold</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.stat.PKCSelector.OuterSelector</span></tt></a></p>
+<p>Outer selector that marks PKC as &#8216;selected&#8217; if associated classification error
+(that must be present in <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance as
+&#8216;Classification Error&#8217;) is below (&lt;) the configurable threshold. The error
+threshold is specified during initialization and interpreted once.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>parameters to configure this outer selector; the following parameters are used:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;error_threshold&#8217; (float) &#8211; error threshold that this instance will use</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold.perform">
+<tt class="descname">perform</tt><big>(</big><em>indResultIter</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark each individual <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instance as
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTED" title="kdvs.fw.Stat.SELECTED"><tt class="xref py py-data docutils literal"><span class="pre">SELECTED</span></tt></a> or <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.NOTSELECTED" title="kdvs.fw.Stat.NOTSELECTED"><tt class="xref py py-data docutils literal"><span class="pre">NOTSELECTED</span></tt></a>, depending on
+the classification error. The value of classification error is compared to
+error threshold; if it is smaller (&lt;), then PKC is marked as
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTED" title="kdvs.fw.Stat.SELECTED"><tt class="xref py py-data docutils literal"><span class="pre">SELECTED</span></tt></a>, and as <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.NOTSELECTED" title="kdvs.fw.Stat.NOTSELECTED"><tt class="xref py py-data docutils literal"><span class="pre">NOTSELECTED</span></tt></a> otherwise.
+Note that for technique that uses not&#8211;null multiple degrees of freedom (DOFs),
+each DOF can be associated with different classification error; this is often the
+case when the statistical technique is regularized and certain parameter values
+can drastically alter the results it produces. It uses the following selection
+marking for single Results instance: a dictionary</p>
+<blockquote>
+<div><ul class="simple">
+<li>{DOF : selection_status}</li>
+</ul>
+</div></blockquote>
+<p>It fills &#8216;Selection&#8217;-&gt;&#8217;outer&#8217; Results element that must be present (may be empty).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>indResultIter</strong> : iterable of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>iterable of Results instances that should come from single category</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>cres</strong> : iterable of dict</p>
+<blockquote class="last">
+<div><p>iterable of selection markings as dictionary {DOF : selection_status}</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.PKCSelector.</tt><tt class="descname">InnerSelector_ClassificationErrorThreshold_AllVars</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.stat.PKCSelector.InnerSelector</span></tt></a></p>
+<p>Inner selector that marks all variables coming from &#8216;properly selected&#8217; data subsets
+(by outer selection) as &#8216;properly selected&#8217;. IMPORTANT NOTE: when the variable
+comes from &#8216;not selected&#8217; data subset, it is marked as &#8216;not selected&#8217; regardless
+of any proper variable selection scheme used; this ignores any variable selection
+(in machine learning sense) performed for such data subset. This selector accepts
+no configuration parameters. NOTE: currently, this selector produces only selection
+markings, and does not use selection constants.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>parameters to configure this inner selector; currently no parameters are used</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars.perform">
+<tt class="descname">perform</tt><big>(</big><em>outerSelectionResults</em>, <em>ssIndResults</em>, <em>subsetsDict</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_AllVars.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform &#8216;inner selection&#8217; on the individual variables according to
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances. Inner selection is based <cite>solely</cite> on
+outer selection results. If data subset was marked during outer selection as
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTED" title="kdvs.fw.Stat.SELECTED"><tt class="xref py py-data docutils literal"><span class="pre">SELECTED</span></tt></a>, all its variables are marked as &#8216;selected&#8217; as well,
+and as &#8216;not selected&#8217; otherwise. Currently, it understands outer selection
+results produced by <a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector_ClassificationErrorThreshold</span></tt></a>.
+It fills &#8216;Selection&#8217;-&gt;&#8217;inner&#8217; Results element that must be present (may be empty).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>outerSelectionResults</strong> : object</p>
+<blockquote>
+<div><p>results of outer selection; must conform to the format used by
+<a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector_ClassificationErrorThreshold</span></tt></a></p>
+</div></blockquote>
+<p><strong>ssIndResults</strong> : dict of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>dictionary that contains Results instances, keyed by subset ID</p>
+</div></blockquote>
+<p><strong>subsetsDict</strong> : dict</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>technical mapping produced so far only in &#8216;experiment&#8217; application</dt>
+<dd><ul class="first last simple">
+<li>{PKC_ID : [subsetID, numpy.shape(ds), [vars], [samples]]}</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>vres</strong> : dict of dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>dictionary of the following selection markings:</dt>
+<dd><ul class="first last simple">
+<li>{PKC_ID : {DOF : {&#8216;sel_vars&#8217;/&#8217;nsel_vars&#8217; : {variable_name : {&#8216;pass&#8217; : True/False}}}}}</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.PKCSelector.</tt><tt class="descname">InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector" title="kdvs.fw.impl.stat.PKCSelector.InnerSelector"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.stat.PKCSelector.InnerSelector</span></tt></a></p>
+<p>Inner selector closely tied with techniques that use
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py</a> library, that marks
+variables coming from &#8216;properly selected&#8217; data subsets (by outer selection) as
+&#8216;properly selected&#8217;, if they appeared frequently enough among selected variables
+(in variable selection sense) across test splits. This selector accepts the following
+configuration parameters:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;frequency_threshold&#8217; (float) &#8211; the threshold on the frequency of appearance across splits</p>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;pass_variables_for_nonselected_pkcs&#8217; (boolean) &#8211; for compatibility with KDVS v1.0;</dt>
+<dd><p class="first last">if True, the variables that come from &#8216;not selected&#8217; data subsets will
+be counted as &#8216;not selected&#8217; (as expected, introduced in KDVS v2.0);
+if False, such variables will be ignored and not counted anywhere
+(replicating the behavior of KDVS v1.0)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>NOTE: currently, this selector produces only selection markings, and does not use selection constants.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>parameters to configure this inner selector; the following parameters are used:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;frequency_threshold&#8217; (float) &#8211; the threshold on the frequency of appearance across splits</li>
+<li>&#8216;pass_variables_for_nonselected_pkcs&#8217; (boolean) &#8211; for compatibility with KDVS v1.0</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq.perform">
+<tt class="descname">perform</tt><big>(</big><em>outerSelectionResults</em>, <em>ssIndResults</em>, <em>subsetsDict</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.PKCSelector.InnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform &#8216;inner selection&#8217; on the individual variables according to
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a> instances. Inner selection results are based on
+outer selection results, as well as raw results from statistical technique that
+uses l1l2 regularization (see l1l2py documentation for more details). If data
+subset was marked during outer selection as <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.SELECTED" title="kdvs.fw.Stat.SELECTED"><tt class="xref py py-data docutils literal"><span class="pre">SELECTED</span></tt></a>,
+the selector scans frequencies (stored in &#8216;MuExt&#8217; Results element) and marks
+individual variables if they &#8216;pass&#8217; the frequency threshold criterion (freq &gt; thr).
+Currently, it understands outer selection results produced by
+<a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector_ClassificationErrorThreshold</span></tt></a>. It fills &#8216;Selection&#8217;-&gt;&#8217;inner&#8217;
+Results element that must be present (may be empty).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>outerSelectionResults</strong> : object</p>
+<blockquote>
+<div><p>results of outer selection; must conform to the format used by
+<a class="reference internal" href="#kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold" title="kdvs.fw.impl.stat.PKCSelector.OuterSelector_ClassificationErrorThreshold"><tt class="xref py py-class docutils literal"><span class="pre">OuterSelector_ClassificationErrorThreshold</span></tt></a></p>
+</div></blockquote>
+<p><strong>ssIndResults</strong> : dict of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a></p>
+<blockquote>
+<div><p>dictionary that contains Results instances, keyed by subset ID</p>
+</div></blockquote>
+<p><strong>subsetsDict</strong> : dict</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>technical mapping produced so far only in &#8216;experiment&#8217; application</dt>
+<dd><ul class="first last simple">
+<li>{PKC_ID : [subsetID, numpy.shape(ds), [vars], [samples]]},</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>vres</strong> : dict of dict</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>dictionary of the following selection markings:</dt>
+<dd><ul class="first last simple">
+<li>{PKC_ID : {DOF : {&#8216;sel_vars&#8217;/&#8217;nsel_vars&#8217; : {variable_name : {&#8216;freq&#8217; : frequency_value, &#8216;pass&#8217; : True/False}}}}}</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.stat.Plot">
+<span id="plot-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">Plot</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.stat.Plot" title="Permalink to this headline">¶</a></h2>
+<p>Provides base plot class that uses <a class="reference external" href="http://matplotlib.org/contents.html">matplotlib</a>,
+if installed. It can be subclassed to create specific (single) plot. By default,
+plot can be generated as PDF or PNG.</p>
+<dl class="data">
+<dt id="kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PDF">
+<tt class="descclassname">kdvs.fw.impl.stat.Plot.</tt><tt class="descname">MATPLOTLIB_GRAPH_BACKEND_PDF</tt><em class="property"> = {'format': 'pdf', 'driver': 'matplotlib.pyplot', 'backend': 'pdf'}</em><a class="headerlink" href="#kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PDF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default configuration options for PDF plotting. The physical matplotlib backend
+used is &#8216;pdf&#8217; (see <a class="reference external" href="http://matplotlib.org/api/backend_pdf_api.html#module-matplotlib.backends.backend_pdf" title="(in Matplotlib v1.3.1)"><tt class="xref py py-mod docutils literal"><span class="pre">matplotlib.backends.backend_pdf</span></tt></a>). The physical driver
+is <a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#module-matplotlib.pyplot" title="(in Matplotlib v1.3.1)"><tt class="xref py py-mod docutils literal"><span class="pre">matplotlib.pyplot</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PNG">
+<tt class="descclassname">kdvs.fw.impl.stat.Plot.</tt><tt class="descname">MATPLOTLIB_GRAPH_BACKEND_PNG</tt><em class="property"> = {'format': 'png', 'driver': 'matplotlib.pyplot', 'backend': 'agg'}</em><a class="headerlink" href="#kdvs.fw.impl.stat.Plot.MATPLOTLIB_GRAPH_BACKEND_PNG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default configuration options for PNG plotting. The physical matplotlib backend
+used is &#8216;agg&#8217; (see <a class="reference external" href="http://matplotlib.org/faq/usage_faq.html#what-is-a-backend" title="(in Matplotlib v1.3.1)"><em class="xref std std-ref">here</em></a> for detailed explanation).
+The physical driver is <a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#module-matplotlib.pyplot" title="(in Matplotlib v1.3.1)"><tt class="xref py py-mod docutils literal"><span class="pre">matplotlib.pyplot</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.fw.impl.stat.Plot.MatplotlibPlot">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.stat.Plot.</tt><tt class="descname">MatplotlibPlot</tt><a class="headerlink" href="#kdvs.fw.impl.stat.Plot.MatplotlibPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Stat.Plot" title="kdvs.fw.Stat.Plot"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Stat.Plot</span></tt></a></p>
+<p>Base plot class that uses <tt class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></tt> as plot generator. During initialization,
+it is verified (<a class="reference internal" href="kdvs.core.html#kdvs.core.dep.verifyDepModule" title="kdvs.core.dep.verifyDepModule"><tt class="xref py py-func docutils literal"><span class="pre">verifyDepModule()</span></tt></a>) that matplotlib library is present.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.Plot.MatplotlibPlot.configure">
+<tt class="descname">configure</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.Plot.MatplotlibPlot.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure matplotlib plotter. The following configuration options can be used:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;backend&#8217; (string) &#8211; physical matplotlib backend</li>
+<li>&#8216;driver&#8217; (string) &#8211; physical matplotlib driver</li>
+</ul>
+</div></blockquote>
+<p>See <a class="reference external" href="http://matplotlib.org/contents.html">matplotlib documentation</a> for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>configuration parameters of this plotter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.Plot.MatplotlibPlot.create">
+<tt class="descname">create</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.Plot.MatplotlibPlot.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method needs to be re&#8211;implemented for producing actual plot. It should
+obtain a reference to physical matplotlib driver (via <cite>self.driver</cite>), and set&#8211;up
+all plot parameters as done normally with matplotlib. There is no need to physically
+save the plot afterwards, e.g. with <a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.savefig" title="(in Matplotlib v1.3.1)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.savefig()</span></tt></a>; it will be
+done later automatically. By default, this method does nothing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>any additional arguments needed to construct the plot</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.stat.Plot.MatplotlibPlot.plot">
+<tt class="descname">plot</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.stat.Plot.MatplotlibPlot.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalize created plot and return its content (i.e. actual physical file content)
+to be saved by KDVS <a class="reference internal" href="kdvs.fw.html#kdvs.fw.StorageManager.StorageManager" title="kdvs.fw.StorageManager.StorageManager"><tt class="xref py py-class docutils literal"><span class="pre">StorageManager</span></tt></a> in proper
+location. The following configuration options can be used:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;format&#8217; (string) &#8211; physical file format that is supported by the backend</li>
+</ul>
+</div></blockquote>
+<p>See <a class="reference external" href="http://matplotlib.org/contents.html">matplotlib documentation</a> for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>any additional plot parameters</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>content</strong> : string</p>
+<blockquote class="last">
+<div><p>physical content of generated plot that can be saved normally into a file</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">stat Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">stat</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.stat.L1L2"><tt class="docutils literal"><span class="pre">L1L2</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.stat.PKCSelector"><tt class="docutils literal"><span class="pre">PKCSelector</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.stat.Plot"><tt class="docutils literal"><span class="pre">Plot</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tests.html" title="tests Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.report.html" title="report Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

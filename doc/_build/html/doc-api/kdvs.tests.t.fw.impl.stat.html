@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>stat Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.tests.t.fw.impl.html" />
+    <link rel="next" title="tools Package" href="kdvs.tools.html" />
+    <link rel="prev" title="report Package" href="kdvs.tests.t.fw.impl.report.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tools.html" title="tools Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tests.t.fw.impl.report.html" title="report Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.html" >tests Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.t.html" >t Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.t.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.t.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="stat-package">
+<h1>stat Package<a class="headerlink" href="#stat-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-kdvs.tests.t.fw.impl.stat.L1L2">
+<span id="l1l2-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">L1L2</span></tt> Module<a class="headerlink" href="#module-kdvs.tests.t.fw.impl.stat.L1L2" title="Permalink to this headline">¶</a></h2>
+<p>Created on Mar 25, 2013</p>
+<p>&#64;author: grzegorz</p>
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.MockL1L2_OLS">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.L1L2.</tt><tt class="descname">MockL1L2_OLS</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.MockL1L2_OLS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_OLS" title="kdvs.fw.impl.stat.L1L2.L1L2_OLS"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.impl.stat.L1L2.L1L2_OLS</span></tt></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>keyworded parameters to configure this technique; the following parameters
+are currently used: &#8216;error_func&#8217;, &#8216;return_predictions&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if l1l2py library is not present, or a wrong version of l1l2py is present</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.MockL1L2_OLS.version">
+<tt class="descname">version</tt><em class="property"> = 'XXXXX'</em><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.MockL1L2_OLS.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.L1L2.</tt><tt class="descname">TestL1L2_OLS1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init0">
+<tt class="descname">test_init0</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init1">
+<tt class="descname">test_init1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init2">
+<tt class="descname">test_init2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init3">
+<tt class="descname">test_init3</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS1.test_init3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.L1L2.</tt><tt class="descname">TestL1L2_OLS2</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.test_createJob1">
+<tt class="descname">test_createJob1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.test_createJob1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.test_produceResults1">
+<tt class="descname">test_produceResults1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.test_produceResults1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.test_produceResults2">
+<tt class="descname">test_produceResults2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_OLS2.test_produceResults2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.L1L2.</tt><tt class="descname">TestL1L2_L1L2_1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1.test_createJob1">
+<tt class="descname">test_createJob1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1.test_createJob1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1.test_produceResults1">
+<tt class="descname">test_produceResults1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_L1L2_1.test_produceResults1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.L1L2.</tt><tt class="descname">TestL1L2_RLS_1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1.test_createJob1">
+<tt class="descname">test_createJob1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1.test_createJob1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1.test_produceResults1">
+<tt class="descname">test_produceResults1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.L1L2.TestL1L2_RLS_1.test_produceResults1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.tests.t.fw.impl.stat.PKCSelector">
+<span id="pkcselector-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">PKCSelector</span></tt> Module<a class="headerlink" href="#module-kdvs.tests.t.fw.impl.stat.PKCSelector" title="Permalink to this headline">¶</a></h2>
+<p>Created on Jun 6, 2013</p>
+<p>&#64;author: grzegorz</p>
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.PKCSelector.</tt><tt class="descname">TestOuterSelector_ClassificationErrorThreshold1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.test_init1">
+<tt class="descname">test_init1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.test_init1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.test_perform1">
+<tt class="descname">test_perform1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.test_perform1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.test_perform2">
+<tt class="descname">test_perform2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestOuterSelector_ClassificationErrorThreshold1.test_perform2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.PKCSelector.</tt><tt class="descname">TestInnerSelector_ClassificationErrorThreshold_AllVars1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.test_init1">
+<tt class="descname">test_init1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.test_init1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.test_perform1">
+<tt class="descname">test_perform1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.test_perform1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.test_perform2">
+<tt class="descname">test_perform2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_AllVars1.test_perform2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.PKCSelector.</tt><tt class="descname">TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_init1">
+<tt class="descname">test_init1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_init1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform1">
+<tt class="descname">test_perform1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform2">
+<tt class="descname">test_perform2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform3">
+<tt class="descname">test_perform3</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform4">
+<tt class="descname">test_perform4</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform5">
+<tt class="descname">test_perform5</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.PKCSelector.TestInnerSelector_ClassificationErrorThreshold_L1L2_VarsFreq1.test_perform5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.tests.t.fw.impl.stat.Plot">
+<span id="plot-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">Plot</span></tt> Module<a class="headerlink" href="#module-kdvs.tests.t.fw.impl.stat.Plot" title="Permalink to this headline">¶</a></h2>
+<p>Created on Jun 6, 2013</p>
+<p>&#64;author: grzegorz</p>
+<dl class="class">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1">
+<em class="property">class </em><tt class="descclassname">kdvs.tests.t.fw.impl.stat.Plot.</tt><tt class="descname">TestMatplotlibPlot1</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_init1">
+<tt class="descname">test_init1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_init1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_configure1">
+<tt class="descname">test_configure1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_configure1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_configure2">
+<tt class="descname">test_configure2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_configure2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_plot1">
+<tt class="descname">test_plot1</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_plot1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_plot2">
+<tt class="descname">test_plot2</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.tests.t.fw.impl.stat.Plot.TestMatplotlibPlot1.test_plot2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">stat Package</a><ul>
+<li><a class="reference internal" href="#module-kdvs.tests.t.fw.impl.stat.L1L2"><tt class="docutils literal"><span class="pre">L1L2</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.tests.t.fw.impl.stat.PKCSelector"><tt class="docutils literal"><span class="pre">PKCSelector</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.tests.t.fw.impl.stat.Plot"><tt class="docutils literal"><span class="pre">Plot</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tools.html" title="tools Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.tests.t.fw.impl.report.html" title="report Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.html" >tests Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.t.html" >t Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.t.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.tests.t.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

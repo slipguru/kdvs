@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Roadmap &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="next" title="KDVS API" href="../doc-api/api.html" />
+    <link rel="prev" title="Annex" href="annex.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../doc-api/api.html" title="KDVS API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="annex.html" title="Annex"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="roadmap">
+<span id="id1"></span><h1>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h1>
+<p>This section lists possible improvements and new features. The points are specified
+in no particular order.</p>
+<div class="section" id="codebase">
+<h2>Codebase<a class="headerlink" href="#codebase" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Refactor existing &#8216;experiment.py&#8217; application</p>
+<blockquote>
+<div><ul>
+<li><p class="first">extract walking of &#8216;category tree&#8217; into API component</p>
+</li>
+<li><p class="first">extract &#8216;operations map&#8217; construction (binary/textual) and walking into API component</p>
+</li>
+<li><p class="first">extract job production and submission (&#8216;submitSubsetOperations&#8217;) into API component</p>
+</li>
+<li><p class="first">extract retrieving raw job results into API component</p>
+</li>
+<li><p class="first">make group completion an API friendly concept, reimplement and separate from application</p>
+</li>
+<li><p class="first">extract job postprocessing into API component</p>
+</li>
+<li><p class="first">extract selections into API component</p>
+</li>
+<li><p class="first">make plots storage configurable</p>
+</li>
+<li><p class="first">make these mappings reimplemented as API components:</p>
+<blockquote>
+<div><ul class="simple">
+<li>subsets</li>
+<li>pkcid2ssname</li>
+<li>technique2DOF</li>
+<li>submission_order</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">make selectors marking uniformly pkcs/variables with selection constants;
+make inner selectors more API friendly</p>
+</li>
+<li><p class="first">decouple selectors from techniques (likely requires revision of Technique/Results
+abstract classes)</p>
+</li>
+<li><p class="first">streamline report implementation and decouple it from application as much as
+possible (additional_data!)</p>
+</li>
+<li><p class="first">extract command line parameters from application initialization and make it
+as declarative as possible</p>
+</li>
+<li><p class="first">refactor configuration of static data files into something more descriptive
+and decouple it from application</p>
+</li>
+<li><p class="first">separate textual serialization from binary serialization and make it configurable
+from command line</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Reimplement component initializers as API concept</p>
+</li>
+<li><p class="first">Rewrite &#8216;experiment.py&#8217; application as the general application that interprets
+application profile (HGNC may be a problem here!)</p>
+</li>
+<li><p class="first">Make generator of configuration file for non-power users that utilizes GUI
+or change configuration file content into something more declarative (XML?)</p>
+</li>
+<li><p class="first">Optimize memory consumption of &#8216;experiment.py&#8217; application as much as possible
+(Results instances may be a problem here!)</p>
+</li>
+</ul>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Unit tests</p>
+<blockquote>
+<div><ul class="simple">
+<li>report/L1L2</li>
+<li>envop/L1L2 (create mock RLS like technique) (to be finished after operations map has API)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Function tests on synthetic data</p>
+</li>
+<li><p class="first">System tests</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Roadmap</a><ul>
+<li><a class="reference internal" href="#codebase">Codebase</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../doc-api/api.html" title="KDVS API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="annex.html" title="Annex"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

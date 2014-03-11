@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>envop Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="impl Package" href="kdvs.fw.impl.html" />
+    <link rel="next" title="job Package" href="kdvs.fw.impl.job.html" />
+    <link rel="prev" title="data Package" href="kdvs.fw.impl.data.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.job.html" title="job Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.data.html" title="data Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" accesskey="U">impl Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="envop-package">
+<h1>envop Package<a class="headerlink" href="#envop-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">envop</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.envop"></span><p>Provides concrete implementations of environment&#8211;wide operations (envops).</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.envop.L1L2">
+<span id="l1l2-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">L1L2</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.envop.L1L2" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete functionality for environment&#8211;wide operations (envops) related
+to statistical techniques using <a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py</a> library.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.envop.L1L2.</tt><tt class="descname">L1L2_UniformExtSplitProvider</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.EnvOp.EnvOp" title="kdvs.fw.EnvOp.EnvOp"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.EnvOp.EnvOp</span></tt></a></p>
+<p>The parametrizable pre&#8211;EnvOp (i.e. that will be executed before all computational jobs
+from statistical techniques for current category) that generates splits from
+given labels vector, and places the result directly into specific placeholder
+variable that the statistical technique exposes. This way, any interested
+statistical technique may share exactly the same split. This approach is used in
+<a class="reference internal" href="kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a> and <a class="reference internal" href="kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="kdvs.fw.impl.stat.L1L2.L1L2_RLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_RLS</span></tt></a>
+techniques so that they can share one uniform external split. To use it, the
+instance of this class must be configured with the following parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;enclosingCategorizerID&#8217; &#8211; the identifier of the <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Categorizer.Categorizer" title="kdvs.fw.Categorizer.Categorizer"><tt class="xref py py-class docutils literal"><span class="pre">Categorizer</span></tt></a> on the level this EnvOp will be called</li>
+<li>&#8216;extSplitParamName&#8217; &#8211; name of the parameter that holds the number of splits to be made (&#8216;the counter&#8217;)</li>
+<li>&#8216;extSplitPlaceholderParam&#8217; &#8211; name of the parameter in statistical technique that will hold the generated split</li>
+</ul>
+</div></blockquote>
+<p>For instance, if &#8216;extSplitPlaceholderParam&#8217; equals to &#8216;splits&#8217;, then such parameter
+must be present during configuration of statistical technique, with initial value
+None, in configuration file:</p>
+<blockquote>
+<div><ul class="simple">
+<li>techConf1 = {..., &#8216;splits&#8217; : None, ...}</li>
+</ul>
+</div></blockquote>
+<p>This EnvOp works assuming the following conditions are met:</p>
+<blockquote>
+<div><ul class="simple">
+<li><ol class="first arabic">
+<li>in all statistical techniques that expose placeholder parameter, the &#8216;counter&#8217; value is exactly the same</li>
+</ol>
+</li>
+<li><ol class="first arabic" start="2">
+<li>in all categories on current hierarchy level, all data subsets have the same single statistical technique assigned for processing (so we obtain single &#8216;counter&#8217; value),</li>
+</ol>
+</li>
+<li><ol class="first arabic" start="3">
+<li>there is at least one valid categorizer BELOW the enclosing one with at least one technique that exposes placeholder parameter.</li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<p>If any of those conditions is NOT met, an Error is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>actual parameters supplied during instantiation; they will be checked against
+reference ones; the parameters are: &#8216;enclosingCategorizerID&#8217;,
+&#8216;extSplitParamName&#8217;, &#8216;extSplitPlaceholderParam&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if specific version of &#8216;l1l2py&#8217; library is not present</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider.version">
+<tt class="descname">version</tt><em class="property"> = '1.0.5'</em><a class="headerlink" href="#kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider.uesp_parameters">
+<tt class="descname">uesp_parameters</tt><em class="property"> = ('enclosingCategorizerID', 'extSplitParamName', 'extSplitPlaceholderParam')</em><a class="headerlink" href="#kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider.uesp_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider.perform">
+<tt class="descname">perform</tt><big>(</big><em>env</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.envop.L1L2.L1L2_UniformExtSplitProvider.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform generation of splits and put them into all statistical techniques
+that expose certain placeholder parameter. Refer to the comments for the detailed
+procedure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>env</strong> : <a class="reference internal" href="kdvs.core.html#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">ExecutionEnvironment</span></tt></a></p>
+<blockquote>
+<div><p>concrete instance of ExecutionEnvironment that will be modified in&#8211;place</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if the enclosing categorizer was not found</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>in the cases explained above</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">envop Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">envop</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.envop.L1L2"><tt class="docutils literal"><span class="pre">L1L2</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.job.html" title="job Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.data.html" title="data Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

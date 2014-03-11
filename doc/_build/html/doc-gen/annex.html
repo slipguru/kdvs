@@ -1,0 +1,1504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Annex &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="next" title="Roadmap" href="roadmap.html" />
+    <link rel="prev" title="Writing KDVS application" href="writingapplication.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roadmap.html" title="Roadmap"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="writingapplication.html" title="Writing KDVS application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="annex">
+<span id="id1"></span><h1>Annex<a class="headerlink" href="#annex" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="default-configuration-file">
+<span id="annex-defaultconfigurationfile"></span><h2>Default configuration file<a class="headerlink" href="#default-configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The default configuration file is located in the following location:</p>
+<blockquote>
+<div>kdvs/config/default_cfg.py</div></blockquote>
+<p>For programmatic use, see <a class="reference internal" href="framework.html#framework-configurationfiles"><em>Configuration files</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When referring to the variable from default configuration file, the following
+notation is used:</p>
+<blockquote class="last">
+<div><tt class="docutils literal"><span class="pre">$log_name</span></tt></div></blockquote>
+</div>
+<p>The current variables, in logical subgroups, are listed below. Note that
+many options are valid only for &#8216;experiment.py&#8217; application.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="7%" />
+<col width="21%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Logging</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to logging, i.e. default
+loggers, default logger configuration etc</td>
+</tr>
+<tr class="row-odd"><td>log_name</td>
+<td>string</td>
+<td>kdvs</td>
+<td>name of the default logger (see also
+<a class="reference external" href="http://docs.python.org/library/logging.html#logging.Logger" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">logging.Logger</span></tt></a>)</td>
+</tr>
+<tr class="row-even"><td>log_file</td>
+<td>string</td>
+<td>kdvs.log</td>
+<td>path to default log file, relative to the
+user configuration file</td>
+</tr>
+<tr class="row-odd"><td>log_type_def_std</td>
+<td>string</td>
+<td>kdvs.core.log.StreamLogger</td>
+<td>default class for stream-oriented logger</td>
+</tr>
+<tr class="row-even"><td>log_type_def_file</td>
+<td>string</td>
+<td>kdvs.core.log.RotatingFileLogger</td>
+<td>default class for file-oriented logger</td>
+</tr>
+<tr class="row-odd"><td><strong>Application profile</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to application profile
+that will be read and parsed by the
+application</td>
+</tr>
+<tr class="row-even"><td>experiment_profile</td>
+<td>string</td>
+<td>kdvs.fw.impl.app.Profile.
+NULL_PROFILE</td>
+<td>default class of application profile</td>
+</tr>
+<tr class="row-odd"><td>experiment_profile_inst</td>
+<td>dict</td>
+<td>{}</td>
+<td>default content of application profile
+instance</td>
+</tr>
+<tr class="row-even"><td><strong>Initializers</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to various standard
+dynamically initialized components</td>
+</tr>
+<tr class="row-odd"><td>job_container_type</td>
+<td>string</td>
+<td>kdvs.fw.impl.job.SimpleJob.
+SimpleJobContainer</td>
+<td>default class of job container</td>
+</tr>
+<tr class="row-even"><td>job_container_cfg</td>
+<td>dict</td>
+<td>{}</td>
+<td>default initialization parameters for job
+container instance</td>
+</tr>
+<tr class="row-odd"><td>storage_manager_type</td>
+<td>string</td>
+<td>kdvs.fw.StorageManager.
+StorageManager</td>
+<td>default class of storage manager</td>
+</tr>
+<tr class="row-even"><td>execution_environment_type</td>
+<td>string</td>
+<td>kdvs.core.env.
+LoggedExecutionEnvironment</td>
+<td>default class of execution environment</td>
+</tr>
+<tr class="row-odd"><td>execution_environment_exp_cfg</td>
+<td>dict</td>
+<td>{
+&#8216;logger&#8217; : Logger(),
+}</td>
+<td>default initialization parameters for
+execution environment instance</td>
+</tr>
+<tr class="row-even"><td>job_group_manager_type</td>
+<td>string</td>
+<td>kdvs.fw.Job.JobGroupManager</td>
+<td>default class of job group manager</td>
+</tr>
+<tr class="row-odd"><td>job_group_manager_cfg</td>
+<td>dict</td>
+<td>{}</td>
+<td>default initialization parameters for
+job group manager instance</td>
+</tr>
+<tr class="row-even"><td><strong>Database IDs</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to databases controlled
+by <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td>data_db_id</td>
+<td>string</td>
+<td>DATA</td>
+<td>default DB where all data tables will be
+stored</td>
+</tr>
+<tr class="row-even"><td>map_db_id</td>
+<td>string</td>
+<td>MAPS</td>
+<td>default DB where all mapping tables will
+be stored</td>
+</tr>
+<tr class="row-odd"><td>misc_db_id</td>
+<td>string</td>
+<td>MISC</td>
+<td>default DB where all miscellaneous tables
+will be stored</td>
+</tr>
+<tr class="row-even"><td><strong>Standard filekeys</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to standard files
+produced by KDVS; each file is identified
+by <cite>filekey</cite>; standard files are stored
+in standard locations (see below); many
+standard files contains diagnostic
+information that can be suppressed; see
+&#8216;experiment.py&#8217; description for more
+details</td>
+</tr>
+<tr class="row-odd"><td>cfg_key</td>
+<td>string</td>
+<td>CFG</td>
+<td>default filekey for serialized initial
+configuration; initial configuration
+contains all environment variables;
+textual version is also saved
+evaluated before execution of any actions</td>
+</tr>
+<tr class="row-even"><td>ts_start_key</td>
+<td>string</td>
+<td>TS_START</td>
+<td>default filekey for starting timestamp;
+KDVS saves starting timestamp in plain
+text for easier diagnostics if necessary
+(no log parsing nedded)</td>
+</tr>
+<tr class="row-odd"><td>ts_end_key</td>
+<td>string</td>
+<td>TS_END</td>
+<td>default filekey for ending timestamp;
+KDVS saves ending timestamp in plain text
+for easier diagnostics if necessary
+(no log parsing nedded)</td>
+</tr>
+<tr class="row-even"><td>pkcidmap_key</td>
+<td>string</td>
+<td>PKCIDMAP</td>
+<td>default filekey for serialized mapping
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.PKCIDMap" title="kdvs.fw.Map.PKCIDMap"><tt class="xref py py-class docutils literal"><span class="pre">PKCIDMap</span></tt></a></td>
+</tr>
+<tr class="row-odd"><td>geneidmap_key</td>
+<td>string</td>
+<td>GENEIDMAP</td>
+<td>default filekey for serialized mapping
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMap</span></tt></a></td>
+</tr>
+<tr class="row-even"><td>subsets_key</td>
+<td>string</td>
+<td>SUBSETS</td>
+<td>default filekey for serialized subsets
+mapping; see also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildPKDrivenDataSubsets" title="kdvs.bin.experiment.buildPKDrivenDataSubsets"><tt class="xref py py-meth docutils literal"><span class="pre">buildPKDrivenDataSubsets()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>subsets_results_key</td>
+<td>string</td>
+<td>SUBSETS_RESULTS</td>
+<td>default filekey for serialized subsets
+results (currently not used)</td>
+</tr>
+<tr class="row-even"><td>subset_hierarchy_key</td>
+<td>string</td>
+<td>SUBSET_HIERARCHY</td>
+<td>default filekey for serialized
+representation of subset hierarchy
+(hierarchy + symboltree); see
+also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildSubsetHierarchy" title="kdvs.bin.experiment.buildSubsetHierarchy"><tt class="xref py py-meth docutils literal"><span class="pre">buildSubsetHierarchy()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>operations_map_key</td>
+<td>string</td>
+<td>OP_MAP</td>
+<td>default filekey for serialized
+representation of all operations performed
+on the whole category tree; see also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.buildSubsetHierarchy" title="kdvs.bin.experiment.buildSubsetHierarchy"><tt class="xref py py-meth docutils literal"><span class="pre">buildSubsetHierarchy()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-even"><td>jobID_map_key</td>
+<td>string</td>
+<td>JOBID_MAP</td>
+<td>default filekey for serialized mapping
+between default job IDs (assigned by job
+container) and custom job IDs (assigned
+by technique during job creation); see
+also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.submitSubsetOperations" title="kdvs.bin.experiment.submitSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">submitSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>submission_order_key</td>
+<td>string</td>
+<td>SUBMISSION_ORDER</td>
+<td>default filekey for serialized submission
+order, i.e. the <cite>final</cite> list of all subsets
+to be processed (i.e. execution of
+statistical technique, job creation,
+results creation); submission order is
+altered by &#8220;test mode&#8221;; see also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.submitSubsetOperations" title="kdvs.bin.experiment.submitSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">submitSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-even"><td>jobs_exceptions_key</td>
+<td>string</td>
+<td>JEXC</td>
+<td>default filekey for serialized
+representation of job exceptions (if any
+were thrown during job execution); see also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.executeSubsetOperations" title="kdvs.bin.experiment.executeSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">executeSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>jobs_misc_data_key</td>
+<td>string</td>
+<td>JC_MISC_DATA</td>
+<td>default filekey for serialized
+representation of miscellaneous data
+produced by job container (may be empty);
+see also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.executeSubsetOperations" title="kdvs.bin.experiment.executeSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">executeSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-even"><td>group_completion_key</td>
+<td>string</td>
+<td>GRCOMP</td>
+<td>default filekey for serialized information
+of job group completion dictionary; see
+also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessSubsetOperations" title="kdvs.bin.experiment.postprocessSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>technique2dof_key</td>
+<td>string</td>
+<td>TECH2DOF</td>
+<td>default filekey for serialized mapping
+between ID of statistical techniques and
+their degrees of freedom; see also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessSubsetOperations" title="kdvs.bin.experiment.postprocessSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-even"><td>technique2ssname_key</td>
+<td>string</td>
+<td>TECH2SS</td>
+<td>default filekey for serialized mapping
+between ID of statistical techniques and
+subsets they are assigned to; see also
+<a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.postprocessSubsetOperations" title="kdvs.bin.experiment.postprocessSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">postprocessSubsetOperations()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>outer_selection_key</td>
+<td>string</td>
+<td>OUTER_SELECTION</td>
+<td>default filekey for serialized results of
+outer selection (selection markings); see
+also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.performSelections" title="kdvs.bin.experiment.performSelections"><tt class="xref py py-meth docutils literal"><span class="pre">performSelections()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-even"><td>inner_selection_key</td>
+<td>string</td>
+<td>INNER_SELECTION</td>
+<td>default filekey for serialized results of
+inner selection (selection markings); see
+also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.performSelections" title="kdvs.bin.experiment.performSelections"><tt class="xref py py-meth docutils literal"><span class="pre">performSelections()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>em2annotation_key</td>
+<td>string</td>
+<td>EM2ANNOTATION</td>
+<td>default filekey for serialized mapping
+between measurements and annotations;
+see also <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Annotation.get_em2annotation" title="kdvs.fw.Annotation.get_em2annotation"><tt class="xref py py-func docutils literal"><span class="pre">get_em2annotation()</span></tt></a></td>
+</tr>
+<tr class="row-even"><td>pkcid2ssname_key</td>
+<td>string</td>
+<td>PKCID2SS</td>
+<td>default filekey for serialized mapping
+between PKC IDs and subsets IDs;
+see also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.prepareReports" title="kdvs.bin.experiment.prepareReports"><tt class="xref py py-meth docutils literal"><span class="pre">prepareReports()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-odd"><td>misc_view_key</td>
+<td>string</td>
+<td>MISC</td>
+<td>default filekey for any miscellaneous
+information (currently not used)</td>
+</tr>
+<tr class="row-even"><td><strong>Standard locations</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to standard locations
+controlled by <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.StorageManager.StorageManager" title="kdvs.fw.StorageManager.StorageManager"><tt class="xref py py-class docutils literal"><span class="pre">StorageManager</span></tt></a>
+instance; &#8220;debug&#8221; location contains many
+optional files; all locations are relative
+to output directory; see &#8216;experiment.py&#8217;
+description for more details</td>
+</tr>
+<tr class="row-odd"><td>dbm_location</td>
+<td>string</td>
+<td>db</td>
+<td>default location for database files</td>
+</tr>
+<tr class="row-even"><td>debug_output_location</td>
+<td>string</td>
+<td>debug</td>
+<td>default location for debug files (many are
+optional; see <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.MA_GO_Experiment_App" title="kdvs.bin.experiment.MA_GO_Experiment_App"><tt class="xref py py-class docutils literal"><span class="pre">MA_GO_Experiment_App</span></tt></a>
+individual actions for more details</td>
+</tr>
+<tr class="row-odd"><td>jobs_location</td>
+<td>string</td>
+<td>jobs</td>
+<td>default location for serialized <cite>raw</cite>
+(unprocessed) jobs results</td>
+</tr>
+<tr class="row-even"><td>subsets_location</td>
+<td>string</td>
+<td>ss</td>
+<td>default location for serialized data
+subsets</td>
+</tr>
+<tr class="row-odd"><td>subsets_results_location</td>
+<td>string</td>
+<td>ss_results</td>
+<td>default location for serialized detailed
+results for each data subset; for each
+subset a separate subdirectory is created;
+see also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.storeCompleteResults" title="kdvs.bin.experiment.storeCompleteResults"><tt class="xref py py-meth docutils literal"><span class="pre">storeCompleteResults()</span></tt></a>
+action in &#8216;experiment.py&#8217;</td>
+</tr>
+<tr class="row-even"><td>plots_sublocation</td>
+<td>string</td>
+<td>plots</td>
+<td>default sublocation for plots (currently
+not used)</td>
+</tr>
+<tr class="row-odd"><td><strong>Statistical artefacts</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to statistical techniques
+and related components</td>
+</tr>
+<tr class="row-even"><td>unused_sample_label</td>
+<td>integer</td>
+<td>0</td>
+<td>default label for &#8220;unused&#8221; samples; when
+sample is associated with &#8216;unused&#8217; label,
+it will be skipped from further procesing,
+i.e. measurements for this sample will not
+be included into any data subset</td>
+</tr>
+<tr class="row-odd"><td>null_dof</td>
+<td>string</td>
+<td>NullDOF</td>
+<td>default symbol for unique &#8220;null&#8221; degree of
+freedom, used by statistical techniques;
+see <a class="reference internal" href="#annex-globaltechniqueparameters"><em>Global technique parameters</em></a></td>
+</tr>
+<tr class="row-even"><td><strong>Miscellaneous artefacts</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options that fit elsewhere</td>
+</tr>
+<tr class="row-odd"><td>pk_manager_dump_suffix</td>
+<td>string</td>
+<td>_DUMP</td>
+<td>default filekey suffix for the dump of
+prior knowledge manager; see <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a>
+for more information; <a class="reference internal" href="../doc-api/kdvs.fw.impl.pk.go.html#kdvs.fw.impl.pk.go.GeneOntology.GOManager" title="kdvs.fw.impl.pk.go.GeneOntology.GOManager"><tt class="xref py py-class docutils literal"><span class="pre">GOManager</span></tt></a>
+implementation produces such dump in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.loadStaticData" title="kdvs.bin.experiment.loadStaticData"><tt class="xref py py-meth docutils literal"><span class="pre">loadStaticData()</span></tt></a>
+action in &#8216;experiment.py&#8217; application</td>
+</tr>
+<tr class="row-even"><td>subset_results_suffix</td>
+<td>string</td>
+<td>_RES</td>
+<td>default filekey suffix for serialized
+instance of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Stat.Results" title="kdvs.fw.Stat.Results"><tt class="xref py py-class docutils literal"><span class="pre">Results</span></tt></a>
+for each data subset; see also <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.storeCompleteResults" title="kdvs.bin.experiment.storeCompleteResults"><tt class="xref py py-meth docutils literal"><span class="pre">storeCompleteResults()</span></tt></a>
+action in &#8216;experiment.py&#8217; application</td>
+</tr>
+<tr class="row-odd"><td>subset_ds_suffix</td>
+<td>string</td>
+<td>_DS</td>
+<td>default filekey suffix for serialized
+data subset (currently not used)</td>
+</tr>
+<tr class="row-even"><td>jobs_raw_output_suffix</td>
+<td>string</td>
+<td>_RAW_OUT</td>
+<td>default filekey suffix for serialized raw
+job result; raw job results are serialized
+in <a class="reference internal" href="../doc-api/kdvs.bin.html#kdvs.bin.experiment.executeSubsetOperations" title="kdvs.bin.experiment.executeSubsetOperations"><tt class="xref py py-meth docutils literal"><span class="pre">executeSubsetOperations()</span></tt></a>
+action of &#8216;experiment.py&#8217; when custom job
+ID is provided</td>
+</tr>
+<tr class="row-odd"><td>txt_suffix</td>
+<td>string</td>
+<td>.txt</td>
+<td>default prefix for serialized textual data;
+many serialized data structures have their
+textual representation saved as well; for
+example, default configuration can be saved
+both as CFG and CFG.txt</td>
+</tr>
+<tr class="row-even"><td>subset_submission_all_symbol</td>
+<td>string</td>
+<td>__all__</td>
+<td>default symbol for submission of all data
+subsets (currently not used)</td>
+</tr>
+<tr class="row-odd"><td>test_submission_listing_thr</td>
+<td>integer</td>
+<td>5</td>
+<td>default number of subsets submitted listed
+in log when &#8220;test mode&#8221; is used; if more
+subsets are submitted, &#8220;&gt;5&#8221; will appear in
+the log</td>
+</tr>
+<tr class="row-even"><td><strong>Static data files related</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Options related to static data files
+interpreted by KDVS</td>
+</tr>
+<tr class="row-odd"><td>def_data_path</td>
+<td>string</td>
+<td>result of &#8216;kdvs.core.config.
+getDefaultDataRootPath()&#8217;</td>
+<td>default filesystem path to directory that
+contains static data files</td>
+</tr>
+<tr class="row-even"><td>static_data_files</td>
+<td>dict</td>
+<td>see <a class="reference internal" href="#static-data-files">Static data files</a></td>
+<td>default configuration of static data files</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="static-data-files">
+<span id="annex-staticdatafiles"></span><h3>Static data files<a class="headerlink" href="#static-data-files" title="Permalink to this headline">¶</a></h3>
+<p>Static data files are configured with specification evaluated from dictionary.
+Each static file has its own entry as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">static_data_files</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;fileID1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># entry parameters</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;fileIDn&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># entry parameters</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Static file may be loaded directly into KDVS database governed by <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a>
+instance, or managed by the concrete instance of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In &#8216;experiment.py&#8217; application, loading into database and managing via manager
+is <cite>exclusive</cite>, i.e. static file may either be loaded or managed, but not both.</p>
+</div>
+<p>Currently, the following entry parameters are interpreted:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;DBID&#8217; (string) &#8211; when loaded: the name of database table to be loaded
+into; when managed: composite part of filekey for manager dump (see
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a> API documentation)</p>
+</li>
+<li><p class="first">&#8216;spec&#8217; (tuple of string) &#8211; tuple of path specification, as follows:
+(&#8216;directory&#8217;, &#8216;filename_pattern&#8217;)</p>
+<blockquote>
+<div><ul>
+<li><p class="first">&#8216;directory&#8217; (string) &#8211; subdirectory of KDVS &#8220;root data directory&#8221; where
+the file is located; the <cite>default</cite> data directory path may be obtained
+with <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.config.getDefaultDataRootPath" title="kdvs.core.config.getDefaultDataRootPath"><tt class="xref py py-meth docutils literal"><span class="pre">getDefaultDataRootPath()</span></tt></a>; in &#8216;experiment.py&#8217;
+application, the path may be overriden by user with &#8220;-s&#8221; command line
+option (see <a class="reference internal" href="applications.html#applications-commandlineparameters"><em>Command line parameters</em></a>)</p>
+</li>
+<li><p class="first">&#8216;filename_pattern&#8217; (string) &#8211; expression understood by <a class="reference external" href="http://docs.python.org/library/glob.html#glob" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">glob</span></tt></a>
+module that specifies the name of the file; for instance, with expression:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;go_termdb*.obo-xml*&#39;</span>
+</pre></div>
+</div>
+<p>the following filenames will be recognized:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;go_termdb.obo-xml&#39;</span>
+<span class="s">&#39;go_termdb_01_01_2014.obo-xml&#39;</span>
+<span class="s">&#39;go_termdb.obo-xml.gz&#39;</span>
+<span class="s">&#39;go_termdb_01_01_2014.obo-xml.bz2&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>For instance, the following specification:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="s">&#39;GO&#39;</span><span class="p">,</span> <span class="s">&#39;go_termdb*.obo-xml*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>defines static file located in subdirectory &#8216;GO&#8217; of KDVS &#8220;root data directory&#8221;
+$ROOT_DATA_PATH that can be resolved into the following example absolute paths:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;$ROOT_DATA_PATH/GO/go_termdb.obo-xml&#39;</span>
+<span class="s">&#39;$ROOT_DATA_PATH/GO/go_termdb_01_01_2014.obo-xml&#39;</span>
+<span class="s">&#39;$ROOT_DATA_PATH/GO/go_termdb.obo-xml.gz&#39;</span>
+<span class="s">&#39;$ROOT_DATA_PATH/GO/go_termdb_01_01_2014.obo-xml.bz2&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In &#8216;experiment.py&#8217; application, currently the tuple is assumed to
+contain <cite>exactly two strings</cite>; other implementations may use more
+refined handling of the tuple content.</p>
+</div>
+</li>
+<li><p class="first">&#8216;path&#8217; (string/None) &#8211; absolute filesystem path to static file, or None
+if not used</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In &#8216;experiment.py&#8217; application, it is always specified as None since
+absolute file path is resolved from path specification, and the value
+is automatically updated.</p>
+</div>
+</li>
+<li><p class="first">&#8216;fh&#8217; (file&#8211;like/None) &#8211; opened file handle for static file, or None
+if not used</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In &#8216;experiment.py&#8217; application, it is always specified as None since
+after resolving absolute file path, the static file is opened, and the
+value is automatically updated.</p>
+</div>
+</li>
+<li><p class="first">&#8216;type&#8217; (string) &#8211; descriptive type of the file, such as &#8216;DSV&#8217; or &#8216;XML&#8217;</p>
+</li>
+<li><p class="first">&#8216;metadata&#8217; (dict/None) &#8211; when loaded: metadata used to interpret the content
+of the file (typically DSV); when managed: None</p>
+<p>Currently, the following metadata are recognized:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;delimiter&#8217; (string) &#8211; delimiter that separates values in each line
+of the file</li>
+<li>&#8216;comment&#8217; (string/None) &#8211; comment prefix; each commented line of the
+file is discarded; None if not used</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">&#8216;loadToDB&#8217; (boolean) &#8211; specifies if the static file shall be loaded into
+database governed by <a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a> instance; True if
+loaded, False otherwise</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In &#8216;experiment.py&#8217; application, this parameter serves as switch;
+if True, the file is loaded into database; if False, the file is managed
+by the concrete instance of <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a>.</p>
+</div>
+</li>
+<li><p class="first">&#8216;indexes&#8217; (tuple of string/None) &#8211; when loaded: tuple of the column names that
+shall be <cite>indexed</cite> when loaded into database; indexing speeds up information querying
+from these columns, but increases the overall size of database, therefore
+only crucial columns should be indexed; None if the only index shall be
+created for ID column (see also <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> and
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a> API documentation); empty tuple for creating no
+indexes at all; when managed: not interpreted (typically left as empty tuple)</p>
+</li>
+<li><p class="first">&#8216;manager&#8217; (dict/None) &#8211; when loaded: not interpreted (typically left as None);
+when managed: component initializer of the <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a>
+instance (see also <a class="reference internal" href="applications.html#applications-componentinitializers"><em>Component initializers</em></a>)</p>
+<p>In &#8216;experiment.py&#8217; application, the initializer has special interpretation.
+It must contain two dictionaries that define parameters for <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager.configure" title="kdvs.fw.PK.PKCManager.configure"><tt class="xref py py-meth docutils literal"><span class="pre">configure()</span></tt></a>
+and <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager.load" title="kdvs.fw.PK.PKCManager.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a> methods:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+  <span class="s">&#39;manager&#39;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="s">&#39;manager_import_class&#39;</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="s">&#39;configure&#39;</span> <span class="p">:</span> <span class="p">{</span>
+              <span class="c"># parameters for &#39;configure&#39; method</span>
+          <span class="p">},</span>
+
+          <span class="s">&#39;load&#39;</span> <span class="p">:</span> <span class="p">{</span>
+              <span class="c"># parameters for &#39;load&#39; method</span>
+          <span class="p">},</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Refer to the API documentation of concrete implementations of
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.PK.PKCManager" title="kdvs.fw.PK.PKCManager"><tt class="xref py py-class docutils literal"><span class="pre">PKCManager</span></tt></a> for all the parameters. For
+<a class="reference external" href="http://www.geneontology.org/">Gene Ontology</a> prior knowledge,
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.pk.go.html#kdvs.fw.impl.pk.go.GeneOntology.GOManager" title="kdvs.fw.impl.pk.go.GeneOntology.GOManager"><tt class="xref py py-class docutils literal"><span class="pre">GOManager</span></tt></a> class is provided.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>The following configuration currently specifies default static data files in
+default configuration file &#8216;kdvs/config/default_cfg.py&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># specification follows file name matching as interpreted by &#39;glob&#39;</span>
+<span class="n">static_data_files</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c"># HGNC file contains naming information of genes</span>
+    <span class="s">&#39;hgnc_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;DBID&#39;</span> <span class="p">:</span> <span class="s">&#39;HGNC&#39;</span><span class="p">,</span>
+        <span class="s">&#39;spec&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;HGNC&#39;</span><span class="p">,</span> <span class="s">&#39;HGNC*.tsv*&#39;</span><span class="p">),</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s">&#39;fh&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s">&#39;type&#39;</span> <span class="p">:</span> <span class="s">&#39;DSV&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;delimiter&#39;</span> <span class="p">:</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span>
+            <span class="s">&#39;comment&#39;</span> <span class="p">:</span> <span class="s">&#39;#&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">&#39;loadToDB&#39;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;Approved Symbol&#39;</span><span class="p">,</span> <span class="s">&#39;Previous Symbols&#39;</span><span class="p">,</span> <span class="s">&#39;Synonyms&#39;</span><span class="p">),</span>
+        <span class="s">&#39;manager&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="c"># GO file contains graph of GO terms</span>
+    <span class="s">&#39;go_file&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;DBID&#39;</span> <span class="p">:</span> <span class="s">&#39;GO&#39;</span><span class="p">,</span>
+        <span class="s">&#39;spec&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;GO&#39;</span><span class="p">,</span> <span class="s">&#39;go_termdb*.obo-xml*&#39;</span><span class="p">),</span>
+        <span class="s">&#39;path&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s">&#39;fh&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s">&#39;type&#39;</span> <span class="p">:</span> <span class="s">&#39;XML&#39;</span><span class="p">,</span>
+        <span class="s">&#39;metadata&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s">&#39;loadToDB&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="s">&#39;indexes&#39;</span> <span class="p">:</span> <span class="p">(),</span>
+        <span class="s">&#39;manager&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;kdvs.fw.impl.pk.go.GeneOntology.GOManager&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;configure&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&#39;domains&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                    <span class="s">&#39;recognized_relations&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="s">&#39;load&#39;</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&#39;root_tag&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In <a class="reference internal" href="../doc-api/kdvs.fw.impl.pk.go.html#kdvs.fw.impl.pk.go.GeneOntology.GOManager.load" title="kdvs.fw.impl.pk.go.GeneOntology.GOManager.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a> method of
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.pk.go.html#kdvs.fw.impl.pk.go.GeneOntology.GOManager" title="kdvs.fw.impl.pk.go.GeneOntology.GOManager"><tt class="xref py py-class docutils literal"><span class="pre">GOManager</span></tt></a>, only <cite>keyworded</cite> arguments
+are specified; &#8216;experiment.py&#8217; automatically uses the value of &#8216;fh&#8217; entry
+parameter as the first argument.</p>
+</div>
+</div>
+</div>
+<div class="section" id="global-technique-parameters">
+<span id="annex-globaltechniqueparameters"></span><h2>Global technique parameters<a class="headerlink" href="#global-technique-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Each statistical technique must define two <cite>global</cite> parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;global_degrees_of_freedom&#8217; (tuple of string/None)</li>
+<li>&#8216;job_importable&#8217; (boolean)</li>
+</ul>
+</div></blockquote>
+<div class="section" id="degree-s-of-freedom-dof">
+<h3>Degree(s) of freedom (DOF)<a class="headerlink" href="#degree-s-of-freedom-dof" title="Permalink to this headline">¶</a></h3>
+<p>The parameter &#8216;global_degrees_of_freedom&#8217; lists all symbols for all <cite>degrees of
+freedom</cite> the technique uses (see <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a>). For
+instance, if the technique uses the following range of parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.000001</span>
+</pre></div>
+</div>
+<p>some meaningful name can be assigned to each value as <cite>symbol</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;par_a1&#39;</span><span class="p">,</span> <span class="s">&#39;par_2&#39;</span><span class="p">,</span> <span class="s">&#39;par_a3&#39;</span>
+</pre></div>
+</div>
+<p>The symbols are provided during component initialization for the individual
+technique (see <a class="reference internal" href="applications.html#applications-componentinitializers"><em>Component initializers</em></a>). Note that symbols
+are only specified here; it is up to the technique to reconstruct proper mapping
+<cite>symbol&lt;-&gt;parameter_value</cite> and construct proper jobs with proper calls that
+depend on individual parameter value(s).</p>
+<p>For instance, the technique <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a> uses
+a range of parameter <cite>mu</cite>, where single call for each of the parameter value is
+performed, and results from those calls are recognized separately during results
+interpretation. See <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a> API documentation,
+<a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/">l1l2py documentation</a> and
+references therein, for more details. For instance, if the range of parameter
+<cite>mu</cite> has 3 values, and one wants the values to be associated with the following
+<cite>symbols</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;mu0&#39;</span><span class="p">,</span> <span class="s">&#39;mu1&#39;</span><span class="p">,</span> <span class="s">&#39;mu2&#39;</span>
+</pre></div>
+</div>
+<p>the component initializer must contain the global parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+    <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># ...</span>
+        <span class="s">&#39;global_degrees_of_freedom&#39;</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">([</span><span class="s">&#39;mu</span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]),</span>
+        <span class="c"># ...</span>
+    <span class="p">}</span>
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that some techniques many not need any degrees of freedom since they do not
+depend on some range(s) of parameters. Still, to gather the technique implementations
+under single umbrella, the &#8220;virtual degree of freedom&#8221;, also referred to as &#8220;null&#8221;
+degree, is created.</p>
+<p>In that case, one can specify None as the value of global parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&#39;global_degrees_of_freedom&#39;</span> <span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and the <cite>virtual degree of freedom</cite> will be created automatically with the name
+specified in &#8216;null_dof&#8217; variable in default configuration file (see <a class="reference internal" href="#annex-defaultconfigurationfile"><em>Default configuration file</em></a>).</p>
+</div>
+<div class="section" id="job-importability">
+<h3>Job importability<a class="headerlink" href="#job-importability" title="Permalink to this headline">¶</a></h3>
+<p>The parameter &#8216;job_importable&#8217; specifies if the &#8220;job function&#8221; is importable on
+remote machine, in case that remote job container is used;
+see <a class="reference internal" href="framework.html#framework-statisticaltechniques"><em>Statistical Techniques</em></a> and <a class="reference internal" href="framework.html#framework-jobcreationandexecution"><em>Job Creation and Execution</em></a>
+for more information.</p>
+<p>For instance, when <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a> is used,
+it distributes jobs to remote machines for execution. Each <a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>
+instance is a wrapper around <cite>job function</cite>, that may contain statistical call,
+such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">l1l2py</span><span class="o">.</span><span class="n">model_selection</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(see <a class="reference external" href="http://slipguru.disi.unige.it/Software/L1L2Py/core.html#complete-model-selection">l1l2py documentation</a>).</p>
+<p>If &#8216;l1l2py.model_selection&#8217; is specified as <cite>job function</cite> during creation of
+<a class="reference internal" href="../doc-api/kdvs.fw.html#kdvs.fw.Job.Job" title="kdvs.fw.Job.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> instance, and &#8216;l1l2py&#8217; is installed on remote machine
+that will execute the job, <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>
+can simply:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">l1l2py</span>
+</pre></div>
+</div>
+<p>and execute the job function. In that case, the job is <strong>importable</strong> by remote
+container. See also <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob"><tt class="xref py py-meth docutils literal"><span class="pre">kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob()</span></tt></a>
+API documentation.</p>
+<p>On the other hand, if <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper"><tt class="xref py py-meth docutils literal"><span class="pre">l1l2_l1l2_job_wrapper()</span></tt></a> is
+specified as <cite>job function</cite>, <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>,
+even if l1l2py is installed on remote machine, cannot simply import l1l2py and
+execute the job, because the physical function may not exist on remote machine
+(i.e. KDVS may not be installed there). In that case,
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper"><tt class="xref py py-meth docutils literal"><span class="pre">l1l2_l1l2_job_wrapper()</span></tt></a> function is <cite>physically
+transported</cite> to remote machine for execution. In that case, the job is <strong>not importable</strong>.
+See also <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob"><tt class="xref py py-meth docutils literal"><span class="pre">kdvs.fw.impl.job.PPlusJob.PPlusJobContainer.addJob()</span></tt></a> API documentation.</p>
+<p>All reference statistical technique implementations of : <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_L1L2" title="kdvs.fw.impl.stat.L1L2.L1L2_L1L2"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_L1L2</span></tt></a>,
+<a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_RLS" title="kdvs.fw.impl.stat.L1L2.L1L2_RLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_RLS</span></tt></a>, and <a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.L1L2_OLS" title="kdvs.fw.impl.stat.L1L2.L1L2_OLS"><tt class="xref py py-class docutils literal"><span class="pre">L1L2_OLS</span></tt></a>,
+have their <cite>job wrappers</cite> provided by KDVS that are used as job functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_l1l2_job_wrapper"><tt class="xref py py-meth docutils literal"><span class="pre">l1l2_l1l2_job_wrapper()</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.l1l2_rls_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_rls_job_wrapper"><tt class="xref py py-meth docutils literal"><span class="pre">l1l2_rls_job_wrapper()</span></tt></a></li>
+<li><a class="reference internal" href="../doc-api/kdvs.fw.impl.stat.html#kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper" title="kdvs.fw.impl.stat.L1L2.l1l2_ols_job_wrapper"><tt class="xref py py-meth docutils literal"><span class="pre">l1l2_ols_job_wrapper()</span></tt></a></li>
+</ul>
+</div></blockquote>
+<p>therefore each time one of these techniques is configured in configuration file
+(see <a class="reference internal" href="applications.html#applications-componentinitializers"><em>Component initializers</em></a>), one must specify the &#8216;job_importable&#8217;
+as False:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="c"># ...</span>
+
+    <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_L1L2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># ...</span>
+        <span class="s">&#39;job_importable&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_RLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># ...</span>
+        <span class="s">&#39;job_importable&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+
+    <span class="s">&#39;kdvs.fw.impl.stat.L1L2.L1L2_OLS&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c"># ...</span>
+        <span class="s">&#39;job_importable&#39;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="c"># ...</span>
+    <span class="p">},</span>
+
+<span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="serialization">
+<span id="annex-serialization"></span><h2>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<p>When possible, KDVS tries to store virtually all artefacts produced, including
+serialized Python objects, plain text output files, plots, etc
+(see <a class="reference internal" href="applications.html#applications-outputdirectory"><em>Output directory</em></a>). To unify this activity, KDVS uses a
+<cite>serialization protocol</cite>, i.e. pre&#8211;defined set of functions that store the object
+in question, produce textual representation if necessary, or compress it to save
+space. Whenever possible, KDVS uses these functions instead of creating a file
+manually.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Many objects produced by &#8216;experiment.py&#8217; application have textual representation
+generated as well. While this <cite>increases</cite> disk space, it was intended to ease
+the verification of the content of individual binary files. Currently, it is
+not possible to directly disable it.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Many artefacts are already generated by &#8216;experiment.py&#8217; application as
+&#8220;debug output&#8221; that can be omitted; for exhaustive list see
+<a class="reference internal" href="applications.html#applications-debugoutput"><em>Debug output</em></a>.</p>
+</div>
+</div>
+<div class="section" id="current-protocol">
+<h3>Current protocol<a class="headerlink" href="#current-protocol" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="binary-data">
+<h4>Binary data<a class="headerlink" href="#binary-data" title="Permalink to this headline">¶</a></h4>
+<p>The following functions comprise the KDVS serialization protocol of <cite>binary data</cite>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.serializeObj" title="kdvs.core.util.serializeObj"><tt class="xref py py-func docutils literal"><span class="pre">serializeObj()</span></tt></a></p>
+<p>this function compresses the Python object; currently it applies <a class="reference external" href="http://docs.python.org/library/gzip.html#gzip" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">gzip</span></tt></a>
+compression to the <a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pickle</span></tt></a>&#8211;d object data stream; <a class="reference external" href="http://docs.python.org/library/pickle.html#pickle.HIGHEST_PROTOCOL" title="(in Python v2.7)"><tt class="xref py py-data docutils literal"><span class="pre">pickle.HIGHEST_PROTOCOL</span></tt></a>
+is used; equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># output_fh is a opened write--mode file--like object that will hold serialized object data</span>
+<span class="c"># proto is a pickle protocol</span>
+<span class="n">wrapped_out_fh</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">output_fh</span><span class="p">)</span>
+<span class="n">cPickle</span><span class="o">.</span><span class="n">Pickler</span><span class="p">(</span><span class="n">wrapped_out_fh</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">proto</span><span class="p">)</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.deserializeObj" title="kdvs.core.util.deserializeObj"><tt class="xref py py-func docutils literal"><span class="pre">deserializeObj()</span></tt></a></p>
+<p>this function decompresses the Python object; currently it loads
+<a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pickle</span></tt></a>&#8211;d object data stream un&#8211;<a class="reference external" href="http://docs.python.org/library/gzip.html#gzip" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">gzip</span></tt></a>&#8211;ing in the background;
+equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># input_fh is a opened read--mode file--like object with serialized object data</span>
+<span class="n">wrapped_in_fh</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">input_fh</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">Unpickler</span><span class="p">(</span><span class="n">wrapped_in_fh</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.pprintObj" title="kdvs.core.util.pprintObj"><tt class="xref py py-func docutils literal"><span class="pre">pprintObj()</span></tt></a></p>
+<p>this function emits textual representation of Python object to the opened
+file&#8211;like object using <a class="reference external" href="http://docs.python.org/library/pprint.html#pprint" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pprint</span></tt></a> functionality; equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">out_fh</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.writeObj" title="kdvs.core.util.writeObj"><tt class="xref py py-func docutils literal"><span class="pre">writeObj()</span></tt></a></p>
+<p>this function writes Python object &#8220;as&#8211;is&#8221; to the opened file&#8211;like object;
+equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">output_fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The serialization functions have been changed in KDVS 2.0 in order to ease
+future transition to different <cite>file&#8211;like wrappers</cite> as needed.</p>
+</div>
+</div>
+<div class="section" id="textual-data">
+<h4>Textual data<a class="headerlink" href="#textual-data" title="Permalink to this headline">¶</a></h4>
+<p>The following functions comprise the KDVS serialization protocol of <cite>textual data</cite>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><a class="reference internal" href="../doc-api/kdvs.core.html#kdvs.core.util.serializeTxt" title="kdvs.core.util.serializeTxt"><tt class="xref py py-func docutils literal"><span class="pre">serializeTxt()</span></tt></a></p>
+<p>this function writes an iterable of plain text lines to the opened file&#8211;like
+object; equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">output_fh</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="legacy-protocol-pzp">
+<h3>Legacy protocol (&#8220;PZP&#8221;)<a class="headerlink" href="#legacy-protocol-pzp" title="Permalink to this headline">¶</a></h3>
+<p>The following information is taken directly from old version of KDVS documentation
+about previous serialization protocol.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since KDVS 2.0 was created as a <cite>replacement</cite> for the old prototypic KDVS 1.0,
+the following legacy protocol is <cite>not supported</cite>.</p>
+</div>
+<p>The PZP (Pickle, Zip, Pickle) protocol operates on Python objects as follows:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pickle</span></tt></a> the selected Python object with lowest possible pickle protocol
+(currently 0) into string (<em>pass1</em>)</li>
+<li>compress resulting string, using <a class="reference external" href="http://docs.python.org/library/zlib.html#zlib.compress" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">zlib.compress()</span></tt></a> with default parameters
+(<em>pass2</em>)</li>
+<li><a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pickle</span></tt></a> zipped string again with highest possible pickle protocol
+(currently <a class="reference external" href="http://docs.python.org/library/pickle.html#pickle.HIGHEST_PROTOCOL" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">pickle.HIGHEST_PROTOCOL</span></tt></a>) into string or file (<em>pass3</em>)</li>
+</ul>
+<p>Pickling in <cite>pass1</cite> generates verbose representation that can be zipped
+effectively in <cite>pass2</cite>; pickling again in <cite>pass3</cite>, while seemingly redundant,
+provides simple and convenient mechanism of data verification when restoring
+original object, all handled completely by Python standard library in few lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pzp_serialize</span><span class="p">(</span><span class="n">input_object</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">cPickle</span>
+    <span class="kn">import</span> <span class="nn">zlib</span>
+    <span class="c"># pickle, zip, pickle</span>
+    <span class="n">pass1</span><span class="o">=</span><span class="n">cPickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">input_object</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pass2</span><span class="o">=</span><span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">pass1</span><span class="p">)</span>
+    <span class="n">pass3</span><span class="o">=</span><span class="n">cPickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">pass2</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">cPickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pass3</span>
+</pre></div>
+</div>
+<p>Analogically, reciprocal UUU (Unpickle, Unzip, Unpickle) protocol provides
+mechanism for restoring original object, again in few lines:</p>
+<ul class="simple">
+<li>un-pickle given input PZP string (<em>pass1</em>)</li>
+<li>un-zip resulting string (<em>pass2</em>)</li>
+<li>un-pickle resulting string again (<em>pass3</em>)</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pzp_deserialize</span><span class="p">(</span><span class="n">encoded_object</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">cPickle</span>
+    <span class="kn">import</span> <span class="nn">zlib</span>
+    <span class="c"># unpickle, unzip, unpickle</span>
+    <span class="n">pass1</span><span class="o">=</span><span class="n">cPickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">encoded_object</span><span class="p">)</span>
+    <span class="n">pass2</span><span class="o">=</span><span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">pass1</span><span class="p">)</span>
+    <span class="n">pass3</span><span class="o">=</span><span class="n">cPickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pass2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pass3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-wrapper-py">
+<span id="annex-wrapper"></span><h2>Using wrapper.py<a class="headerlink" href="#using-wrapper-py" title="Permalink to this headline">¶</a></h2>
+<p>If KDVS is not installed as Python module but unpacked from source archive,
+applications and companion scripts may be still executed by using &#8216;wrapper.py&#8217;
+script.</p>
+<p>Assuming KDVS source archive has been unpacked to <tt class="docutils literal"><span class="pre">$KDVS_ROOT</span></tt>, the wrapper is
+located in the following location:</p>
+<div class="highlight-python"><pre>$KDVS_ROOT/wrapper.py</pre>
+</div>
+<p>It can be used as follows:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python wrapper.py [path to application/script] [options...]</pre>
+</div>
+<p>where path to application/script is relative to <tt class="docutils literal"><span class="pre">$KDVS_ROOT</span></tt>, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kdvs</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">experiment</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kdvs</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">runTests</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>and options are specific for the application/script.</p>
+<p>Typically, full list of options of any KDVS application/script can be listed
+using <tt class="docutils literal"><span class="pre">-h</span></tt> option, for example:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python wrapper.py kdvs/bin/experiment.py -h</pre>
+</div>
+<p>In order to be executed with &#8216;wrapper.py&#8217;, the application/companion script
+must contain the following code pattern (&#8216;pass&#8217; added for clarity):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># body of application/script follows</span>
+    <span class="c"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>since &#8216;wrapper.py&#8217; specifically looks for and executes &#8216;main&#8217; method.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">More refined implementation of &#8216;wrapper.py&#8217; can be built around <a class="reference external" href="http://docs.python.org/library/runpy.html#runpy" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">runpy</span></tt></a> module
+(bearing in mind keeping compatibility with Python 2.6).</p>
+</div>
+</div>
+<div class="section" id="contributions">
+<span id="annex-contributions"></span><h2>Contributions<a class="headerlink" href="#contributions" title="Permalink to this headline">¶</a></h2>
+<p>KDVS uses contributed code located in the following location:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kdvs</span><span class="o">/</span><span class="n">contrib</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../doc-api/kdvs.contrib.html#module-kdvs.contrib" title="kdvs.contrib"><tt class="xref py py-mod docutils literal"><span class="pre">kdvs.contrib</span></tt></a> API documentation for more details.</p>
+<p>If KDVS is not installed as Python module, all contributed applications must be
+executed with wrapper (see <a class="reference internal" href="#annex-wrapper"><em>Using wrapper.py</em></a>).</p>
+<div class="section" id="bag">
+<h3>Bag<a class="headerlink" href="#bag" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../doc-api/kdvs.contrib.html#kdvs.contrib.counter.Counter" title="kdvs.contrib.counter.Counter"><tt class="xref py py-class docutils literal"><span class="pre">Counter</span></tt></a> class is an implementation of bag (i.e. multiset)
+provided for compatibility with Python 2.6. It is based on the following:</p>
+<blockquote>
+<div><a class="reference external" href="http://code.activestate.com/recipes/576611/">http://code.activestate.com/recipes/576611/</a></div></blockquote>
+</div>
+<div class="section" id="ordered-dictionary">
+<h3>Ordered dictionary<a class="headerlink" href="#ordered-dictionary" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../doc-api/kdvs.contrib.html#kdvs.contrib.ordereddict.OrderedDict" title="kdvs.contrib.ordereddict.OrderedDict"><tt class="xref py py-class docutils literal"><span class="pre">OrderedDict</span></tt></a> class is an implementation of a
+dictionary that remembers the order of insertion of key&#8211;value pairs.</p>
+</div>
+<div class="section" id="dataset-generator">
+<h3>Dataset generator<a class="headerlink" href="#dataset-generator" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../doc-api/kdvs.contrib.html#module-kdvs.contrib.dataset_generation" title="kdvs.contrib.dataset_generation"><tt class="xref py py-mod docutils literal"><span class="pre">dataset_generation</span></tt></a> module contains the companion application
+that generates one or more randomized datasets with correlated variables. See
+API documentation for the statistical properties of the variables. Such
+datasets can be used to test KDVS functionality. It can be executed as follows:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python wrapper.py kdvs/contrib/dataset_generation.py</pre>
+</div>
+<p>It has the following command line parameters:</p>
+<div class="highlight-text"><div class="highlight"><pre>Usage: dataset_generation.py [options]
+
+Knowledge Driven Variable Selection: dataset generation (companion
+application)
+
+Options:
+  -h, --help            show this help message and exit
+  -o ODIR, --output-dir=ODIR
+                        store output files in ODIR; default: current directory
+  -s NS, --numof-samples=NS
+                        number of samples in generated dataset(s)
+  -v NV, --numof-variables=NV
+                        number of variables in generated dataset(s)
+  -g                    cardinality of groups of correlated variables (in
+                        subsequent arguments, e.g. -g 5 5 5 for 3 groups)
+  -w                    weights of regression model for each significant
+                        variable (in subsequent arguments, e.g. -w 1.0 1.0 1.0
+                        for 3 variables)
+  --variables-stddev=VS
+                        standard deviation of the zero-mean Gaussian
+                        distribution generating variables column vectors
+  --correlations-stddev=CS
+                        standard deviation of the zero-mean Gaussian
+                        distribution generating errors between variables which
+                        belong to the same group
+  --labels-stddev=LS    standard deviation of the zero-mean Gaussian
+                        distribution generating regression errors
+  -n ND, --numof-datasets=ND
+                        number of datasets generated at once
+  -f FS, --number-format=FS
+                        format string for numeric output, default: %.18e
+  -d DS, --delimiter=DS
+                        delimiter for numeric output, default: \t
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
+<p>KDVS provides specialized tools for some activities in the following location:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kdvs</span><span class="o">/</span><span class="n">tools</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../doc-api/kdvs.tools.html#module-kdvs.tools" title="kdvs.tools"><tt class="xref py py-mod docutils literal"><span class="pre">kdvs.tools</span></tt></a> API documentation for more details.</p>
+<p>If KDVS is not installed as Python module, all tools must be executed with wrapper
+(see <a class="reference internal" href="#annex-wrapper"><em>Using wrapper.py</em></a>).</p>
+<div class="section" id="pplus-job-verifier">
+<h3>PPlus job verifier<a class="headerlink" href="#pplus-job-verifier" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../doc-api/kdvs.tools.html#module-kdvs.tools.pplus_job_verifier" title="kdvs.tools.pplus_job_verifier"><tt class="xref py py-mod docutils literal"><span class="pre">pplus_job_verifier</span></tt></a> module contains the companion tool that checks
+jobs executed by <a class="reference internal" href="../doc-api/kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a> instance.
+It can be executed as follows:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python wrapper.py kdvs/tools/pplus_job_verifier.py</pre>
+</div>
+<p>It has the following command line parameters:</p>
+<div class="highlight-text"><div class="highlight"><pre>Usage: pplus_job_verifier.py [options]
+
+Companion script for kdvs.fw.impl.job.PPlusJob.PPlusJobContainer. Checks
+&quot;experiment.log&quot; for consistency of job submission and job completion
+messages. INPUT: When -d option is given, it resolves the log file as follows:
+finds configuration file CFG in given directory, looks for most probable
+location in &quot;jobs_location&quot; variable, and looks for &quot;experiment.log&quot; there.
+When -f option is given, it looks directly for given file bypassing automatic
+discovery. OUTPUT: Writes &quot;pplus_job_verifier_output.txt&quot; file to directory
+specified with -o option. Default output directory:
+&quot;/home/grzegorz/Dropbox/KDVS2.0/doc&quot;.
+
+Options:
+  -h, --help            show this help message and exit
+  -d DIR, --kdvs-output-dir=DIR
+                        scan KDVS output directory DIR for &#39;experiment.log&#39;
+                        file
+  -f EXP_LOG_PATH, --experiment-log-file=EXP_LOG_PATH
+                        path to &#39;experiment.log&#39; file
+  -o ODIR, --output-dir=ODIR
+                        write result files into directory ODIR
+&quot;pplus_job_verifier_output.txt&quot; contains the following data: 
+(1) for jobs submitted but apparently not completed, job ID and machine designated to execute it, 
+(2) listing of jobs per machine.
+</pre></div>
+</div>
+</div>
+<div class="section" id="predictions-extractor">
+<h3>Predictions extractor<a class="headerlink" href="#predictions-extractor" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../doc-api/kdvs.tools.html#module-kdvs.tools.predictions_extractor" title="kdvs.tools.predictions_extractor"><tt class="xref py py-mod docutils literal"><span class="pre">predictions_extractor</span></tt></a> module contains the companion tool that
+extracts predictions made during individual classification tasks.
+It can be executed as follows:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python wrapper.py kdvs/tools/predictions_extractor.py</pre>
+</div>
+<p>It has the following command line parameters:</p>
+<div class="highlight-text"><div class="highlight"><pre>Usage: predictions_extractor.py [options]
+
+Extracts predictions from results of finished experiment. INPUT: Root
+directory with experiment results specified with -d option. OUTPUT: Writes
+&#39;predictions.txt&#39; file to directory specified with -o option. Default output
+directory: &#39;/home/grzegorz/Dropbox/KDVS2.0/doc&#39;.
+
+Options:
+  -h, --help            show this help message and exit
+  -d DIR, --kdvs-output-dir=DIR
+                        input root KDVS output directory
+  -o ODIR, --output-dir=ODIR
+                        write result files into directory ODIR
+
+&#39;predictions.txt&#39; contains the predictions for each processed data subset in linear manner; 
+for each data subset the following information is written (without &#39;&gt;&#39;):
+&gt; subset_ID (technique_ID) 
+&gt; DOF_1 (outer_selection_status) 
+&gt; sample1,sample2,...,sampleN 
+&gt; original_label1,original_label2,...,original_labelN 
+&gt; predicted_label1,predicted_label2,...,predicted_labelN 
+&gt; DOF_2 (outer_selection_status) 
+&gt; sample1,sample2,...,sampleN 
+&gt; original_label1,original_label2,...,original_labelN 
+&gt; predicted_label1,predicted_label2,...,predicted_labelN 
+&gt; ...
+&gt; DOF_P (outer_selection_status) 
+&gt; sample1,sample2,...,sampleN 
+&gt; original_label1,original_label2,...,original_labelN 
+&gt; predicted_label1,predicted_label2,...,predicted_labelN
+</pre></div>
+</div>
+</div>
+<div class="section" id="v1vs2">
+<h3>v1vs2<a class="headerlink" href="#v1vs2" title="Permalink to this headline">¶</a></h3>
+<p>These tools were used to compare the results produced by KDVS 1.0 and KDVS 2.0
+for <cite>reference</cite> statistical techniques. Since <cite>full migration path</cite> 1.0-&gt;2.0 has
+not been devised as of this writing, they are provided here for future reference.
+See <a class="reference internal" href="../doc-api/kdvs.tools.v1vs2.html#module-kdvs.tools.v1vs2" title="kdvs.tools.v1vs2"><tt class="xref py py-mod docutils literal"><span class="pre">kdvs.tools.v1vs2</span></tt></a> API documentation for more details.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Three levels of testing are devised for KDVS:</p>
+<blockquote>
+<div><ul class="simple">
+<li>unit tests (<strong>t</strong>)</li>
+<li>function tests (<strong>f</strong>)</li>
+<li>system tests (<strong>s</strong>)</li>
+</ul>
+</div></blockquote>
+<p>Currently, only <strong>t</strong> tests are implemented; some dummy <strong>f</strong> and <strong>s</strong> tests
+are also included for completion.</p>
+<p>KDVS tests are located in the following location:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kdvs</span><span class="o">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../doc-api/kdvs.tests.html#module-kdvs.tests" title="kdvs.tests"><tt class="xref py py-mod docutils literal"><span class="pre">kdvs.tests</span></tt></a> API documentation for more details.</p>
+<div class="section" id="test-runner">
+<h3>Test runner<a class="headerlink" href="#test-runner" title="Permalink to this headline">¶</a></h3>
+<p>KDVS tests can be executed with the following companion script:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kdvs</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">runTests</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>It has the following command line options:</p>
+<div class="highlight-text"><div class="highlight"><pre>Usage: runTests.py [options]
+
+Test suite for Knowledge Driven Variable Selection (KDVS) system. There are
+three types of tests to run, with increasing complexity: unit tests, function
+test and system tests. By default, all tests are executed in succession: first
+unit tests, then function tests, then system tests. Individual types of tests
+may be selected with corresponding switches (default equals to specifying -t
+-f -s). Some tests require writing to specific directory; currently it is set
+to &#39;/home/grzegorz/Dropbox/KDVS2.0/kdvs/tests/test-write&#39;. This directory must
+be writable to proceed. It may be changed with &#39;-w&#39; option. The same directory
+is used for all types of tests.
+
+Options:
+  -h, --help            show this help message and exit
+  -t, --unit-tests      execute unit tests
+  -f, --function-tests  execute function tests
+  -s, --system-tests    execute system tests
+  -w TWRPATH, --test-write-root=TWRPATH
+                        set test write root directory path to TWRPATH
+  --verbose             show more detailed test results
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-tests">
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>These tests are intended to test each elementary functionality of the KDVS codebase.
+For instance, each single abstract class and its implementations is testable by
+unit tests.</p>
+<p>Unit tests are the only complete test suite at the time of this writing.</p>
+<p>So far, unit tests have been successfully run on the following configurations:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Linux Ubuntu 12.04, Python 2.7</li>
+<li>Apple OS/X 10.7, Python 2.7</li>
+<li>Windows 7, Python 2.6</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="function-tests">
+<h3>Function tests<a class="headerlink" href="#function-tests" title="Permalink to this headline">¶</a></h3>
+<p>These tests are intended to test separable blocks of elementary functionalities
+within KDVS codebase. For instance, interplay between subset of classes that can
+be separated from other classes, is testable by function tests.</p>
+<p>No function tests exist at the time of this writing.</p>
+</div>
+<div class="section" id="system-tests">
+<h3>System tests<a class="headerlink" href="#system-tests" title="Permalink to this headline">¶</a></h3>
+<p>These tests are intended to test specific complete flows of function blocks within
+KDVS codebase. For instance, executing complete application with test synthetic
+data, is testable by system tests.</p>
+<p>No system tests exist at the time of this writing.</p>
+</div>
+</div>
+<div class="section" id="documenting">
+<h2>Documenting<a class="headerlink" href="#documenting" title="Permalink to this headline">¶</a></h2>
+<p>KDVS HTML documentation is built with <a class="reference external" href="http://sphinx-doc.org">sphinx</a> as follows
+(assuming <tt class="docutils literal"><span class="pre">sphinx</span></tt> is installed):</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT/doc
+make html</pre>
+</div>
+<p>KDVS HTML API documentation is built with
+<a class="reference external" href="http://sphinx-doc.org/man/sphinx-apidoc.html">sphinx-apidoc</a> as follows (assuming
+<tt class="docutils literal"><span class="pre">sphinx</span></tt> is installed):</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+sphinx-apidoc -f -o doc/doc-api kdvs</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Do not use distutils &#8216;sphinx_build&#8217; command.</p>
+</div>
+</div>
+<div class="section" id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
+<p>Building KDVS requires the following Python packages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://docs.python.org/library/distutils.html#distutils" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">distutils</span></tt></a> (shipped with Python)</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/setuptools">setuptools</a> (tested with v0.6)</li>
+</ul>
+</div></blockquote>
+<p>To build KDVS source archive:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python setup.py sdist</pre>
+</div>
+<p>The default distribution for the current operating system (.tar.gz for Linux, .zip
+for Windows) will be located in:</p>
+<div class="highlight-python"><pre>$KDVS_ROOT/dist</pre>
+</div>
+<p>To build KDVS binary distribution:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python setup.py bdist</pre>
+</div>
+<p>The default distribution for the current operating system (.tar.gz for Linux, .zip
+for Windows) will be located in:</p>
+<div class="highlight-python"><pre>$KDVS_ROOT/dist</pre>
+</div>
+<p>To clean remaining build artefacts in the &#8216;build&#8217; folder:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python setup.py clean</pre>
+</div>
+</div>
+<div class="section" id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h2>
+<p>To install KDVS from source archive:</p>
+<div class="highlight-python"><pre>cd $KDVS_ROOT
+python setup.py install</pre>
+</div>
+<p>most likely preceded by <tt class="docutils literal"><span class="pre">sudo</span></tt>.</p>
+<p>Note that documentation and examples are not copied.</p>
+</div>
+<div class="section" id="uninstalling">
+<h2>Uninstalling<a class="headerlink" href="#uninstalling" title="Permalink to this headline">¶</a></h2>
+<p>Uninstalling KDVS requires the following Python packages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a></li>
+</ul>
+</div></blockquote>
+<p>To uninstall KDVS:</p>
+<div class="highlight-python"><pre>pip uninstall kdvs</pre>
+</div>
+<p>most likely preceded by <tt class="docutils literal"><span class="pre">sudo</span></tt>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Annex</a><ul>
+<li><a class="reference internal" href="#default-configuration-file">Default configuration file</a><ul>
+<li><a class="reference internal" href="#static-data-files">Static data files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#global-technique-parameters">Global technique parameters</a><ul>
+<li><a class="reference internal" href="#degree-s-of-freedom-dof">Degree(s) of freedom (DOF)</a></li>
+<li><a class="reference internal" href="#job-importability">Job importability</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#serialization">Serialization</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#current-protocol">Current protocol</a><ul>
+<li><a class="reference internal" href="#binary-data">Binary data</a></li>
+<li><a class="reference internal" href="#textual-data">Textual data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legacy-protocol-pzp">Legacy protocol (&#8220;PZP&#8221;)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-wrapper-py">Using wrapper.py</a></li>
+<li><a class="reference internal" href="#contributions">Contributions</a><ul>
+<li><a class="reference internal" href="#bag">Bag</a></li>
+<li><a class="reference internal" href="#ordered-dictionary">Ordered dictionary</a></li>
+<li><a class="reference internal" href="#dataset-generator">Dataset generator</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tools">Tools</a><ul>
+<li><a class="reference internal" href="#pplus-job-verifier">PPlus job verifier</a></li>
+<li><a class="reference internal" href="#predictions-extractor">Predictions extractor</a></li>
+<li><a class="reference internal" href="#v1vs2">v1vs2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a><ul>
+<li><a class="reference internal" href="#test-runner">Test runner</a></li>
+<li><a class="reference internal" href="#unit-tests">Unit tests</a></li>
+<li><a class="reference internal" href="#function-tests">Function tests</a></li>
+<li><a class="reference internal" href="#system-tests">System tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documenting">Documenting</a></li>
+<li><a class="reference internal" href="#building">Building</a></li>
+<li><a class="reference internal" href="#installing">Installing</a></li>
+<li><a class="reference internal" href="#uninstalling">Uninstalling</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roadmap.html" title="Roadmap"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="writingapplication.html" title="Writing KDVS application"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

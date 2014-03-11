@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GeneID Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="map Package" href="kdvs.fw.impl.map.html" />
+    <link rel="next" title="PKCID Package" href="kdvs.fw.impl.map.PKCID.html" />
+    <link rel="prev" title="map Package" href="kdvs.fw.impl.map.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.map.PKCID.html" title="PKCID Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.map.html" title="map Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.map.html" accesskey="U">map Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="geneid-package">
+<h1>GeneID Package<a class="headerlink" href="#geneid-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">GeneID</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.fw.impl.map.GeneID"></span><p>Provides concrete implementation of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMap</span></tt></a> builders.</p>
+</div>
+<div class="section" id="module-kdvs.fw.impl.map.GeneID.GPL">
+<span id="gpl-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">GPL</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.map.GeneID.GPL" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete implementation of <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">GeneIDMap</span></tt></a> builder
+that uses annotations shipped with specified microarray; those annotations shall
+contain mapping between the individual probe(set)s and gene symbols. The currently
+implemented builder is tailored for processing of Affymetrix annotations.
+See <a class="reference external" href="http://www.affymetrix.com/support/technical/annotationfilesmain.affx">Affymetrix annotations</a>
+for more details. The mapping is based solely on the annotations, i.e. it does
+not check for obsolete or synonymous gene symbols in HGNC data.
+See <a class="reference internal" href="#module-kdvs.fw.impl.map.GeneID.HGNC_GPL" title="kdvs.fw.impl.map.GeneID.HGNC_GPL"><tt class="xref py py-mod docutils literal"><span class="pre">HGNC_GPL</span></tt></a> for the builder that provides this functionality.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.map.GeneID.GPL.GeneIDMapGPL">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.map.GeneID.GPL.</tt><tt class="descname">GeneIDMapGPL</tt><a class="headerlink" href="#kdvs.fw.impl.map.GeneID.GPL.GeneIDMapGPL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Map.GeneIDMap</span></tt></a></p>
+<p>GeneIDMap builder that uses Affymetrix annotations available at <a class="reference external" href="http://www.ncbi.nlm.nih.gov/geo/">Gene Expression
+Omnibus</a>. Annotations must already be loaded
+&#8220;as&#8211;is&#8221; into KDVS DB and wrapped into DSV instance. The mapping table follows
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Annotation.EM2ANNOTATION_TMPL" title="kdvs.fw.Annotation.EM2ANNOTATION_TMPL"><tt class="xref py py-data docutils literal"><span class="pre">EM2ANNOTATION_TMPL</span></tt></a> template.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.map.GeneID.GPL.GeneIDMapGPL.build">
+<tt class="descname">build</tt><big>(</big><em>anno_dsv</em>, <em>hgnc_dsv</em>, <em>map_db_key</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.map.GeneID.GPL.GeneIDMapGPL.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct the mapping using resources already present in KDVS DB (via
+<a class="reference internal" href="kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a>) and wrapped in <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a>
+instances. The mapping is built as database table and wrapped
+into <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> instance; it is stored in public attribute
+<tt class="xref py py-attr docutils literal"><span class="pre">dbt</span></tt> of this instance. After the build is finished, the public attribute
+<tt class="xref py py-attr docutils literal"><span class="pre">built</span></tt> is set to True. This builder requires Affymetrix annotations data
+already loaded in KDVS DB and wrapped in DSV instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>anno_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote>
+<div><p>valid instance of DSV that contains Affymetrix annotations data</p>
+</div></blockquote>
+<p><strong>hgnc_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote>
+<div><p>currently unused, added for compatibility</p>
+</div></blockquote>
+<p><strong>map_db_key</strong> : string</p>
+<blockquote>
+<div><p>ID of the database that will hold mapping table</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if DSV containing Affymetrix annotation data is incorrectly specified, is
+not created, or is empty</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.fw.impl.map.GeneID.HGNC_GPL">
+<span id="hgnc-gpl-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">HGNC_GPL</span></tt> Module<a class="headerlink" href="#module-kdvs.fw.impl.map.GeneID.HGNC_GPL" title="Permalink to this headline">¶</a></h2>
+<p>Provides concrete implementation of GeneIDMap builder that uses annotations
+shipped with specified microarray; those annotations shall contain mapping
+between the individual probe(set)s and gene symbols. The currently implemented
+builder is tailored for processing of Affymetrix annotations.
+See <a class="reference external" href="http://www.affymetrix.com/support/technical/annotationfilesmain.affx">Affymetrix annotations</a>
+for more details. The mapping is based both on the annotations and HGNC data,
+i.e. it tries to resolve obsolete or synonymous gene symbols into more usable ones.</p>
+<dl class="class">
+<dt id="kdvs.fw.impl.map.GeneID.HGNC_GPL.GeneIDMapHGNCGPL">
+<em class="property">class </em><tt class="descclassname">kdvs.fw.impl.map.GeneID.HGNC_GPL.</tt><tt class="descname">GeneIDMapHGNCGPL</tt><a class="headerlink" href="#kdvs.fw.impl.map.GeneID.HGNC_GPL.GeneIDMapHGNCGPL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="kdvs.fw.html#kdvs.fw.Map.GeneIDMap" title="kdvs.fw.Map.GeneIDMap"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.fw.Map.GeneIDMap</span></tt></a></p>
+<p>GeneIDMap builder that uses Affymetrix annotations available at <a class="reference external" href="http://www.ncbi.nlm.nih.gov/geo/">Gene Expression
+Omnibus</a>. Annotations must already be loaded
+&#8220;as&#8211;is&#8221; into KDVS DB and wrapped into DSV instance. HGNC data must be loaded
+and wrapped in DSV as well. The mapping table follows
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.Annotation.EM2ANNOTATION_TMPL" title="kdvs.fw.Annotation.EM2ANNOTATION_TMPL"><tt class="xref py py-data docutils literal"><span class="pre">EM2ANNOTATION_TMPL</span></tt></a> template.</p>
+<dl class="method">
+<dt id="kdvs.fw.impl.map.GeneID.HGNC_GPL.GeneIDMapHGNCGPL.build">
+<tt class="descname">build</tt><big>(</big><em>anno_dsv</em>, <em>hgnc_dsv</em>, <em>map_db_key</em><big>)</big><a class="headerlink" href="#kdvs.fw.impl.map.GeneID.HGNC_GPL.GeneIDMapHGNCGPL.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct the mapping using resources already present in KDVS DB (via
+<a class="reference internal" href="kdvs.core.html#kdvs.core.db.DBManager" title="kdvs.core.db.DBManager"><tt class="xref py py-class docutils literal"><span class="pre">DBManager</span></tt></a>) and wrapped in <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a>
+instances. The mapping is built as database table and wrapped into
+<a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBTable.DBTable" title="kdvs.fw.DBTable.DBTable"><tt class="xref py py-class docutils literal"><span class="pre">DBTable</span></tt></a> instance; it is stored in public attribute <tt class="xref py py-attr docutils literal"><span class="pre">dbt</span></tt>
+of this instance. After the build is finished, the public attribute <tt class="xref py py-attr docutils literal"><span class="pre">built</span></tt>
+is set to True. This builder requires both Affymetrix annotations data and HGNC
+data already loaded in KDVS DB and wrapped in DSV instances. Refer to the
+comments for resolvancy protocol used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>anno_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote>
+<div><p>valid instance of DSV that contains Affymetrix annotations data</p>
+</div></blockquote>
+<p><strong>hgnc_dsv</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a></p>
+<blockquote>
+<div><p>valid instance of DSV that contains HGNC data</p>
+</div></blockquote>
+<p><strong>map_db_key</strong> : string</p>
+<blockquote>
+<div><p>ID of the database that will hold mapping table</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if DSV containing Affymetrix annotation data is incorrectly specified, is
+not created, or is empty</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if DSV containing HGNC data is incorrectly specified,
+is not created, or is empty</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">GeneID Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">GeneID</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.map.GeneID.GPL"><tt class="docutils literal"><span class="pre">GPL</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.fw.impl.map.GeneID.HGNC_GPL"><tt class="docutils literal"><span class="pre">HGNC_GPL</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.map.PKCID.html" title="PKCID Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.impl.map.html" title="map Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.html" >fw Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.html" >impl Package</a> &raquo;</li>
+          <li><a href="kdvs.fw.impl.map.html" >map Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

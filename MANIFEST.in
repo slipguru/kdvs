@@ -1,0 +1,19 @@
+include MANIFEST.in
+include README
+include LICENSE
+include CHANGELOG
+include CONTRIBUTORS
+
+include wrapper.py
+include kdvs/config/*
+recursive-include kdvs/data *
+include examples/GSE7390/*
+
+include doc/*
+include doc/_static/*
+include doc/_templates/*
+include doc/doc-api/*
+include doc/doc-gen/*
+recursive-include doc/_build *
+recursive-include doc/slipGURUTheme *
+recursive-include doc/sphinxext *

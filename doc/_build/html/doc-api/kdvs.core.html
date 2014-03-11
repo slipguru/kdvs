@@ -1,0 +1,1741 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>core Package &mdash; KDVS 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/slipGuru.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="KDVS 2.0.0 documentation" href="../index.html" />
+    <link rel="up" title="kdvs Package" href="kdvs.html" />
+    <link rel="next" title="fw Package" href="kdvs.fw.html" />
+    <link rel="prev" title="contrib Package" href="kdvs.contrib.html" />
+<meta name="keywords" content="SlipGuru, 'University of Genoa', statistical learning, computational biology, bioinformatics, feature selection, Python" />
+<map id="logosmap" name="logosmap">
+    <area shape="rect" alt="SlipGURU" title="SlipGURU" coords="0,0,89,112"
+          href="http://slipguru.disi.unige.it/" />
+    <area shape="rect" alt="Dipartimento di Informatica e Scienze dell'Informazione"
+          title="Dipartimento di Informatica e Scienze dell'Informazione"
+          coords="95,4,200,34" href="http://www.disi.unige.it/" />
+    <area shape="rect" alt="Università Degli Studi di Genova"
+          title="Università Degli Studi di Genova" coords="124,48,171,107"
+          href="http://www.unige.it/" />
+</map>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.html" title="fw Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.contrib.html" title="contrib Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" accesskey="U">kdvs Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="core-package">
+<h1>core Package<a class="headerlink" href="#core-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">core</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kdvs.core"></span><p>Provides core low&#8211;level functionality of KDVS.</p>
+</div>
+<div class="section" id="module-kdvs.core._version">
+<span id="version-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">_version</span></tt> Module<a class="headerlink" href="#module-kdvs.core._version" title="Permalink to this headline">¶</a></h2>
+<p>Provides version for the release of KDVS.</p>
+<dl class="data">
+<dt id="kdvs.core._version.version">
+<tt class="descclassname">kdvs.core._version.</tt><tt class="descname">version</tt><em class="property"> = '2.0.0'</em><a class="headerlink" href="#kdvs.core._version.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Major number for main changes. Minor number for new features. Release number
+for bug fixes and minor updates. Status = &#8216;alpha&#8217;/&#8217;beta&#8217;/None.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.action">
+<span id="action-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">action</span></tt> Module<a class="headerlink" href="#module-kdvs.core.action" title="Permalink to this headline">¶</a></h2>
+<p>Provides specification for actions executed by execution environment.</p>
+<dl class="class">
+<dt id="kdvs.core.action.ActionSpec">
+<em class="property">class </em><tt class="descclassname">kdvs.core.action.</tt><tt class="descname">ActionSpec</tt><big>(</big><em>input_vars</em>, <em>output_vars</em>, <em>func</em>, <em>args</em>, <em>kwargs</em><big>)</big><a class="headerlink" href="#kdvs.core.action.ActionSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Creates new action to be submitted to execution environment.
+Action specification encapsulates arbitrary Python callable and its arguments.
+In addition, if requested, execution environment can check if certain variables
+have been present and/or produced before and after the execution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>input_vars</strong> : list/tuple</p>
+<blockquote>
+<div><p>names of the variables that shall be present in the environment before
+the execution of the action</p>
+</div></blockquote>
+<p><strong>output_vars</strong> : list/tuple</p>
+<blockquote>
+<div><p>names of the variables that shall be present in the environment after
+the execution of the action</p>
+</div></blockquote>
+<p><strong>func</strong> : callable</p>
+<blockquote>
+<div><p>function to be executed</p>
+</div></blockquote>
+<p><strong>args</strong> : iterable</p>
+<blockquote>
+<div><p>any additional positional arguments passed to function</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>any additional keyworded arguments passed to function</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.core.action.ActionSpec.as_tuple">
+<tt class="descname">as_tuple</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.action.ActionSpec.as_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the elements of action specification as tuple:
+(input_vars, output_vars, func, args, kwargs)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.config">
+<span id="config-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">config</span></tt> Module<a class="headerlink" href="#module-kdvs.core.config" title="Permalink to this headline">¶</a></h2>
+<p>Provides mechanisms for configuration of KDVS. Configuration files are normal
+Python scripts that are evaluated with &#8216;execfile&#8217;. Since KDVS uses many options
+in many configuration files, this module provides utilities for evaluating and
+merging configurations.</p>
+<dl class="function">
+<dt id="kdvs.core.config.getDefaultCfgFilePath">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">getDefaultCfgFilePath</tt><big>(</big><em>defpath=None</em><big>)</big><a class="headerlink" href="#kdvs.core.config.getDefaultCfgFilePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return absolute path of default configuration file for KDVS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.config.getDefaultDataRootPath">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">getDefaultDataRootPath</tt><big>(</big><em>defpath=None</em><big>)</big><a class="headerlink" href="#kdvs.core.config.getDefaultDataRootPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return absolute path of default data directory for KDVS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.config.getGODataPath">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">getGODataPath</tt><big>(</big><em>defpath=None</em><big>)</big><a class="headerlink" href="#kdvs.core.config.getGODataPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return absolute path of default Gene Ontology (GO) data directory for KDVS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.config.getVisDataPath">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">getVisDataPath</tt><big>(</big><em>defpath=None</em><big>)</big><a class="headerlink" href="#kdvs.core.config.getVisDataPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return absolute path of default visualization data directory for KDVS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.config.mergeCfg">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">mergeCfg</tt><big>(</big><em>parent_cfg</em>, <em>child_cfg</em><big>)</big><a class="headerlink" href="#kdvs.core.config.mergeCfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge parent end child config variables to produce final config variables, as
+follows. If the variable exists only in parent config or child config, write it
+to the final config. If the variable exists in both parent and child configs,
+retain the one from child config.</p>
+<p>It is used to merge variables obtained from default configuration file and
+specified user configuration file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>parent_cfg</strong> : dict</p>
+<blockquote>
+<div><p>dictionary of variables obtained from parent configuration file</p>
+</div></blockquote>
+<p><strong>child_cfg</strong> : dict</p>
+<blockquote>
+<div><p>dictionary of variables obtained from child configuration file</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>final_cfg</strong> : dict</p>
+<blockquote class="last">
+<div><p>merged configuration variables</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.config.evaluateDefaultCfg" title="kdvs.core.config.evaluateDefaultCfg"><tt class="xref py py-obj docutils literal"><span class="pre">evaluateDefaultCfg</span></tt></a>, <a class="reference internal" href="#kdvs.core.config.evaluateUserCfg" title="kdvs.core.config.evaluateUserCfg"><tt class="xref py py-obj docutils literal"><span class="pre">evaluateUserCfg</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.config.evaluateDefaultCfg">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">evaluateDefaultCfg</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.config.evaluateDefaultCfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate default configuration file of KDVS and return its configuration variables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>default_cfg_vars</strong> : dict</p>
+<blockquote class="last">
+<div><p>dictionary of variables obtained from default configuration file</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.config.getDefaultCfgFilePath" title="kdvs.core.config.getDefaultCfgFilePath"><tt class="xref py py-obj docutils literal"><span class="pre">getDefaultCfgFilePath</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.config.evaluateUserCfg">
+<tt class="descclassname">kdvs.core.config.</tt><tt class="descname">evaluateUserCfg</tt><big>(</big><em>cfg_file</em>, <em>ignore_default_cfg=False</em><big>)</big><a class="headerlink" href="#kdvs.core.config.evaluateUserCfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate specified user configuration file of KDVS, performs merge with default
+configuration, and returns final configuration variables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>cfg_file</strong> : string</p>
+<blockquote>
+<div><p>path to user configuration file</p>
+</div></blockquote>
+<p><strong>ignore_default_cfg</strong> : bool</p>
+<blockquote>
+<div><p>ignores default configuration file; no merge is performed and all variables
+come only from user configuration file; should be used with caution</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>user_cfg</strong> : dict</p>
+<blockquote class="last">
+<div><p>dictionary of variables obtained from user configuration file</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.config.evaluateDefaultCfg" title="kdvs.core.config.evaluateDefaultCfg"><tt class="xref py py-obj docutils literal"><span class="pre">evaluateDefaultCfg</span></tt></a></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.db">
+<span id="db-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">db</span></tt> Module<a class="headerlink" href="#module-kdvs.core.db" title="Permalink to this headline">¶</a></h2>
+<p>Provides layer for all DB operations performed by KDVS.</p>
+<dl class="class">
+<dt id="kdvs.core.db.DBManager">
+<em class="property">class </em><tt class="descclassname">kdvs.core.db.</tt><tt class="descname">DBManager</tt><big>(</big><em>arbitrary_data_root=None</em>, <em>provider=None</em>, <em>rootdbid=None</em><big>)</big><a class="headerlink" href="#kdvs.core.db.DBManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>General manager of all DB operations performed by KDVS. It provides:</p>
+<blockquote>
+<div><ul class="simple">
+<li>automatic handling of meta&#8211;database that contains information of all used subordinated databases</li>
+<li>automated opening/closing of multiple subordinated databases</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>arbitrary_data_root</strong> : string/None</p>
+<blockquote>
+<div><p>path to directory containing all database objects managed by this manager
+instance; also, all new database objects will be created here; if None,
+default path &#8216;~/.kdvs/&#8217; will be used</p>
+</div></blockquote>
+<p><strong>provider</strong> : DBProvider/None</p>
+<blockquote>
+<div><p>concrete DBProvider instance that provides internal details about requested
+database system; if None, default provider for SQLite3 is used</p>
+</div></blockquote>
+<p><strong>rootdbid</strong> : string/None</p>
+<blockquote class="last">
+<div><p>custom ID for meta&#8211;database; if not specified, the default one will be used</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.expanduser" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">os.path.expanduser</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.core.db.DBManager.getDB">
+<tt class="descname">getDB</tt><big>(</big><em>db_id</em><big>)</big><a class="headerlink" href="#kdvs.core.db.DBManager.getDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain connection for subordinated database with requested ID. If database does not
+exist, create it. If underlying provider accepts it, special ID &#8216;memdb&#8217; may be
+used for single in&#8211;memory database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>db_id</strong> : string</p>
+<blockquote>
+<div><p>ID for requested database</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>handle</strong> : connection (depends on provider)</p>
+<blockquote class="last">
+<div><p>connection to the requested subordinated database</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.db.DBManager.getDBloc">
+<tt class="descname">getDBloc</tt><big>(</big><em>db_id</em><big>)</big><a class="headerlink" href="#kdvs.core.db.DBManager.getDBloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain location for subordinated database with requested ID. If database with
+requested ID has not been yet created, return None. The meaning of &#8216;location&#8217;
+depends on the provider. For instance, in case of SQLite3, single database is
+stored in single file, and &#8216;location&#8217; is the absolute path to that file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>db_id</strong> : string</p>
+<blockquote>
+<div><p>ID for requested database</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>location</strong> : (depends on provider)</p>
+<blockquote class="last">
+<div><p>location of the requested subordinated database, in the sense of provider;
+or None if database does not exist</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.db.DBManager.close">
+<tt class="descname">close</tt><big>(</big><em>dbname=None</em><big>)</big><a class="headerlink" href="#kdvs.core.db.DBManager.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes requested subordinated database managed by this manager instance. If None
+is requested, then all databases are closed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>dbname</strong> : string/None</p>
+<blockquote class="last">
+<div><p>ID for requested database to close; if None, all databases wil be closed</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.dep">
+<span id="dep-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">dep</span></tt> Module<a class="headerlink" href="#module-kdvs.core.dep" title="Permalink to this headline">¶</a></h2>
+<p>Provides mechanism for dynamic verifying of dependences in KDVS.</p>
+<dl class="function">
+<dt id="kdvs.core.dep.verifyDepModule">
+<tt class="descclassname">kdvs.core.dep.</tt><tt class="descname">verifyDepModule</tt><big>(</big><em>modname</em><big>)</big><a class="headerlink" href="#kdvs.core.dep.verifyDepModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that requested module is importable from within KDVS.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>modname</strong> : string</p>
+<blockquote>
+<div><p>module name to be verified</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>module_instance</strong> : module</p>
+<blockquote>
+<div><p>instance of the verified module, as present in &#8216;sys.modules&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if requested module is not importable from within KDVS</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.env">
+<span id="env-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">env</span></tt> Module<a class="headerlink" href="#module-kdvs.core.env" title="Permalink to this headline">¶</a></h2>
+<p>Provides functionality of encapsulated execution environment for small dependent
+computational tasks (dubbed actions). Actions are encapsulated Python callables
+that can be submitted to environment for execution. Actions are executed in
+submission order. Actions can communicate through shared variables that are
+kept within the environment instance. In addition, environment can verify if
+certain variables are present before or after the execution of specific action.</p>
+<dl class="class">
+<dt id="kdvs.core.env.ExecutionEnvironment">
+<em class="property">class </em><tt class="descclassname">kdvs.core.env.</tt><tt class="descname">ExecutionEnvironment</tt><big>(</big><em>expected_cfg</em>, <em>env_cfg</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.core.util.Configurable" title="kdvs.core.util.Configurable"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.core.util.Configurable</span></tt></a></p>
+<p>Implements basic execution environment, where set of actions is executed in order,
+and common set of environment variables is available for any action to store to
+and retrieve data from. The environment is configurable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expected_cfg</strong> : dict</p>
+<blockquote>
+<div><p>expected configuration of environment</p>
+</div></blockquote>
+<p><strong>env_cfg</strong> : dict</p>
+<blockquote>
+<div><p>provided environment configuration as read from configuration file</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if provided configuration does not conform to expected configuration</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.actions">
+<tt class="descname">actions</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of actions submitted for execution by this environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>actions</strong> : iterable of ActionSpec</p>
+<blockquote class="last">
+<div><p>all actions submitted for execution by this environment</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.addAction">
+<tt class="descname">addAction</tt><big>(</big><em>action_spec</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.addAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submit instance of action specification (ActionSpec) for execution by this environment.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.action.ActionSpec" title="kdvs.core.action.ActionSpec"><tt class="xref py py-obj docutils literal"><span class="pre">kdvs.core.action.ActionSpec</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.addCallable">
+<tt class="descname">addCallable</tt><big>(</big><em>action_callable</em>, <em>action_kwargs=None</em>, <em>action_input=None</em>, <em>action_output=None</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.addCallable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submit specified callable for execution by this environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>action_callable</strong> : callable</p>
+<blockquote>
+<div><p>callable to be executed</p>
+</div></blockquote>
+<p><strong>action_kwargs</strong> : dict/None</p>
+<blockquote>
+<div><p>any keyworded arguments passed to callable</p>
+</div></blockquote>
+<p><strong>action_input</strong> : list/tuple/None</p>
+<blockquote>
+<div><p>names of the variables that shall be present in the environment before
+the execution of the action</p>
+</div></blockquote>
+<p><strong>action_output</strong> : list/tuple/None</p>
+<blockquote class="last">
+<div><p>names of the variables that shall be present in the environment after
+the execution of the action</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.clearActions">
+<tt class="descname">clearActions</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.clearActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear all currently submitted actions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.addVar">
+<tt class="descname">addVar</tt><big>(</big><em>varkey</em>, <em>var</em>, <em>replace=False</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.addVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new variable to execution environment, with possible replacement. Variables
+are managed in a dictionary, therefore all rules for adding items to standard
+dictionaries apply here as well.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>varkey</strong> : object</p>
+<blockquote>
+<div><p>hashable key for new variable</p>
+</div></blockquote>
+<p><strong>var</strong> : object</p>
+<blockquote>
+<div><p>value for new variable</p>
+</div></blockquote>
+<p><strong>replace</strong> : bool</p>
+<blockquote>
+<div><p>if True, already existing variable will be replaced</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>ValueError</strong> :</p>
+<blockquote class="last">
+<div><p>if variable already exists and replacement was not requested</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.delVar">
+<tt class="descname">delVar</tt><big>(</big><em>varkey</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.delVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove requested variable from execution environment. If variable does not exist,
+do nothing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>varkey</strong> : object</p>
+<blockquote class="last">
+<div><p>key of variable to be removed</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.updateVars">
+<tt class="descname">updateVars</tt><big>(</big><em>vardict</em>, <em>replace=False</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.updateVars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add all variables from requested dictionary to execution environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>vardict</strong> : dict</p>
+<blockquote>
+<div><p>dictionary of variables to be added</p>
+</div></blockquote>
+<p><strong>replace</strong> : bool</p>
+<blockquote>
+<div><p>if True, any already existing variable will be replaced</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>ValueError</strong> :</p>
+<blockquote class="last">
+<div><p>if one of new variables already exists (replacements are not requested here)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.env.ExecutionEnvironment.addVar" title="kdvs.core.env.ExecutionEnvironment.addVar"><tt class="xref py py-obj docutils literal"><span class="pre">addVar</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.var">
+<tt class="descname">var</tt><big>(</big><em>varkey</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve value of variable present in execution environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>varkey</strong> : object</p>
+<blockquote>
+<div><p>key of variable to be retrieved</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>var</strong> : object</p>
+<blockquote>
+<div><p>value of requested variable</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>ValueError</strong> :</p>
+<blockquote class="last">
+<div><p>if variable does not exist</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.varkeys">
+<tt class="descname">varkeys</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.varkeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve keys of all existing variables present in execution environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>varkeys</strong> : iterable</p>
+<blockquote class="last">
+<div><p>keys of variables present in execution environment</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.execute">
+<tt class="descname">execute</tt><big>(</big><em>verify_io=True</em>, <em>dump_env=False</em><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute all submitted actions so far in submission order (FIFO) and performs explicit
+garbage collection between each action run. When any action raises an exception
+during its run, the whole execution is stopped and diagnostic information is returned.
+If all actions finish without exception, also clear them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>verify_io</strong> : bool</p>
+<blockquote>
+<div><p>if environment shall perform verification of input and output for every action
+executed; True by default</p>
+</div></blockquote>
+<p><strong>dump_env</strong> : bool</p>
+<blockquote>
+<div><p>if in case of exception thrown by action, all environment variables shall be
+returned in diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>diagnostic</strong> : tuple/None</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>None if all actions were executed silently, otherwise the following information is returned:</dt>
+<dd><ul class="first last simple">
+<li>number of action that has thrown an exception</li>
+<li>total number of actions to be executed</li>
+<li>failed action details, as tuple (action_func_callable, args, kwargs)</li>
+<li>thrown exception details, as tuple (exception instance, result of &#8216;sys.exc_info&#8217;)</li>
+<li>details of actions already executed before failed action, as iterable of tuples (action_func_callable, args, kwargs)</li>
+<li>details of actions to be executed after failed action, as iterable of tuples (action_func_callable, args, kwargs)</li>
+<li>if environment dump was requested, all environment variables present in the moment of exception throw</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/sys.html#sys.exc_info" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">sys.exc_info()</span></tt></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>Dumping the environment that executes many long and complicated interlinked actions
+that use lots of environment variables produces a LOT OF diagnostic information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.ExecutionEnvironment.postActionCallback">
+<tt class="descname">postActionCallback</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.env.ExecutionEnvironment.postActionCallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback function called after each successful action execution. By default
+it does nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.env.LoggedExecutionEnvironment">
+<em class="property">class </em><tt class="descclassname">kdvs.core.env.</tt><tt class="descname">LoggedExecutionEnvironment</tt><big>(</big><em>expected_cfg</em>, <em>env_cfg</em><big>)</big><a class="headerlink" href="#kdvs.core.env.LoggedExecutionEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.core.env.ExecutionEnvironment</span></tt></a></p>
+<p>Implements execution environment that utilizes logging.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.env.ExecutionEnvironment" title="kdvs.core.env.ExecutionEnvironment"><tt class="xref py py-obj docutils literal"><span class="pre">ExecutionEnvironment</span></tt></a></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expected_cfg</strong> : dict</p>
+<blockquote>
+<div><p>expected configuration of environment</p>
+</div></blockquote>
+<p><strong>env_cfg</strong> : dict</p>
+<blockquote>
+<div><p>provided environment configuration as read from configuration file</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if provided configuration does not conform to expected configuration</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.core.env.LoggedExecutionEnvironment.execute">
+<tt class="descname">execute</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.env.LoggedExecutionEnvironment.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute actions and log any diagnostic information obtained.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.env.ExecutionEnvironment.execute" title="kdvs.core.env.ExecutionEnvironment.execute"><tt class="xref py py-obj docutils literal"><span class="pre">ExecutionEnvironment.execute</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.env.LoggedExecutionEnvironment.postActionCallback">
+<tt class="descname">postActionCallback</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.env.LoggedExecutionEnvironment.postActionCallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called after each successful action execution. Flushes pending logger output.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.error">
+<span id="error-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">error</span></tt> Module<a class="headerlink" href="#module-kdvs.core.error" title="Permalink to this headline">¶</a></h2>
+<p>Provides unified error handling.</p>
+<dl class="exception">
+<dt id="kdvs.core.error.Error">
+<em class="property">exception </em><tt class="descclassname">kdvs.core.error.</tt><tt class="descname">Error</tt><a class="headerlink" href="#kdvs.core.error.Error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>Specific KDVS exception.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="kdvs.core.error.Warn">
+<em class="property">exception </em><tt class="descclassname">kdvs.core.error.</tt><tt class="descname">Warn</tt><a class="headerlink" href="#kdvs.core.error.Warn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Warning</span></tt></p>
+<p>Specific KDVS warning.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.log">
+<span id="log-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">log</span></tt> Module<a class="headerlink" href="#module-kdvs.core.log" title="Permalink to this headline">¶</a></h2>
+<p>Provides logging utilities for KDVS.</p>
+<dl class="class">
+<dt id="kdvs.core.log.Logger">
+<em class="property">class </em><tt class="descclassname">kdvs.core.log.</tt><tt class="descname">Logger</tt><big>(</big><em>name=None</em>, <em>level=20</em>, <em>handler=None</em>, <em>formatter=None</em>, <em>add_atts=None</em><big>)</big><a class="headerlink" href="#kdvs.core.log.Logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Abstract logger for KDVS system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>name</strong> : string/None</p>
+<blockquote>
+<div><p>name of the logger; if None, random name will be used</p>
+</div></blockquote>
+<p><strong>level</strong> : integer</p>
+<blockquote>
+<div><p>level granularity of this logger, INFO by default</p>
+</div></blockquote>
+<p><strong>handler</strong> : Handler/None</p>
+<blockquote>
+<div><p>handler for the logger; if None, null handler will be used (that does not emit anything)</p>
+</div></blockquote>
+<p><strong>formatter</strong> : Formatter/None</p>
+<blockquote>
+<div><p>formatter for the logger; if None, standard Formatter will be used</p>
+</div></blockquote>
+<p><strong>add_atts</strong> : dict/None</p>
+<blockquote class="last">
+<div><p>any custom attributes to be associated with the logger</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/logging.html#logging" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">logging</span></tt></a>, <a class="reference external" href="http://docs.python.org/library/logging.handlers.html#logging.handlers" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">logging.handlers</span></tt></a>, <a class="reference external" href="http://docs.python.org/library/logging.html#logging.Formatter" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">logging.Formatter</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.core.log.Logger.stdAttrs">
+<tt class="descname">stdAttrs</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.log.Logger.stdAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return dictionary of standard attributes for the logger.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.log.Logger.addAttrs">
+<tt class="descname">addAttrs</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.log.Logger.addAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return dictionary of associated custom attributes for the logger.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.log.RotatingFileLogger">
+<em class="property">class </em><tt class="descclassname">kdvs.core.log.</tt><tt class="descname">RotatingFileLogger</tt><big>(</big><em>name=None</em>, <em>level=20</em>, <em>path=None</em>, <em>maxBytes=10485760</em>, <em>backupCount=5</em><big>)</big><a class="headerlink" href="#kdvs.core.log.RotatingFileLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.core.log.Logger" title="kdvs.core.log.Logger"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.core.log.Logger</span></tt></a></p>
+<p>Logger that uses rotating file mechanism. By design, the default logger that KDVS
+uses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>name</strong> : string/None</p>
+<blockquote>
+<div><p>name of the logger; if None, random name will be used</p>
+</div></blockquote>
+<p><strong>level</strong> : integer</p>
+<blockquote>
+<div><p>level granularity of this logger, INFO by default</p>
+</div></blockquote>
+<p><strong>path</strong> : string/None</p>
+<blockquote>
+<div><p>path to log file; if None, random log file will be created in current directory,
+as per os.getcwd()</p>
+</div></blockquote>
+<p><strong>maxBytes</strong> : integer</p>
+<blockquote>
+<div><p>maximum size of log file in bytes before it gets rotated; 10 MB by default</p>
+</div></blockquote>
+<p><strong>backupCount</strong> : integer</p>
+<blockquote class="last">
+<div><p>maximum number of old log files kept in rotation cycle; 5 by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/logging.handlers.html#logging.handlers.RotatingFileHandler" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">logging.handlers.RotatingFileHandler</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.log.StreamLogger">
+<em class="property">class </em><tt class="descclassname">kdvs.core.log.</tt><tt class="descname">StreamLogger</tt><big>(</big><em>name=None</em>, <em>level=20</em>, <em>stream=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x2aeb938c31e0&gt;</em><big>)</big><a class="headerlink" href="#kdvs.core.log.StreamLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.core.log.Logger" title="kdvs.core.log.Logger"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.core.log.Logger</span></tt></a></p>
+<p>Logger that directs messages to specified stream.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>name</strong> : string/None</p>
+<blockquote>
+<div><p>name of the logger; if None, random name will be used</p>
+</div></blockquote>
+<p><strong>level</strong> : integer</p>
+<blockquote>
+<div><p>level granularity of this logger, INFO by default</p>
+</div></blockquote>
+<p><strong>stream</strong> : file</p>
+<blockquote class="last">
+<div><p>Stream to direct messages to; <tt class="xref py py-class docutils literal"><span class="pre">sys.stdout</span></tt> by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/logging.handlers.html#logging.StreamHandler" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">logging.StreamHandler</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.log.NullHandler">
+<em class="property">class </em><tt class="descclassname">kdvs.core.log.</tt><tt class="descname">NullHandler</tt><a class="headerlink" href="#kdvs.core.log.NullHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">logging.Handler</span></tt></p>
+<p>Null handler used for compatibility with Python 2.6. It consumes given messages
+without emitting them.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/logging.handlers.html#logging.NullHandler" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">logging.NullHandler</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.core.log.NullHandler.emit">
+<tt class="descname">emit</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#kdvs.core.log.NullHandler.emit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.log.NullHandler.flush">
+<tt class="descname">flush</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.log.NullHandler.flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.log.NullHandler.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.log.NullHandler.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.provider">
+<span id="provider-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">provider</span></tt> Module<a class="headerlink" href="#module-kdvs.core.provider" title="Permalink to this headline">¶</a></h2>
+<p>Contains set of useful providers for various generic classes of objects handled by KDVS.</p>
+<dl class="class">
+<dt id="kdvs.core.provider.DBProvider">
+<em class="property">class </em><tt class="descclassname">kdvs.core.provider.</tt><tt class="descname">DBProvider</tt><a class="headerlink" href="#kdvs.core.provider.DBProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Abstract class for providers of database services. All methods must be implemented
+in subclasses.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#kdvs.core.provider.SQLite3DBProvider" title="kdvs.core.provider.SQLite3DBProvider"><tt class="xref py py-obj docutils literal"><span class="pre">SQLite3DBProvider</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.core.provider.DBProvider.connect">
+<tt class="descname">connect</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.core.provider.DBProvider.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appropriately connect to specified database and return connection object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.DBProvider.getConnectionFunc">
+<tt class="descname">getConnectionFunc</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.DBProvider.getConnectionFunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return appropriate low&#8211;level connection function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.DBProvider.getOperationalError">
+<tt class="descname">getOperationalError</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.DBProvider.getOperationalError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return appropriate instance of OperationalError.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.DBProvider.getTextColumnType">
+<tt class="descname">getTextColumnType</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.DBProvider.getTextColumnType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return appropriate type for DB column that contains unformatted text data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.DBProvider.checkTableExistence">
+<tt class="descname">checkTableExistence</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.core.provider.DBProvider.checkTableExistence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform appropriate check if table is present in the database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.DBProvider.getEngine">
+<tt class="descname">getEngine</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.DBProvider.getEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get appropriate information about DB engine, as the following dictionary:
+{&#8216;name&#8217; : name, &#8216;version&#8217; : version}.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.provider.SQLite3DBProvider">
+<em class="property">class </em><tt class="descclassname">kdvs.core.provider.</tt><tt class="descname">SQLite3DBProvider</tt><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#kdvs.core.provider.DBProvider" title="kdvs.core.provider.DBProvider"><tt class="xref py py-class docutils literal"><span class="pre">kdvs.core.provider.DBProvider</span></tt></a></p>
+<p>Provider for SQLite3 database based on <a class="reference external" href="http://docs.python.org/library/sqlite3.html#sqlite3" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">sqlite3</span></tt></a>.</p>
+<dl class="method">
+<dt id="kdvs.core.provider.SQLite3DBProvider.connect">
+<tt class="descname">connect</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to specified database. All positional arguments are passed to <a class="reference external" href="http://docs.python.org/library/sqlite3.html#sqlite3.connect" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">sqlite3.connect()</span></tt></a>
+function. All keyworded arguments may be used by the user. Currently the following
+arguments are recognized:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>&#8216;unicode_strings&#8217; (boolean)</dt>
+<dd><p class="first last">if True, all strings returned by sqlite3 will be Unicode, and normal strings
+otherwise; sets global attribute <tt class="xref py py-data docutils literal"><span class="pre">sqlite3.text_factory</span></tt> appropriately; False by
+default (may be omitted)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>args</strong> : iterable</p>
+<blockquote>
+<div><p>positional arguments passed directly to appropriate connection function</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>keyworded arguments to be used by the user</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if could not connect to specified database for whatever reason; essentially,
+re&#8211;raise OperationalError with details</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.SQLite3DBProvider.getConnectionFunc">
+<tt class="descname">getConnectionFunc</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider.getConnectionFunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <a class="reference external" href="http://docs.python.org/library/sqlite3.html#sqlite3.connect" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">sqlite3.connect()</span></tt></a> instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.SQLite3DBProvider.getOperationalError">
+<tt class="descname">getOperationalError</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider.getOperationalError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <tt class="xref py py-class docutils literal"><span class="pre">sqlite3.OperationalError</span></tt> instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.SQLite3DBProvider.getTextColumnType">
+<tt class="descname">getTextColumnType</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider.getTextColumnType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns &#8216;TEXT&#8217; as the default unformatted table content. See
+<a class="reference external" href="http://www.sqlite.org/datatype3.html">SQLite documentation</a>
+for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.SQLite3DBProvider.checkTableExistence">
+<tt class="descname">checkTableExistence</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider.checkTableExistence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if specific table exists in given database. The check is performed as a
+query of &#8216;sqlite_master&#8217; table. See
+<a class="reference external" href="http://www.sqlite.org/fileformat2.html#sqlite_master">SQLite documentation</a>
+for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>conn</strong> : <a class="reference external" href="http://docs.python.org/library/sqlite3.html#sqlite3.Connection" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">sqlite3.Connection</span></tt></a></p>
+<blockquote>
+<div><p>opened connection to database</p>
+</div></blockquote>
+<p><strong>tablename</strong> : string</p>
+<blockquote>
+<div><p>name of the table to be checked</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if could not check table existence; essentially, re&#8211;raise OperationalError with details</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.provider.SQLite3DBProvider.getEngine">
+<tt class="descname">getEngine</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.provider.SQLite3DBProvider.getEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get version information if the SQLite engine as dictionary {&#8216;name&#8217; : name, &#8216;version&#8217; : version}.
+Version information is obtained as the result of SQLite function &#8216;sqlite_version&#8217;
+executed from in&#8211;memory database. See
+<a class="reference external" href="http://www.sqlite.org/lang_corefunc.html#sqlite_version">SQLite documentation</a>
+for more details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if could not get engine version; essentially, re&#8211;raise OperationalError with details</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.provider.fileProvider">
+<tt class="descclassname">kdvs.core.provider.</tt><tt class="descname">fileProvider</tt><big>(</big><em>filename</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.core.provider.fileProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return opened file object suitable for use with context manager, regardless of
+file type. Provides transparent handling of compressed files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>filename</strong> : string</p>
+<blockquote>
+<div><p>path to specific file</p>
+</div></blockquote>
+<p><strong>args</strong> : iterable</p>
+<blockquote>
+<div><p>any positional arguments passed into opener function</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dictionary</p>
+<blockquote>
+<div><p>any keyword arguments passed into opener function</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>file_object</strong> : file_like</p>
+<blockquote class="last">
+<div><p>opened file object, suitable for use with context manager</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.provider.fpGzipFile">
+<em class="property">class </em><tt class="descclassname">kdvs.core.provider.</tt><tt class="descname">fpGzipFile</tt><big>(</big><em>filename=None</em>, <em>mode=None</em>, <em>compresslevel=9</em>, <em>fileobj=None</em>, <em>mtime=None</em><big>)</big><a class="headerlink" href="#kdvs.core.provider.fpGzipFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/gzip.html#gzip.GzipFile" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">gzip.GzipFile</span></tt></a></p>
+<p>Wrapper class to allow opening gzip-ed files with context manager.</p>
+<p>Constructor for the GzipFile class.</p>
+<p>At least one of fileobj and filename must be given a
+non-trivial value.</p>
+<p>The new class instance is based on fileobj, which can be a regular
+file, a StringIO object, or any other object which simulates a file.
+It defaults to None, in which case filename is opened to provide
+a file object.</p>
+<p>When fileobj is not None, the filename argument is only used to be
+included in the gzip file header, which may includes the original
+filename of the uncompressed file.  It defaults to the filename of
+fileobj, if discernible; otherwise, it defaults to the empty string,
+and in this case the original filename is not included in the header.</p>
+<p>The mode argument can be any of &#8216;r&#8217;, &#8216;rb&#8217;, &#8216;a&#8217;, &#8216;ab&#8217;, &#8216;w&#8217;, or &#8216;wb&#8217;,
+depending on whether the file will be read or written.  The default
+is the mode of fileobj if discernible; otherwise, the default is &#8216;rb&#8217;.
+Be aware that only the &#8216;rb&#8217;, &#8216;ab&#8217;, and &#8216;wb&#8217; values should be used
+for cross-platform portability.</p>
+<p>The compresslevel argument is an integer from 1 to 9 controlling the
+level of compression; 1 is fastest and produces the least compression,
+and 9 is slowest and produces the most compression.  The default is 9.</p>
+<p>The mtime argument is an optional numeric timestamp to be written
+to the stream when compressing.  All gzip compressed streams
+are required to contain a timestamp.  If omitted or None, the
+current time is used.  This module ignores the timestamp when
+decompressing; however, some programs, such as gunzip, make use
+of it.  The format of the timestamp is the same as that of the
+return value of time.time() and of the st_mtime member of the
+object returned by os.stat().</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.provider.fpBzip2File">
+<em class="property">class </em><tt class="descclassname">kdvs.core.provider.</tt><tt class="descname">fpBzip2File</tt><a class="headerlink" href="#kdvs.core.provider.fpBzip2File" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/bz2.html#bz2.BZ2File" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">bz2.BZ2File</span></tt></a></p>
+<p>Wrapper class to allow opening bzip2-ed files with context manager.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="kdvs.core.provider.RECOGNIZED_FILE_PROVIDERS">
+<tt class="descclassname">kdvs.core.provider.</tt><tt class="descname">RECOGNIZED_FILE_PROVIDERS</tt><em class="property"> = (&lt;type 'file'&gt;, &lt;class 'kdvs.core.provider.fpGzipFile'&gt;, &lt;class 'kdvs.core.provider.fpBzip2File'&gt;)</em><a class="headerlink" href="#kdvs.core.provider.RECOGNIZED_FILE_PROVIDERS" title="Permalink to this definition">¶</a></dt>
+<dd><p>File providers currently recognized by KDVS.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/functions.html#file" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">file</span></tt></a>, <a class="reference internal" href="#kdvs.core.provider.fpGzipFile" title="kdvs.core.provider.fpGzipFile"><tt class="xref py py-obj docutils literal"><span class="pre">fpGzipFile</span></tt></a>, <a class="reference internal" href="#kdvs.core.provider.fpBzip2File" title="kdvs.core.provider.fpBzip2File"><tt class="xref py py-obj docutils literal"><span class="pre">fpBzip2File</span></tt></a></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kdvs.core.util">
+<span id="util-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">util</span></tt> Module<a class="headerlink" href="#module-kdvs.core.util" title="Permalink to this headline">¶</a></h2>
+<p>Provides various utility classes and functions.</p>
+<dl class="function">
+<dt id="kdvs.core.util.quote">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">quote</tt><big>(</big><em>s</em>, <em>quote='&quot;'</em><big>)</big><a class="headerlink" href="#kdvs.core.util.quote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Surrounds requested string with given &#8220;quote&#8221; strings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>s</strong> : string</p>
+<blockquote>
+<div><p>string to quote</p>
+</div></blockquote>
+<p><strong>quote</strong> : string</p>
+<blockquote>
+<div><p>string to be appended to the beginning and the end of requested string</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>quoted_str</strong> : string</p>
+<blockquote class="last">
+<div><p>quote + s + quote</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.CommentSkipper">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">CommentSkipper</tt><big>(</big><em>seq</em>, <em>comment=None</em><big>)</big><a class="headerlink" href="#kdvs.core.util.CommentSkipper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator that discards strings prefixed with given comment string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>seq</strong> : iterable</p>
+<blockquote>
+<div><p>sequence of strings</p>
+</div></blockquote>
+<p><strong>comment</strong> : string/None</p>
+<blockquote>
+<div><p>comment prefix; if None, do not perform any discarding at all</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>ncomseq</strong> : iterable</p>
+<blockquote class="last">
+<div><p>filtered input sequence of strings without commented ones</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.isListOrTuple">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">isListOrTuple</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#kdvs.core.util.isListOrTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if given object is an instance of list or tuple, and False otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.isTuple">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">isTuple</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#kdvs.core.util.isTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if given object is an instance of tuple, and False otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.isIntegralNumber">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">isIntegralNumber</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#kdvs.core.util.isIntegralNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if given object is an instance of integer number, and False otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.className">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">className</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#kdvs.core.util.className" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return class name of the object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.emptyGenerator">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">emptyGenerator</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.util.emptyGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator that yields nothing.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.emptyCall">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">emptyCall</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.util.emptyCall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empty callable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.revIndices">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">revIndices</tt><big>(</big><em>sliceobj</em><big>)</big><a class="headerlink" href="#kdvs.core.util.revIndices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal function. Revert given slice object.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.util.NPGenFromTxtWrapper">
+<em class="property">class </em><tt class="descclassname">kdvs.core.util.</tt><tt class="descname">NPGenFromTxtWrapper</tt><big>(</big><em>dbresult</em>, <em>delim=' '</em>, <em>id_col_idx=None</em><big>)</big><a class="headerlink" href="#kdvs.core.util.NPGenFromTxtWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Wraps DBResult instance into a generator that can be passed to <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html#numpy.loadtxt" title="(in NumPy v1.8)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.loadtxt()</span></tt></a> family
+of functions. It exposes appropriate methods accepted by <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html#numpy.loadtxt" title="(in NumPy v1.8)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.loadtxt()</span></tt></a> depending
+on the numpy version: &#8216;readline&#8217; (for numpy &lt; 1.6.0), &#8216;next&#8217; (for numpy &gt;= 1.6.0).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>dbresult</strong> : <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DBResult.DBResult" title="kdvs.fw.DBResult.DBResult"><tt class="xref py py-class docutils literal"><span class="pre">DBResult</span></tt></a></p>
+<blockquote>
+<div><p>DBResult object to be wrapped</p>
+</div></blockquote>
+<p><strong>delim</strong> : string</p>
+<blockquote>
+<div><p>requested delimiter for &#8216;loadtxt&#8217;&#8211;type function, space by default</p>
+</div></blockquote>
+<p><strong>id_col_idx</strong> : integer/None</p>
+<blockquote class="last">
+<div><p>index of column that contains ID; if not None, the content of that column
+will be discarded by the generator</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.genfromtxt.html#numpy.genfromtxt" title="(in NumPy v1.8)"><tt class="xref py py-obj docutils literal"><span class="pre">numpy.genfromtxt</span></tt></a></p>
+</div>
+<dl class="method">
+<dt id="kdvs.core.util.NPGenFromTxtWrapper.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.util.NPGenFromTxtWrapper.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="kdvs.core.util.NPGenFromTxtWrapper.readline">
+<tt class="descname">readline</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.util.NPGenFromTxtWrapper.readline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.getSerializableContent">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">getSerializableContent</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#kdvs.core.util.getSerializableContent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce representation of the object that is as serializable as possible (in the
+sense of <a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pickle</span></tt></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>obj</strong> : object</p>
+<blockquote>
+<div><p>object to be serialized</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>ser_obj</strong> : object</p>
+<blockquote class="last">
+<div><p>serialized object (in terms of <cite>pickle</cite>) or serializable surrogate that identifies
+the origin of the original object.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.serializeObj">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">serializeObj</tt><big>(</big><em>obj</em>, <em>out_fh</em>, <em>protocol=None</em><big>)</big><a class="headerlink" href="#kdvs.core.util.serializeObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize given input object to opened file&#8211;like handle. Self&#8211;contained function,
+can be used as depfunc with <a class="reference internal" href="kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>obj</strong> : object</p>
+<blockquote>
+<div><p>object to be serialized</p>
+</div></blockquote>
+<p><strong>out_fh</strong> : file-like</p>
+<blockquote>
+<div><p>file-like object that accepts serialized object</p>
+</div></blockquote>
+<p><strong>protocol</strong> : integer/None</p>
+<blockquote class="last">
+<div><p>protocol used by <a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">pickle</span></tt></a>/<a class="reference external" href="http://docs.python.org/library/pickle.html#cPickle" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">cPickle</span></tt></a> in serialization of the input object; if None,
+the highest possible is used</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.deserializeObj">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">deserializeObj</tt><big>(</big><em>in_fh</em><big>)</big><a class="headerlink" href="#kdvs.core.util.deserializeObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize object from opened file&#8211;like handle. Self&#8211;contained function,
+can be used as depfunc with <a class="reference internal" href="kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>in_fh</strong> : file-like</p>
+<blockquote>
+<div><p>file-like object that contains serialized object</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>obj</strong> : object</p>
+<blockquote class="last">
+<div><p>deserialized object</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://docs.python.org/library/pickle.html#pickle" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">pickle</span></tt></a>, <a class="reference external" href="http://docs.python.org/library/pickle.html#cPickle" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">cPickle</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.serializeTxt">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">serializeTxt</tt><big>(</big><em>lines</em>, <em>out_fh</em><big>)</big><a class="headerlink" href="#kdvs.core.util.serializeTxt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize given lines of text to opened file&#8211;like handle. Self&#8211;contained function,
+can be used as depfunc with <a class="reference internal" href="kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>lines</strong> : iterable</p>
+<blockquote>
+<div><p>lines of text to be serialized</p>
+</div></blockquote>
+<p><strong>out_fh</strong> : file-like</p>
+<blockquote class="last">
+<div><p>file-like object that accepts serialized object</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Currently it just writes text lines with &#8216;writelines&#8217;. Override for more detailed
+control.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.pprintObj">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">pprintObj</tt><big>(</big><em>obj</em>, <em>out_fh</em>, <em>indent=2</em><big>)</big><a class="headerlink" href="#kdvs.core.util.pprintObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pretty prints in sense of <a class="reference external" href="http://docs.python.org/library/pprint.html#pprint.pprint" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">pprint.pprint()</span></tt></a>, the represenation of given input object,
+to opened file&#8211;like handle. Self&#8211;contained function, can be used as depfunc
+with <a class="reference internal" href="kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>obj</strong> : object</p>
+<blockquote>
+<div><p>object to be pretty printed</p>
+</div></blockquote>
+<p><strong>out_fh</strong> : file-like</p>
+<blockquote>
+<div><p>file-like object that accepts pretty printed object</p>
+</div></blockquote>
+<p><strong>indent</strong> : integer</p>
+<blockquote class="last">
+<div><p>indentation used by pretty printer; 2 spaces by default</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.writeObj">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">writeObj</tt><big>(</big><em>obj</em>, <em>out_fh</em><big>)</big><a class="headerlink" href="#kdvs.core.util.writeObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write given input object to opened file&#8211;like handle. Self&#8211;contained function,
+can be used as depfunc with <a class="reference internal" href="kdvs.fw.impl.job.html#kdvs.fw.impl.job.PPlusJob.PPlusJobContainer" title="kdvs.fw.impl.job.PPlusJob.PPlusJobContainer"><tt class="xref py py-class docutils literal"><span class="pre">PPlusJobContainer</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>obj</strong> : object</p>
+<blockquote>
+<div><p>object to be written</p>
+</div></blockquote>
+<p><strong>out_fh</strong> : file-like</p>
+<blockquote class="last">
+<div><p>file-like object that accepts written object</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Currently it just writes object with &#8216;write&#8217;. The exact behavior depends on the
+given input object and file-like object. The function does not check for any error.
+Override for more detailed control.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.isDirWritable">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">isDirWritable</tt><big>(</big><em>directory</em><big>)</big><a class="headerlink" href="#kdvs.core.util.isDirWritable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if given directory is writable, and False otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.importComponent">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">importComponent</tt><big>(</big><em>qualified_name</em>, <em>qualifier='.'</em><big>)</big><a class="headerlink" href="#kdvs.core.util.importComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamically import given module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>qualified_name</strong> : string</p>
+<blockquote>
+<div><p>fully qualified module path as resolvable by Python, e.g. &#8216;kdvs.core.util.importComponent&#8217;.</p>
+</div></blockquote>
+<p><strong>qualifier</strong> : string</p>
+<blockquote>
+<div><p>qualifier symbol used in given module path; dot (&#8216;.&#8217;) by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>module</strong> : module</p>
+<blockquote class="last">
+<div><p>imported module instance, as leaf (not root) in Python module hierarchy;
+see <a class="reference external" href="http://docs.python.org/library/functions.html#__import__" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">__import__()</span></tt></a> for more details</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Importing is done relatively to <a class="reference internal" href="kdvs.html#kdvs.__init__.ROOT_IMPORT_PATH" title="kdvs.__init__.ROOT_IMPORT_PATH"><tt class="xref py py-data docutils literal"><span class="pre">ROOT_IMPORT_PATH</span></tt></a> only. This function is used
+for detailed dynamic imports from within KDVS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.getFileNameComponent">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">getFileNameComponent</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#kdvs.core.util.getFileNameComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return filename component of given file path.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.resolveIndexes">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">resolveIndexes</tt><big>(</big><em>dsv</em>, <em>indexes_info</em><big>)</big><a class="headerlink" href="#kdvs.core.util.resolveIndexes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal helper function. Return correct indexes for given <a class="reference internal" href="kdvs.fw.html#kdvs.fw.DSV.DSV" title="kdvs.fw.DSV.DSV"><tt class="xref py py-class docutils literal"><span class="pre">DSV</span></tt></a> instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kdvs.core.util.pairwise">
+<tt class="descclassname">kdvs.core.util.</tt><tt class="descname">pairwise</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#kdvs.core.util.pairwise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taken from <a class="reference external" href="http://docs.python.org/library/itertools.html#itertools" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">itertools</span></tt></a> receipts. Split given iterable of elements into overlapping
+pairs of elements as follows: (s0,s1,s2,s3,...) -&gt; (s0,s1),(s1,s2),(s2, s3),...</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.util.Parametrizable">
+<em class="property">class </em><tt class="descclassname">kdvs.core.util.</tt><tt class="descname">Parametrizable</tt><big>(</big><em>ref_parameters=()</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#kdvs.core.util.Parametrizable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Abstract class that can be parametrized. During instantiation, given parameters
+can be compared to reference ones, and Error is thrown when they do not match.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ref_parameters</strong> : iterable</p>
+<blockquote>
+<div><p>reference parameters to be checked against during instantiation; empty tuple by default</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>actual parameters supplied during instantiation; they will be checked against
+reference ones</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if some supplied parameters are not on the reference list</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.util.Configurable">
+<em class="property">class </em><tt class="descclassname">kdvs.core.util.</tt><tt class="descname">Configurable</tt><big>(</big><em>expected_cfg={}</em>, <em>actual_cfg={}</em><big>)</big><a class="headerlink" href="#kdvs.core.util.Configurable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Abstract class that can be configured. During instantiation, given configuration
+can be compared to reference one, and Error is thrown when they do not match.
+Expected configuration is a dictionary of objects {&#8216;par1&#8217; : partype1obj,
+&#8216;par2&#8217; : partype2obj, ...}, where partypeXobj is the example object of expected
+type. For instance, if partypeXobj is {}, it will be checked if the parameter
+value is a dictionary. Object types are checked with <a class="reference external" href="http://docs.python.org/library/functions.html#isinstance" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">isinstance()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expected_cfg</strong> : dict</p>
+<blockquote>
+<div><p>expected configuration; empty dictionary by default</p>
+</div></blockquote>
+<p><strong>actual_cfg</strong> : dict</p>
+<blockquote>
+<div><p>actual supplied configuration; empty dictionary by default</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises :</th><td class="field-body"><p class="first"><strong>Error</strong> :</p>
+<blockquote>
+<div><p>if any element is missing from expected configuration</p>
+</div></blockquote>
+<p><strong>Error</strong> :</p>
+<blockquote class="last">
+<div><p>if expected type of any element is wrong</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="kdvs.core.util.Configurable.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#kdvs.core.util.Configurable.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all keys of actual supplied configuration.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="kdvs.core.util.Constant">
+<em class="property">class </em><tt class="descclassname">kdvs.core.util.</tt><tt class="descname">Constant</tt><big>(</big><em>srepr</em><big>)</big><a class="headerlink" href="#kdvs.core.util.Constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Class that represents string constants.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>srepr</strong> : object</p>
+<blockquote class="last">
+<div><p>Textual representation of string constant.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>In current implementation, it represents &#8216;text&#8217; with &#8216;&lt;text&gt;&#8217;.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+   
+      
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">core Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">core</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-kdvs.core._version"><tt class="docutils literal"><span class="pre">_version</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.action"><tt class="docutils literal"><span class="pre">action</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.config"><tt class="docutils literal"><span class="pre">config</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.db"><tt class="docutils literal"><span class="pre">db</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.dep"><tt class="docutils literal"><span class="pre">dep</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.env"><tt class="docutils literal"><span class="pre">env</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.error"><tt class="docutils literal"><span class="pre">error</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.log"><tt class="docutils literal"><span class="pre">log</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.provider"><tt class="docutils literal"><span class="pre">provider</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-kdvs.core.util"><tt class="docutils literal"><span class="pre">util</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+   
+ 
+    
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+    <p class="logo">
+       <img class="logo" src="_static/logos.png" alt="Logos" usemap="#logosmap" />
+    </p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kdvs.fw.html" title="fw Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kdvs.contrib.html" title="contrib Package"
+             >previous</a> |</li>
+        <li><a href="../index.html">KDVS 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="api.html" >KDVS API</a> &raquo;</li>
+          <li><a href="modules.html" >kdvs</a> &raquo;</li>
+          <li><a href="kdvs.html" >kdvs Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, Grzegorz Zycinski, Annalisa Barla.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>
