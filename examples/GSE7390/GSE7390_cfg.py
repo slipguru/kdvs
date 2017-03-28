@@ -2,7 +2,7 @@
 
 # ---- import section
 
-import l1l2py
+from l1l2py import tools
 
 # ---- content section
 
@@ -101,7 +101,7 @@ experiment_profile_inst = {
         'L1L2_OLS' : {
             'kdvs.fw.impl.stat.L1L2.L1L2_OLS' : {
                 # ---- individual parameters
-                'error_func' : l1l2py.tools.balanced_classification_error,
+                'error_func' : tools.balanced_classification_error,
                 'return_predictions' : True,
                 # ---- global parameters
                 # use null DOF
@@ -136,13 +136,13 @@ experiment_profile_inst = {
                  # specific lambda range if desired, None otherwise
                 'lambda_range' : None,
                 # error functions
-                'error_func' : l1l2py.tools.balanced_classification_error,
-                'cv_error_func' : l1l2py.tools.balanced_classification_error,
+                'error_func' : tools.balanced_classification_error,
+                'cv_error_func' : tools.balanced_classification_error,
                 # sparse/regularized solution (mutually exclusive)
                 'sparse' : True,
                 'regularized' : False,
                 # normalizers
-                'data_normalizer' : l1l2py.tools.center,
+                'data_normalizer' : tools.center,
                 'labels_normalizer' : None,
                 # return predictions?
                 'return_predictions' : True,
@@ -170,9 +170,9 @@ experiment_profile_inst = {
                  # specific lambda range if desired, None otherwise
                 'lambda_range' : None,
                 # error function(s)
-                'error_func' : l1l2py.tools.balanced_classification_error,
+                'error_func' : tools.balanced_classification_error,
                 # normalizers
-                'data_normalizer' : l1l2py.tools.center,
+                'data_normalizer' : tools.center,
                 'labels_normalizer' : None,
                 # return predictions?
                 'return_predictions' : True,

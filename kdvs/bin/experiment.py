@@ -52,24 +52,24 @@ Main application class. It interprets the instance of
     """
     def prepare(self):
         r"""
-Add all actions, in the following order:
+                Add all actions, in the following order:
 
-    * :func:`resolveStaticDataFiles`
-    * :func:`loadStaticData`
-    * :func:`postprocessStaticData`
-    * :func:`loadUserData`
-    * :func:`resolveProfileComponents`
-    * :func:`buildGeneIDMap`
-    * :func:`buildPKCIDMap`
-    * :func:`obtainLabels`
-    * :func:`buildPKDrivenDataSubsets`
-    * :func:`buildSubsetHierarchy`
-    * :func:`submitSubsetOperations`
-    * :func:`executeSubsetOperations`
-    * :func:`postprocessSubsetOperations`
-    * :func:`performSelections`
-    * :func:`storeCompleteResults`
-    * :func:`prepareReports`
+            * :func:`resolveStaticDataFiles`
+            * :func:`loadStaticData`
+            * :func:`postprocessStaticData`
+            * :func:`loadUserData`
+            * :func:`resolveProfileComponents`
+            * :func:`buildGeneIDMap`
+            * :func:`buildPKCIDMap`
+            * :func:`obtainLabels`
+            * :func:`buildPKDrivenDataSubsets`
+            * :func:`buildSubsetHierarchy`
+            * :func:`submitSubsetOperations`
+            * :func:`executeSubsetOperations`
+            * :func:`postprocessSubsetOperations`
+            * :func:`performSelections`
+            * :func:`storeCompleteResults`
+            * :func:`prepareReports`
         """
         self.env.addCallable(resolveStaticDataFiles)
         self.env.addCallable(loadStaticData)
@@ -92,17 +92,17 @@ Add all actions, in the following order:
 
 def resolveStaticDataFiles(env):
     r"""
-Action that resolves file paths for all static data files, according to specification.
-Specification is taken from 'static_data_files' dictionary that comes from default
-configuration file. The names may contain '*' and are interpreted according to
-:mod:`glob` module rules. Also opens the files and stores their file handles in
-the same dictionary (under the keys 'path' and 'fh'). See 'kdvs/config/default_cfg.py'
-for details.
+        Action that resolves file paths for all static data files, according to specification.
+        Specification is taken from 'static_data_files' dictionary that comes from default
+        configuration file. The names may contain '*' and are interpreted according to
+        :mod:`glob` module rules. Also opens the files and stores their file handles in
+        the same dictionary (under the keys 'path' and 'fh'). See 'kdvs/config/default_cfg.py'
+        for details.
 
-See Also
---------
-kdvs.core.config.getDefaultCfgFilePath
-kdvs.core.config.getDefaultDataRootPath
+        See Also
+        --------
+        kdvs.core.config.getDefaultCfgFilePath
+        kdvs.core.config.getDefaultDataRootPath
     """
     env.logger.info('Started resolving static data files')
     data_path = env.var('data_path')
@@ -127,23 +127,23 @@ kdvs.core.config.getDefaultDataRootPath
 
 def loadStaticData(env):
     r"""
-Action that loads all static data files, either into database governed by the instance
-of :class:`~kdvs.core.db.DBManager`, or through associated manager, if present.
-It interprets 'static_data_files' dictionary that comes from default configuration
-file. It uses two exclusive elements. If 'loadToDb' is True, the file is loaded
-into database and wrapped in :class:`~kdvs.fw.DSV.DSV` instance. If 'manager' is
-not None, it instantiates the :class:`~kdvs.fw.PK.PKCManager` instance that
-governs the content of the file; also, if debug output was requested, it instructs
-the manager to :meth:`dump` all the information. See 'kdvs/config/default_cfg.py'
-for details.
+        Action that loads all static data files, either into database governed by the instance
+        of :class:`~kdvs.core.db.DBManager`, or through associated manager, if present.
+        It interprets 'static_data_files' dictionary that comes from default configuration
+        file. It uses two exclusive elements. If 'loadToDb' is True, the file is loaded
+        into database and wrapped in :class:`~kdvs.fw.DSV.DSV` instance. If 'manager' is
+        not None, it instantiates the :class:`~kdvs.fw.PK.PKCManager` instance that
+        governs the content of the file; also, if debug output was requested, it instructs
+        the manager to :meth:`dump` all the information. See 'kdvs/config/default_cfg.py'
+        for details.
 
-The 'experiment' application recognizes two static data files. See 'kdvs/data/README'
-for details.
+        The 'experiment' application recognizes two static data files. See 'kdvs/data/README'
+        for details.
 
-Raises
-------
-Warn
-    if more than one manager was specified for static data file
+        Raises
+        ------
+        Warn
+            if more than one manager was specified for static data file
     """
     env.logger.info('Started loading static data files')
     dbm = env.var('dbm')
@@ -194,16 +194,16 @@ Warn
 
 def postprocessStaticData(env):
     r"""
-Action that performs postprocessing of static data. Currently, it performs
-corrections of withdrawn symbols, and generates helper tables with HGNC synonyms
-and previous symbols; helper tables are wrapped in :class:`~kdvs.fw.DBTable.DBTable`
-instances.
+        Action that performs postprocessing of static data. Currently, it performs
+        corrections of withdrawn symbols, and generates helper tables with HGNC synonyms
+        and previous symbols; helper tables are wrapped in :class:`~kdvs.fw.DBTable.DBTable`
+        instances.
 
-See Also
---------
-kdvs.fw.impl.annotation.HGNC.correctHGNCApprovedSymbols
-kdvs.fw.impl.annotation.HGNC.generateHGNCPreviousSymbols
-kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms
+        See Also
+        --------
+        kdvs.fw.impl.annotation.HGNC.correctHGNCApprovedSymbols
+        kdvs.fw.impl.annotation.HGNC.generateHGNCPreviousSymbols
+        kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms
     """
     env.logger.info('Started postprocessing static data')
 
@@ -228,17 +228,17 @@ kdvs.fw.impl.annotation.HGNC.generateHGNCSynonyms
 
 def loadUserData(env):
     r"""
-Action that resolves and loads user data files. The following profile sections are
-interpreted:
+        Action that resolves and loads user data files. The following profile sections are
+        interpreted:
 
-    * 'annotation_file'
-    * 'gedm_file'
-    * 'labels_file'
+            * 'annotation_file'
+            * 'gedm_file'
+            * 'labels_file'
 
-All these are DSV files; after loading into database, they are wrapped in
-:class:`~kdvs.fw.DSV.DSV` instances.
+        All these are DSV files; after loading into database, they are wrapped in
+        :class:`~kdvs.fw.DSV.DSV` instances.
 
-See 'kdvs/example_experiment/example_experiment_cfg.py' for details.
+        See 'kdvs/example_experiment/example_experiment_cfg.py' for details.
     """
     env.logger.info('Started loading user data')
     dbm = env.var('dbm')
@@ -296,21 +296,21 @@ See 'kdvs/example_experiment/example_experiment_cfg.py' for details.
 
 def resolveProfileComponents(env):
     r"""
-Action that goes through application profile and resolves all dynamically created
-components, that is, reads the individual specifications, creates instances, and
-performs individual configurations. Currently, the following groups of components
-are processed, and concrete instances are created:
+        Action that goes through application profile and resolves all dynamically created
+        components, that is, reads the individual specifications, creates instances, and
+        performs individual configurations. Currently, the following groups of components
+        are processed, and concrete instances are created:
 
-    * categorizers (:class:`~kdvs.fw.Categorizer.Categorizer`)
-    * orderers (:class:`~kdvs.fw.Categorizer.Orderer`)
-    * statistical techniques (:class:`~kdvs.fw.Stat.Technique`)
-    * outer selectors (:class:`~kdvs.fw.impl.stat.PKCSelector.OuterSelector`)
-    * inner selectors (:class:`~kdvs.fw.impl.stat.PKCSelector.InnerSelector`)
-    * reporters (:class:`~kdvs.fw.Report.Reporter`)
-    * EnvOps (:class:`~kdvs.fw.EnvOp.EnvOp`)
+            * categorizers (:class:`~kdvs.fw.Categorizer.Categorizer`)
+            * orderers (:class:`~kdvs.fw.Categorizer.Orderer`)
+            * statistical techniques (:class:`~kdvs.fw.Stat.Technique`)
+            * outer selectors (:class:`~kdvs.fw.impl.stat.PKCSelector.OuterSelector`)
+            * inner selectors (:class:`~kdvs.fw.impl.stat.PKCSelector.InnerSelector`)
+            * reporters (:class:`~kdvs.fw.Report.Reporter`)
+            * EnvOps (:class:`~kdvs.fw.EnvOp.EnvOp`)
 
-Also, for statistical techniques, the corresponding degrees of freedom (DOFs) are
-expanded.
+        Also, for statistical techniques, the corresponding degrees of freedom (DOFs) are
+        expanded.
     """
     env.logger.info('Started resolving profile components')
     profile = env.var('profile')
@@ -364,11 +364,11 @@ expanded.
 
 def buildGeneIDMap(env):
     r"""
-Action that constructs the concrete instance of :class:`~kdvs.fw.Map.GeneIDMap`
-and builds appropriate mapping. The instance type is specified in user
-configuration file as 'geneidmap_type' variable. Also, if debug output was
-requested, dump the mapping. See
-'kdvs/example_experiment/example_experiment_cfg.py' for details.
+        Action that constructs the concrete instance of :class:`~kdvs.fw.Map.GeneIDMap`
+        and builds appropriate mapping. The instance type is specified in user
+        configuration file as 'geneidmap_type' variable. Also, if debug output was
+        requested, dump the mapping. See
+        'kdvs/example_experiment/example_experiment_cfg.py' for details.
     """
     env.logger.info('Started building GeneID Map')
     map_db_id = env.var('map_db_id')
@@ -398,17 +398,17 @@ requested, dump the mapping. See
 
 def buildPKCIDMap(env):
     r"""
-Action that constructs the concrete instance of :class:`~kdvs.fw.Map.PKCIDMap`
-and builds appropriate mapping. The instance type is specified in user
-configuration file as 'pkcidmap_type' variable. Also, if debug output was
-requested, dumps the mapping. In addition, since in 'experiment' application
-Gene Ontology is used as prior knowledge source, builds specialized submapping
-for selected GO domain. The GO domain is specified in :data:`~kdvs.fw.impl.app.Profile.MA_GO_PROFILE`
-as 'go_domain' element. See 'kdvs/example_experiment/example_experiment_cfg.py' for details.
+        Action that constructs the concrete instance of :class:`~kdvs.fw.Map.PKCIDMap`
+        and builds appropriate mapping. The instance type is specified in user
+        configuration file as 'pkcidmap_type' variable. Also, if debug output was
+        requested, dumps the mapping. In addition, since in 'experiment' application
+        Gene Ontology is used as prior knowledge source, builds specialized submapping
+        for selected GO domain. The GO domain is specified in :data:`~kdvs.fw.impl.app.Profile.MA_GO_PROFILE`
+        as 'go_domain' element. See 'kdvs/example_experiment/example_experiment_cfg.py' for details.
 
-See Also
---------
-kdvs.fw.impl.map.PKCID.GPL
+        See Also
+        --------
+        kdvs.fw.impl.map.PKCID.GPL
     """
     env.logger.info('Started building PKCID Map')
     map_db_id = env.var('map_db_id')
@@ -447,12 +447,12 @@ kdvs.fw.impl.map.PKCID.GPL
 
 def obtainLabels(env):
     r"""
-Action that obtains information about samples and labels (if present) and creates
-:class:`~kdvs.fw.Stat.Labels` instance. It reads samples from primary dataset,
-reads labels file, and re--orders labels according to samples from primary dataset.
-Primary dataset has been specified in :data:`~kdvs.fw.impl.app.Profile.MA_GO_PROFILE`
-as 'gedm_file' element, loaded earlier into database, and wrapped in :class:`~kdvs.fw.DSV.DSV`
-instance.
+        Action that obtains information about samples and labels (if present) and creates
+        :class:`~kdvs.fw.Stat.Labels` instance. It reads samples from primary dataset,
+        reads labels file, and re--orders labels according to samples from primary dataset.
+        Primary dataset has been specified in :data:`~kdvs.fw.impl.app.Profile.MA_GO_PROFILE`
+        as 'gedm_file' element, loaded earlier into database, and wrapped in :class:`~kdvs.fw.DSV.DSV`
+        instance.
     """
     env.logger.info('Started obtaining labels')
     # ---- determine samples
@@ -479,17 +479,17 @@ instance.
 
 def buildPKDrivenDataSubsets(env):
     r"""
-Action that builds all prior--knowledge--driven data subsets. The 'build' refers
-to querying of samples and variables from primary dataset. At this stage,
-the mapping 'subsets'
+        Action that builds all prior--knowledge--driven data subsets. The 'build' refers
+        to querying of samples and variables from primary dataset. At this stage,
+        the mapping 'subsets'
 
-    * {PKC_ID : [subsetID, numpy.shape(ds), [vars], [samples]]}
+            * {PKC_ID : [subsetID, numpy.shape(ds), [vars], [samples]]}
 
-is constructed, and the :class:`numpy.ndarray` component of :class:`~kdvs.fw.DataSet.DataSet`
-is serialized for each data subset. Currently, the instances of :class:`~kdvs.fw.DataSet.DataSet`
-are not preserved to conserve memory. Also, the iterable of tuples (pkcID, size),
-sorted in descending order wrt subset size (i.e. starting from largest), is
-constructed here as 'pkc2ss'.
+        is constructed, and the :class:`numpy.ndarray` component of :class:`~kdvs.fw.DataSet.DataSet`
+        is serialized for each data subset. Currently, the instances of :class:`~kdvs.fw.DataSet.DataSet`
+        are not preserved to conserve memory. Also, the iterable of tuples (pkcID, size),
+        sorted in descending order wrt subset size (i.e. starting from largest), is
+        constructed here as 'pkc2ss'.
     """
     env.logger.info('Started building PKC driven data subsets')
     gedm_dsv = env.var('gedm_dsv')
@@ -560,21 +560,21 @@ constructed here as 'pkc2ss'.
 
 def buildSubsetHierarchy(env):
     r"""
-Action that constructs the instance of
-:class:`~kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy`. Also,
-constructs the `operation map`, that is, determines the sequence of all
-operations to be performed on each category, and within, on each data subset,
-such as orderers, env--ops, statistical techniques, reporters etc. The `operation
-map` has two components: executable and textual. The executable component stores
-all references to actual callables to be performed; the textual component stores
-all textual IDs of the configurable instances that provide the callables themselves.
-The textual IDs are taken from user configuration file; the instances were created
-in :meth:`resolveProfileComponents` action. In addition, if debug output was
-requested, serializes constructed data structures.
+        Action that constructs the instance of
+        :class:`~kdvs.fw.impl.data.PKDrivenData.PKDrivenDBSubsetHierarchy`. Also,
+        constructs the `operation map`, that is, determines the sequence of all
+        operations to be performed on each category, and within, on each data subset,
+        such as orderers, env--ops, statistical techniques, reporters etc. The `operation
+        map` has two components: executable and textual. The executable component stores
+        all references to actual callables to be performed; the textual component stores
+        all textual IDs of the configurable instances that provide the callables themselves.
+        The textual IDs are taken from user configuration file; the instances were created
+        in :meth:`resolveProfileComponents` action. In addition, if debug output was
+        requested, serializes constructed data structures.
     """
     env.logger.info('Started building subset hierarchy')
     profile = env.var('profile')
-#    rlocpath = env.var('root_output_path')
+    #  rlocpath = env.var('root_output_path')
     subsets = env.var('subsets')
     pkdm = env.var('pkdm')
     categorizers = env.var('pc_categorizers')
@@ -695,8 +695,6 @@ requested, serializes constructed data structures.
                     operations_map_img[category][sym] = dict()
                     operations_map[category][sym]['__technique__'] = tech_inst
                     operations_map_img[category][sym]['__technique__'] = techID
-#                    operations_map[category][sym]['__reporter__'] = reporter_inst
-#                    operations_map_img[category][sym]['__reporter__'] = reporterID
                 # repeat the same for each descending category
                 _walk_hierarchy(category)
         else:
@@ -739,34 +737,34 @@ requested, serializes constructed data structures.
 
 def submitSubsetOperations(env):
     r"""
-Action that does the following:
+        Action that does the following:
 
-    * instantiates requested concrete :class:`~kdvs.fw.Job.JobContainer` and :class:`~kdvs.fw.Job.JobGroupManager` instances, as specified in configuration file(s)
-    * for each category:
+            * instantiates requested concrete :class:`~kdvs.fw.Job.JobContainer` and :class:`~kdvs.fw.Job.JobGroupManager` instances, as specified in configuration file(s)
+            * for each category:
 
-        * executes associated pre--Env-Op(s)
-        * determines `test mode` directives, if any; in test mode, only fraction of computational jobs are executed;
-            looks for two directives in dictionary 'subset_hierarchy_components_map'->category_name->'misc'
-            in :data:`~kdvs.fw.impl.app.Profile.MA_GO_PROFILE`:
+                * executes associated pre--Env-Op(s)
+                * determines `test mode` directives, if any; in test mode, only fraction of computational jobs are executed;
+                    looks for two directives in dictionary 'subset_hierarchy_components_map'->category_name->'misc'
+                    in :data:`~kdvs.fw.impl.app.Profile.MA_GO_PROFILE`:
 
-                * 'test_mode_elems' (integer) -- number of test data subsets to consider
-                * 'test_mode_elems_order' (string) ('first'/'last') -- consider 'first' or 'last' number of data subsets
+                        * 'test_mode_elems' (integer) -- number of test data subsets to consider
+                        * 'test_mode_elems_order' (string) ('first'/'last') -- consider 'first' or 'last' number of data subsets
 
-            only computational jobs generated for specified test data subsets will be executed
+                    only computational jobs generated for specified test data subsets will be executed
 
-        * determine `submission order`, i.e. the final list of data subsets to process further
-        * executes associated orderer(s) on the generated submission order
-        * for each data subset:
+                * determine `submission order`, i.e. the final list of data subsets to process further
+                * executes associated orderer(s) on the generated submission order
+                * for each data subset:
 
-            * generates all job(s) and adds them to job container
+                    * generates all job(s) and adds them to job container
 
-    * starts job container
+            * starts job container
 
-    * serializes the following technical mapping: { internal_job_ID : custom_job_ID },
-        where internal job ID is assigned by job container and custom job ID comes
-        from statistical technique
+            * serializes the following technical mapping: { internal_job_ID : custom_job_ID },
+                where internal job ID is assigned by job container and custom job ID comes
+                from statistical technique
 
-    * if debug output was requested, serializes the submission order
+            * if debug output was requested, serializes the submission order
     """
     env.logger.info('Started submitting subset operations')
     profile = env.var('profile')
@@ -813,9 +811,9 @@ Action that does the following:
     jobIDmap = dict()
     # default additional job data
     additionalJobData = { 'samples' : samples }
-#    # get pkc2ss mapping
-#    misc = env.var('misc')
-#    pkc2ss = misc['data_pkc2ss']
+    # # get pkc2ss mapping
+    # misc = env.var('misc')
+    # pkc2ss = misc['data_pkc2ss']
     pkc2ss = env.var('pkc2ss')
     # test jobs may be requested
     test_mode_elems = None
@@ -872,7 +870,6 @@ Action that does the following:
                 env.logger.info('No orderer present for category %s' % (category))
             # ---- get all subset symbols for this category
             symbols = set([s for s in cdata.keys() if not s.startswith('__') and not s.endswith('__')])
-#            symbols = set(cdata.keys()) - set(['__misc_data__', '__orderer__', '__outer_selector__'])
             env.logger.info('Symbols found for category %s : %d' % (category, len(symbols)))
             # ---- apply orderer
             env.logger.info('Started determining subset ordering')
@@ -1304,7 +1301,7 @@ Action that performs the following:
 
 def performSelections(env):
     r"""
-Action that performs the following:
+     action that performs the following:
 
     * for each category:
 
@@ -1315,7 +1312,7 @@ Action that performs the following:
     env.logger.info('Started performing selections')
 
     txt_suffix = env.var('txt_suffix')
-#    rlocpath = env.var('root_output_path')
+    # rlocpath = env.var('root_output_path')
     profile = env.var('profile')
     categorizers = env.var('pc_categorizers')
     operations_map = env.var('operations_map')
@@ -1467,7 +1464,7 @@ Action that performs the following:
 
         * `subsets`
             {PKC_ID : [subsetID, numpy.shape(ds), [vars], [samples]]}
-        * `pkcid2ssname` 
+        * `pkcid2ssname`
             {PKC_ID : subsetID}
         * `technique2DOF`
             {techniqueID : { 'DOFS_IDXS': (0, 1, ..., n), 'DOFs': (name_DOF0, name_DOF1, ..., name_DOFn)}

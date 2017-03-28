@@ -46,4 +46,5 @@ if __name__ == '__main__':
     # import module (A.B.mod) and return it (mod)
     pmod = __import__(pmodname, fromlist=[pmodlast])
     # find 'main' method and execute it
+    print((pmod))
     dict(inspect.getmembers(pmod))['main']()
